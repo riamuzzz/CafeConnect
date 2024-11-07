@@ -42,6 +42,7 @@ public class All extends HttpServlet {
 				out.println(rs.getInt("price"));
 				out.println("<br>");
 			}
+			// aaaaaaa
 
 			st.close();
 			con.close();
