@@ -27,26 +27,23 @@ public class All extends HttpServlet {
 		try {
 			InitialContext ic=new InitialContext();
 			DataSource ds=(DataSource)ic.lookup(
-				"java:/comp/env/jdbc/book");
+				"java:/comp/env/jdbc/test2");
 			Connection con=ds.getConnection();
 
 			PreparedStatement st=con.prepareStatement(
-			"select * from product");
+			"select * from card");
 			ResultSet rs=st.executeQuery();
 
 			while (rs.next()) {
-				out.println(rs.getInt("id"));
+				out.println(rs.getString("card_number"));
 				out.println("：");
-				out.println(rs.getString("name"));
+				out.println(rs.getString("card_expiry_date"));
 				out.println("：");
-				out.println(rs.getInt("price"));
+				out.println(rs.getString("card_cvc"));
+				out.println("：");
+				out.println(rs.getString("card_name"));
 				out.println("<br>");
 			}
-			// aaaaaaa
-//			bbb
-			//cccccccccccc
-//hhhh
-//			shimoooo
 
 			st.close();
 			con.close();
