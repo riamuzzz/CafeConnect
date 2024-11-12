@@ -7,9 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.School;
-import bean.Teacher;
-import dao.TeacherDao;
+import bean.CafeUser;
+import dao.CafeUserDao;
 import tool.Action;
 
 public class LoginExecuteAction extends Action{
@@ -19,11 +18,10 @@ public class LoginExecuteAction extends Action{
 		//ローカル変数の宣言 1
 		String url = "";
 
-		Teacher teacher = new Teacher();
-		School school = new School();
+		CafeUser cafeUser = new CafeUser();
 
 		//これ作った
-		TeacherDao teacherDAO=new TeacherDao();
+		CafeUserDao cafeUserDAO=new cafeUserDao();
 
 		//リクエストパラメータ―の取得 2
 		String id = req.getParameter("id");
@@ -32,7 +30,7 @@ public class LoginExecuteAction extends Action{
 		//String school_cd = req.getParameter("school_cd");
 
 		//DBからデータ取得 3
-		teacher=teacherDAO.login(id,password);
+		=cafeUserDAO.login(id,password);
 		//なし
 		//ビジネスロジック 4
 /*
