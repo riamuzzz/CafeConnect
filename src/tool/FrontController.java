@@ -29,6 +29,7 @@ public class FrontController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			// エラーページへリダイレクト
+			System.out.print("aaaa");
 			req.getRequestDispatcher("/error.jsp").forward(req, res);
 		}
 	}
