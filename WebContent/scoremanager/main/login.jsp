@@ -10,53 +10,37 @@
 </head>
 <body>
 <%@ include file="../common/header.jsp" %>
-<div class = "login">
-	<div class = "strlogin">
-		<p>ログイン</p>
-	</div>
+	<p>ログイン</p>
 	<form action = "LoginExecute.action" method="post">
 
-			<!-- メールアドレス -->
-			<div class = "pass">
-				<div class = "strpass">
-					<label>メールアドレス</label>
-				</div>
-				<input type="text" name="email" value="email">
-			</div>
+		<!-- メールアドレス -->
+		<label>メールアドレス</label>
+			<input type="text" name="email" value="email">
 
-			<!-- パスワード -->
-			<div class = "pass">
-				<div class = "strpass">
-					<label>パスワード</label>
-				</div>
-				<input type="password" id=password  name="password" value="password">
-			</div>
-			<!-- パスワード表示チェックボックス -->
-			<div class = "passchk">
-				<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
+		<!-- パスワード -->
+		<label>パスワード</label>
+			<input type="password" name="password" value="password">
+
+		<!-- パスワード表示チェックボックス -->
+		<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
 				<label for="showPassword">パスワードを表示する</label>
-				<script>
+					<script>
 						function togglePasswordVisibility() {
 							let passwordInput = document.getElementById("password");
 							let showPasswordCheckbox = document.getElementById("showPassword");
-
 							if (showPasswordCheckbox.checked) {
 								passwordInput.type = "text";
 							} else {
 								passwordInput.type = "password";
 							}
 						}
-			 	 </script>
-			 </div>
+					</script>
 
-
-			<!-- ログイン用ボタン -->
-			<div class = "botan">
-				<input type="submit" name="login" value="ログイン"/>
-			</div>
+		<!-- ログイン用ボタン -->
+		<input type="submit" name="login" value="ログイン"/>
 
 	</form>
-</div>
+
 <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

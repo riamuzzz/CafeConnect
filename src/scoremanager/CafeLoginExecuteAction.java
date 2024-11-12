@@ -11,7 +11,7 @@ import bean.CafeUser;
 import dao.CafeUserDao;
 import tool.Action;
 
-public class LoginExecuteAction extends Action{
+public class CafeLoginExecuteAction extends Action{
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
