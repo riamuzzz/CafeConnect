@@ -15,14 +15,19 @@ public class FrontController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try {
 			// パスを取得
+			System.out.println("bbb");
 			String path = req.getServletPath().substring(1);
+			System.out.println("ccc");
 			// ファイル名を取得しクラス名に変換
 			String name = path.replace(".a", "A").replace('/', '.');
+			System.out.println("ddd" + path);
 			// アクションクラスのインスタンスを返却
 			Action action = (Action) Class.forName(name).getDeclaredConstructor().newInstance();
+			System.out.println("eee");
 
 			// 遷移先URLを取得
 			action.execute(req, res);
+			System.out.println("fff");
 			//String url = action.execute(req, res);
 			//req.getRequestDispatcher(url).forward(req, res);
 
