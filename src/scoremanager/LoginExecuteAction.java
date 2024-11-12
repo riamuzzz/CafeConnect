@@ -26,8 +26,13 @@ public class LoginExecuteAction extends Action{
 		String password = req.getParameter("password");
 
 		//DBからデータ取得 3
+<<<<<<< HEAD
 		user = uDao.login(email,password);
 
+=======
+		cafeUser=cafeUserDAO.login(id,password);
+		//なし
+>>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
 		//ビジネスロジック 4
 
 

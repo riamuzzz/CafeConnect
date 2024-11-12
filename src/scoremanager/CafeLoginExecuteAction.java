@@ -30,7 +30,7 @@ public class CafeLoginExecuteAction extends Action{
 		//String school_cd = req.getParameter("school_cd");
 
 		//DBからデータ取得 3
-		t=cafeUserDAO.login(id,password);
+		cafeUser=cafeUserDAO.login(id,password);
 		//なし
 		//ビジネスロジック 4
 /*
