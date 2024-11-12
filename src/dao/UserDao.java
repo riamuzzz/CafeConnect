@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.User;
+import bean.Card;
 
 
-public class UserDao {
+public class UserDao extends Dao{
 
 		/**
 		 * getメソッド 学生番号を指定して学生インスタンスを1件取得する
@@ -31,6 +32,9 @@ public class UserDao {
 			//プリペアードステートメント
 			PreparedStatement statement = null;
 
+			// カードDaoを初期化
+			CardDao cardDao = new CardDao();
+
 
 			try{
 				//プリペアードステートメントにSQL文をセット
@@ -43,17 +47,17 @@ public class UserDao {
 
 
 				if (rSet.next()){
-					user.setUserId(rSet.getString("user_id"));
-					user.setUserPass(rSet.getString("user_pass"));
-					user.setUserName(rSet.getString("user_name"));
-					user.setTel(rSet.getString("tel"));
-					user.setCardNumber(rSet.getString("card_number"));
-					user.setSubsuc(rSet.getBoolean("subscription"));
+					users.setUserId(rSet.getString("user_id"));
+					users.setUserPassword(rSet.getString("user_pass"));
+					users.setUserName(rSet.getString("user_name"));
+					users.setTel(rSet.getString("tel"));
+					users.setCard(cardDao.get(rSet.getString("card_number")));
+					users.setSubscription(rSet.getBoolean("subscription"));
 
 				}else {
 					//リザルトセットが存在しない場合
 					//ユーザインスタンスにnullをセット
-					user = null;
+					users = null;
 				}
 
 			}catch (Exception e){
@@ -76,7 +80,7 @@ public class UserDao {
 					}
 				}
 			}
-			return user;
+			return users;
 
 
 
@@ -97,7 +101,7 @@ public class UserDao {
 		 * @return 学生のリスト:List<Student> 存在しない場合は0件のリスト
 		 * @throws Exception
 		 */
-		private List<User> postFilter(ResultSet rSet) throws Exception {
+		private List<User> postFilter(ResultSet rSet, Card card) throws Exception {
 			//リストを初期化
 			List<User> list = new ArrayList<>();
 
@@ -107,10 +111,10 @@ public class UserDao {
 					User user = new User();
 					//学生インスタンスに検索結果をセット
 					user.setUserId(rSet.getString("user_id"));
-					user.setUserPass(rSet.getString("user_pass"));
+					user.setUserPassword(rSet.getString("user_pass"));
 					user.setUserName(rSet.getString("user_name"));
 					user.setTel(rSet.getString("tel"));
-					user.setCardNumber(rSet.getString("card_number"));
+					user.setCard(cardDao.get(rSet.getString("card_number")));
 					user.setSubsuc(rSet.getBoolean("subscription"));
 					//リストに追加
 					list.add(user);

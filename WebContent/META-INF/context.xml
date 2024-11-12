@@ -3,12 +3,11 @@
 <!-- 上記はEclipseの警告を消すための記述です。 -->
 
 <Context reloadable="true">
-	<Resource
-		name="jdbc/test2"
+	<Resource name="jdbc/cafeconnect"
 		auth="Container"
 		type="javax.sql.DataSource"
 		driverClassName="org.postgresql.Driver"
-		url="jdbc:postgresql://localhost:5432/test2"
+		url="jdbc:postgresql://localhost:5432/cafeconnect"
 		username="postgres"
 		password="pass"
 	/>

@@ -27,7 +27,7 @@ public class All extends HttpServlet {
 		try {
 			InitialContext ic=new InitialContext();
 			DataSource ds=(DataSource)ic.lookup(
-				"java:/comp/env/jdbc/test2");
+				"java:/comp/env/jdbc/cafeconnect");
 			Connection con=ds.getConnection();
 
 			PreparedStatement st=con.prepareStatement(
@@ -37,7 +37,7 @@ public class All extends HttpServlet {
 			while (rs.next()) {
 				out.println(rs.getString("card_number"));
 				out.println("：");
-				out.println(rs.getString("card_expiry_date"));
+				out.println(rs.getString("card_day"));
 				out.println("：");
 				out.println(rs.getString("card_cvc"));
 				out.println("：");

@@ -2,34 +2,29 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
+import javax.sql.DataSource;
 
 public class Dao {
-	public static void main(String[] args) {
-		//初期化
-		Connection dbResult = null;
-		try {
-			//個人設定に必要な文字列
-			String dbUrl = "jdbc:postgresql://localhost:5432/test2";
-			String dbUserName = "postgres";
-			String dbPassword = "pass";
-			System.out.println("接続開始。");
-
-			// 接続
-			dbResult = DriverManager.getConnection(dbUrl, dbUserName, dbPassword);
-			System.out.println("接続できました。");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				// クローズ
-				if (dbResult != null) {
-					dbResult.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+	/**
+	 * データソース:DataSource:クラスフィールド
+	 */
+	static DataSource ds;
+	/**
+	 * getConnectionメソッド データベースへのコネクションを返す
+	 *
+	 * @return データベースへのコネクション:Connection
+	 * @throws Exception
+	 */
+	public Connection getConnection() throws Exception {
+		// データソースがnullの場合
+		if (ds == null) {
+			// データベースへ接続
+			ds = (DataSource) DriverManager.getConnection("jdbc:postgresql://localhost:5432/cafeconnect",
+					"postgres",
+					"pass");
 		}
+		// データベースへのコネクションを返却
+		return ds.getConnection();
 	}
 }
