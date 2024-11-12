@@ -4,7 +4,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<div class="menu">
+<div class="top_page">
 
 
 <%-- ヘッダー --%>
@@ -16,10 +16,12 @@
 <c:import url="./common/navigation.jsp"/>
 
 <div class="content">
-	<h2>shimo</h2>
+	<h2>ここに広告？出す</h2>
+	<h2>ここに商品のランキングを出したい</h2>
 </div>
 
 <%-- フッター --%>
 <c:import url="./common/footer.jsp"/>
+</div>
 </div>
 </html>
