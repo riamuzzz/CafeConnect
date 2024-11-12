@@ -1,6 +1,6 @@
 package bean;
 
-public class CafeUser {
+public class CafeUser extends Auth{
 
 	//カフェ店員ID
 	private String cafeUserId;

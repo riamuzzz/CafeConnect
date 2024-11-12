@@ -1,14 +1,14 @@
 package scoremanager;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.CafeUser;
-import dao.CafeUserDao;
+import bean.User;
+import dao.UserDao;
 import tool.Action;
 
 public class LoginExecuteAction extends Action{
@@ -18,63 +18,52 @@ public class LoginExecuteAction extends Action{
 		//ローカル変数の宣言 1
 		String url = "";
 
-		CafeUser cafeUser = new CafeUser();
-
-		//これ作った
-		CafeUserDao cafeUserDAO=new cafeUserDao();
+		User user = new User();
+		UserDao uDao = new UserDao();
 
 		//リクエストパラメータ―の取得 2
-		String id = req.getParameter("id");
+		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		//String name = req.getParameter("namae");
-		//String school_cd = req.getParameter("school_cd");
 
 		//DBからデータ取得 3
+<<<<<<< HEAD
+		user = uDao.login(email,password);
+
+=======
 		cafeUser=cafeUserDAO.login(id,password);
 		//なし
+>>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
 		//ビジネスロジック 4
-/*
-		teacher.setId(id);
-		teacher.setPassword(password);
-		teacher.setName(name);
 
-		school.setCd(school_cd);
-		school.setName("金沢情報ITクリエイター専門学校");
 
-		teacher.setSchool(school);//School型*/
 
-		// 認証済みフラグを立てる
-//		teacher.setAuthenticated(true);
-		System.out.println("①★★★★★★★★★★★★★★");
-		//もし、ログインが成功したら
-		if(teacher!=null){
-			System.out.println("②★★★★★★★★★★★★★★");
+		if (user != null) {
+			// 認証済みフラグを立てる
+			user.setAuthenticated(true);
 			//Sessionを有効にする
 			HttpSession session = req.getSession(true);
-			teacher.setAuthenticated(true);
-
-
-			//セッションに"user"という変数名で値はTeacher変数の中身
-			session.setAttribute("user", teacher);
-
-
-				//リダイレクト
-			url = "main/Menu.action";
+			//セッションに"user"という変数名で値はuser変数の中身
+			session.setAttribute("user", user);
+			//リダイレクト
+			url = "main/MyPage.action";
 			res.sendRedirect(url);
-		}else{
-				System.out.println("ffff");
-				//認証失敗
-				 List<String> errors = new ArrayList<>();
-					errors.add("ログインに失敗しました。IDまたはパスワードが正しくありません。");
-					req.setAttribute("errors", errors);
+		} else {
+			Map<String, String> errors = new HashMap<>();// エラーメッセージ
+			errors.put("1", "ログインに失敗しました。IDまたはPasswardが違います。");
+			req.setAttribute("errors", errors);
+			url = "login.jsp";
+			req.getRequestDispatcher(url).forward(req, res);
+		}
 
-				//JSPへフォワード
-				url = "login.jsp";
-				req.getRequestDispatcher(url).forward(req, res);
 
+		//DBへデータ保存 5
+		//なし
+		//レスポンス値をセット 6
+		//なし
+		//JSPへフォワード 7
+		//req.getRequestDispatcher("main/Menu.action").forward(req, res);
 
 
 	}
-}
-}
 
+}

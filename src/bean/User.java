@@ -1,6 +1,8 @@
 package bean;
 
-public class User {
+import java.io.Serializable;
+
+public class User extends Auth implements Serializable{
 
 	//ユーザID
 	private String userId;

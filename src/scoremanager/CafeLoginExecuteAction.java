@@ -11,7 +11,7 @@ import bean.CafeUser;
 import dao.CafeUserDao;
 import tool.Action;
 
-public class LoginExecuteAction extends Action{
+public class CafeLoginExecuteAction extends Action{
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -21,42 +21,28 @@ public class LoginExecuteAction extends Action{
 		CafeUser cafeUser = new CafeUser();
 
 		//これ作った
-		CafeUserDao cafeUserDAO=new cafeUserDao();
+		CafeUserDao cafeUserDAO=new CafeUserDao();
 
 		//リクエストパラメータ―の取得 2
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
-		//String name = req.getParameter("namae");
-		//String school_cd = req.getParameter("school_cd");
 
 		//DBからデータ取得 3
-		t=cafeUserDAO.login(id,password);
+		cafeUser=cafeUserDAO.login(id,password);
 		//なし
 		//ビジネスロジック 4
-/*
-		teacher.setId(id);
-		teacher.setPassword(password);
-		teacher.setName(name);
 
-		school.setCd(school_cd);
-		school.setName("金沢情報ITクリエイター専門学校");
-
-		teacher.setSchool(school);//School型*/
-
-		// 認証済みフラグを立てる
-//		teacher.setAuthenticated(true);
 		System.out.println("①★★★★★★★★★★★★★★");
 		//もし、ログインが成功したら
-		if(teacher!=null){
+		if(cafeUser!=null){
 			System.out.println("②★★★★★★★★★★★★★★");
+
 			//Sessionを有効にする
 			HttpSession session = req.getSession(true);
-			teacher.setAuthenticated(true);
-
+			cafeUser.setAuthenticated(true);
 
 			//セッションに"user"という変数名で値はTeacher変数の中身
-			session.setAttribute("user", teacher);
-
+			session.setAttribute("user", cafeUser);
 
 				//リダイレクト
 			url = "main/Menu.action";
