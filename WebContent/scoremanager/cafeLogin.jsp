@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>得点管理システム</title>
+<title>かふぇコネクト</title>
 </head>
 <body>
 
