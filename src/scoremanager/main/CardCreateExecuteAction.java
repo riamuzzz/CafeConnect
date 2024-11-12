@@ -22,6 +22,7 @@ public class CardCreateExecuteAction extends Action {
 		String cardExpiryDate = ""; // 有効期限
 		String cardCvc = "";        // セキュリティー番号
 		String cardName = "";       // カード名義
+
 		Card card = null;           // カード型 card
 
 		Map<String, String> errors = new HashMap<>();// エラーメッセージ

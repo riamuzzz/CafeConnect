@@ -10,6 +10,7 @@ public class CardCreateAction extends Action{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
+		System.out.println("1111");
 		req.getRequestDispatcher("card_create.jsp").forward(req, res);
 	}
 }
