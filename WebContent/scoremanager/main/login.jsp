@@ -21,7 +21,7 @@
 				<div class = "strpass">
 					<label>メールアドレス</label>
 				</div>
-				<input type="text" id=email  name="email" value="email">
+				<input type="text" name="email" value="email">
 			</div>
 
 			<!-- パスワード -->
