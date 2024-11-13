@@ -1,5 +1,303 @@
 package dao;
 
-public class ProductDao {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import bean.Category;
+import bean.Product;
+
+public class ProductDao extends Dao {
+	/**
+	 * baseSql:String 共通SQL文 プライベート
+	 */
+	private String baseSql = "select * from PRODUCT where ";
+
+
+	/**
+	 * getメソッド カフェ店員IDを元に、カフェ店員インスタンスを1件取得する
+	 *
+	 * @param cafeUserId:String カフェ店員ID
+	 * @return カフェ店員クラスのインスタンス 存在しない場合はnull
+	 * @throws Exception
+	 */
+
+	public Product get(String productId) throws Exception{
+		Connection connection = getConnection();
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+		//結果を格納するTeacherを初期化
+		Product product = new Product();
+
+		try{
+			//プリペアードステートメントにSQL文をセット
+			statement = connection.prepareStatement(baseSql);
+
+			//プレースホルダー（？の部分）に値を設定し、SQLを実行
+			statement.setString(1,productId);
+			ResultSet rSet = statement.executeQuery();
+
+			//カテゴリDaoを初期化
+			CategoryDao categoryDao =new CategoryDao();
+
+			//取得した情報をproductインスタンスに保存
+			if(rSet.next()) {
+				product.setProductId(rSet.getString("product_id"));
+				product.setProductName(rSet.getString("product_name"));
+				product.setPrice(rSet.getInt("price"));
+				product.setImage(rSet.getString("image"));
+				product.setProductDetail(rSet.getString("product_detail"));
+				product.setCount(rSet.getInt("count"));
+				//categoryDaoのgetでカテゴリ情報取得
+				product.setCategory(categoryDao.get(rSet.getString("category_id")));
+			} else {
+				//対応する教員がいない場合はnullを返す
+				product = null;
+			}
+
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			//プリペアードステートメントを閉じる
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+
+		//コネクションを閉じる
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException sqle) {
+				throw sqle;
+			}
+		}
+	}
+	//検索した教員インスタンスを返す
+	return product;
+	}
+
+	/**
+	 * postFilterメソッド フィルター後のリストへの格納処理 プライベート
+	 *
+	 * @param rSet:リザルトセット
+	 * @param school:School
+	 *            学校
+	 * @return 学生のリスト:List<Student> 存在しない場合は0件のリスト
+	 * @throws Exception
+	 */
+	private List<Product> postFilter(ResultSet rSet, Category category) throws Exception {
+		//リストを初期化
+		List<Product> list = new ArrayList<>();
+
+		try{
+			//リザルトセットを全件走査
+			while (rSet.next()){
+				Product product = new Product();
+				//学生インスタンスに検索結果をセット
+				product.setProductId(rSet.getString("product_id"));
+				product.setProductName(rSet.getString("product_name"));
+				product.setPrice(rSet.getInt("price"));
+				product.setImage(rSet.getString("image"));
+				product.setProductDetail(rSet.getString("product_detail"));
+				product.setCount(rSet.getInt("count"));
+				product.setCategory(category);
+				//リストに追加
+				list.add(product);
+
+			}
+		} catch (SQLException | NullPointerException e){
+			e.printStackTrace();
+		}
+		return list;
+
+
+	}
+
+	/**
+	 * filterメソッド 学校、入学年度、クラス番号、在学フラグを指定して学生の一覧を取得する
+	 *
+	 * @param school:School
+	 *            学校
+	 * @param entYear:int
+	 *            入学年度
+	 * @param classNum:String
+	 *            クラス番号
+	 * @param isAttend:boolean
+	 *            在学フラグ
+	 * @return 学生のリスト:List<Student> 存在しない場合は0件のリスト
+	 * @throws Exception
+	 */
+	public List<Product> filter(Category category, String productName) throws Exception {
+
+		System.out.println("☆入学年度・クラス選択の時☆");
+
+		//リストを初期化
+		List<Product> list = new ArrayList<>();
+
+		//データベースへのコネクションを確立
+		Connection connection = getConnection();
+
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+
+	    // SQL条件文の初期化
+	    String condition = "";
+	    int paramIndex = 1;
+
+
+		//SQL分のソート
+		String order = " order by product_id asc";
+
+	    // category のみ設定されている場合の条件
+	    if (category.getCategoryId() != null && !category.getCategoryId().isEmpty() && (productName == null || productName.isEmpty())) {
+	        condition = "category_id=? ";
+	    }
+	    // tel のみ設定されている場合の条件
+	    else if ((category.getCategoryId() == null || category.getCategoryId().isEmpty()) && productName != null && !productName.isEmpty()) {
+	        condition = " and product_name=? ";
+	    }
+	    // 両方設定されている場合の条件
+	    else if (category.getCategoryId() != null && !category.getCategoryId().isEmpty() && productName != null && !productName.isEmpty()) {
+	        condition = " and category_id=? and product_name=? ";
+	    }
+
+
+
+
+		try{
+
+			//プリペアードステートメントにSQL文をセット
+			statement = connection.prepareStatement(baseSql + condition + order );
+
+	        // 値を設定（それぞれの条件に合わせて）
+	        if (!condition.isEmpty()) {
+	            if (condition.contains("category_id=?")) {
+	                statement.setString(paramIndex++, category.getCategoryId());
+	            }
+	            if (condition.contains("product_name=?")) {
+	                statement.setString(paramIndex, productName);
+	            }
+	        }
+
+			//上記のSQL文を実行し結果を取得する
+			ResultSet rSet = statement.executeQuery();
+
+			list = postFilter(rSet, category);
+
+		}catch (Exception e){
+			throw e;
+		}finally {
+			//プリペアステートメントを閉じる
+			if (statement != null){
+				try {
+					statement.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+			//コネクションを閉じる
+			if (connection != null){
+				try {
+					connection.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+		}
+		return list;
+
+
+	}
+
+//	/**
+//	 * saveメソッド 学生インスタンスをデータベースに保存する データが存在する場合は更新、存在しない場合は登録
+//	 *
+//	 * @param student：Student
+//	 *            学生
+//	 * @return 成功:true, 失敗:false
+//	 * @throws Exception
+//	 */
+//	public boolean save(Student student) throws Exception {
+//
+//		//データベースへのコネクションを確立
+//		Connection connection = getConnection();
+//
+//		//プリペアードステートメント
+//		PreparedStatement statement = null;
+//
+//		//実行件数
+//		int count = 0;
+//
+//
+//		try{
+//			//データベースから学生を取得
+//			Student old = get(student.getNo());
+//
+//			if (old == null) {
+//				//学生が存在しなかった場合
+//				//プリペアードステートメントにInsert文をセット
+//				statement = connection.prepareStatement(
+//						"INSERT INTO STUDENT (STUDENT_NO ,NAME ,ENT_YEAR ,CLASS_NUM ,IS_ATTEND ,SCHOOL_CD ) VALUES (?,?,?,?,?,?)");
+//				//各部分に値を設定
+//				statement.setString(1, student.getNo());
+//				statement.setString(2, student.getName());
+//				statement.setInt(3, student.getEntYear());
+//				statement.setString(4, student.getClassNum());
+//				statement.setBoolean(5, student.isAttend());
+//				statement.setString(6, student.getSchool().getCd());
+//
+//			}else {
+//				//学生が存在した場合
+//				//プリペアードステートメントにUpdate文をセット
+//				statement = connection.prepareStatement(
+//						"UPDATE STUDENT SET NAME=? ,ENT_YEAR=? ,CLASS_NUM=? ,IS_ATTEND=?  WHERE STUDENT_NO=?");
+//				//各部分に値を設定
+//
+//				statement.setString(1, student.getName());
+//				statement.setInt(2, student.getEntYear());
+//				statement.setString(3, student.getClassNum());
+//				statement.setBoolean(4, student.isAttend());
+//				statement.setString(5, student.getNo());
+//			}
+//
+//			//プリペアードステートメントを実行
+//			count = statement.executeUpdate();
+//
+//		}catch (Exception e){
+//			throw e;
+//		}finally {
+//			//プリペアステートメントを閉じる
+//			if (statement != null){
+//				try {
+//					statement.close();
+//				} catch (SQLException sqle){
+//					throw sqle;
+//				}
+//			}
+//			//コネクションを閉じる
+//			if (connection != null){
+//				try {
+//					connection.close();
+//				} catch (SQLException sqle){
+//					throw sqle;
+//				}
+//			}
+//		}
+//
+//		if (count > 0) {
+//			//実行数が1件以上あるとき
+//			return true;
+//		}else {
+//			//実行数が0件以上の場合
+//			return false;
+//		}
+//	}
 
 }
