@@ -1,5 +1,6 @@
 package bean;
 
+import java.util.Date;
 public class Product {
 
 	//商品ID
@@ -22,6 +23,12 @@ public class Product {
 
 	//在庫数
 	private int count;
+
+	//販売
+	private boolean sell;
+
+	//入荷日
+	private Date inStockDay;
 
 	//ゲッターセッター
 	public String getProductId() {
@@ -78,6 +85,22 @@ public class Product {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	public boolean isSell() {
+		return sell;
+	}
+
+	public void setSell(boolean sell) {
+		this.sell = sell;
+	}
+
+	public Date getInStockDay() {
+		return inStockDay;
+	}
+
+	public void setInStockDay(Date inStockDay) {
+		this.inStockDay = inStockDay;
 	}
 
 
