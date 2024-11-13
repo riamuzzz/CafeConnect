@@ -16,8 +16,17 @@
 <c:import url="./common/navigation.jsp"/>
 
 <div class="content">
-	<h2>ここに広告？出す</h2>
-	<h2>ここに商品のランキングを出したい</h2>
+	<h2>ここに広告の写真を表示</h2>
+	<h2>ランキング</h2>
+	<table>
+		<c:forEach var="product" items="${products}">
+		<tr>
+			<td>${ product.image }<td>
+			<td>${ product.productName }</td>
+			<td>${ product.price }円</td>
+		</tr>
+	</c:forEach>
+	</table>
 </div>
 
 <%-- フッター --%>
