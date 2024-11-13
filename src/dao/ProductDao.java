@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -216,91 +217,95 @@ public class ProductDao extends Dao {
 
 	}
 
-//	/**
-//	 * saveメソッド 学生インスタンスをデータベースに保存する データが存在する場合は更新、存在しない場合は登録
-//	 *
-//	 * @param student：Student
-//	 *            学生
-//	 * @return 成功:true, 失敗:false
-//	 * @throws Exception
-//	 */
-//	public boolean save(Product product) throws Exception {
-//
-//		//データベースへのコネクションを確立
-//		Connection connection = getConnection();
-//
-//		//プリペアードステートメント
-//		PreparedStatement statement = null;
-//
-//		//実行件数
-//		int count = 0;
-//
-//
-//		try{
-//			//データベースから学生を取得
-//			Product old = get(product.getProductId());
-//
-//			if (old == null) {
-//				//学生が存在しなかった場合
-//				//プリペアードステートメントにInsert文をセット
-//				statement = connection.prepareStatement(
-//						"INSERT INTO STUDENT (PRODUCT_ID ,CATEGORY_ID ,PRODUCT_NAME ,PRICE ,IMAGE ,PRODUCT_DETAIL ,COUNT ,SELL ,IN_STOCK_DAY ) VALUES (?,?,?,?,?,?,?,?,?)");
-//				//各部分に値を設定
-//				statement.setString(1, product.getProductId());
-//				statement.setString(2, product.getCategory().getCategoryId());
-//				statement.setString(3, product.getProductName());
-//				statement.setInt(4, product.getPrice());
-//				statement.setString(5, product.getImage());
-//				statement.setString(6, product.getProductDetail());
-//				statement.setInt(7, product.getCount());
-//				statement.setString(8, product.get);
-//				statement.setString(9, product.getSchool().getCd());
-//
-//			}else {
-//				//学生が存在した場合
-//				//プリペアードステートメントにUpdate文をセット
-//				statement = connection.prepareStatement(
-//						"UPDATE STUDENT SET NAME=? ,ENT_YEAR=? ,CLASS_NUM=? ,IS_ATTEND=?  WHERE STUDENT_NO=?");
-//				//各部分に値を設定
-//
-//				statement.setString(1, student.getName());
-//				statement.setInt(2, student.getEntYear());
-//				statement.setString(3, student.getClassNum());
-//				statement.setBoolean(4, student.isAttend());
-//				statement.setString(5, student.getNo());
-//			}
-//
-//			//プリペアードステートメントを実行
-//			count = statement.executeUpdate();
-//
-//		}catch (Exception e){
-//			throw e;
-//		}finally {
-//			//プリペアステートメントを閉じる
-//			if (statement != null){
-//				try {
-//					statement.close();
-//				} catch (SQLException sqle){
-//					throw sqle;
-//				}
-//			}
-//			//コネクションを閉じる
-//			if (connection != null){
-//				try {
-//					connection.close();
-//				} catch (SQLException sqle){
-//					throw sqle;
-//				}
-//			}
-//		}
-//
-//		if (count > 0) {
-//			//実行数が1件以上あるとき
-//			return true;
-//		}else {
-//			//実行数が0件以上の場合
-//			return false;
-//		}
-//	}
+	/**
+	 * saveメソッド 学生インスタンスをデータベースに保存する データが存在する場合は更新、存在しない場合は登録
+	 *
+	 * @param student：Student
+	 *            学生
+	 * @return 成功:true, 失敗:false
+	 * @throws Exception
+	 */
+	public boolean save(Product product) throws Exception {
+
+		//データベースへのコネクションを確立
+		Connection connection = getConnection();
+
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+
+		//実行件数
+		int count = 0;
+
+
+		try{
+			//データベースから学生を取得
+			Product old = get(product.getProductId());
+
+			if (old == null) {
+				//学生が存在しなかった場合
+				//プリペアードステートメントにInsert文をセット
+				statement = connection.prepareStatement(
+						"INSERT INTO STUDENT (PRODUCT_ID ,CATEGORY_ID ,PRODUCT_NAME ,PRICE ,IMAGE ,PRODUCT_DETAIL ,COUNT ,SELL ,IN_STOCK_DAY ) VALUES (?,?,?,?,?,?,?,?,?)");
+				//各部分に値を設定
+				statement.setString(1, product.getProductId());
+				statement.setString(2, product.getCategory().getCategoryId());
+				statement.setString(3, product.getProductName());
+				statement.setInt(4, product.getPrice());
+				statement.setString(5, product.getImage());
+				statement.setString(6, product.getProductDetail());
+				statement.setInt(7, product.getCount());
+				statement.setBoolean(8, product.isSell());
+				statement.setDate(9, (Date) product.getInStockDay());
+
+			}else {
+				//学生が存在した場合
+				//プリペアードステートメントにUpdate文をセット
+				statement = connection.prepareStatement(
+						"UPDATE STUDENT SET PRODUCT_ID ,CATEGORY_ID ,PRODUCT_NAME ,PRICE ,IMAGE ,PRODUCT_DETAIL ,COUNT ,SELL ,IN_STOCK_DAY ");
+				//各部分に値を設定
+				statement.setString(1, product.getProductId());
+				statement.setString(2, product.getCategory().getCategoryId());
+				statement.setString(3, product.getProductName());
+				statement.setInt(4, product.getPrice());
+				statement.setString(5, product.getImage());
+				statement.setString(6, product.getProductDetail());
+				statement.setInt(7, product.getCount());
+				statement.setBoolean(8, product.isSell());
+				statement.setDate(9, (Date) product.getInStockDay());
+
+			}
+
+			//プリペアードステートメントを実行
+			count = statement.executeUpdate();
+
+		}catch (Exception e){
+			throw e;
+		}finally {
+			//プリペアステートメントを閉じる
+			if (statement != null){
+				try {
+					statement.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+			//コネクションを閉じる
+			if (connection != null){
+				try {
+					connection.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+		}
+
+		if (count > 0) {
+			//実行数が1件以上あるとき
+			return true;
+		}else {
+			//実行数が0件以上の場合
+			return false;
+		}
+	}
 
 }
