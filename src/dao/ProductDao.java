@@ -161,11 +161,11 @@ public class ProductDao extends Dao {
 	    }
 	    // tel のみ設定されている場合の条件
 	    else if ((category.getCategoryId() == null || category.getCategoryId().isEmpty()) && productName != null && !productName.isEmpty()) {
-	        condition = " and product_name=? ";
+	        condition = "product_name=? ";
 	    }
 	    // 両方設定されている場合の条件
 	    else if (category.getCategoryId() != null && !category.getCategoryId().isEmpty() && productName != null && !productName.isEmpty()) {
-	        condition = " and category_id=? and product_name=? ";
+	        condition = "category_id=? and product_name=? ";
 	    }
 
 
@@ -224,7 +224,7 @@ public class ProductDao extends Dao {
 //	 * @return 成功:true, 失敗:false
 //	 * @throws Exception
 //	 */
-//	public boolean save(Student student) throws Exception {
+//	public boolean save(Product product) throws Exception {
 //
 //		//データベースへのコネクションを確立
 //		Connection connection = getConnection();
@@ -238,20 +238,23 @@ public class ProductDao extends Dao {
 //
 //		try{
 //			//データベースから学生を取得
-//			Student old = get(student.getNo());
+//			Product old = get(product.getProductId());
 //
 //			if (old == null) {
 //				//学生が存在しなかった場合
 //				//プリペアードステートメントにInsert文をセット
 //				statement = connection.prepareStatement(
-//						"INSERT INTO STUDENT (STUDENT_NO ,NAME ,ENT_YEAR ,CLASS_NUM ,IS_ATTEND ,SCHOOL_CD ) VALUES (?,?,?,?,?,?)");
+//						"INSERT INTO STUDENT (PRODUCT_ID ,CATEGORY_ID ,PRODUCT_NAME ,PRICE ,IMAGE ,PRODUCT_DETAIL ,COUNT ,SELL ,IN_STOCK_DAY ) VALUES (?,?,?,?,?,?,?,?,?)");
 //				//各部分に値を設定
-//				statement.setString(1, student.getNo());
-//				statement.setString(2, student.getName());
-//				statement.setInt(3, student.getEntYear());
-//				statement.setString(4, student.getClassNum());
-//				statement.setBoolean(5, student.isAttend());
-//				statement.setString(6, student.getSchool().getCd());
+//				statement.setString(1, product.getProductId());
+//				statement.setString(2, product.getCategory().getCategoryId());
+//				statement.setString(3, product.getProductName());
+//				statement.setInt(4, product.getPrice());
+//				statement.setString(5, product.getImage());
+//				statement.setString(6, product.getProductDetail());
+//				statement.setInt(7, product.getCount());
+//				statement.setString(8, product.get);
+//				statement.setString(9, product.getSchool().getCd());
 //
 //			}else {
 //				//学生が存在した場合
