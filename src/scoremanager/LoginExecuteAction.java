@@ -29,7 +29,6 @@ public class LoginExecuteAction extends Action{
 		System.out.println("aaa");
 		user = uDao.login(email,password);
 		System.out.println("aaa");
-
 		//ビジネスロジック 4
 		if (user != null) {
 			// 認証済みフラグを立てる
