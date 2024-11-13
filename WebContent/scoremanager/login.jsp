@@ -22,7 +22,7 @@
 		<label>パスワード</label>
 		<div class="b">
 			<input type="password" id="password" name="password" value="pass01">
-		
+		</div>
 
 		<!-- パスワード表示チェックボックス -->
 		<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
