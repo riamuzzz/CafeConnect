@@ -23,7 +23,7 @@ public class CategoryDao extends Dao{
 
 		try{
 			//プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement("SELECT * FROM CARD WHERE category_id = ?");
+			statement = connection.prepareStatement("SELECT * FROM CATEGORY WHERE category_id = ?");
 			//各部分に値を設定
 			statement.setString(1,categoryId );
 

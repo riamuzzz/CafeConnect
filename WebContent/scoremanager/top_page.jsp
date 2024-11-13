@@ -15,9 +15,21 @@
 <%-- ナビゲーション --%>
 <c:import url="./common/navigation.jsp"/>
 
+<a href="main/MyPage.action">マイページ</a>
+
 <div class="content">
-	<h2>ここに広告？出す</h2>
-	<h2>ここに商品のランキングを出したい</h2>
+	<h2></h2>
+	<img src=img/top/top1.jpg>
+
+	<h2>ランキング</h2>
+	<table>
+		<c:forEach var="product" items="${products}">
+			<tr><td><img src="img/product/${ product.image }"></td></tr>
+			<tr><td>${ product.image }</td></tr>
+			<tr><td>${ product.productName }</td></tr>
+			<tr><td>${ product.price }円</td></tr>
+		</c:forEach>
+	</table>
 </div>
 
 <%-- フッター --%>
