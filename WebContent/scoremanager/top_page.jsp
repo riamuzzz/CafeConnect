@@ -15,6 +15,8 @@
 <%-- ナビゲーション --%>
 <c:import url="./common/navigation.jsp"/>
 
+<a href="main/MyPage.action">マイページ</a>
+
 <div class="content">
 	<h2>ここに広告？出す</h2>
 	<h2>ここに商品のランキングを出したい</h2>
