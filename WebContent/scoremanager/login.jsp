@@ -9,17 +9,17 @@
 <title>かふぇコネクト</title>
 </head>
 <body>
-<%@ include file="../common/header.jsp" %>
+<%@ include file="common/header.jsp" %>
 	<p>ログイン</p>
 	<form action = "LoginExecute.action" method="post">
 
 		<!-- メールアドレス -->
 		<label>メールアドレス</label>
-			<input type="text" name="email" value="email">
+			<input type="text" name="email" value="gst1@icloud.com">
 
 		<!-- パスワード -->
 		<label>パスワード</label>
-			<input type="password" name="password" value="password">
+			<input type="password" id="password" name="password" value="pass01">
 
 		<!-- パスワード表示チェックボックス -->
 		<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
@@ -41,6 +41,6 @@
 
 	</form>
 
-<%@ include file="../common/footer.jsp" %>
+<%@ include file="common/footer.jsp" %>
 </body>
 </html>

@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Teacher;
+import bean.User;
 
 @WebFilter(urlPatterns = { "/scoremanager/main/*" })
 public class LoginRequiredFilter implements Filter {
@@ -23,7 +23,7 @@ public class LoginRequiredFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest)request;
 		// ログインユーザーを取得
-		Teacher user = (Teacher)req.getSession(true).getAttribute("user");
+		User user = (User)req.getSession(true).getAttribute("user");
 		// ユーザーが存在しないまたは認証されていない場合
 		if (user == null || !user.isAuthenticated()) {
 			HttpServletResponse	res = ((HttpServletResponse) response);

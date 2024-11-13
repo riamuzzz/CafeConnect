@@ -26,17 +26,11 @@ public class LoginExecuteAction extends Action{
 		String password = req.getParameter("password");
 
 		//DBからデータ取得 3
-<<<<<<< HEAD
+		System.out.println("aaa");
 		user = uDao.login(email,password);
+		System.out.println("aaa");
 
-=======
-		cafeUser=cafeUserDAO.login(id,password);
-		//なし
->>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
 		//ビジネスロジック 4
-
-
-
 		if (user != null) {
 			// 認証済みフラグを立てる
 			user.setAuthenticated(true);
@@ -49,7 +43,7 @@ public class LoginExecuteAction extends Action{
 			res.sendRedirect(url);
 		} else {
 			Map<String, String> errors = new HashMap<>();// エラーメッセージ
-			errors.put("1", "ログインに失敗しました。IDまたはPasswardが違います。");
+			errors.put("1", "ログインに失敗しました。メールアドレスまたはパスワードが違います。");
 			req.setAttribute("errors", errors);
 			url = "login.jsp";
 			req.getRequestDispatcher(url).forward(req, res);
