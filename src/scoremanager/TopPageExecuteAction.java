@@ -17,7 +17,7 @@ public class TopPageExecuteAction extends Action {
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		String productName = "";
-		String categoryId = "CATE01";
+		String categoryId = "CATE02";
 		List<Product> products = null;// productリスト
 
 		System.out.print("01");
