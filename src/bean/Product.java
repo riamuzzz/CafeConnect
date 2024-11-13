@@ -8,10 +8,10 @@ public class Product {
 	//カテゴリ
 	private Category category;
 
-	//
+	//商品名
 	private String productName;
 
-	//商品名
+	//金額
 	private int price;
 
 	//画像URL
