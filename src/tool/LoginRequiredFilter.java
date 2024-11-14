@@ -21,6 +21,7 @@ public class LoginRequiredFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		System.out.println("★");
 		HttpServletRequest req = (HttpServletRequest)request;
 		// ログインユーザーを取得
 		User user = (User)req.getSession(true).getAttribute("user");
@@ -28,7 +29,7 @@ public class LoginRequiredFilter implements Filter {
 		if (user == null || !user.isAuthenticated()) {
 			HttpServletResponse	res = ((HttpServletResponse) response);
 			// ログインページへリダイレクト
-			req.getRequestDispatcher("/scoremanager/login.jsp").forward(req, res);
+			req.getRequestDispatcher("../Login.action").forward(req, res);
 			return;
 		}
 		// System.out.println("フィルタの前処理");

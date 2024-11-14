@@ -11,9 +11,12 @@
 <body>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <%@ include file="common/footer.jsp" %>
 	<p>ログイン</p>
+=======
+>>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
 <%@ include file="common/header.jsp" %>
 	<p>ログイン</p>
 	<p>会員ログイン</p>
