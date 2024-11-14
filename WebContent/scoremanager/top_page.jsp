@@ -16,7 +16,7 @@
 <c:import url="./common/navigation.jsp"/>
 
 <a href="main/MyPage.action">マイページ</a>
-
+<a href="Login.action">login</a>
 <div class="content">
 	<h2>ここに広告の写真を表示</h2>
 	<h2>ランキング</h2>
