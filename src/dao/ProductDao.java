@@ -34,8 +34,11 @@ public class ProductDao extends Dao {
 		Product product = new Product();
 
 		try{
+			// SQL条件文の初期化
+		    String condition = "product_id =?";
+
 			//プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement(baseSql);
+			statement = connection.prepareStatement(baseSql + condition);
 
 			//プレースホルダー（？の部分）に値を設定し、SQLを実行
 			statement.setString(1,productId);

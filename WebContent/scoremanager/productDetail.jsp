@@ -15,23 +15,12 @@
 <%-- ナビゲーション --%>
 <c:import url="./common/navigation.jsp"/>
 
-<a href="main/MyPage.action">マイページ</a>
-<div class="content">
-	<img src=img/top/top1.jpg>
-
-	<h2>ランキング</h2>
-	<table>
-		<c:forEach var="product" items="${products}">
-			<tr>
-				<td>
-					<a href="ProductDetailView.action?productId=${ product.productId }"><img src="img/product/${ product.image }"></a>
-				</td>
-			</tr>
-			<tr><td>${ product.productName }</td></tr>
-			<tr><td>${ product.price }円</td></tr>
-		</c:forEach>
+<table>
+	<tr><td><img src="img/product/${ product.image }"></td></tr>
+	<tr><td>${ product.productName }</td></tr>
+	<tr><td>${ product.productDetail }</td></tr>
+	<tr><td>${ product.price }円（税込）</td></tr>
 	</table>
-</div>
 
 <%-- フッター --%>
 <c:import url="./common/footer.jsp"/>
