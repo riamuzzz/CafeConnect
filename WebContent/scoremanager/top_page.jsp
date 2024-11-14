@@ -16,7 +16,6 @@
 <c:import url="./common/navigation.jsp"/>
 
 <a href="main/MyPage.action">マイページ</a>
-<a href="Login.action">login</a>
 <div class="content">
 	<img src=img/top/top1.jpg>
 
