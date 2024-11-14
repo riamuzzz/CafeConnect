@@ -42,10 +42,10 @@ public class CafeLoginExecuteAction extends Action{
 			cafeUser.setAuthenticated(true);
 
 			//セッションに"user"という変数名で値はTeacher変数の中身
-			session.setAttribute("user", cafeUser);
+			session.setAttribute("cafe_user", cafeUser);
 
 				//リダイレクト
-			url = "main/CafeTop.action";
+			url = "cafe/CafeTop.action";
 			res.sendRedirect(url);
 		}else{
 				System.out.println("ffff");
@@ -55,7 +55,7 @@ public class CafeLoginExecuteAction extends Action{
 					req.setAttribute("errors", errors);
 
 				//JSPへフォワード
-				url = "login.jsp";
+				url = "cafeLogin.jsp";
 				req.getRequestDispatcher(url).forward(req, res);
 
 

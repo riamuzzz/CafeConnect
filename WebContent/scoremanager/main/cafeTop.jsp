@@ -18,17 +18,8 @@
 <a href="main/MyPage.action">マイページ</a>
 <a href="Login.action">login</a>
 <div class="content">
-	<img src=img/top/top1.jpg>
 
-	<h2>ランキング</h2>
-	<table>
-		<c:forEach var="product" items="${products}">
-			<tr><td><img src="img/product/${ product.image }"></td></tr>
-			<tr><td>${ product.productName }</td></tr>
-			<tr><td>${ product.price }円</td></tr>
-		</c:forEach>
-	</table>
-</div>
+
 
 <%-- フッター --%>
 <c:import url="./common/cafefooter.jsp"/>
