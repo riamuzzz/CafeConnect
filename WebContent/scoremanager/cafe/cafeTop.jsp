@@ -8,12 +8,12 @@
 
 
 <%-- ヘッダー --%>
-<c:import url="./common/cafeheader.jsp"/>
+<c:import url="../common/cafeheader.jsp"/>
 
 
 <div class="main">
 <%-- ナビゲーション --%>
-<c:import url="./common/cafenavigation.jsp"/>
+<c:import url="../common/cafenavigation.jsp"/>
 
 <a href="main/MyPage.action">マイページ</a>
 <a href="Login.action">login</a>
@@ -22,7 +22,8 @@
 
 
 <%-- フッター --%>
-<c:import url="./common/cafefooter.jsp"/>
+<c:import url="../common/cafefooter.jsp"/>
+</div>
 </div>
 </div>
 </html>

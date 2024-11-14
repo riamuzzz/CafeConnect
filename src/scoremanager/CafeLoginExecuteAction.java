@@ -24,7 +24,7 @@ public class CafeLoginExecuteAction extends Action{
 		CafeUserDao cafeUserDAO=new CafeUserDao();
 
 		//リクエストパラメータ―の取得 2
-		String id = req.getParameter("id");
+		String id = req.getParameter("email");
 		String password = req.getParameter("password");
 
 		//DBからデータ取得 3

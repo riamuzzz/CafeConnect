@@ -10,17 +10,17 @@
 </head>
 <body>
 
-	<form action = "LoginExecute.action" method="post">
+	<form action = "CafeLoginExecute.action" method="post">
 
 		<h2>ログイン</h2>
 
 		<!-- メールアドレス -->
 		<label>メールアドレス</label>
-			<input type="text" name="email" value="gst1@icloud.com">
+			<input type="text" name="email" value="USER001">
 
 		<!-- パスワード -->
 		<label>パスワード</label>
-			<input type="password" id="password" name="password" value="pass01">
+			<input type="password" id="password" name="password" value="pass001">
 
 		<!-- パスワード表示チェックボックス -->
 		<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
