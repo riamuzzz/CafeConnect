@@ -15,7 +15,7 @@
 <%-- ナビゲーション --%>
 <c:import url="./common/navigation.jsp"/>
 
-<a href="main/MyPage.action">マイページ</a>
+
 <div class="content">
 	<img src=img/top/top1.jpg>
 
