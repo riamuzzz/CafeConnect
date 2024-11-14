@@ -245,7 +245,7 @@ public class ProductDao extends Dao {
 				//学生が存在しなかった場合
 				//プリペアードステートメントにInsert文をセット
 				statement = connection.prepareStatement(
-						"INSERT INTO STUDENT (PRODUCT_ID ,CATEGORY_ID ,PRODUCT_NAME ,PRICE ,IMAGE ,PRODUCT_DETAIL ,COUNT ,SELL ,IN_STOCK_DAY ) VALUES (?,?,?,?,?,?,?,?,?)");
+						"INSERT INTO PRODUCT (PRODUCT_ID ,CATEGORY_ID ,PRODUCT_NAME ,PRICE ,IMAGE ,PRODUCT_DETAIL ,COUNT ,SELL ,IN_STOCK_DAY ) VALUES (?,?,?,?,?,?,?,?,?)");
 				//各部分に値を設定
 				statement.setString(1, product.getProductId());
 				statement.setString(2, product.getCategory().getCategoryId());
@@ -261,7 +261,7 @@ public class ProductDao extends Dao {
 				//学生が存在した場合
 				//プリペアードステートメントにUpdate文をセット
 				statement = connection.prepareStatement(
-						"UPDATE STUDENT SET PRODUCT_ID ,CATEGORY_ID ,PRODUCT_NAME ,PRICE ,IMAGE ,PRODUCT_DETAIL ,COUNT ,SELL ,IN_STOCK_DAY ");
+						"UPDATE PRODUCT SET PRODUCT_ID=? ,CATEGORY_ID=? ,PRODUCT_NAME=? ,PRICE=? ,IMAGE=? ,PRODUCT_DETAIL=? ,COUNT=? ,SELL=? ,IN_STOCK_DAY=? ");
 				//各部分に値を設定
 				statement.setString(1, product.getProductId());
 				statement.setString(2, product.getCategory().getCategoryId());
