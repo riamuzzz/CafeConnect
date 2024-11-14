@@ -4,12 +4,12 @@
   align-items: center;
   font-weight:bold;
   border-bottom: solid 3px #99CCFF;
-  margin: 0 auto 50px;
   padding: 0 0 5px 0;
 }
 
 .cafe_header h1 {
   width: 100%;
+  margin-left: 370px;
 }
 
 .cafe_header label {
