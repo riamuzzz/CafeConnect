@@ -11,7 +11,7 @@ public class CafeUserDao extends Dao {
 	/**
 	 * baseSql:String 共通SQL文 プライベート
 	 */
-	private String baseSql = "select * from teacher where id=?";
+	private String baseSql = "select * from cafeusers where cafe_userid=?";
 
 
 	/**
@@ -40,8 +40,8 @@ public class CafeUserDao extends Dao {
 			//取得したカフェ店員ID、パスワード、教員名、学校コードをteacherインスタンスに保存
 			//セットするものは[password]じゃなくて「pasword]だよ
 			if(rSet.next()) {
-				cafeUser.setCafeUserId(rSet.getString("id"));
-				cafeUser.setCafeUserPassword("password");
+				cafeUser.setCafeUserId(rSet.getString("cafe_userid"));
+				cafeUser.setCafeUserPassword("cafe_userpass");
 			} else {
 				//対応する教員がいない場合はnullを返す
 				cafeUser = null;
@@ -86,7 +86,7 @@ public class CafeUserDao extends Dao {
 		PreparedStatement statement = null;
 
 		//passwordだよ
-		String condition = " and password=?";
+		String condition = " and cafe_userpass=?";
 
 		//結果を格納するTeacherを初期化
 		CafeUser cafeUser = new CafeUser();
@@ -103,8 +103,8 @@ public class CafeUserDao extends Dao {
 			//受け取ったものをセットする
 			//取得した店員ID、パスワードコードをCafeUserインスタンスに保存
 			if(rSet.next()) {
-				cafeUser.setCafeUserId(rSet.getString("id"));
-				cafeUser.setCafeUserPassword(rSet.getString("password"));
+				cafeUser.setCafeUserId(rSet.getString("cafe_userid"));
+				cafeUser.setCafeUserPassword(rSet.getString("cafe_userpass"));
 			} else {
 				//対応する教員がいない場合はnullを返す
 				cafeUser = null;
