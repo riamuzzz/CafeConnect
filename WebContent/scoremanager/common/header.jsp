@@ -10,6 +10,7 @@
 	<title>かふぇコネクト</title>
 
 </head>
+
 <div class="container">
 <div class="header">
 	<h2>かふぇコネクト</h2>
