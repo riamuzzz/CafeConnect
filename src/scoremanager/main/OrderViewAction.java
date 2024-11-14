@@ -17,7 +17,7 @@ public class OrderViewAction extends Action {
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		String productName = "";
-		String categoryId = null;     // カテゴリ変数 一旦null
+		String categoryId = null;
 		List<Product> products = null;// productリスト
 
 		System.out.print("01");
