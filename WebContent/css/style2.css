@@ -25,10 +25,11 @@ label {
 
 input[type="text"],
 input[type="password"] {
-  width: 100%;
+  width: 35%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  margin: 0 auto;
 }
 
 button[type="submit"] {
