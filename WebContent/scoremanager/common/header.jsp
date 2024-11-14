@@ -12,7 +12,42 @@
 </head>
 <div class="container">
 <div class="header">
-	<p>ここがヘッダー</p>
+	<h2>かふぇコネクト</h2>
+
+		<!-- 検索 -->
+		<input placeholder="キーワード検索"></label>
+
+		<!-- 検索用ボタン -->
+		<input type="submit" name="kensaku" value="検索"/>
+
+		<!-- トップ -->
+		<label>トップ</label>
+
+		<!-- モバイル -->
+		<label>モバイル</label>
+
+		<!-- カート -->
+		<label>カート</label><br>
+
+
+		<!-- サブスク -->
+		<label>サブスク</label>
+
+		<!-- ショップ -->
+		<label>ショップ</label>
+
+		<!-- モバイル -->
+		<label>モバイル</label>
+
+		<!-- 店舗情報 -->
+		<label>店舗情報</label>
+
+		<!-- お問い合わせ -->
+		<label>お問い合わせ</label>
+
+		<!-- マイページ -->
+		<label>マイページ</label>
+
 
 
 </div>
