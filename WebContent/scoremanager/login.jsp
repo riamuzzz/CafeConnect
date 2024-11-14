@@ -9,30 +9,9 @@
 <title>かふぇコネクト</title>
 </head>
 <body>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-<%@ include file="common/footer.jsp" %>
->>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
-	<p>ログイン</p>
-<<<<<<< HEAD
-=======
-=======
->>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
->>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
 <%@ include file="common/header.jsp" %>
-<<<<<<< HEAD
 	<p>ログイン</p>
-=======
 	<p>会員ログイン</p>
-<<<<<<< HEAD
-=======
->>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
->>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
->>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
 	<form action = "LoginExecute.action" method="post">
 
 		<!-- メールアドレス -->
