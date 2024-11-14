@@ -10,39 +10,35 @@
 </head>
 <body>
 
-<form action="CafeLoginExecute.action" method="post">
-
-		<!--
-	autocomplete
-	on/off:自動補完の制御
-
-	ime-mode
-	active:漢字（全角）モードにします
-	disabled:日本語入力機能(IME)そのものを使用不可能
-
-	required:input要素を入力必須にする属性
- -->
+	<form action = "LoginExecute.action" method="post">
 
 		<h2>ログイン</h2>
-		<!-- ログインＩＤ -->
-		<label for="id">ＩＤ</label> <input type="text" name="id" maxlength="20"
-			placeholder="20文字以内の半角英数字でご入力下さい" autocomplete="off"
-			style="ime-mode: disabled" value="admin" required />
+
+		<!-- メールアドレス -->
+		<label>メールアドレス</label>
+			<input type="text" name="email" value="gst1@icloud.com">
 
 		<!-- パスワード -->
-		<label for="pass">パスワード</label> <input type="password" name="password"
-			value="password" style="ime-mode: disabled" required />
+		<label>パスワード</label>
+			<input type="password" id="password" name="password" value="pass01">
 
 		<!-- パスワード表示チェックボックス -->
-		<input id="inputCheckbox" type="checkbox">
-
-
-		<c:forEach var="error" items="${errors}">
-			<li>${errors}</li>
-		</c:forEach>
+		<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
+				<label for="showPassword">パスワードを表示する</label>
+					<script>
+						function togglePasswordVisibility() {
+							let passwordInput = document.getElementById("password");
+							let showPasswordCheckbox = document.getElementById("showPassword");
+							if (showPasswordCheckbox.checked) {
+								passwordInput.type = "text";
+							} else {
+								passwordInput.type = "password";
+							}
+						}
+					</script>
 
 		<!-- ログイン用ボタン -->
-		<input type="submit" name="login" value="ログイン" />
+		<input type="submit" name="login" value="ログイン"/>
 
 	</form>
 
