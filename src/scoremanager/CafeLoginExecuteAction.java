@@ -45,7 +45,7 @@ public class CafeLoginExecuteAction extends Action{
 			session.setAttribute("user", cafeUser);
 
 				//リダイレクト
-			url = "main/Menu.action";
+			url = "main/CafeTop.action";
 			res.sendRedirect(url);
 		}else{
 				System.out.println("ffff");
