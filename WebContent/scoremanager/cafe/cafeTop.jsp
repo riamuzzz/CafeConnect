@@ -15,8 +15,22 @@
 <%-- ナビゲーション --%>
 <c:import url="../common/cafenavigation.jsp"/>
 
-<a href="main/MyPage.action">マイページ</a>
-<a href="Login.action">login</a>
+<p>在庫</p>
+<a href="cafe/MyPage.action">在庫一覧</a>
+<p>商品情報</p>
+<a href="cafe/MyPage.action">商品登録</a>
+<a href="cafe/MyPage.action">商品一覧</a>
+<p>売上情報</p>
+<a href="cafe/MyPage.action">売上情報一覧</a>
+<p>顧客情報</p>
+<a href="cafe/MyPage.action">顧客情報一覧</a>
+<p>オンラインショップ・サブスク</p>
+<a href="cafe/MyPage.action">注文一覧</a>
+<a href="cafe/MyPage.action">発送済一覧</a>
+<p>モバイルオーダー</p>
+<a href="cafe/MyPage.action">注文一覧</a>
+<a href="cafe/MyPage.action">お渡し済一覧</a>
+
 <div class="content">
 
 
