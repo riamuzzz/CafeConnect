@@ -20,7 +20,20 @@
 	<tr><td>${ product.productName }</td></tr>
 	<tr><td>${ product.productDetail }</td></tr>
 	<tr><td>${ product.price }円（税込）</td></tr>
-	</table>
+</table>
+<form action="Settlement.action">
+	<label>数量</label>
+	<select name="num">
+		<option value="1">1</option>
+  		<option value="2">2</option>
+  		<option value="3">3</option>
+  		<option value="4">4</option>
+  		<option value="5">5</option>
+	</select>
+	<input type="submit" value="決済画面へ">
+</form>
+<a href="TopPageExecute.action">選択を続ける</a>
+
 
 <%-- フッター --%>
 <c:import url="./common/footer.jsp"/>
