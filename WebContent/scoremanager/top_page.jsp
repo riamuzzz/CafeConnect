@@ -24,7 +24,6 @@
 	<table>
 		<c:forEach var="product" items="${products}">
 			<tr><td><img src="img/product/${ product.image }"></td></tr>
-			<tr><td>${ product.image }</td></tr>
 			<tr><td>${ product.productName }</td></tr>
 			<tr><td>${ product.price }円</td></tr>
 		</c:forEach>

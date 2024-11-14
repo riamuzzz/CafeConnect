@@ -10,25 +10,29 @@
 </head>
 <body>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
 <%@ include file="common/footer.jsp" %>
 	<p>ログイン</p>
 =======
+>>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
 <%@ include file="common/header.jsp" %>
+<<<<<<< HEAD
+	<p>ログイン</p>
+=======
 	<p>会員ログイン</p>
+>>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
 >>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
 	<form action = "LoginExecute.action" method="post">
 
 		<!-- メールアドレス -->
 		<label>メールアドレス</label>
-		<div class="a">
 			<input type="text" name="email" value="gst1@icloud.com">
-		</div>
+
 		<!-- パスワード -->
 		<label>パスワード</label>
-		<div class="b">
 			<input type="password" id="password" name="password" value="pass01">
-		</div>
 
 		<!-- パスワード表示チェックボックス -->
 		<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
