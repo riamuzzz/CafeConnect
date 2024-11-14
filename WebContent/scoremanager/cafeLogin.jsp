@@ -6,10 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>かふぇコネクト</title>
+<link rel="stylesheet"  href="../css/style2.css">
 </head>
 <body>
 
-	<form action="CafeLoginExecute.action" method="post">
+<form action="CafeLoginExecute.action" method="post">
 
 		<!--
 	autocomplete
@@ -22,15 +23,14 @@
 	required:input要素を入力必須にする属性
  -->
 
-
 		<h2>ログイン</h2>
 		<!-- ログインＩＤ -->
-		<label>ＩＤ</label> <input type="text" name="id" maxlength="20"
+		<label for="id">ＩＤ</label> <input type="text" name="id" maxlength="20"
 			placeholder="20文字以内の半角英数字でご入力下さい" autocomplete="off"
 			style="ime-mode: disabled" value="admin" required />
 
 		<!-- パスワード -->
-		<label>パスワード</label> <input type="password" name="password"
+		<label for="pass">パスワード</label> <input type="password" name="password"
 			value="password" style="ime-mode: disabled" required />
 
 		<!-- パスワード表示チェックボックス -->
