@@ -14,7 +14,6 @@ import bean.Order;
 import bean.Product;
 import bean.User;
 
-
 public class OrderDao extends Dao {
 
 	/**
@@ -118,7 +117,6 @@ public class OrderDao extends Dao {
 			e.printStackTrace();
 		}
 		return list;
-
 
 	}
 

@@ -6,10 +6,8 @@
 <html>
 <div class="cafe_user_view">
 
-
 <%-- ヘッダー --%>
 <c:import url="../common/cafeheader.jsp"/>
-
 
 <div class="main">
 <%-- ナビゲーション --%>
