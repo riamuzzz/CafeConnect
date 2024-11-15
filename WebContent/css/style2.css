@@ -1,7 +1,21 @@
-.header {
-  width: 100%;
-  text-align: center;
+.cafe_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight:bold;
+  border-bottom: solid 3px #99CCFF;
+  padding: 0 0 5px 0;
+}
 
+.cafe_header h1 {
+  width: 100%;
+  margin-left: 480px;
+}
+
+.cafe_header label {
+  text-align: right;
+  margin-left: 10px;
+  white-space: nowrap;
 }
 
 .login-container {
@@ -41,3 +55,35 @@ button[type="submit"] {
   border-radius: 3px;
   cursor: pointer;
 }
+
+.wrap {
+	display: flex; /*--横並び指定--*/
+
+	text-align: center;
+	color: #000000;
+	font-weight: bold;
+}
+.wrap .lefttop {
+	flex-grow: 1; /*--幅を指定--*/
+	height: 140px;
+	line-height: 30px;
+	margin-right: 2em; /*--AとBの余白--*/
+}
+.wrap .lefttop::after {
+	position: absolute; /*--positionを追加--*/
+	top: 0;
+	left: 100%;
+	margin: 0 1rem;
+	content: "";
+	width: 1px; /*--縦線の太さ(幅)--*/
+	height: 100%;
+	background-color: #000000; /*--縦線の色--*/
+}
+
+.wrap .righttop {
+	flex-grow: 1; /*--幅を指定--*/
+	height: 140px;
+	line-height: 30px;
+
+}
+

@@ -5,7 +5,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel='stylesheet' href='../../css/style.css'>
+	<link rel='stylesheet' href='../css/style.css'>
 
 	<title>かふぇコネクト</title>
 
@@ -13,41 +13,59 @@
 
 <div class="container">
 <div class="header">
+<div class=top>
 	<h2>かふぇコネクト</h2>
 
 		<!-- 検索 -->
-		<input placeholder="キーワード検索"></label>
+		<div class=search><input placeholder="キーワード検索">
 
 		<!-- 検索用ボタン -->
-		<input type="submit" name="kensaku" value="検索"/>
+		<input type="submit" name="kensaku" value="検索"/></div>
 
 		<!-- トップ -->
-		<label>トップ</label>
+		<div class=banner><p><img src=img/header/トップ.png width="30"><br>
+		トップ</p>
 
 		<!-- モバイル -->
+
+		<img src=img/header/モバイル.jpeg width="40">
 		<label>モバイル</label>
 
 		<!-- カート -->
-		<label>カート</label><br>
+		<img src=img/header/カート.jpeg width="40">
+		<label>カート</label></div></div>
 
 
 		<!-- サブスク -->
-		<label>サブスク</label>
+		<div class=menu>
+		<a href="ProductView.action">
+		<img src=img/header/コーヒー豆.jpg width="30">
+		<label>サブスク</label></a>
 
 		<!-- ショップ -->
-		<label>ショップ</label>
+		<a href="main/">
+		<img src=img/header/カート.jpeg width="40">
+		<label>ショップ</label></a>
 
 		<!-- モバイル -->
-		<label>モバイル</label>
+		<a href="main/">
+		<img src=img/header/モバイル.jpeg width="40">
+		<label>モバイル</label></a>
 
 		<!-- 店舗情報 -->
-		<label>店舗情報</label>
+		<a href="main/">
+		<img src=img/header/店舗情報.jpg width="40">
+		<label>店舗情報</label></a>
 
 		<!-- お問い合わせ -->
-		<label>お問い合わせ</label>
+		<a href="main/">
+		<img src=img/header/お問い合わせ.jpg width="35">
+		<label>お問い合わせ</label></a>
 
 		<!-- マイページ -->
-		<label>マイページ</label>
+		<a href="main/MyPage.action">
+		<img src=img/header/マイページ.jpeg width="35">
+		<label>マイページ</label></a></div>
 
 
 
