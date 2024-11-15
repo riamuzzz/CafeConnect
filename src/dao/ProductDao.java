@@ -121,7 +121,6 @@ public class ProductDao extends Dao {
 		}
 		return list;
 
-
 	}
 
 	/**
@@ -154,7 +153,6 @@ public class ProductDao extends Dao {
 	    // SQL条件文の初期化
 	    String condition = "";
 	    int paramIndex = 1;
-
 
 		//SQL分のソート
 		String order = " order by product_id asc";
@@ -189,6 +187,72 @@ public class ProductDao extends Dao {
 	                statement.setString(paramIndex, productName);
 	            }
 	        }
+
+			//上記のSQL文を実行し結果を取得する
+			ResultSet rSet = statement.executeQuery();
+
+			list = postFilter(rSet, category);
+
+		}catch (Exception e){
+			throw e;
+		}finally {
+			//プリペアステートメントを閉じる
+			if (statement != null){
+				try {
+					statement.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+			//コネクションを閉じる
+			if (connection != null){
+				try {
+					connection.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+		}
+		return list;
+
+
+	}
+
+	/**
+	 * serchメソッド 検索結果をリストで返す
+	 *
+	 * @return 学生のリスト:List<Student> 存在しない場合は0件のリスト
+	 * @throws Exception
+	 */
+	public List<Product> serch(String keyword) throws Exception {
+
+		//リストを初期化
+		List<Product> list = new ArrayList<>();
+
+		Category category = new Category();
+
+		//データベースへのコネクションを確立
+		Connection connection = getConnection();
+
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+
+	    // SQL条件文の初期化
+	    String condition = "PRODUCT_NAME like '%?%' ";
+
+		//SQL分のソート
+		String order = "order by product_id asc";
+
+		try{
+
+			//プリペアードステートメントにSQL文をセット
+			statement = connection.prepareStatement(baseSql + condition + order );
+
+	        // 値を設定（それぞれの条件に合わせて）
+
+			statement.setString(1, keyword);
+
+
 
 			//上記のSQL文を実行し結果を取得する
 			ResultSet rSet = statement.executeQuery();
