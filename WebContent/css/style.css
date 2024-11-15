@@ -11,12 +11,14 @@ h2 {
 }
 
 .search {
-	margin: 0px 300px;
+	float: left;
+	margin: 0px 250px;
 	padding:0px;
 
 }
 
 .banner {
+	float: left;
 	padding: 0px;
 	margin: 0px;
 }
@@ -32,17 +34,32 @@ br {
 }
 
 .menu {
+	width: 100%;
 	float:left;
 	padding: 10px 0px;
-	margin-left: auto;
+	margin: 0px;
 	background-color: #C0C0C0;
 }
 
+.menu {
+	margin: auto;
+	width:100%;
+	padding: 3px;
+}
+
+.menu a {
+	margin: 50px;
+	padding: 0;
+}
+
 table {
-	display: block;
-	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+
+a {
+	margin: 0px 10px;
 }
 
 
