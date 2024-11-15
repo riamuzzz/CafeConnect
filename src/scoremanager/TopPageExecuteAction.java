@@ -36,6 +36,6 @@ public class TopPageExecuteAction extends Action {
 
 
 		System.out.println("1111");
-		req.getRequestDispatcher("top_page.jsp").forward(req, res);
+		req.getRequestDispatcher("topPage.jsp").forward(req, res);
 	}
 }
