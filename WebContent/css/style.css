@@ -1,8 +1,48 @@
+.top {
+	margin;0px:
+	padding:0px;
+}
+
+
+h2 {
+	float: left;
+	padding: 0px;
+	margin: 0px;
+}
 
 .search {
-	margin-left: 50px;
+	float: left;
+	margin: 0px 250px;
+	padding:0px 30px;
+
 }
 
 .banner {
-	margin-left: 70px;
+	float: left;
+	padding: 0px;
+	margin: 0px;
 }
+
+.banner p {
+	margin: 0px;
+	padding: 0px;
+}
+
+br {
+	margin: 0px;
+	padding: 0px;
+}
+
+.menu {
+	width: 100%;
+	float:left;
+	padding: 10px 0px;
+	margin: 0px;
+	background-color: #C0C0C0;
+}
+
+a {
+	margin: 0px 20px;
+}
+
+
