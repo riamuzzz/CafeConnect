@@ -11,7 +11,6 @@ public class LoginAction extends Action{
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		//ローカル変数の宣言 1
 		String redirecturl = "";
-		String url = "";
 		String num;
 		//リクエストパラメータ―の取得 2
 		redirecturl = req.getParameter("redirect");
