@@ -36,6 +36,7 @@ public class LoginExecuteAction extends Action{
 			HttpSession session = req.getSession(true);
 			//セッションに"user"という変数名で値はuser変数の中身
 			session.setAttribute("user", user);
+			System.out.println("★" + redirecturl);
 			//リダイレクト
 			url = redirecturl;
 			res.sendRedirect(url);
