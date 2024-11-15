@@ -21,7 +21,7 @@
 	<tr><td>${ product.productDetail }</td></tr>
 	<tr><td>${ product.price }円（税込）</td></tr>
 </table>
-<form action="main/Settlement.action">
+<form id="myForm" method="post">
 	<label>数量</label>
 	<select name="num">
 		<option value="1">1</option>
@@ -30,8 +30,17 @@
   		<option value="4">4</option>
   		<option value="5">5</option>
 	</select>
-	<input type="submit" value="決済画面へ">
+	 <input type="submit" onclick="changeAction('main/Settlement.action')" value="決済画面へ">
+	 <input type="submit" onclick="changeAction('main/CartCreateExecute.action')" value="カートに追加">
+	<!--<button type="button" onclick="changeAction('main/Settlement.action')">決済画面へ</button>
+	<button type="button" onclick="changeAction('main/CartCreate.action')">カートに追加</button> -->
 </form>
+<script>
+    // actionを変更する関数
+    function changeAction(path) {
+        document.getElementById("myForm").action = path;
+    }
+</script>
 <a href="TopPageExecute.action">選択を続ける</a>
 
 

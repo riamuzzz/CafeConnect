@@ -87,6 +87,7 @@ public class ProductDao extends Dao {
 	return product;
 	}
 
+
 	/**
 	 * postFilterメソッド フィルター後のリストへの格納処理 プライベート
 	 *
@@ -139,7 +140,8 @@ public class ProductDao extends Dao {
 	 */
 	public List<Product> filter(Category category, String productName) throws Exception {
 
-		System.out.println("☆入学年度・クラス選択の時☆");
+		System.out.println(category);
+		System.out.println(productName);
 
 		//リストを初期化
 		List<Product> list = new ArrayList<>();
@@ -163,14 +165,14 @@ public class ProductDao extends Dao {
 	    }
 	    // tel のみ設定されている場合の条件
 	    else if ((category.getCategoryId() == null || category.getCategoryId().isEmpty()) && productName != null && !productName.isEmpty()) {
-	        condition = "product_name=? ";
+	        condition = "product_name like '%?%' ";
 	    }
 	    // 両方設定されている場合の条件
 	    else if (category.getCategoryId() != null && !category.getCategoryId().isEmpty() && productName != null && !productName.isEmpty()) {
-	        condition = "category_id=? and product_name=? ";
+	        condition = "category_id=? and product_name like '%?%'";
+	    }else{
+	    	condition = "";
 	    }
-
-
 
 
 		try{
@@ -217,6 +219,8 @@ public class ProductDao extends Dao {
 
 
 	}
+
+
 
 	/**
 	 * serchメソッド 検索結果をリストで返す

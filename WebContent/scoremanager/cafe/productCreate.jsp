@@ -20,8 +20,8 @@
 
 	<label>カテゴリ</label>
 	<select name="category">
-		<c:forEach var="category" items="${category}">
-			<option value="${categoryId}">category</option>
+		<c:forEach var="category" items="${categorys}">
+			<option value="${category.categoryId}">${category.categoryName}</option>
 		</c:forEach>
 	</select>
 
@@ -35,7 +35,7 @@
 	<input type="number" name="count">
 
 	<label>詳細</label>
-	<input type="text" name="productDetail">
+	<textarea name="productDetail"></textarea>
 
 	<label>写真</label>
 	<input type="file" name="image">

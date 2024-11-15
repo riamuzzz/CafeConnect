@@ -20,22 +20,20 @@ public class CartViewAction extends Action {
 		String categoryId = null;
 		List<Product> products = null;// productリスト
 
-		System.out.print("01");
+
 		ProductDao productDao = new ProductDao();
-		System.out.print("02");
+
 		CategoryDao categoryDao = new CategoryDao();
-		System.out.print("03");
+
 
 		Category category = categoryDao.get(categoryId);
 
-		System.out.print("04");
+
 		products = productDao.filter(category, productName);
 
-		System.out.println(products);
 		req.setAttribute("products", products);
 
 
-		System.out.println("1111");
 		req.getRequestDispatcher("top_page.jsp").forward(req, res);
 	}
 }

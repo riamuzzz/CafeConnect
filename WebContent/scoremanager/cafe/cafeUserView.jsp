@@ -21,7 +21,7 @@
 			<option value="0">--------</option>
 			<c:forEach var="category" items="${categoryName}">
 				<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
-				<option value="${category.categoryName}" <c:if test="${category.categoryName==category.categoryName}">selected</c:if>>${category.categoryName}</option>
+				<option value="${category.categoryId}" <c:if test="${category.categoryName==category.categoryName}">selected</c:if>>${category.categoryName}</option>
 			</c:forEach>
 		</select>
 
@@ -32,13 +32,27 @@
 
 		<div>${errors.get("f1")}</div>
 	</form>
-<div class="content">
 
 
+
+			<table class="table table-hover">
+				<tr>
+					<th>商品名</th>
+					<th>価格</th>
+					<th>販売状況</th>
+				</tr>
+				<c:forEach var="productList" items="${productList}">
+					<tr>
+						<td>${productList.productName}</td>
+						<td>${productList.price}</td>
+						<td>${productList.sell}</td>
+					</tr>
+
+				</c:forEach>
+			</table>
 
 <%-- フッター --%>
 <c:import url="../common/cafefooter.jsp"/>
-</div>
 </div>
 </div>
 </html>

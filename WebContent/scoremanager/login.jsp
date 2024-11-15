@@ -13,7 +13,7 @@
 	<p>ログイン</p>
 	<p>会員ログイン</p>
 	<c:choose>
-		<c:when test="${ redirect } == /CafeConnect/scoremanager/main/Settlement.action">
+		<c:when test="${ redirect } == /CafeConnect/scoremanager/main/Settlement.action || ${ redirect } == /CafeConnect/scoremanager/main/CartCreateExecute.action">
 			<form action = "LoginExecute.action?redirect=${ redirect }?num=${ num }" method="post">
 			<!-- メールアドレス -->
 			<label>メールアドレス</label>
