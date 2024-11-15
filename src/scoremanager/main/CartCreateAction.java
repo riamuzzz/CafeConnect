@@ -1,5 +1,5 @@
 package scoremanager.main;
 
-public class CartCreateAction {
+public class CartCreateAction{
 
 }
