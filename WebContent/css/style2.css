@@ -9,7 +9,7 @@
 
 .cafe_header h1 {
   width: 100%;
-  margin-left: 480px;
+  margin-left: 465px;
 }
 
 .cafe_header label {
@@ -58,35 +58,39 @@ button[type="submit"] {
 
 .wrap {
 	display: flex; /*--横並び指定--*/
+	margin-top:50px;
 
 	text-align: center;
-	color: #000000;
-	font-weight: bold;
-
-
 }
 
 .wrap p{
-	width: 35%;
+	width: 30%;
 	padding: 10px;
     border: 2px solid;
-    border-left-color: #000000;
+    border-color: #99CCFF;
     margin: 0 auto;
+
+   	margin-top:20px;
+   	margin-bottom:20px;
+
 }
+
+.wrap a {
+    text-indent: -1em;
+    margin-left: 1em;
+}
+.wrap a:before {
+    content: '○';
+}
+
 .wrap .lefttop {
 	flex-grow: 1; /*--幅を指定--*/
-	height: 500px;
 	line-height: 30px;
 	margin-right: -200px; /*--AとBの余白--*/;
-	margin-bottom: 40px;
 }
 
 .wrap .righttop {
 	flex-grow: 1; /*--幅を指定--*/
-	height: 500px;
 	line-height: 30px;
-	margin-bottom: 40px;
-
-
 }
 
