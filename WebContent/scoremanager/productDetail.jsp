@@ -21,7 +21,7 @@
 	<tr><td>${ product.productDetail }</td></tr>
 	<tr><td>${ product.price }円（税込）</td></tr>
 </table>
-<form action="Settlement.action">
+<form action="main/Settlement.action">
 	<label>数量</label>
 	<select name="num">
 		<option value="1">1</option>

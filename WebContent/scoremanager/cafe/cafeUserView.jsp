@@ -21,21 +21,16 @@
 		<label>カテゴリ </label>
 		<select name="f1">
 			<option value="0">--------</option>
-			<c:forEach var="category" items="${category}">
+			<c:forEach var="category" items="${categoryName}">
 				<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
-				<option value="${category}" <c:if test="${category==f1}">selected</c:if>>${category}</option>
-			</c:forEach>
-		</select>
-		<label>商品名</label>
-		<select name="f2">
-			<option value="0">--------</option>
-			<c:forEach var="product_name" items="${product_name}">
-				<%-- 現在のproduct_nameと選択されていたf2が一致していた場合selectedを追記 --%>
-				<option value="${product_name}" <c:if test="${product_name==f2}">selected</c:if>>${product_name}</option>
+				<option value="${category.categoryName}" <c:if test="${category.categoryName==category.categoryName}">selected</c:if>>${category.categoryName}</option>
 			</c:forEach>
 		</select>
 
-		<button>絞込み</button>
+		<label>商品名</label>
+		<label for="keyword">検索キーワード:</label>
+        <input type="text" id="keyword" name="keyword" >
+        <button type="submit">検索</button>
 
 		<div>${errors.get("f1")}</div>
 	</form>

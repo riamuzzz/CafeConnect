@@ -24,11 +24,10 @@ public class LoginExecuteAction extends Action{
 		//リクエストパラメータ―の取得 2
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
+		String redirecturl = req.getParameter("redirect");
 
 		//DBからデータ取得 3
-		System.out.println("aaa");
 		user = uDao.login(email,password);
-		System.out.println("aaa");
 		//ビジネスロジック 4
 		if (user != null) {
 			// 認証済みフラグを立てる
@@ -38,7 +37,7 @@ public class LoginExecuteAction extends Action{
 			//セッションに"user"という変数名で値はuser変数の中身
 			session.setAttribute("user", user);
 			//リダイレクト
-			url = "main/MyPage.action";
+			url = redirecturl;
 			res.sendRedirect(url);
 		} else {
 			Map<String, String> errors = new HashMap<>();// エラーメッセージ

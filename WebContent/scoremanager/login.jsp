@@ -12,7 +12,7 @@
 <%@ include file="common/header.jsp" %>
 	<p>ログイン</p>
 	<p>会員ログイン</p>
-	<form action = "LoginExecute.action" method="post">
+	<form action = "LoginExecute.action?redirect=${ redirect }?num=${ num }" method="post">
 
 		<!-- メールアドレス -->
 		<label>メールアドレス</label>
