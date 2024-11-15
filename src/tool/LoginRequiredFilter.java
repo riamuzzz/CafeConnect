@@ -31,7 +31,7 @@ public class LoginRequiredFilter implements Filter {
 			HttpServletResponse	res = ((HttpServletResponse) response);
 			// パスを保存
 			redirecturl = req.getRequestURI();
-			if (redirecturl == "/CafeConnect/scoremanager/main/Settlement.action"){
+			if (redirecturl == "/CafeConnect/scoremanager/main/Settlement.action" || redirecturl == "/CafeConnect/scoremanager/main/CartCreateExecute.action"){
 				// 決済ボタンが押されたときだけnumを変数として持つ
 				res.sendRedirect(req.getContextPath() + "/scoremanager/Login.action?redirect=" + redirecturl + "?num=" + num);
 			} else {
