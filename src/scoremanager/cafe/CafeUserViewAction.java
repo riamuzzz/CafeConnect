@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Category;
+import bean.Product;
 import dao.CategoryDao;
 import dao.ProductDao;
 import tool.Action;
@@ -18,18 +19,26 @@ public class CafeUserViewAction extends Action {
 
 		ProductDao productDao =new ProductDao();
 		CategoryDao categoryDao = new CategoryDao();
-		String categoryName ="";
-		System.out.println(categoryName);
+		String categoryId ="";
 
 		//リストを初期化
 		List<Category> list = new ArrayList<>();
+		List<Product> productList = new ArrayList<>();
 
 
 		//リクエストパラメータ―の取得 2
-		categoryName = req.getParameter("f1");
+		categoryId = req.getParameter("f1");
+		String keyword = req.getParameter("keyword");
 
 		//DBからデータ取得 3
 		 list = categoryDao.get();
+		 Category category=categoryDao.get(categoryId);
+		 //検索ワードに引っかかる商品リストから名前を抽出
+
+		 //絞り込み結果
+
+		productList = productDao.filter(category, keyword);
+
 
 
 		//ビジネスロジック 4
@@ -37,8 +46,10 @@ public class CafeUserViewAction extends Action {
 		//DBへデータ保存 5
 		//なし
 		//レスポンス値をセット 6
-		// リクエストに入学年度をセット
+		// リクエストにカテゴリをセット
 		req.setAttribute("categoryName", list);
+		req.setAttribute("product", productList);
+
 		//JSPへフォワード 7
 		req.getRequestDispatcher("cafeUserView.jsp").forward(req, res);
 	}
