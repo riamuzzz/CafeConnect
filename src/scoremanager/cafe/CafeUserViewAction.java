@@ -27,11 +27,15 @@ public class CafeUserViewAction extends Action {
 
 
 		//リクエストパラメータ―の取得 2
+		//カテゴリプルダウン表示のデータ取得
 		categoryId = req.getParameter("f1");
+		//検索ワードの取得
 		String keyword = req.getParameter("keyword");
 
 		//DBからデータ取得 3
+		//プルダウン表示のためのカテゴリ全取得
 		 list = categoryDao.get();
+		 //絞り込みのためオブジェクト型に変更
 		 Category category=categoryDao.get(categoryId);
 		 //検索ワードに引っかかる商品リストから名前を抽出
 
