@@ -56,14 +56,34 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-.lefttop {
-	margin-left: 150px;
+.wrap {
+	display: flex; /*--横並び指定--*/
 
+	text-align: center;
+	color: #000000;
+	font-weight: bold;
+}
+.wrap .lefttop {
+	flex-grow: 1; /*--幅を指定--*/
+	height: 140px;
+	line-height: 30px;
+	margin-right: 2em; /*--AとBの余白--*/
+}
+.wrap .lefttop::after {
+	position: absolute; /*--positionを追加--*/
+	top: 0;
+	left: 100%;
+	margin: 0 1rem;
+	content: "";
+	width: 1px; /*--縦線の太さ(幅)--*/
+	height: 100%;
+	background-color: #000000; /*--縦線の色--*/
 }
 
-.righttop {
-	margin-left: 580px;
-	position: relative; /* 今の位置を基準 */
-	top: -200px; /* 上から10px */
+.wrap .righttop {
+	flex-grow: 1; /*--幅を指定--*/
+	height: 140px;
+	line-height: 30px;
+
 }
 
