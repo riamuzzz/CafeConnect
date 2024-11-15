@@ -12,35 +12,70 @@
 <%@ include file="common/header.jsp" %>
 	<p>ログイン</p>
 	<p>会員ログイン</p>
-	<form action = "LoginExecute.action?redirect=${ redirect }?num=${ num }" method="post">
+	<c:choose>
+		<c:when test="${ redirect } == /CafeConnect/scoremanager/main/Settlement.action">
+			<form action = "LoginExecute.action?redirect=${ redirect }?num=${ num }" method="post">
+			<!-- メールアドレス -->
+			<label>メールアドレス</label>
+				<input type="text" name="email" value="gst1@icloud.com">
 
-		<!-- メールアドレス -->
-		<label>メールアドレス</label>
-			<input type="text" name="email" value="gst1@icloud.com">
+			<!-- パスワード -->
+			<label>パスワード</label>
+				<input type="password" id="password" name="password" value="pass01">
 
-		<!-- パスワード -->
-		<label>パスワード</label>
-			<input type="password" id="password" name="password" value="pass01">
-
-		<!-- パスワード表示チェックボックス -->
-		<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
-				<label for="showPassword">パスワードを表示する</label>
-					<script>
-						function togglePasswordVisibility() {
-							let passwordInput = document.getElementById("password");
-							let showPasswordCheckbox = document.getElementById("showPassword");
-							if (showPasswordCheckbox.checked) {
-								passwordInput.type = "text";
-							} else {
-								passwordInput.type = "password";
+			<!-- パスワード表示チェックボックス -->
+				<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
+					<label for="showPassword">パスワードを表示する</label>
+						<script>
+							function togglePasswordVisibility() {
+								let passwordInput = document.getElementById("password");
+								let showPasswordCheckbox = document.getElementById("showPassword");
+								if (showPasswordCheckbox.checked) {
+									passwordInput.type = "text";
+								} else {
+									passwordInput.type = "password";
+								}
 							}
-						}
-					</script>
+						</script>
 
-		<!-- ログイン用ボタン -->
-		<input type="submit" name="login" value="ログイン"/>
+			<!-- ログイン用ボタン -->
+			<input type="submit" name="login" value="ログイン"/>
+		</form>
+		</c:when>
+		<c:otherwise>
+			<form action = "LoginExecute.action?redirect=${ redirect }" method="post">
+			<!-- メールアドレス -->
+			<label>メールアドレス</label>
+				<input type="text" name="email" value="gst1@icloud.com">
 
-	</form>
+			<!-- パスワード -->
+			<label>パスワード</label>
+				<input type="password" id="password" name="password" value="pass01">
+
+			<!-- パスワード表示チェックボックス -->
+				<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
+					<label for="showPassword">パスワードを表示する</label>
+						<script>
+							function togglePasswordVisibility() {
+								let passwordInput = document.getElementById("password");
+								let showPasswordCheckbox = document.getElementById("showPassword");
+								if (showPasswordCheckbox.checked) {
+									passwordInput.type = "text";
+								} else {
+									passwordInput.type = "password";
+								}
+							}
+						</script>
+
+			<!-- ログイン用ボタン -->
+			<input type="submit" name="login" value="ログイン"/>
+		</form>
+		</c:otherwise>
+	</c:choose>
+	<c:if test="!${ redirect } == /CafeConnect/scoremanager/main/Settlement.action">
+
+	</c:if>
+
 
 <%@ include file="common/footer.jsp" %>
 
