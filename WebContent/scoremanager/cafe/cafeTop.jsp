@@ -21,7 +21,7 @@
 <a href="cafe/MyPage.action">在庫一覧</a>
 <p>商品情報</p>
 <a href="cafe/MyPage.action">商品登録</a>
-<a href="cafe/MyPage.action">商品一覧</a>
+<a href="cafe/CafeUserView.action">商品一覧</a>
 <p>売上情報</p>
 <a href="cafe/MyPage.action">売上情報一覧</a>
 </div>
