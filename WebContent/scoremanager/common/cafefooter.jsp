@@ -3,5 +3,5 @@
 	pageEncoding="UTF-8"%>
 
 <div class="footer">
-	<p>かふぇコネクト(ここからフッター)</p>
+
 </div>

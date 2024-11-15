@@ -55,3 +55,14 @@ button[type="submit"] {
   border-radius: 3px;
   cursor: pointer;
 }
+
+.lefttop {
+	margin-left: 150px;
+}
+
+.righttop {
+	margin-left: 580px;
+	position: relative; /* 今の位置を基準 */
+	top: -200px; /* 上から10px */
+}
+
