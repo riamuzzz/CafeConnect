@@ -9,7 +9,7 @@
 
 
 <%-- ヘッダー --%>
-<c:import url="../common/cafeheader.jsp"/>
+<c:import url="../common/topcafeheader.jsp"/>
 
 
 <%-- ナビゲーション --%>
@@ -20,7 +20,7 @@
 	<p>在庫</p>
 	<a href="MyPage.action">在庫一覧</a>
 	<p>商品情報</p>
-	<a href="MyPage.action">商品登録</a><br>
+	<a href="ProductCreate.action">商品登録</a><br>
 	<a href="CafeUserView.action">商品一覧</a>
 	<p>売上情報</p>
 	<a href="MyPage.action">売上情報一覧</a>

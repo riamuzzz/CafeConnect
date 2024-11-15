@@ -12,8 +12,30 @@
 </head>
 
 <div class="container">
+
+
+<div class="hamburger-menu">
+    <input id="menu__toggle" type="checkbox" />
+    <label class="menu__btn" for="menu__toggle">
+      <span></span>
+    </label>
+
+    <ul class="menu__box">
+      <li><a class="menu__item" href="#">・在庫一覧</a></li>
+      <li><a class="menu__item" href="#">・商品登録</a></li>
+      <li><a class="menu__item" href="#">・商品一覧</a></li>
+      <li><a class="menu__item" href="#">・売上一覧情報</a></li>
+      <li><a class="menu__item" href="#">・顧客一覧</a></li>
+      <li><a class="menu__item" href="#">・注文一覧</a></li>
+      <li><a class="menu__item" href="#">・発送済み一覧</a></li>
+      <li><a class="menu__item" href="#">・注文一覧</a></li>
+      <li><a class="menu__item" href="#">・お渡し済み一覧</a></li>
+    </ul>
+  </div>
+
 <div class="cafe_header">
-	<h1>管理者トップ画面</h1>
+	<!-- <h1>管理者トップ画面</h1> -->
+	<h1>${{title}}</h1>
 
 		<!-- パスワード変更 -->
 		<label>パスワード変更</label>
