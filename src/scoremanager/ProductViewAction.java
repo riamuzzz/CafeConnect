@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager;
 
 import java.util.List;
 
@@ -19,6 +19,11 @@ public class ProductViewAction  extends Action {
 		String categoryId = null;
 		List<Product> products = null;// productリスト
 
+		// categoryIdを取得
+		categoryId = req.getParameter("categoryId");
+
+		System.out.println(categoryId);
+
 		System.out.print("01");
 		ProductDao productDao = new ProductDao();
 		System.out.print("02");
@@ -32,10 +37,11 @@ public class ProductViewAction  extends Action {
 
 		System.out.println(products);
 		req.setAttribute("products", products);
+		req.setAttribute("category", category);
 
 
 		System.out.println("1111");
-		req.getRequestDispatcher("top_page.jsp").forward(req, res);
+		req.getRequestDispatcher("productView.jsp").forward(req, res);
 	}
 
 }

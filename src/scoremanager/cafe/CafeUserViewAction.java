@@ -19,6 +19,7 @@ public class CafeUserViewAction extends Action {
 		ProductDao productDao =new ProductDao();
 		CategoryDao categoryDao = new CategoryDao();
 		String categoryName ="";
+		System.out.println(categoryName);
 
 		//リストを初期化
 		List<Category> list = new ArrayList<>();
