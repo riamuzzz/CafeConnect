@@ -21,14 +21,18 @@ public class LoginRequiredFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		String redirecturl = "";
 		HttpServletRequest req = (HttpServletRequest)request;
+		String num = req.getParameter("num");
 		// ログインユーザーを取得
 		User user = (User)req.getSession(true).getAttribute("user");
 		// ユーザーが存在しないまたは認証されていない場合
 		if (user == null || !user.isAuthenticated()) {
 			HttpServletResponse	res = ((HttpServletResponse) response);
+			// パスを保存
+			redirecturl = req.getRequestURI();
 			// ログインページへリダイレクト
-			res.sendRedirect(req.getContextPath() + "/scoremanager/Login.action");
+			res.sendRedirect(req.getContextPath() + "/scoremanager/Login.action?redirect=" + redirecturl + "?num=" + num);
 			return;
 		}
 		chain.doFilter(request, response);

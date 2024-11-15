@@ -10,7 +10,11 @@ public class LoginAction extends Action{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		//ローカル変数の宣言 1
-		//なし
+		String redirecturl = "";
+		String num;
+		//リクエストパラメータ―の取得 2
+		redirecturl = req.getParameter("redirect");
+		num = req.getParameter("num");
 		//DBからデータ取得 3
 		//なし
 		//ビジネスロジック 4
@@ -18,7 +22,8 @@ public class LoginAction extends Action{
 		//DBへデータ保存 5
 		//なし
 		//レスポンス値をセット 6
-		//なし
+		req.setAttribute("redirect", redirecturl);
+		req.setAttribute("num", num);
 		//JSPへフォワード 7
 		req.getRequestDispatcher("login.jsp").forward(req, res);
 	}
