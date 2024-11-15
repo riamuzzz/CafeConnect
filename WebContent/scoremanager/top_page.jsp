@@ -15,12 +15,9 @@
 <%-- ナビゲーション --%>
 <c:import url="./common/navigation.jsp"/>
 
-<<<<<<< HEAD
+
 <a href="main/MyPage.action">マイページ</a>
 <a href="Logout.action">ログアウト</a>
-=======
-
->>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
 <div class="content">
 	<img src=img/top/top1.jpg>
 
