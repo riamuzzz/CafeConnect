@@ -193,12 +193,13 @@ public class ProductDao extends Dao {
 	                statement.setString(paramIndex, productName);
 	            }
 	        }
+	        System.out.println(statement);
 
 			//上記のSQL文を実行し結果を取得する
 			ResultSet rSet = statement.executeQuery();
 
 			list = postFilter(rSet, category);
-
+			System.out.println(list);
 		}catch (Exception e){
 			throw e;
 		}finally {

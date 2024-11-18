@@ -36,7 +36,7 @@
 
 
 	<c:choose>
-		<c:when test="${productList.size()>0}">
+		<c:when test="${product.size()>0}">
 
 			<table>
 				<tr>
@@ -44,7 +44,7 @@
 					<th>価格</th>
 					<th>販売状況</th>
 				</tr>
-				<c:forEach var="product" items="${productList}">
+				<c:forEach var="product" items="${product}">
 					<tr>
 						<td>${product.productName}</td>
 						<td>${product.price}</td>
