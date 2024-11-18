@@ -18,7 +18,7 @@
 <div class="wrap">
 	<div class="lefttop">
 	<p>在庫</p>
-	<a href="MyPage.action">在庫一覧</a>
+	<a href="StockView.action">在庫一覧</a>
 	<p>商品情報</p>
 	<a href="ProductCreate.action">商品登録</a><br>
 	<a href="CafeUserView.action">商品一覧</a>
