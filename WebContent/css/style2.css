@@ -1,38 +1,18 @@
 /* cafeheader *//* cafeheader *//* cafeheader */
 
 .cafe_header {
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  font-weight:bold;
-
-  border-bottom: solid 3px #99CCFF;
-
-  padding: 0 0 5px 0;
-
-}
-
-.cafe_header h1 {
-
-  width: 100%;
-
-  margin-left: 465px;
-
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-weight:bold;
+	border-bottom: solid 3px #99CCFF;
+	padding: 0 0 5px 0;
 }
 
 .cafe_header label {
-
-  text-align: right;
-
-  margin-left: 10px;
-
-  white-space: nowrap;
-
+	padding-right:10px;
 }
+
 #menu__toggle {
   opacity: 0;
 }
@@ -106,148 +86,92 @@
 }
 
 .login-container {
-
   max-width: 400px;
-
   margin: 0 auto;
-
   padding: 20px;
-
   background-color: #fff;
-
   border-radius: 5px;
-
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
 }
 
 .form-group {
-
   margin-bottom: 15px;
-
 }
 
 label {
-
   display: block;
-
   font-weight: bold;
-
   margin-bottom: 5px;
-
 }
 
 input[type="text"],
 
 input[type="password"] {
-
   width: 35%;
-
   padding: 10px;
-
   border: 1px solid #ccc;
-
   border-radius: 3px;
-
   margin: 0 auto;
-
 }
 
 button[type="submit"] {
-
   width: 100%;
-
   padding: 10px;
-
   background-color: #007bff;
-
   color: #fff;
-
   border: none;
-
   border-radius: 3px;
-
   cursor: pointer;
-
-
 }
 
 /* cafeTop.jsp *//* cafeTop.jsp *//* cafeTop.jsp */
 
 .wrap {
-
 	display: flex;
-
 	margin-top:30px;
 	margin-bottom:100px;
-
 	text-align: center;
-
 }
 
 .wrap p{
-
 	width: 30%;
-
 	padding: 10px;
-
     border: 2px solid;
-
     border-color: #99CCFF;
-
     margin: 0 auto;
-
    	margin-top:20px;
-
    	margin-bottom:20px;
-
 }
 
 .wrap a {
-
     text-indent: -1em;
-
     margin-left: 1em;
-
 }
 
 .wrap a:before {
-
     content: '○';
-
 }
 
 .wrap .lefttop {
-
 	flex-grow: 1;
-
 	line-height: 30px;
-
 	margin-right: -200px;
-
 }
 
 .wrap .righttop {
-
 	flex-grow: 1;
-
 	line-height: 30px;
-
 }
 
 /* ProductCreate.jsp *//* ProductCreate.jsp *//* ProductCreate.jsp */
 
 .productcreate{
-
     width: fit-content;
     margin: auto;
-
+	margin-top:30px;;
 }
 
 .productcreate th {
     text-align: left;
     vertical-align:top;
 }
-
-
-
