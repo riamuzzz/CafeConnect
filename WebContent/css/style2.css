@@ -238,7 +238,6 @@ button[type="submit"] {
 /* ProductCreate.jsp *//* ProductCreate.jsp *//* ProductCreate.jsp */
 
 .productcreate{
-    margin: 0 auto;
-	padding: 10px;
+	text-align:center
 }
 

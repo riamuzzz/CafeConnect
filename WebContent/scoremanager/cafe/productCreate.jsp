@@ -18,30 +18,30 @@
 
 <form action = "ProductCreateExecute.action" method="post">
 
-	<label>カテゴリ</label>
-	<select name="category">
-		<c:forEach var="category" items="${categorys}">
-			<option value="${category.categoryId}">${category.categoryName}</option>
-		</c:forEach>
-	</select>
+		<label>カテゴリ</label>
+		<select name="category">
+			<c:forEach var="category" items="${categorys}">
+				<option value="${category.categoryId}">${category.categoryName}</option>
+			</c:forEach>
+		</select>
 
-	<label>商品名</label>
-	<input type="text" name="productName">
+		<label>商品名</label>
+		<input type="text" name="productName">
 
-	<label>価格</label>
-	<input type="number" name="price">
+		<label>価格</label>
+		<input type="number" name="price">
 
-	<label>数量</label>
-	<input type="number" name="count">
+		<label>数量</label>
+		<input type="number" name="count">
 
-	<label>詳細</label>
-	<textarea name="productDetail"></textarea>
+		<label>詳細</label>
+		<textarea name="productDetail"></textarea>
 
-	<label>写真</label>
-	<input type="file" name="image">
+		<label>写真</label>
+		<input type="file" name="image">
 
-	<label>販売状況</label>
-	<input type="checkbox" name="sell"><br>
+		<label>販売状況</label>
+		<input type="checkbox" name="sell"><br>
 
 	<input type="submit" value="登録">
 
