@@ -10,7 +10,6 @@
 <%-- ヘッダー --%>
 <c:import url="./common/header.jsp"/>
 
-
 <div class="main">
 <%-- ナビゲーション --%>
 <c:import url="./common/navigation.jsp"/>

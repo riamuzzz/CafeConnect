@@ -12,8 +12,7 @@ import dao.CategoryDao;
 import dao.ProductDao;
 import tool.Action;
 
-public class StockViewAction extends Action {
-
+public class ProductViewAction extends Action {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		//ローカル変数の宣言 1
@@ -58,7 +57,7 @@ public class StockViewAction extends Action {
 		req.setAttribute("product", productList);
 
 		//JSPへフォワード 7
-		req.getRequestDispatcher("stockView.jsp").forward(req, res);
+		req.getRequestDispatcher("productView.jsp").forward(req, res);
 	}
 
 }
