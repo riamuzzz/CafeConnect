@@ -35,21 +35,39 @@
 
 
 
-			<table class="table table-hover">
+	<c:choose>
+		<c:when test="${productList.size()>0}">
+
+			<table>
 				<tr>
 					<th>商品名</th>
 					<th>価格</th>
 					<th>販売状況</th>
 				</tr>
-				<c:forEach var="productList" items="${productList}">
+				<c:forEach var="product" items="${productList}">
 					<tr>
-						<td>${productList.productName}</td>
-						<td>${productList.price}</td>
-						<td>${productList.sell}</td>
+						<td>${product.productName}</td>
+						<td>${product.price}</td>
+						<td class="text-center">
+							<%-- 在学フラグがたっている場合「○」それ以外は「×」を表示 --%>
+							<c:choose>
+								<c:when test="${product.sell}">
+									○
+								</c:when>
+								<c:otherwise>
+									×
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td><a href="ProductUpdate.action?productId=${product.productId}">変更</a></td>
 					</tr>
-
 				</c:forEach>
 			</table>
+		</c:when>
+		<c:otherwise>
+			<div>商品情報が存在しませんでした</div>
+		</c:otherwise>
+	</c:choose>
 
 <%-- フッター --%>
 <c:import url="../common/cafefooter.jsp"/>

@@ -31,6 +31,8 @@ public class CafeUserViewAction extends Action {
 		categoryId = req.getParameter("f1");
 		//検索ワードの取得
 		String keyword = req.getParameter("keyword");
+		//検索ワードが空白なNULLが入る
+		keyword = (keyword == null || keyword.trim().isEmpty()) ? null : keyword.trim();
 
 		//DBからデータ取得 3
 		//プルダウン表示のためのカテゴリ全取得

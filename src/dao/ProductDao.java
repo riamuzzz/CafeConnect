@@ -162,16 +162,20 @@ public class ProductDao extends Dao {
 	    // category のみ設定されている場合の条件
 	    if (category != null && productName == null) {
 	        condition = "where category_id=? ";
+	        System.out.println("1");
 	    }
 	    // tel のみ設定されている場合の条件
 	    else if (category == null && productName != null) {
 	        condition = "where product_name like '%?%' ";
+	        System.out.println("2");
 	    }
 	    // 両方設定されている場合の条件
 	    else if (category != null && productName != null) {
 	        condition = "where category_id=? and product_name like '%?%'";
+	        System.out.println("3");
 	    }else{
 	    	condition = "";
+	    	System.out.println("4");
 	    }
 
 
