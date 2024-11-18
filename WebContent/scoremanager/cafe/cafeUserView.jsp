@@ -13,21 +13,17 @@
 <%-- ナビゲーション --%>
 <c:import url="../common/cafenavigation.jsp"/>
 
-	<h2>商品一覧</h2>
+	<h2>顧客一覧</h2>
 
 	<form method="get">
-		<label>カテゴリ </label>
-		<select name="f1">
-			<option value="0">--------</option>
-			<c:forEach var="category" items="${categoryName}">
-				<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
-				<option value="${category.categoryId}" <c:if test="${category.categoryName==category.categoryName}">selected</c:if>>${category.categoryName}</option>
-			</c:forEach>
-		</select>
+		<label>氏名 </label>
+		<label for="userName">検索キーワード:</label>
+        <input type="text" id="userName" name="userName" >
 
-		<label>商品名</label>
-		<label for="keyword">検索キーワード:</label>
-        <input type="text" id="keyword" name="keyword" >
+		<label>電話番号</label>
+		<label for="tel">検索キーワード:</label>
+        <input type="text" id="tel" name="tel" >
+
         <button type="submit">検索</button>
 
 		<div>${errors.get("f1")}</div>
@@ -36,33 +32,31 @@
 
 
 	<c:choose>
-		<c:when test="${productList.size()>0}">
+		<c:when test="${user.size()>0}">
 
 			<table>
 				<tr>
-					<th>商品名</th>
-					<th>価格</th>
-					<th>販売状況</th>
+					<th>ユーザーID</th>
+					<th>氏名</th>
+					<th>メールアドレス</th>
+					<th>電話</th>
+					<th>住所</th>
+					<th>サブスク</th>
+
 				</tr>
-				<c:forEach var="product" items="${productList}">
+				<c:forEach var="user" items="${user}">
 					<tr>
-						<td>${product.productName}</td>
-						<td>${product.price}</td>
-						<td class="text-center">
-							<%-- 在学フラグがたっている場合「○」それ以外は「×」を表示 --%>
-							<c:choose>
-								<c:when test="${product.sell}">
-									○
-								</c:when>
-								<c:otherwise>
-									×
-								</c:otherwise>
-							</c:choose>
-						</td>
-						<td><a href="ProductUpdate.action?productId=${product.productId}">変更</a></td>
+						<td>${user.userId}</td>
+						<td>${user.userName}</td>
+						<td>${user.email}</td>
+						<td>${user.tel}</td>
+						<td>${user.Adress}</td>
+						<td>${user.subscription}</td>
+
 					</tr>
 				</c:forEach>
 			</table>
+			<a href="UserUpdate.action">変更</a>
 		</c:when>
 		<c:otherwise>
 			<div>商品情報が存在しませんでした</div>

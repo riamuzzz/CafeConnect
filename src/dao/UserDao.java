@@ -16,7 +16,7 @@ public class UserDao extends Dao{
 	/**
 	 * baseSql:String 共通SQL文 プライベート
 	 */
-	private String baseSql = "SELECT * FROM USERS WHERE ";
+	private String baseSql = "SELECT * FROM USERS ";
 
 
 		/**
@@ -44,7 +44,7 @@ public class UserDao extends Dao{
 
 			try{
 				//プリペアードステートメントにSQL文をセット
-				statement = connection.prepareStatement("USER_ID = ?");
+				statement = connection.prepareStatement("where USER_ID = ?");
 				//各部分に値を設定
 				statement.setString(1,userId );
 
@@ -150,19 +150,17 @@ public class UserDao extends Dao{
 			String order = " order by user_id asc";
 
 		    // 名前 のみ設定されている場合の条件
-		    if (userName != null && !userName.isEmpty() && (tel == null || tel.isEmpty())) {
-		        condition = "user_name=? ";
+		    if (userName != null && (tel == null)) {
+		        condition = "where user_name like '%?%' ";
 		    }
 		    // tel のみ設定されている場合の条件
-		    else if ((userName == null || userName.isEmpty()) && tel != null && !tel.isEmpty()) {
-		        condition = "tel=? ";
+		    else if (userName == null && tel != null) {
+		        condition = "where tel like '%?%' ";
 		    }
 		    // 両方設定されている場合の条件
-		    else if (userName != null && !userName.isEmpty() && tel != null && !tel.isEmpty()) {
-		        condition = "user_name=? and tel=? ";
+		    else if (userName != null && tel != null) {
+		        condition = "where user_name like '%?% and tel like '%?% ";
 		    }
-
-
 
 
 			try{
@@ -172,10 +170,10 @@ public class UserDao extends Dao{
 
 		        // 値を設定（それぞれの条件に合わせて）
 		        if (!condition.isEmpty()) {
-		            if (condition.contains("category_id=?")) {
+		            if (condition.contains("where category_id=?")) {
 		                statement.setString(paramIndex++, userName);
 		            }
-		            if (condition.contains("product_name=?")) {
+		            if (condition.contains("where product_name=?")) {
 		                statement.setString(paramIndex, tel);
 		            }
 		        }
