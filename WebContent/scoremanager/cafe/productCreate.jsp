@@ -14,7 +14,7 @@
 <%-- ナビゲーション --%>
 <c:import url="../common/cafenavigation.jsp"/>
 
-<div class="content">
+<div class="productcreate">
 
 <form action = "ProductCreateExecute.action" method="post">
 
@@ -41,7 +41,7 @@
 	<input type="file" name="image">
 
 	<label>販売状況</label>
-	<input type="checkbox" name="sell">
+	<input type="checkbox" name="sell"><br>
 
 	<input type="submit" value="登録">
 

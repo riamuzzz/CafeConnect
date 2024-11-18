@@ -1,3 +1,5 @@
+/* cafeheader *//* cafeheader *//* cafeheader */
+
 .cafe_header {
 
   display: flex;
@@ -167,11 +169,14 @@ button[type="submit"] {
 
   cursor: pointer;
 
+
 }
+
+/* cafeTop.jsp *//* cafeTop.jsp *//* cafeTop.jsp */
 
 .wrap {
 
-	display: flex; /*--横並び指定--*/
+	display: flex;
 
 	margin-top:30px;
 	margin-bottom:100px;
@@ -214,20 +219,26 @@ button[type="submit"] {
 
 .wrap .lefttop {
 
-	flex-grow: 1; /*--幅を指定--*/
+	flex-grow: 1;
 
 	line-height: 30px;
 
-	margin-right: -200px; /*--AとBの余白--*/;
+	margin-right: -200px;
 
 }
 
 .wrap .righttop {
 
-	flex-grow: 1; /*--幅を指定--*/
+	flex-grow: 1;
 
 	line-height: 30px;
 
 }
 
+/* ProductCreate.jsp *//* ProductCreate.jsp *//* ProductCreate.jsp */
+
+.productcreate{
+    margin: 0 auto;
+	padding: 10px;
+}
 
