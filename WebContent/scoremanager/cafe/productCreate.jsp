@@ -17,20 +17,16 @@
 <div class="productcreate">
 
 <form action = "ProductCreateExecute.action" method="post">
-	<table>
-		<tr>
+
 		<label>カテゴリ</label>
 		<select name="category">
 			<c:forEach var="category" items="${categorys}">
 				<option value="${category.categoryId}">${category.categoryName}</option>
 			</c:forEach>
 		</select>
-		</tr>
 
-		<tr>
 		<label>商品名</label>
 		<input type="text" name="productName">
-		</tr>
 
 		<label>価格</label>
 		<input type="number" name="price">
@@ -48,10 +44,9 @@
 		<input type="checkbox" name="sell"><br>
 
 	<input type="submit" value="登録">
-	</table>
-
 
 </form>
+
 
 </div>
 </div>
