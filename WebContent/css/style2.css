@@ -241,3 +241,7 @@ button[type="submit"] {
 	text-align:center
 }
 
+.table{
+    border-spacing: 0;
+}
+
