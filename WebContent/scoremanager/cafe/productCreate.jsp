@@ -18,33 +18,44 @@
 
 <form action = "ProductCreateExecute.action" method="post">
 
-		<label>カテゴリ</label>
+	<table>
+	<tr>
+		<th><label>カテゴリ</label></th>
+		<td>
 		<select name="category">
 			<c:forEach var="category" items="${categorys}">
 				<option value="${category.categoryId}">${category.categoryName}</option>
 			</c:forEach>
 		</select>
-
-		<label>商品名</label>
-		<input type="text" name="productName">
-
-		<label>価格</label>
-		<input type="number" name="price">
-
-		<label>数量</label>
-		<input type="number" name="count">
-
-		<label>詳細</label>
-		<textarea name="productDetail"></textarea>
-
-		<label>写真</label>
-		<input type="file" name="image">
-
-		<label>販売状況</label>
-		<input type="checkbox" name="sell"><br>
+		</td>
+	</tr>
+	<tr>
+		<th><label>商品名</label></th>
+		<td><input type="text" name="productName"></td>
+	</tr>
+	<tr>
+		<th><label>価格</label></th>
+		<td><input type="number" name="price"></td>
+	</tr>
+	<tr>
+		<th><label>数量</label></th>
+		<td><input type="number" name="count"></td>
+	</tr>
+	<tr>
+		<th><label>詳細</label></th>
+		<td><textarea name="productDetail"></textarea></td>
+	</tr>
+	<tr>
+		<th><label>写真</label></th>
+		<td><input type="file" name="image"></td>
+	</tr>
+	<tr>
+		<th><label>販売状況</label></th>
+		<td><input type="checkbox" name="sell"></td>
+	</tr>
+	</table>
 
 	<input type="submit" value="登録">
-
 </form>
 
 

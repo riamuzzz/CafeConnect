@@ -238,10 +238,16 @@ button[type="submit"] {
 /* ProductCreate.jsp *//* ProductCreate.jsp *//* ProductCreate.jsp */
 
 .productcreate{
-	text-align:center
+
+    width: fit-content;
+    margin: auto;
+
 }
 
-.table{
-    border-spacing: 0;
+.productcreate th {
+    text-align: left;
+    vertical-align:top;
 }
+
+
 
