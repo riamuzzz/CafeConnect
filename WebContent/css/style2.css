@@ -9,6 +9,10 @@
 	padding: 0 0 5px 0;
 }
 
+.cafe_header h1 {
+	 margin: 10px 300px;
+}
+
 .cafe_header label {
 	padding-right:10px;
 }
@@ -175,3 +179,14 @@ button[type="submit"] {
     text-align: left;
     vertical-align:top;
 }
+
+.productcreate select, input, textarea {
+	float: right;
+}
+
+.productcreate  input.productName { width: 280px; height: 5px;}
+.productcreate  input.price { width: 294px; height: 20px;}
+.productcreate  input.count { width: 294px; height: 20px;}
+.productcreate  textarea.productDetail { width: 294px; height: 100px;}
+
+.productcreate .button { display:inline-block; }
