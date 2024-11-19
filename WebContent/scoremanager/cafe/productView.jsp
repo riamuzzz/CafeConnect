@@ -13,61 +13,67 @@
 <%-- ナビゲーション --%>
 <c:import url="../common/cafenavigation.jsp"/>
 
-	<h2>商品一覧</h2>
+	<div class="product_view1">
+		<h2>商品一覧</h2>
 
-	<form method="get">
-		<label>カテゴリ </label>
-		<select name="f1">
-			<option value="0">--------</option>
-			<c:forEach var="category" items="${categoryName}">
-				<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
-				<option value="${category.categoryId}" <c:if test="${category.categoryName==category.categoryName}">selected</c:if>>${category.categoryName}</option>
-			</c:forEach>
-		</select>
-
-		<label>商品名</label>
-		<label for="keyword">検索キーワード:</label>
-        <input type="text" id="keyword" name="keyword" >
-        <button type="submit">検索</button>
-
-		<div>${errors.get("f1")}</div>
-	</form>
-
-
-
-	<c:choose>
-		<c:when test="${product.size()>0}">
-
-			<table>
-				<tr>
-					<th>商品名</th>
-					<th>価格</th>
-					<th>販売状況</th>
-				</tr>
-				<c:forEach var="product" items="${product}">
-					<tr>
-						<td>${product.productName}</td>
-						<td>${product.price}</td>
-						<td class="text-center">
-							<%-- 在学フラグがたっている場合「○」それ以外は「×」を表示 --%>
-							<c:choose>
-								<c:when test="${product.sell}">
-									○
-								</c:when>
-								<c:otherwise>
-									×
-								</c:otherwise>
-							</c:choose>
-						</td>
-						<td><a href="ProductUpdate.action?productId=${product.productId}">変更</a></td>
-					</tr>
+		<table>
+		<form method="get">
+			<th><label>カテゴリ </label></th>
+			<td>
+			<select name="f1">
+				<option value="0">--------</option>
+				<c:forEach var="category" items="${categoryName}">
+					<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
+					<option value="${category.categoryId}" <c:if test="${category.categoryName==category.categoryName}">selected</c:if>>${category.categoryName}</option>
 				</c:forEach>
-			</table>
-		</c:when>
-		<c:otherwise>
-			<div>商品情報が存在しませんでした</div>
-		</c:otherwise>
-	</c:choose>
+			</select>
+			</td>
+
+			<th><label for="keyword">商品名:</label></th>
+	        <td><input type="text" id="keyword" name="keyword" ></td>
+	        <td><button type="submit" id="button">検索</button><td>
+
+			<div>${errors.get("f1")}</div>
+		</form>
+		</table>
+
+
+		<div class="product_view2">
+		<c:choose>
+			<c:when test="${product.size()>0}">
+
+				<table>
+					<tr>
+						<th>商品名</th>
+						<th>価格</th>
+						<th>販売状況</th>
+					</tr>
+					<c:forEach var="product" items="${product}">
+						<tr>
+							<td>${product.productName}</td>
+							<td>${product.price}</td>
+							<td class="text-center">
+								<%-- 在学フラグがたっている場合「○」それ以外は「×」を表示 --%>
+								<c:choose>
+									<c:when test="${product.sell}">
+										○
+									</c:when>
+									<c:otherwise>
+										×
+									</c:otherwise>
+								</c:choose>
+							</td>
+							<td><a href="ProductUpdate.action?productId=${product.productId}">変更</a></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</c:when>
+			<c:otherwise>
+				<div>商品情報が存在しませんでした</div>
+			</c:otherwise>
+		</c:choose>
+		</div>
+	</div>
 
 <%-- フッター --%>
 <c:import url="../common/cafefooter.jsp"/>
