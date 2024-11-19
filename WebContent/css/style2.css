@@ -180,8 +180,17 @@ button[type="submit"] {
     vertical-align:top;
 }
 
-.productcreate select, input, textarea {
+.productcreate #category, textarea {
 	float: right;
+}
+.productcreate #image {
+	float: right;
+}
+.productcreate #sell {
+	float: right;
+}
+.productcreate input.button {
+	margin-left: 180px;
 }
 
 .productcreate  input.productName { width: 280px; height: 5px;}

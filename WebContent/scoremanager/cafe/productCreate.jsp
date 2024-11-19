@@ -22,7 +22,7 @@
 	<tr>
 		<th><label>カテゴリ</label></th>
 		<td>
-		<select name="category">
+		<select id="category">
 			<c:forEach var="category" items="${categorys}">
 				<option value="${category.categoryId}">${category.categoryName}</option>
 			</c:forEach>
@@ -31,31 +31,31 @@
 	</tr>
 	<tr>
 		<th><label>商品名</label></th>
-		<td><input type="text" name="productName" class="productName"></td>
+		<td><input type="text" id="productName" class="productName"></td>
 	</tr>
 	<tr>
 		<th><label>価格</label></th>
-		<td><input type="number" name="price" class="price"></td>
+		<td><input type="number" id="price" class="price"></td>
 	</tr>
 	<tr>
 		<th><label>数量</label></th>
-		<td><input type="number" name="count" class="count"></td>
+		<td><input type="number" id="count" class="count"></td>
 	</tr>
 	<tr>
 		<th><label>詳細</label></th>
-		<td><textarea name="productDetail" class="productDetail"></textarea></td>
+		<td><textarea id="productDetail" class="productDetail"></textarea></td>
 	</tr>
 	<tr>
 		<th><label>写真</label></th>
-		<td><input type="file" name="image" class="image"></td>
+		<td><input type="file" id="image" class="image"></td>
 	</tr>
 	<tr>
 		<th><label>販売状況</label></th>
-		<td><input type="checkbox" name="sell" class="sell"></td>
+		<td><input type="checkbox" id="sell" class="sell"></td>
 	</tr>
 	</table>
 
-	<input type="submit" value="登録" class="button">
+	<input type="submit" value="登録" class="button" id="touroku">
 </form>
 
 
