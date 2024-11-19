@@ -47,7 +47,6 @@ public class StockViewAction extends Action {
 		productList = productDao.filter(category, keyword);
 
 
-
 		//ビジネスロジック 4
 		//なし
 		//DBへデータ保存 5

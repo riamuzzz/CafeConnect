@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -36,7 +37,7 @@
 
 
 	<c:choose>
-		<c:when test="${productList.size()>0}">
+		<c:when test="${product.size()>0}">
 
 			<table>
 				<tr>
@@ -46,7 +47,7 @@
 					<th>廃棄数</th>
 					<th>最終入荷日</th>
 				</tr>
-				<c:forEach var="product" items="${productList}">
+				<c:forEach var="product" items="${product}">
 					<tr>
 						<td>${product.productName}</td>
 						<td>${product.count}</td>
@@ -56,7 +57,11 @@
 						<td>
 							<input type="text" id="disposal" name="disposal" >
 						</td>
-						<td>${product.inStockDay}</td>
+						<c:set var="formattedDate">
+							<fmt:formatDate value="${product.inStockDay}" pattern="yyyy/MM/dd" />
+						</c:set>
+
+						<td>${formattedDate}</td>
 						<td><a href="ProductUpdate.action?productId=${product.productId}">変更</a></td>
 					</tr>
 				</c:forEach>

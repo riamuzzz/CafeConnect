@@ -166,12 +166,12 @@ public class ProductDao extends Dao {
 	    }
 	    // tel のみ設定されている場合の条件
 	    else if (category == null && productName != null) {
-	        condition = "where product_name like '%?%' ";
+	        condition = "where product_name=?";
 	        System.out.println("2");
 	    }
 	    // 両方設定されている場合の条件
 	    else if (category != null && productName != null) {
-	        condition = "where category_id=? and product_name like '%?%'";
+	        condition = "where category_id=? and product_name=?";
 	        System.out.println("3");
 	    }else{
 	    	condition = "";
@@ -228,17 +228,26 @@ public class ProductDao extends Dao {
 
 
 	/**
-	 * serchメソッド 検索結果をリストで返す
+	 * filterメソッド 学校、入学年度、クラス番号、在学フラグを指定して学生の一覧を取得する
 	 *
+	 * @param school:School
+	 *            学校
+	 * @param entYear:int
+	 *            入学年度
+	 * @param classNum:String
+	 *            クラス番号
+	 * @param isAttend:boolean
+	 *            在学フラグ
 	 * @return 学生のリスト:List<Student> 存在しない場合は0件のリスト
 	 * @throws Exception
 	 */
-	public List<Product> serch(String keyword) throws Exception {
+	public List<Product> serch(Category category, String productName) throws Exception {
+
+		System.out.println(category);
+		System.out.println(productName);
 
 		//リストを初期化
 		List<Product> list = new ArrayList<>();
-
-		Category category = new Category();
 
 		//データベースへのコネクションを確立
 		Connection connection = getConnection();
@@ -247,10 +256,31 @@ public class ProductDao extends Dao {
 		PreparedStatement statement = null;
 
 	    // SQL条件文の初期化
-	    String condition = "where PRODUCT_NAME like '%?%' ";
+	    String condition = "";
+	    int paramIndex = 1;
 
 		//SQL分のソート
-		String order = "order by product_id asc";
+		String order = " order by product_id asc";
+
+	    // category のみ設定されている場合の条件
+	    if (category != null && productName == null) {
+	        condition = "where category_id=? ";
+	        System.out.println("1");
+	    }
+	    // tel のみ設定されている場合の条件
+	    else if (category == null && productName != null) {
+	        condition = "where product_name like '%?%' ";
+	        System.out.println("2");
+	    }
+	    // 両方設定されている場合の条件
+	    else if (category != null && productName != null) {
+	        condition = "where category_id=? and product_name like '%?%'";
+	        System.out.println("3");
+	    }else{
+	    	condition = "";
+	    	System.out.println("4");
+	    }
+
 
 		try{
 
@@ -258,16 +288,21 @@ public class ProductDao extends Dao {
 			statement = connection.prepareStatement(baseSql + condition + order );
 
 	        // 値を設定（それぞれの条件に合わせて）
-
-			statement.setString(1, keyword);
-
-
+	        if (!condition.isEmpty()) {
+	            if (condition.contains("category_id=?")) {
+	                statement.setString(paramIndex++, category.getCategoryId());
+	            }
+	            if (condition.contains("product_name=?")) {
+	                statement.setString(paramIndex, productName);
+	            }
+	        }
+	        System.out.println(statement);
 
 			//上記のSQL文を実行し結果を取得する
 			ResultSet rSet = statement.executeQuery();
 
 			list = postFilter(rSet, category);
-
+			System.out.println(list);
 		}catch (Exception e){
 			throw e;
 		}finally {
