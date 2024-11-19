@@ -60,7 +60,6 @@
 						<c:set var="formattedDate">
 							<fmt:formatDate value="${product.inStockDay}" pattern="yyyy/MM/dd" />
 						</c:set>
-
 						<td>${formattedDate}</td>
 					</tr>
 				</c:forEach>

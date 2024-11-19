@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -55,6 +54,8 @@ public class ProductDao extends Dao {
 				product.setImage(rSet.getString("image"));
 				product.setProductDetail(rSet.getString("product_detail"));
 				product.setCount(rSet.getInt("count"));
+				product.setSell(rSet.getBoolean("sell"));
+				product.setInStockDay(rSet.getDate("in_stock_day"));
 				//categoryDaoのgetでカテゴリ情報取得
 				product.setCategory(categoryDao.get(rSet.getString("category_id")));
 			} else {
@@ -113,6 +114,8 @@ public class ProductDao extends Dao {
 				product.setProductDetail(rSet.getString("product_detail"));
 				product.setCount(rSet.getInt("count"));
 				product.setCategory(category);
+				product.setSell(rSet.getBoolean("sell"));
+				product.setInStockDay(rSet.getDate("in_stock_day"));
 				//リストに追加
 				list.add(product);
 
@@ -296,7 +299,6 @@ public class ProductDao extends Dao {
 	                statement.setString(paramIndex, productName);
 	            }
 	        }
-	        System.out.println(statement);
 
 			//上記のSQL文を実行し結果を取得する
 			ResultSet rSet = statement.executeQuery();
@@ -366,13 +368,13 @@ public class ProductDao extends Dao {
 				statement.setString(6, product.getProductDetail());
 				statement.setInt(7, product.getCount());
 				statement.setBoolean(8, product.isSell());
-				statement.setDate(9, (Date) product.getInStockDay());
+				statement.setDate(9, new java.sql.Date(product.getInStockDay().getTime()));
 
 			}else {
 				//学生が存在した場合
 				//プリペアードステートメントにUpdate文をセット
 				statement = connection.prepareStatement(
-						"UPDATE PRODUCT SET PRODUCT_ID=? ,CATEGORY_ID=? ,PRODUCT_NAME=? ,PRICE=? ,IMAGE=? ,PRODUCT_DETAIL=? ,COUNT=? ,SELL=? ,IN_STOCK_DAY=? ");
+						"UPDATE PRODUCT SET PRODUCT_ID=? ,CATEGORY_ID=? ,PRODUCT_NAME=? ,PRICE=? ,IMAGE=? ,PRODUCT_DETAIL=? ,COUNT=? ,SELL=? ,IN_STOCK_DAY=? WHERE PRODUCT_ID=?");
 				//各部分に値を設定
 				statement.setString(1, product.getProductId());
 				statement.setString(2, product.getCategory().getCategoryId());
@@ -382,10 +384,12 @@ public class ProductDao extends Dao {
 				statement.setString(6, product.getProductDetail());
 				statement.setInt(7, product.getCount());
 				statement.setBoolean(8, product.isSell());
-				statement.setDate(9, (Date) product.getInStockDay());
+				statement.setDate(9, new java.sql.Date(product.getInStockDay().getTime()));
+				statement.setString(10, product.getProductId());
 
 			}
 
+			System.out.println(statement);
 			//プリペアードステートメントを実行
 			count = statement.executeUpdate();
 
