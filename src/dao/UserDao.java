@@ -108,7 +108,7 @@ public class UserDao extends Dao{
 					User user = new User();
 					//顧客インスタンスに検索結果をセット
 					user.setUserId(rSet.getString("user_id"));
-					user.setUserPassword(rSet.getString("user_password"));
+					user.setUserPassword(rSet.getString("user_pass"));
 					user.setUserName(rSet.getString("user_name"));
 					user.setEmail(rSet.getString("email"));
 					user.setAddress(rSet.getString("address"));
@@ -160,6 +160,8 @@ public class UserDao extends Dao{
 		    // 両方設定されている場合の条件
 		    else if (userName != null && tel != null) {
 		        condition = "where user_name like '%?% and tel like '%?% ";
+		    }else{
+		    	condition ="";
 		    }
 
 

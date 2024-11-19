@@ -46,6 +46,7 @@ public class CafeUserViewAction extends Action {
 		//レスポンス値をセット 6
 		// リクエストにカテゴリをセット
 		req.setAttribute("user", list);
+		System.out.println(list);
 
 		//JSPへフォワード 7
 		req.getRequestDispatcher("cafeUserView.jsp").forward(req, res);

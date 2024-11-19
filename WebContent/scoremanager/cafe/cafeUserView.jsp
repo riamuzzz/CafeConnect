@@ -50,8 +50,18 @@
 						<td>${user.userName}</td>
 						<td>${user.email}</td>
 						<td>${user.tel}</td>
-						<td>${user.Adress}</td>
-						<td>${user.subscription}</td>
+						<td>${user.address}</td>
+						<%-- サブスクフラグがたっている場合「○」それ以外は「×」を表示 --%>
+						<td>
+							<c:choose>
+								<c:when test="${user.subscription}">
+									○
+								</c:when>
+								<c:otherwise>
+									×
+								</c:otherwise>
+							</c:choose>
+						</td>
 
 					</tr>
 				</c:forEach>
