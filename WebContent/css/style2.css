@@ -218,3 +218,7 @@ button[type="submit"] {
 	margin-left: 200px;
 	text-align: center;
 }
+
+.product_view2 tr {
+	border-spacing :3px	0px;
+}

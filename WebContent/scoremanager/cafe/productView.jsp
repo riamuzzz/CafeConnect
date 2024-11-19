@@ -42,7 +42,7 @@
 		<c:choose>
 			<c:when test="${product.size()>0}">
 
-				<table>
+				<table cellspacing="10">
 					<tr>
 						<th>商品名</th>
 						<th>価格</th>
