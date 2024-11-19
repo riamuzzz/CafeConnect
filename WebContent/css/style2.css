@@ -1,4 +1,21 @@
 /* cafeheader *//* cafeheader *//* cafeheader */
+.topcafe_header{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-weight:bold;
+	border-bottom: solid 3px #99CCFF;
+	padding: 0 0 5px 0;
+}
+
+.topcafe_header label {
+	padding-right:10px;
+	margin-top: 28px;
+}
+
+.topcafe_header h1 {
+	 margin: 1px 300px;
+}
 
 .cafe_header {
 	display: flex;
@@ -9,12 +26,9 @@
 	padding: 0 0 5px 0;
 }
 
-.cafe_header h1 {
-	 margin: 10px 300px;
-}
-
 .cafe_header label {
 	padding-right:10px;
+	margin-top: 8px;
 }
 
 #menu__toggle {
@@ -221,4 +235,7 @@ button[type="submit"] {
 
 .product_view2 tr {
 	border-spacing :3px	0px;
+}
+.product_view2 td{
+    padding: 5px;
 }

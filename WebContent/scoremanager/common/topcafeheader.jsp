@@ -13,7 +13,7 @@
 
 <div class="container">
 
-<div class="cafe_header">
+<div class="topcafe_header">
 	<h1>管理者トップ画面</h1>
 
 		<!-- パスワード変更 -->
