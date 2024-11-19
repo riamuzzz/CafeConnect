@@ -1,5 +1,5 @@
-package scoremanager.main;
+package scoremanager.cafe;
 
 public class ProductUpdateAction {
-
+	
 }
