@@ -15,7 +15,7 @@ public class ProductViewAction  extends Action {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		String productName = "";
+		String productName = null;
 		String categoryId = null;
 		List<Product> products = null;// productリスト
 
