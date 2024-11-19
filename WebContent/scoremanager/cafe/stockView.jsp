@@ -62,7 +62,6 @@
 						</c:set>
 
 						<td>${formattedDate}</td>
-						<td><a href="ProductUpdate.action?productId=${product.productId}">変更</a></td>
 					</tr>
 				</c:forEach>
 			</table>
