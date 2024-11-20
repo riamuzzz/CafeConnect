@@ -26,15 +26,15 @@
 	<input type="hidden" name="id" value="${ id }">
 	<input type="hidden" name="instockday" value="${ instockday }">
 	<label>商品名</label>
-		<input type="text" name="name" value="${name}">
+		<input type="text" name="name" value="${name}" required>
 	<label>価格</label>
-		<input type="text" name="price" value="${price}">
+		<input type="text" name="price" value="${price}" required>
 	<label>数量</label>
-		<input type="number" name="count" value="${ count }">
+		<input type="number" name="count" value="${ count }" required>
 	<label>詳細</label>
-		<input type="text" name="detail" value="${detail}">
+		<input type="text" name="detail" value="${detail}" required>
 	<label>写真</label>
-		<input type="text" name="image" value="${image}">
+		<input type="file"  name="image" value="${image}" required>
 	<label>販売状況</label>
 		<input type="checkbox" name="is_sell" value="${is_sell}">
 	<input type="submit" value="変更">

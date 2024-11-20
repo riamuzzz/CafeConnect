@@ -46,7 +46,6 @@ public class ProductUpdateAction extends Action{
 			error.add("商品が存在していません");
 			req.setAttribute("error", error);
 		}
-		System.out.println(product.getInStockDay() + "aaa");
 		//JSPへフォワード 7
 		req.getRequestDispatcher("product_update.jsp").forward(req, res);
 	}

@@ -36,40 +36,57 @@
 
 
 
-	<c:choose>
-		<c:when test="${product.size()>0}">
+<c:choose>
+    <c:when test="${product.size() > 0}">
+    <c:if test="${not empty error}">
+		<div>在庫数よりも小さい値を入力してください</div>
+    </c:if>
 
-			<table>
-				<tr>
-					<th>商品名</th>
-					<th>在庫数</th>
-					<th>入庫数</th>
-					<th>廃棄数</th>
-					<th>最終入荷日</th>
-				</tr>
-				<c:forEach var="product" items="${product}">
-					<tr>
-						<td>${product.productName}</td>
-						<td>${product.count}</td>
-						<td>
-							<input type="text" id="join" name="join" >
-						</td>
-						<td>
-							<input type="text" id="disposal" name="disposal" >
-						</td>
-						<c:set var="formattedDate">
-							<fmt:formatDate value="${product.inStockDay}" pattern="yyyy/MM/dd" />
-						</c:set>
-						<td>${formattedDate}</td>
-					</tr>
-				</c:forEach>
-			</table>
-			<a href="StockUpdate.action">変更</a>
-		</c:when>
-		<c:otherwise>
-			<div>商品情報が存在しませんでした</div>
-		</c:otherwise>
-	</c:choose>
+        <form action="StockUpdateExecute.action" method="post">
+            <table>
+                <tr>
+                    <th>商品名</th>
+                    <th>在庫数</th>
+                    <th>入庫数</th>
+                    <th>廃棄数</th>
+                    <th>最終入荷日</th>
+                </tr>
+
+                <!-- 商品情報のループ -->
+                <c:forEach var="product" items="${product}">
+                	<input type="hidden" name="productId" value="${ product.productId }">
+                    <tr>
+                        <td>${product.productName}</td>
+                        <td>${product.count}</td>
+                        <td>
+                            <!-- 入庫数 -->
+							<input type="number" name="join_${product.productId}" value="0" required>
+							<input type="hidden" name="join_${product.productId}" value="${product.count}" required>
+                        </td>
+                        <td>
+                            <!-- 廃棄数 -->
+                            <input type="number" name="disposal_${product.productId}" value="0" required>
+                            <input type="hidden" name="disposal_${product.productId}" value="${product.count}" required>
+                        </td>
+                        <c:set var="formattedDate">
+                            <fmt:formatDate value="${product.inStockDay}" pattern="yyyy/MM/dd" />
+                        </c:set>
+                        <td>${formattedDate}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+
+            <!-- 送信ボタン -->
+            <input type="submit" value="変更">
+        </form>
+
+    </c:when>
+
+    <c:otherwise>
+        <div>商品情報が存在しませんでした</div>
+    </c:otherwise>
+</c:choose>
+
 
 <%-- フッター --%>
 <c:import url="../common/cafefooter.jsp"/>
