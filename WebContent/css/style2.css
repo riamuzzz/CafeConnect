@@ -289,7 +289,7 @@ button[type="submit"] {
 
 .stock_view2 .productName, .count, .join, .disposal, .formattedDate{
     padding-top: 15px;
-    padding-left: 30px;
+    padding-left: 20px;
     text-align:center
 }
 
@@ -307,3 +307,5 @@ button[type="submit"] {
     bottom: 0px;
     left: calc(50% - 55px)
 }
+
+.stock_view2 .button { display:inline-block; }

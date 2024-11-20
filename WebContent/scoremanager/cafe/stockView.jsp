@@ -68,7 +68,7 @@
 							</tr>
 						</c:forEach>
 					</table>
-					<a href="StockUpdate.action">変更</a>
+					<a href="StockUpdate.action" class="button">変更</a>
 				</c:when>
 				<c:otherwise>
 					<div>商品情報が存在しませんでした</div>
