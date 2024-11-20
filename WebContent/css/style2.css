@@ -308,4 +308,7 @@ button[type="submit"] {
     left: calc(50% - 55px)
 }
 
-.stock_view2 .button { display:inline-block; }
+.stock_view2 #henkou {
+	margin-left: 320px;
+
+}

@@ -45,30 +45,36 @@
 
 					<table>
 						<tr>
-							<th class="productName">商品名</th>
-							<th class="count">在庫数</th>
-							<th class="join">入庫数</th>
-							<th class="disposal">廃棄数</th>
-							<th class="formattedDate">最終入荷日</th>
+							<th>商品名</th>
+							<th>在庫数</th>
+							<th>入庫数</th>
+							<th>廃棄数</th>
+							<th>最終入荷日</th>
 						</tr>
 						<c:forEach var="product" items="${product}">
 							<tr>
-								<td class="productName">${product.productName}</td>
-								<td class="count">${product.count}</td>
-								<td class="join">
+								<td>${product.productName}</td>
+								<td>${product.count}</td>
+								<td>
 									<input type="text" id="join" name="join" >
 								</td>
-								<td class="disposal">
+								<td>
 									<input type="text" id="disposal" name="disposal" >
 								</td>
 								<c:set var="formattedDate">
 									<fmt:formatDate value="${product.inStockDay}" pattern="yyyy/MM/dd" />
 								</c:set>
-								<td class="formattedDate">${formattedDate}</td>
+								<td>${formattedDate}</td>
 							</tr>
 						</c:forEach>
 					</table>
-					<a href="StockUpdate.action" class="button">変更</a>
+
+				<!-- 11/20 変更箇所 不具合あれば戻します -->
+				<form action = "StockUpdate.action" method="post">
+					<input type="submit" value="変更" class="button" id="henkou">
+				</form>
+				<!-- 以上まで -->
+
 				</c:when>
 				<c:otherwise>
 					<div>商品情報が存在しませんでした</div>
