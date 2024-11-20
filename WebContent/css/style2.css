@@ -183,7 +183,7 @@ button[type="submit"] {
 	left: 88%;
 	margin: 0 1rem;
 	content: "";
-	width: 3px; /*--縦線の太さ(幅)--*/
+	width: 1px; /*--縦線の太さ(幅)--*/
 	height: 100%;
 	background-color: #7d7d7d; /*--縦線の色--*/
 
@@ -242,7 +242,9 @@ button[type="submit"] {
 .product_view1 select { width: 100px; height: 30px;}
 
 .product_view2 .productName, .price, .text-center, .productId{
+    padding-top: 15px;
     padding-left: 70px;
+    text-align:center
 }
 
 .product_view2 table 	{
@@ -257,7 +259,7 @@ button[type="submit"] {
 .product_view2 th::after { /* 議事要素を使用した横線 */
     content: '';
     width: 300px;
-    height: 3px;
+    height: 1px;
     display: inline-block;
     background-color: #7d7d7d;
     position: absolute;
