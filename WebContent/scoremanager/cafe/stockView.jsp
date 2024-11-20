@@ -14,62 +14,68 @@
 <%-- ナビゲーション --%>
 <c:import url="../common/cafenavigation.jsp"/>
 
-	<h2>在庫一覧</h2>
+	<div class="stock_view1">
+		<h2>在庫一覧</h2>
 
-	<form method="get">
-		<label>カテゴリ </label>
-		<select name="f1">
-			<option value="0">--------</option>
-			<c:forEach var="category" items="${categoryName}">
-				<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
-				<option value="${category.categoryId}" <c:if test="${category.categoryName==category.categoryName}">selected</c:if>>${category.categoryName}</option>
-			</c:forEach>
-		</select>
-
-		<label>商品名</label>
-		<label for="keyword">検索キーワード:</label>
-        <input type="text" id="keyword" name="keyword" >
-        <button type="submit">検索</button>
-
-		<div>${errors.get("f1")}</div>
-	</form>
-
-
-
-	<c:choose>
-		<c:when test="${product.size()>0}">
-
-			<table>
-				<tr>
-					<th>商品名</th>
-					<th>在庫数</th>
-					<th>入庫数</th>
-					<th>廃棄数</th>
-					<th>最終入荷日</th>
-				</tr>
-				<c:forEach var="product" items="${product}">
-					<tr>
-						<td>${product.productName}</td>
-						<td>${product.count}</td>
-						<td>
-							<input type="text" id="join" name="join" >
-						</td>
-						<td>
-							<input type="text" id="disposal" name="disposal" >
-						</td>
-						<c:set var="formattedDate">
-							<fmt:formatDate value="${product.inStockDay}" pattern="yyyy/MM/dd" />
-						</c:set>
-						<td>${formattedDate}</td>
-					</tr>
+		<table>
+		<form method="get">
+			<th><label>カテゴリ </label></th>
+			<td>
+			<select name="f1">
+				<option value="0">--------</option>
+				<c:forEach var="category" items="${categoryName}">
+					<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
+					<option value="${category.categoryId}" <c:if test="${category.categoryName==category.categoryName}">selected</c:if>>${category.categoryName}</option>
 				</c:forEach>
-			</table>
-			<a href="StockUpdate.action">変更</a>
-		</c:when>
-		<c:otherwise>
-			<div>商品情報が存在しませんでした</div>
-		</c:otherwise>
-	</c:choose>
+			</select>
+			</td>
+
+			<th><label for="keyword">商品名:</label></th>
+	        <td><input type="text" id="keyword" name="keyword" ></td>
+	        <td><button type="submit">検索</button></td>
+
+			<div>${errors.get("f1")}</div>
+		</form>
+		</table>
+
+
+		<div class="stock_view2">
+			<c:choose>
+				<c:when test="${product.size()>0}">
+
+					<table>
+						<tr>
+							<th>商品名</th>
+							<th>在庫数</th>
+							<th>入庫数</th>
+							<th>廃棄数</th>
+							<th>最終入荷日</th>
+						</tr>
+						<c:forEach var="product" items="${product}">
+							<tr>
+								<td>${product.productName}</td>
+								<td>${product.count}</td>
+								<td>
+									<input type="text" id="join" name="join" >
+								</td>
+								<td>
+									<input type="text" id="disposal" name="disposal" >
+								</td>
+								<c:set var="formattedDate">
+									<fmt:formatDate value="${product.inStockDay}" pattern="yyyy/MM/dd" />
+								</c:set>
+								<td>${formattedDate}</td>
+							</tr>
+						</c:forEach>
+					</table>
+					<a href="StockUpdate.action">変更</a>
+				</c:when>
+				<c:otherwise>
+					<div>商品情報が存在しませんでした</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
 
 <%-- フッター --%>
 <c:import url="../common/cafefooter.jsp"/>
