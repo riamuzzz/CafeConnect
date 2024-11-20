@@ -23,7 +23,7 @@ public class ProductCreateExecuteAction extends Action{
 		// categoryDaoをインスタンス化
 		CategoryDao categoryDao = new CategoryDao();
 
-		String productId = "AA12";                   // 商品ID
+		String productId = "AA13";                   // 商品ID
 		String categoryId = null;                   // カテゴリID
 		Category category = null;                   // カテゴリ
 		String productName = null;                  // 商品名
@@ -46,18 +46,17 @@ public class ProductCreateExecuteAction extends Action{
 		img = req.getParameter("image");                     // 写真
 		sellStr = req.getParameter("sell");                  // 販売状況
 
-		System.out.print("sellStr:");
-		System.out.println(sellStr);
+		// sellStrが"on"ではない時販売状況をfalseにする
 		if (sellStr != "on"){
 			sell = false;
 		} else {
 			sell = true;
 		}
 
-		File file = new File("/CafeConnect/WebContent/scoremanager/img/product/a.jpg");
-		System.out.println(file);
+		// ファイルを保存したい！！
+		String fileName = new File(img).getName();// pathからファイル名取得
 
-		System.out.println(categoryId);
+		// 入力されたcategoryIdからcategoryを取得
 		category = categoryDao.get(categoryId);
 
 		// productを初期化
@@ -70,7 +69,7 @@ public class ProductCreateExecuteAction extends Action{
 		product.setPrice(price);
 		product.setCount(count);
 		product.setProductDetail(productDetail);
-		product.setImage(img);
+		product.setImage(fileName);
 		product.setSell(sell);
 		product.setInStockDay(inStockDay);
 

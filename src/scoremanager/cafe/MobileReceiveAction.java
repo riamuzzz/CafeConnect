@@ -10,17 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import bean.OnlineOrder;
 import bean.Product;
 import bean.User;
-import dao.OrderDao;
+import dao.OrderReceiveDao;
 import tool.Action;
 
-public class MobileOrderViewAction extends Action {
+public class MobileReceiveAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		//ローカル変数の宣言 1
 
-		OrderDao orderDao =new OrderDao();
+		OrderReceiveDao orderReceiveDao =new OrderReceiveDao();
 		Product product =null;
 		User user =null;
 
@@ -39,7 +39,7 @@ public class MobileOrderViewAction extends Action {
 
 		 //絞り込み結果
 		System.out.println("*");
-		list = orderDao.filter(product,user,(java.sql.Date) orderTime);
+		list = orderReceiveDao.filter(product,user,(java.sql.Date) orderTime);
 		System.out.println("**");
 
 		//ビジネスロジック 4
@@ -52,7 +52,7 @@ public class MobileOrderViewAction extends Action {
 		System.out.println(list);
 
 		//JSPへフォワード 7
-		req.getRequestDispatcher("mobileOrderView.jsp").forward(req, res);
+		req.getRequestDispatcher("onlineReceiveView.jsp").forward(req, res);
 	}
 
 }
