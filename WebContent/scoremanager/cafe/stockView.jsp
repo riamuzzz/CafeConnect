@@ -86,8 +86,6 @@
         <div>商品情報が存在しませんでした</div>
     </c:otherwise>
 </c:choose>
-
-
 <%-- フッター --%>
 <c:import url="../common/cafefooter.jsp"/>
 </div>
