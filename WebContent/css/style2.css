@@ -174,6 +174,19 @@ button[type="submit"] {
 	flex-grow: 1;
 	line-height: 30px;
 	margin-right: -200px;
+	position: relative;
+}
+
+.wrap .lefttop::after{
+	position: absolute; /*--positionを追加--*/
+	top: 0;
+	left: 88%;
+	margin: 0 1rem;
+	content: "";
+	width: 3px; /*--縦線の太さ(幅)--*/
+	height: 100%;
+	background-color: #7d7d7d; /*--縦線の色--*/
+
 }
 
 .wrap .righttop {
@@ -230,4 +243,24 @@ button[type="submit"] {
 
 .product_view2 .productName, .price, .text-center, .productId{
     padding-left: 70px;
+}
+
+.product_view2 table 	{
+	border-collapse:collapse
+}
+
+.product_view2 th	{
+	position: relative; /* 相対指定 */
+}
+
+
+.product_view2 th::after { /* 議事要素を使用した横線 */
+    content: '';
+    width: 300px;
+    height: 3px;
+    display: inline-block;
+    background-color: #7d7d7d;
+    position: absolute;
+    bottom: 0px;
+    left: calc(50% - 55px)
 }
