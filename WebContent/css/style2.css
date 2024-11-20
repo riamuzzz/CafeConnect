@@ -280,3 +280,30 @@ button[type="submit"] {
 .stock_view1 #keyword { width: 300px; height: 10px;}
 .stock_view1 #button { width: 70px; height: 30px;}
 .stock_view1 select { width: 100px; height: 30px;}
+
+.stock_view2 #join{ width: 80px;
+}
+.stock_view2 #disposal{ width: 80px;
+}
+
+
+.stock_view2 .productName, .count, .join, .disposal, .formattedDate{
+    padding-top: 15px;
+    padding-left: 30px;
+    text-align:center
+}
+
+.stock_view2 th	{
+	position: relative; /* 相対指定 */
+}
+
+.stock_view2 th::after { /* 議事要素を使用した横線 */
+    content: '';
+    width: 160px;
+    height: 1px;
+    display: inline-block;
+    background-color: #7d7d7d;
+    position: absolute;
+    bottom: 0px;
+    left: calc(50% - 55px)
+}

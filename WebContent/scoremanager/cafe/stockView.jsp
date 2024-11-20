@@ -45,26 +45,26 @@
 
 					<table>
 						<tr>
-							<th>商品名</th>
-							<th>在庫数</th>
-							<th>入庫数</th>
-							<th>廃棄数</th>
-							<th>最終入荷日</th>
+							<th class="productName">商品名</th>
+							<th class="count">在庫数</th>
+							<th class="join">入庫数</th>
+							<th class="disposal">廃棄数</th>
+							<th class="formattedDate">最終入荷日</th>
 						</tr>
 						<c:forEach var="product" items="${product}">
 							<tr>
-								<td>${product.productName}</td>
-								<td>${product.count}</td>
-								<td>
+								<td class="productName">${product.productName}</td>
+								<td class="count">${product.count}</td>
+								<td class="join">
 									<input type="text" id="join" name="join" >
 								</td>
-								<td>
+								<td class="disposal">
 									<input type="text" id="disposal" name="disposal" >
 								</td>
 								<c:set var="formattedDate">
 									<fmt:formatDate value="${product.inStockDay}" pattern="yyyy/MM/dd" />
 								</c:set>
-								<td>${formattedDate}</td>
+								<td class="formattedDate">${formattedDate}</td>
 							</tr>
 						</c:forEach>
 					</table>
