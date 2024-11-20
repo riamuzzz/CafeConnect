@@ -309,6 +309,7 @@ button[type="submit"] {
 }
 
 .stock_view2 #henkou {
+	margin-top: 10px;
 	margin-left: 320px;
 
 }
