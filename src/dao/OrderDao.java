@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Cart;
+import bean.OnlineOrder;
 import bean.Order;
 import bean.Product;
 import bean.User;
@@ -19,7 +21,8 @@ public class OrderDao extends Dao {
 	/**
 	 * baseSql:String 共通SQL文 プライベート
 	 */
-	private String baseSql = "select * from ORDER where ";
+	private String baseSql = "select * from ORDER ";
+	private String baseSql2 = " select * from orders INNER JOIN USERs  on orders.user_id=users.user_id INNER JOIN Product on orders.product_id = product.product_id";
 
 
 	/**
@@ -93,18 +96,19 @@ public class OrderDao extends Dao {
 	 * postFilterメソッド フィルター後のリストへの格納処理 プライベート
 	 *
 	 */
-	private List<Order> postFilter(ResultSet rSet, Product product, User user) throws Exception {
+	private List<OnlineOrder> postFilter(ResultSet rSet, Product product, User user) throws Exception {
 		//リストを初期化
-		List<Order> list = new ArrayList<>();
+		List<OnlineOrder> list = new ArrayList<>();
 
 		try{
 			//リザルトセットを全件走査
 			while (rSet.next()){
-				Order order = new Order();
+				OnlineOrder order = new OnlineOrder();
 				//学生インスタンスに検索結果をセット
 				order.setOrderId(rSet.getString("order_id"));
-				order.setProduct(product);
-				order.setUser(user);
+				order.setProductName(rSet.getString("product_name"));
+				order.setUserName(rSet.getString("user_name"));
+				order.setAddress(rSet.getString("address"));
 				order.setOrderTime(rSet.getDate("order_time"));
 				order.setCount(rSet.getInt("count"));
 				order.setReceive(rSet.getBoolean("receive"));
@@ -119,6 +123,126 @@ public class OrderDao extends Dao {
 		return list;
 
 	}
+
+
+	/**
+	 * filterメソッド 日付、氏名、商品名を指定して学生の一覧を取得する
+	 */
+	public List<OnlineOrder> filter(Product product, User user,Date orderTime) throws Exception {
+
+		System.out.println(product);
+		System.out.println(user);
+		System.out.println(orderTime);
+
+
+		//リストを初期化
+		List<OnlineOrder> list = new ArrayList<>();
+
+		//データベースへのコネクションを確立
+		Connection connection = getConnection();
+
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+
+	    // SQL条件文の初期化
+	    String condition = "";
+	    int paramIndex = 1;
+
+		//SQL分のソート
+		String order = " order by order_time asc";
+
+		// user のみ設定されている場合の条件
+		if (product == null && user != null && orderTime == null) {
+		    condition = "where user_name=?";
+		    System.out.println("1");
+		}
+		// product のみ設定されている場合の条件
+		else if (product != null && user == null && orderTime == null) {
+		    condition = "where product_name=?";
+		    System.out.println("2");
+		}
+		// orderTime のみ設定されている場合の条件
+		else if (product == null && user == null && orderTime != null) {
+		    condition = "where order_time=?";
+		    System.out.println("3");
+		}
+		// user と product が設定されている場合の条件
+		else if (product != null && user != null && orderTime == null) {
+		    condition = "where user_name=? and product_name=?";
+		    System.out.println("4");
+		}
+		// user と orderTime が設定されている場合の条件
+		else if (product == null && user != null && orderTime != null) {
+		    condition = "where user_name=? and order_time=?";
+		    System.out.println("5");
+		}
+		// product と orderTime が設定されている場合の条件
+		else if (product != null && user == null && orderTime != null) {
+		    condition = "where product_name=? and order_time=?";
+		    System.out.println("6");
+		}
+		// すべてが設定されている場合の条件
+		else if (product != null && user != null && orderTime != null) {
+		    condition = "where user_name=? and product_name=? and order_time=?";
+		    System.out.println("7");
+		}
+		// それ以外の場合（条件なし）
+		else {
+		    condition = "";
+		    System.out.println("条件なし");
+		}
+
+		try{
+
+			//プリペアードステートメントにSQL文をセット
+			statement = connection.prepareStatement(baseSql2 + condition + order );
+
+	        // 値を設定（それぞれの条件に合わせて）
+	        if (!condition.isEmpty()) {
+	            if (condition.contains("user_name=?")) {
+	                statement.setString(paramIndex++, user.getUserName());
+	            }
+	            if (condition.contains("product_name=?")) {
+	                statement.setString(paramIndex++, product.getProductName());
+	            }
+	            if (condition.contains("order_time=?")) {
+	                statement.setDate(paramIndex++, orderTime);
+	            }
+
+
+	        }
+	        System.out.println(statement);
+
+			//上記のSQL文を実行し結果を取得する
+			ResultSet rSet = statement.executeQuery();
+
+			list = postFilter(rSet,product,user);
+			System.out.println(list);
+		}catch (Exception e){
+			throw e;
+		}finally {
+			//プリペアステートメントを閉じる
+			if (statement != null){
+				try {
+					statement.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+			//コネクションを閉じる
+			if (connection != null){
+				try {
+					connection.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+		}
+		return list;
+
+
+	}
+
 
 	/**
 	 * saveメソッド 注文インスタンスをデータベースに保存する
