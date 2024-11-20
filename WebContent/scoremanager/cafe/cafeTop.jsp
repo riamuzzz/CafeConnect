@@ -31,10 +31,10 @@
 	<a href="CafeUserView.action">顧客情報一覧</a>
 	<p>オンラインショップ・サブスク</p>
 	<a href="OnlineOrderView.action">注文一覧</a><br>
-	<a href="MyPage.action">発送済一覧</a>
+	<a href="OnlineReceive.action">発送済一覧</a>
 	<p>モバイルオーダー</p>
 	<a href="MobileOrderView.action">注文一覧</a><br>
-	<a href="MyPage.action">お渡し済一覧</a>
+	<a href="MobileReceive.action">お渡し済一覧</a>
 	</div>
 </div>
 
