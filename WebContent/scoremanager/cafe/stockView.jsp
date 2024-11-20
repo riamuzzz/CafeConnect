@@ -16,8 +16,6 @@
 
 	<div class="stock_view1">
 		<h2>在庫一覧</h2>
-
-<<<<<<< HEAD
 	<form method="get">
 		<label>カテゴリ </label>
 		<select name="f1">
@@ -89,73 +87,6 @@
     </c:otherwise>
 </c:choose>
 
-=======
-		<table>
-		<form method="get">
-			<th><label>カテゴリ </label></th>
-			<td>
-			<select name="f1">
-				<option value="0">--------</option>
-				<c:forEach var="category" items="${categoryName}">
-					<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
-					<option value="${category.categoryId}" <c:if test="${category.categoryName==category.categoryName}">selected</c:if>>${category.categoryName}</option>
-				</c:forEach>
-			</select>
-			</td>
-
-			<th><label for="keyword">商品名:</label></th>
-	        <td><input type="text" id="keyword" name="keyword" ></td>
-	        <td><button type="submit">検索</button></td>
-
-			<div>${errors.get("f1")}</div>
-		</form>
-		</table>
-
-
-		<div class="stock_view2">
-			<c:choose>
-				<c:when test="${product.size()>0}">
-
-					<table>
-						<tr>
-							<th class="productName">商品名</th>
-							<th class="count">在庫数</th>
-							<th class="join">入庫数</th>
-							<th class="disposal">廃棄数</th>
-							<th class="formattedDate">最終入荷日</th>
-						</tr>
-						<c:forEach var="product" items="${product}">
-							<tr>
-								<td class="productName">${product.productName}</td>
-								<td class="count">${product.count}</td>
-								<td class="join">
-									<input type="text" id="join" name="join" >
-								</td>
-								<td class="disposal">
-									<input type="text" id="disposal" name="disposal" >
-								</td>
-								<c:set var="formattedDate">
-									<fmt:formatDate value="${product.inStockDay}" pattern="yyyy/MM/dd" />
-								</c:set>
-								<td class="formattedDate">${formattedDate}</td>
-							</tr>
-						</c:forEach>
-					</table>
-
-				<!-- 11/20 変更箇所 不具合あれば戻します -->
-				<form action = "StockUpdate.action" method="post">
-					<input type="submit" value="変更" class="button" id="henkou">
-				</form>
-				<!-- 以上まで -->
-
-				</c:when>
-				<c:otherwise>
-					<div>商品情報が存在しませんでした</div>
-				</c:otherwise>
-			</c:choose>
-		</div>
-	</div>
->>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
 
 <%-- フッター --%>
 <c:import url="../common/cafefooter.jsp"/>
