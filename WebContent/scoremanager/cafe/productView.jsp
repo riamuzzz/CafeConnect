@@ -44,14 +44,14 @@
 
 				<table cellspacing="10">
 					<tr>
-						<th>商品名</th>
-						<th>価格</th>
-						<th>販売状況</th>
+						<th class="productName">商品名</th>
+						<th class="price">価格</th>
+						<th class="text-center">販売状況</th>
 					</tr>
 					<c:forEach var="product" items="${product}">
 						<tr>
-							<td>${product.productName}</td>
-							<td>${product.price}</td>
+							<td class="productName">${product.productName}</td>
+							<td class="price">${product.price}</td>
 							<td class="text-center">
 								<%-- 在学フラグがたっている場合「○」それ以外は「×」を表示 --%>
 								<c:choose>
@@ -63,7 +63,7 @@
 									</c:otherwise>
 								</c:choose>
 							</td>
-							<td><a href="ProductUpdate.action?productId=${product.productId}">変更</a></td>
+							<td class="productId"><a href="ProductUpdate.action?productId=${product.productId}">変更</a></td>
 						</tr>
 					</c:forEach>
 				</table>

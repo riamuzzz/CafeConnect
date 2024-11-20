@@ -228,14 +228,6 @@ button[type="submit"] {
 .product_view1 #button { width: 70px; height: 30px;}
 .product_view1 select { width: 100px; height: 30px;}
 
-.product_view2 {
-	margin-left: 200px;
-	text-align: center;
-}
-
-.product_view2 tr {
-	border-spacing :3px	0px;
-}
-.product_view2 td{
-    padding: 5px;
+.product_view2 .productName, .price, .text-center, .productId{
+    padding-left: 70px;
 }
