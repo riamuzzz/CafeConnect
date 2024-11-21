@@ -16,8 +16,11 @@
 
 	<div class="stock_view1">
 		<h2>在庫一覧</h2>
+
+	<table>
 	<form method="get">
-		<label>カテゴリ </label>
+		<th><label>カテゴリ </label></th>
+		<td>
 		<select name="f1">
 			<option value="0">--------</option>
 			<c:forEach var="category" items="${categoryName}">
@@ -25,14 +28,15 @@
 				<option value="${category.categoryId}" <c:if test="${category.categoryName==category.categoryName}">selected</c:if>>${category.categoryName}</option>
 			</c:forEach>
 		</select>
+		</td>
 
-		<label>商品名</label>
-		<label for="keyword">検索キーワード:</label>
-        <input type="text" id="keyword" name="keyword" >
-        <button type="submit">検索</button>
+		<th><label for="keyword">商品名:</label></th>
+        <td><input type="text" id="keyword" name="keyword" ></td>
+        <td><button type="submit">検索</button></td>
 
 		<div>${errors.get("f1")}</div>
 	</form>
+	</table>
 
 
 
