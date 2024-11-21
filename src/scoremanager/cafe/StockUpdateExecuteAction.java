@@ -46,13 +46,15 @@ public class StockUpdateExecuteAction extends Action{
 					}
 				// どちらも入力された場合
 				} else if (!join.equals("0") && !disposal.equals("0")) {
-					if (product.getCount() >=  (Integer.parseInt(join) - Integer.parseInt(disposal))) {
+					System.out.println(product.getCount() + (Integer.parseInt(join) - Integer.parseInt(disposal)));
+					if (product.getCount() <=  product.getCount() + (Integer.parseInt(join) - Integer.parseInt(disposal))) {
+						System.out.println("★");
+						product.setCount(product.getCount() + (Integer.parseInt(join) - Integer.parseInt(disposal)));
+					} else {
+						System.out.println("★2");
 						error.add("error");
 						req.setAttribute("error", error);
 						product.setCount(product.getCount());
-					} else {
-						System.out.println("１２３４５６７８９０－＾");
-						product.setCount(product.getCount() + (Integer.parseInt(join) - Integer.parseInt(disposal)));
 					}
 				} else {
 					product.setCount(product.getCount());
