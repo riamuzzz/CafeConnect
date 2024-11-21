@@ -315,4 +315,15 @@ button[type="submit"] {
 }
 
 /*cafeUserView.jsp*//*cafeUserView.jsp*//*cafeUserView.jsp*/
+.cafeuser_view1 {
+	font-size: 20px;
+	margin-left: 275px;
+}
 
+.cafeuser_view1 h2 {
+	margin-left: 275px;
+}
+
+.cafeuser_view1 #userName #tel { width: 300px; height: 10px;}
+.cafeuser_view1 #button { width: 70px; height: 30px;}
+.cafeuser_view1 select { width: 100px; height: 30px;}
