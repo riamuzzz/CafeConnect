@@ -39,7 +39,7 @@
 	</table>
 
 
-
+<div class="stock_view2">
 <c:choose>
     <c:when test="${product.size() > 0}">
     <c:if test="${not empty error}">
@@ -49,39 +49,39 @@
         <form action="StockUpdateExecute.action" method="post">
             <table>
                 <tr>
-                    <th>商品名</th>
-                    <th>在庫数</th>
-                    <th>入庫数</th>
-                    <th>廃棄数</th>
-                    <th>最終入荷日</th>
+                    <th class="productName">商品名</th>
+                    <th class="count">在庫数</th>
+                    <th class="join">入庫数</th>
+                    <th class="disposal">廃棄数</th>
+                    <th class="formattedDate">最終入荷日</th>
                 </tr>
 
                 <!-- 商品情報のループ -->
                 <c:forEach var="product" items="${product}">
                 	<input type="hidden" name="productId" value="${ product.productId }">
                     <tr>
-                        <td>${product.productName}</td>
-                        <td>${product.count}</td>
-                        <td>
+                        <td class="productName">${product.productName}</td>
+                        <td class="count">${product.count}</td>
+                        <td class="join">
                             <!-- 入庫数 -->
-							<input type="number" name="join_${product.productId}" value="0" required>
+							<input type="number" name="join_${product.productId}" value="0" style="width:80px;"required>
 							<input type="hidden" name="join_${product.productId}" value="${product.count}" required>
                         </td>
-                        <td>
+                        <td class="disposal">
                             <!-- 廃棄数 -->
-                            <input type="number" name="disposal_${product.productId}" value="0" required>
+                            <input type="number" name="disposal_${product.productId}" value="0" style="width:80px;" required>
                             <input type="hidden" name="disposal_${product.productId}" value="${product.count}" required>
                         </td>
                         <c:set var="formattedDate">
                             <fmt:formatDate value="${product.inStockDay}" pattern="yyyy/MM/dd" />
                         </c:set>
-                        <td>${formattedDate}</td>
+                        <td class="formattedDate">${formattedDate}</td>
                     </tr>
                 </c:forEach>
             </table>
 
             <!-- 送信ボタン -->
-            <input type="submit" value="変更">
+            <input type="submit" value="変更" class="button" id="henkou">
         </form>
 
     </c:when>
@@ -92,6 +92,7 @@
 </c:choose>
 <%-- フッター --%>
 <c:import url="../common/cafefooter.jsp"/>
+</div>
 </div>
 </div>
 </html>
