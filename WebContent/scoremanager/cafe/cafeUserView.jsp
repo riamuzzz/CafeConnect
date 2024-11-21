@@ -37,23 +37,23 @@
 
 					<table>
 						<tr>
-							<th>ユーザーID</th>
-							<th>氏名</th>
-							<th>メールアドレス</th>
-							<th>電話</th>
-							<th>住所</th>
-							<th>サブスク</th>
+							<th class="userId">ユーザーID</th>
+							<th class="userName">氏名</th>
+							<th class="email">メールアドレス</th>
+							<th class="tel">電話</th>
+							<th class="address">住所</th>
+							<th class="subscription">サブスク</th>
 
 						</tr>
 						<c:forEach var="user" items="${user}">
 							<tr>
-								<td>${user.userId}</td>
-								<td>${user.userName}</td>
-								<td>${user.email}</td>
-								<td>${user.tel}</td>
-								<td>${user.address}</td>
+								<td class="userId">${user.userId}</td>
+								<td class="userName">${user.userName}</td>
+								<td class="email">${user.email}</td>
+								<td class="tel">${user.tel}</td>
+								<td class="address">${user.address}</td>
 								<%-- サブスクフラグがたっている場合「○」それ以外は「×」を表示 --%>
-								<td>
+								<td class="subscription">
 									<c:choose>
 										<c:when test="${user.subscription}">
 											○
@@ -67,7 +67,6 @@
 							</tr>
 						</c:forEach>
 					</table>
-					<a href="UserUpdate.action">変更</a>
 				</c:when>
 				<c:otherwise>
 					<div>商品情報が存在しませんでした</div>

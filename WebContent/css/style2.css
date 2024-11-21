@@ -327,3 +327,24 @@ button[type="submit"] {
 .cafeuser_view1 #userName #tel { width: 300px; height: 10px;}
 .cafeuser_view1 #button { width: 70px; height: 30px;}
 .cafeuser_view1 select { width: 100px; height: 30px;}
+
+.cafeuser_view2 .userId, .userName, .email, .tel, .address, .subscription{
+    padding-top: 15px;
+    padding-left:20px;
+    text-align:center
+}
+
+.cafeuser_view2 th	{
+	position: relative; /* 相対指定 */
+}
+
+.cafeuser_view2 th::after { /* 議事要素を使用した横線 */
+    content: '';
+    width: 180px;
+    height: 1px;
+    display: inline-block;
+    background-color: #7d7d7d;
+    position: absolute;
+    bottom: 0px;
+    right: calc(50% - 55px)
+}
