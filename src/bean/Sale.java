@@ -1,5 +1,7 @@
 package bean;
 
+import java.awt.image.BufferedImage;
+
 public class Sale {
 
 	//商品
@@ -7,6 +9,10 @@ public class Sale {
 
 	//注文
 	private Order order;
+
+	//グラフ
+	private BufferedImage graph;
+
 
 	//ゲッターセッター
 	public Product getProduct() {
@@ -23,6 +29,14 @@ public class Sale {
 
 	public void setOrder(Order order) {
 		this.order = order;
+	}
+
+	public BufferedImage getGraph() {
+		return graph;
+	}
+
+	public void setGraph(BufferedImage graph) {
+		this.graph = graph;
 	}
 
 

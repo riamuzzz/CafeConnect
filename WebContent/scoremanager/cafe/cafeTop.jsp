@@ -23,7 +23,7 @@
 	<a href="ProductCreate.action">商品登録</a><br>
 	<a href="ProductView.action">商品一覧</a>
 	<p>売上情報</p>
-	<a href="MyPage.action">売上情報一覧</a>
+	<a href="SaleExecute.action">売上情報一覧</a>
 	</div>
 
 	<div class="righttop">
