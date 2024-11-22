@@ -42,6 +42,7 @@ public class CafeUserDao extends Dao {
 			if(rSet.next()) {
 				cafeUser.setCafeUserId(rSet.getString("cafe_userid"));
 				cafeUser.setCafeUserPassword("cafe_userpass");
+				cafeUser.setCafeUserName(rSet.getString("cafe_username"));
 			} else {
 				//対応する教員がいない場合はnullを返す
 				cafeUser = null;
@@ -105,6 +106,7 @@ public class CafeUserDao extends Dao {
 			if(rSet.next()) {
 				cafeUser.setCafeUserId(rSet.getString("cafe_userid"));
 				cafeUser.setCafeUserPassword(rSet.getString("cafe_userpass"));
+				cafeUser.setCafeUserName(rSet.getString("cafe_username"));
 			} else {
 				//対応する教員がいない場合はnullを返す
 				cafeUser = null;
@@ -134,6 +136,61 @@ public class CafeUserDao extends Dao {
 	//検索した教員インスタンスを返す
 	return cafeUser;
 
+	}
+
+	public boolean save(CafeUser cafeUser) throws Exception {
+
+		//データベースへのコネクションを確立
+		Connection connection = getConnection();
+
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+
+		//実行件数
+		int count = 0;
+
+
+		try{
+				//学生が存在した場合
+				//プリペアードステートメントにUpdate文をセット
+				statement = connection.prepareStatement(
+						"UPDATE cafeusers SET cafe_userid=? ,cafe_userpass=? ,cafe_username=?");
+				//各部分に値を設定
+				statement.setString(1, cafeUser.getCafeUserId());
+				statement.setString(2, cafeUser.getCafeUserPassword());
+				statement.setString(3, cafeUser.getCafeUserName());
+				System.out.println(statement);
+			//プリペアードステートメントを実行
+			count = statement.executeUpdate();
+
+		}catch (Exception e){
+			throw e;
+		}finally {
+			//プリペアステートメントを閉じる
+			if (statement != null){
+				try {
+					statement.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+			//コネクションを閉じる
+			if (connection != null){
+				try {
+					connection.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+		}
+
+		if (count > 0) {
+			//実行数が1件以上あるとき
+			return true;
+		}else {
+			//実行数が0件以上の場合
+			return false;
+		}
 	}
 
 }
