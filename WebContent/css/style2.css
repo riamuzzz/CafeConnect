@@ -50,8 +50,8 @@
 }
 .menu__btn {
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 45px;
+  left: 30px;
   width: 26px;
   height: 26px;
   cursor: pointer;
@@ -75,6 +75,9 @@
   content: '';
   top: 8px;
 }
+
+
+
 .menu__box {
   display: block;
   position: fixed;
