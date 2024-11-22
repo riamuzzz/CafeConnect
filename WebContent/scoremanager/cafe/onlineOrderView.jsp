@@ -13,11 +13,12 @@
 <%-- ナビゲーション --%>
 <c:import url="../common/cafenavigation.jsp"/>
 
-	<h2>注文一覧</h2>
+	<h2>オンライン注文一覧</h2>
 
 	<c:choose>
 		<c:when test="${order.size()>0}">
 
+	<form action="OrderUpdateExecute.action" method="post">
 			<table>
 				<tr>
 					<th>日付</th>
@@ -31,6 +32,10 @@
 
 				</tr>
 				<c:forEach var="order" items="${order}">
+
+				<c:if test="${order.receive == false}">
+               	<input type="hidden" name="orderId" value="${ order.orderId }">
+
 					<tr>
 						<td>${order.orderTime}</td>
 						<td>${order.orderId}</td>
@@ -39,7 +44,7 @@
 						<td>${order.productName}</td>
 						<td>${order.count}</td>
 
-						<td><input type="checkbox" name="receive"></td>
+						<td><input type="checkbox" name="receive_${order.orderId}" value="${receive}"></td>
 
 						<td class="text-center">
 							<%-- フラグがたっている場合「○」それ以外は「×」を表示 --%>
@@ -53,10 +58,15 @@
 							</c:choose>
 						</td>
 					</tr>
+
+				</c:if>
+
 				</c:forEach>
 			</table>
-			<a href="ProductUpdate.action?productId=${product.productId}">変更</a>
+			<input type=submit value="変更">
+		</form>
 		</c:when>
+
 		<c:otherwise>
 			<div>商品情報が存在しませんでした</div>
 		</c:otherwise>
