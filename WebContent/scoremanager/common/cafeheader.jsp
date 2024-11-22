@@ -20,6 +20,7 @@
     </label>
 
     <ul class="menu__box">
+      <li><a class="menu__item" href="CafeTop.action">・トップページ</a></li>
       <li><a class="menu__item" href="StockView.action">・在庫一覧</a></li>
       <li><a class="menu__item" href="ProductCreate.action">・商品登録</a></li>
       <li><a class="menu__item" href="ProductView.action">・商品一覧</a></li>
