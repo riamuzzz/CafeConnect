@@ -32,7 +32,7 @@
 
 		<th><label for="keyword">商品名:</label></th>
         <td><input type="text" id="keyword" name="keyword" ></td>
-        <td><button type="submit">検索</button></td>
+        <td><button type="submit" id="button">検索</button></td>
 
 		<div>${errors.get("f1")}</div>
 	</form>

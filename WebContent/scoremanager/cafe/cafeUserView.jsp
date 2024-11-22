@@ -24,7 +24,7 @@
 			<th><label for="tel">電話番号:</label></th>
 	        <td><input type="text" id="tel" name="tel" ></td>
 
-	        <td><button type="submit">検索</button></td>
+	        <td><button type="submit" id="button">検索</button></td>
 
 			<div>${errors.get("f1")}</div>
 		</form>

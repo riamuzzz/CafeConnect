@@ -243,7 +243,7 @@ button[type="submit"] {
 }
 
 .product_view1 #keyword { width: 300px; height: 10px;}
-.product_view1 #button { width: 70px; height: 30px;}
+.product_view1 #button { width: 70px; height: 31px;}
 .product_view1 select { width: 100px; height: 30px;}
 
 .product_view2 .productName, .price, .text-center, .productId{
@@ -283,7 +283,7 @@ button[type="submit"] {
 }
 
 .stock_view1 #keyword { width: 300px; height: 10px;}
-.stock_view1 #button { width: 70px; height: 30px;}
+.stock_view1 #button { width: 70px; height: 31px;}
 .stock_view1 select { width: 100px; height: 30px;}
 
 .stock_view2 #join{ width: 60px;
@@ -331,7 +331,7 @@ button[type="submit"] {
 
 .cafeuser_view1 #userName { width: 180px; height: 10px;}
 .cafeuser_view1 #tel { width: 180px; height: 10px;}
-.cafeuser_view1 #button { width: 70px; height: 30px;}
+.cafeuser_view1 #button { width: 70px; height: 31px;}
 .cafeuser_view1 select { width: 100px; height: 30px;}
 
 .cafeuser_view2{
