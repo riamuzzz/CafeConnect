@@ -12,7 +12,6 @@ import java.util.List;
 
 import bean.Cart;
 import bean.OnlineOrder;
-import bean.Order;
 import bean.Product;
 import bean.User;
 
@@ -33,17 +32,20 @@ public class OrderDao extends Dao {
 	 * @throws Exception
 	 */
 
-	public Order get(String orderId) throws Exception{
+	public OnlineOrder get(String orderId) throws Exception{
 		Connection connection = getConnection();
 		//プリペアードステートメント
 		PreparedStatement statement = null;
+
+	    String condition = " where order_id=?";
+
 		//結果を格納するTeacherを初期化
-		Order order = new Order();
+		OnlineOrder order = new OnlineOrder();
 
 		try{
 			//プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement(baseSql);
-
+			statement = connection.prepareStatement(baseSql2 + condition);
+			System.out.println(statement);
 			//プレースホルダー（？の部分）に値を設定し、SQLを実行
 			statement.setString(1,orderId);
 			ResultSet rSet = statement.executeQuery();
@@ -55,8 +57,9 @@ public class OrderDao extends Dao {
 			//取得した情報をproductインスタンスに保存
 			if(rSet.next()) {
 				order.setOrderId(rSet.getString("order_id"));
-				order.setProduct(productDao.get(rSet.getString("product_name")));
-				order.setUser(userDao.get(rSet.getString("user_id")));
+				order.setProductName(rSet.getString("product_name"));
+				order.setUserName(rSet.getString("user_name"));
+				order.setAddress(rSet.getString("address"));
 				order.setOrderTime(rSet.getDate("order_time"));
 				order.setCount(rSet.getInt("count"));
 				order.setReceive(rSet.getBoolean("receive"));
@@ -153,42 +156,42 @@ public class OrderDao extends Dao {
 
 		// user のみ設定されている場合の条件
 		if (product == null && user != null && orderTime == null) {
-		    condition = "where user_name=?";
+		    condition = " where user_name=? and receive = False";
 		    System.out.println("1");
 		}
 		// product のみ設定されている場合の条件
 		else if (product != null && user == null && orderTime == null) {
-		    condition = "where product_name=?";
+		    condition = " where product_name=? and receive = False";
 		    System.out.println("2");
 		}
 		// orderTime のみ設定されている場合の条件
 		else if (product == null && user == null && orderTime != null) {
-		    condition = "where order_time=?";
+		    condition = " where order_time=? and receive = False";
 		    System.out.println("3");
 		}
 		// user と product が設定されている場合の条件
 		else if (product != null && user != null && orderTime == null) {
-		    condition = "where user_name=? and product_name=?";
+		    condition = " where user_name=? and product_name=? and receive = False";
 		    System.out.println("4");
 		}
 		// user と orderTime が設定されている場合の条件
 		else if (product == null && user != null && orderTime != null) {
-		    condition = "where user_name=? and order_time=?";
+		    condition = " where user_name=? and order_time=? and receive = False";
 		    System.out.println("5");
 		}
 		// product と orderTime が設定されている場合の条件
 		else if (product != null && user == null && orderTime != null) {
-		    condition = "where product_name=? and order_time=?";
+		    condition = " where product_name=? and order_time=? and receive = False";
 		    System.out.println("6");
 		}
 		// すべてが設定されている場合の条件
 		else if (product != null && user != null && orderTime != null) {
-		    condition = "where user_name=? and product_name=? and order_time=?";
+		    condition = " where user_name=? and product_name=? and order_time=? and receive = False";
 		    System.out.println("7");
 		}
 		// それ以外の場合（条件なし）
 		else {
-		    condition = "";
+		    condition = " where receive = False";
 		    System.out.println("条件なし");
 		}
 
@@ -252,7 +255,7 @@ public class OrderDao extends Dao {
 	 * @return 成功:true, 失敗:false
 	 * @throws Exception
 	 */
-	public boolean save(Order order) throws Exception {
+	public boolean save(OnlineOrder order) throws Exception {
 
 		//データベースへのコネクションを確立
 		Connection connection = getConnection();
@@ -268,7 +271,7 @@ public class OrderDao extends Dao {
 			//受け取り情報変更
 			//プリペアードステートメントにUpdate文をセット
 			statement = connection.prepareStatement(
-					"UPDATE ORDER SET RECEIVE=? WHERE ORDER_ID=?");
+					"UPDATE ORDERS SET RECEIVE=? WHERE ORDER_ID=?");
 			//各部分に値を設定
 			statement.setBoolean(1, order.isReceive());
 			statement.setString(2, order.getOrderId());
