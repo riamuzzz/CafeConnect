@@ -333,10 +333,25 @@ button[type="submit"] {
 .cafeuser_view1 #button { width: 70px; height: 30px;}
 .cafeuser_view1 select { width: 100px; height: 30px;}
 
-.cafeuser_view2 .userId, .userName, .email, .tel, .address, .subscription{
+.cafeuser_view2{
+	margin-left:130px;
+}
+
+.cafeuser_view2 .userId, .userName, .tel, .address, .subscription{
+	font-size:20px;
     padding-top: 15px;
-    padding-left:20px;
+    padding-right:30px;
+    padding-left:30px;
     text-align:center
+}
+
+.cafeuser_view2 .email{ /* E-mailのみ */
+	font-size:20px;
+    padding-top: 15px;
+    padding-right:50px;
+    padding-left:50px;
+    text-align:center
+
 }
 
 .cafeuser_view2 th	{
@@ -345,11 +360,11 @@ button[type="submit"] {
 
 .cafeuser_view2 th::after {
     content: '';
-    width: 180px;
+    width: 250px;
     height: 1px;
     display: inline-block;
     background-color: #7d7d7d;
     position: absolute;
     bottom: 0px;
-    right: calc(50% - 55px)
+    right: calc(20% - 65px);
 }

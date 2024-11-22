@@ -29,6 +29,7 @@
 			<div>${errors.get("f1")}</div>
 		</form>
 		</table>
+	</div>
 
 
 		<div class="cafeuser_view2">
@@ -73,7 +74,6 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-	</div>
 
 <%-- フッター --%>
 <c:import url="../common/cafefooter.jsp"/>
