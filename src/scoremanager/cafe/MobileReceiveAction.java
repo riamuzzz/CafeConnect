@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.OnlineOrder;
 import bean.Product;
 import bean.User;
-import dao.OrderReceiveDao;
+import dao.MobileReceiveDao;
 import tool.Action;
 
 public class MobileReceiveAction extends Action {
@@ -20,7 +20,7 @@ public class MobileReceiveAction extends Action {
 
 		//ローカル変数の宣言 1
 
-		OrderReceiveDao orderReceiveDao =new OrderReceiveDao();
+		MobileReceiveDao orderReceiveDao =new MobileReceiveDao();
 		Product product =null;
 		User user =null;
 
@@ -52,7 +52,7 @@ public class MobileReceiveAction extends Action {
 		System.out.println(list);
 
 		//JSPへフォワード 7
-		req.getRequestDispatcher("onlineReceiveView.jsp").forward(req, res);
+		req.getRequestDispatcher("mobileReceiveView.jsp").forward(req, res);
 	}
 
 }

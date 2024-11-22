@@ -33,7 +33,6 @@
 				</tr>
 				<c:forEach var="order" items="${order}">
 
-				<c:if test="${order.receive == false}">
                	<input type="hidden" name="orderId" value="${ order.orderId }">
 
 					<tr>
@@ -58,8 +57,6 @@
 							</c:choose>
 						</td>
 					</tr>
-
-				</c:if>
 
 				</c:forEach>
 			</table>

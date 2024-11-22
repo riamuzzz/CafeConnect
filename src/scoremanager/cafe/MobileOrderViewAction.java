@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.OnlineOrder;
 import bean.Product;
 import bean.User;
-import dao.OrderDao;
+import dao.MobileOrderDao;
 import tool.Action;
 
 public class MobileOrderViewAction extends Action {
@@ -20,7 +20,7 @@ public class MobileOrderViewAction extends Action {
 
 		//ローカル変数の宣言 1
 
-		OrderDao orderDao =new OrderDao();
+		MobileOrderDao orderDao =new MobileOrderDao();
 		Product product =null;
 		User user =null;
 

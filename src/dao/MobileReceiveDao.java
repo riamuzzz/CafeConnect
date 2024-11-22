@@ -12,16 +12,17 @@ import java.util.List;
 
 import bean.Cart;
 import bean.OnlineOrder;
+import bean.Order;
 import bean.Product;
 import bean.User;
 
-public class OrderDao extends Dao {
+public class MobileReceiveDao extends Dao {
 
 	/**
 	 * baseSql:String 共通SQL文 プライベート
 	 */
 	private String baseSql = "select * from ORDER ";
-	private String baseSql2 = " select * from orders INNER JOIN USERs  on orders.user_id=users.user_id INNER JOIN Product on orders.product_id = product.product_id";
+	private String baseSql2 = "select * from orders INNER JOIN USERs  on orders.user_id=users.user_id INNER JOIN Product on orders.product_id = product.product_id ";
 
 
 	/**
@@ -32,20 +33,17 @@ public class OrderDao extends Dao {
 	 * @throws Exception
 	 */
 
-	public OnlineOrder get(String orderId) throws Exception{
+	public Order get(String orderId) throws Exception{
 		Connection connection = getConnection();
 		//プリペアードステートメント
 		PreparedStatement statement = null;
-
-	    String condition = " where order_id=?";
-
 		//結果を格納するTeacherを初期化
-		OnlineOrder order = new OnlineOrder();
+		Order order = new Order();
 
 		try{
 			//プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement(baseSql2 + condition);
-			System.out.println(statement);
+			statement = connection.prepareStatement(baseSql);
+
 			//プレースホルダー（？の部分）に値を設定し、SQLを実行
 			statement.setString(1,orderId);
 			ResultSet rSet = statement.executeQuery();
@@ -57,15 +55,13 @@ public class OrderDao extends Dao {
 			//取得した情報をproductインスタンスに保存
 			if(rSet.next()) {
 				order.setOrderId(rSet.getString("order_id"));
-				order.setProductName(rSet.getString("product_name"));
-				order.setUserName(rSet.getString("user_name"));
-				order.setAddress(rSet.getString("address"));
+				order.setProduct(productDao.get(rSet.getString("product_name")));
+				order.setUser(userDao.get(rSet.getString("user_id")));
 				order.setOrderTime(rSet.getDate("order_time"));
 				order.setCount(rSet.getInt("count"));
 				order.setReceive(rSet.getBoolean("receive"));
 				order.setSubscription(rSet.getBoolean("subscription"));
 				order.setMobile(rSet.getBoolean("mobile"));
-
 
 			} else {
 				//対応する教員がいない場合はnullを返す
@@ -119,6 +115,7 @@ public class OrderDao extends Dao {
 				order.setReceive(rSet.getBoolean("receive"));
 				order.setSubscription(rSet.getBoolean("subscription"));
 				order.setMobile(rSet.getBoolean("mobile"));
+
 				//リストに追加
 				list.add(order);
 
@@ -159,42 +156,42 @@ public class OrderDao extends Dao {
 
 		// user のみ設定されている場合の条件
 		if (product == null && user != null && orderTime == null) {
-		    condition = " where user_name=? and receive = False";
+		    condition = "where user_name=? receive = true and mobile = true";
 		    System.out.println("1");
 		}
 		// product のみ設定されている場合の条件
 		else if (product != null && user == null && orderTime == null) {
-		    condition = " where product_name=? and receive = False";
+		    condition = "where product_name=? receive = true and mobile = true";
 		    System.out.println("2");
 		}
 		// orderTime のみ設定されている場合の条件
 		else if (product == null && user == null && orderTime != null) {
-		    condition = " where order_time=? and receive = False";
+		    condition = "where order_time=? receive = true and mobile = true";
 		    System.out.println("3");
 		}
 		// user と product が設定されている場合の条件
 		else if (product != null && user != null && orderTime == null) {
-		    condition = " where user_name=? and product_name=? and receive = False";
+		    condition = "where user_name=? and product_name=? receive = true and mobile = true";
 		    System.out.println("4");
 		}
 		// user と orderTime が設定されている場合の条件
 		else if (product == null && user != null && orderTime != null) {
-		    condition = " where user_name=? and order_time=? and receive = False";
+		    condition = "where user_name=? and order_time=? receive = true and mobile = true";
 		    System.out.println("5");
 		}
 		// product と orderTime が設定されている場合の条件
 		else if (product != null && user == null && orderTime != null) {
-		    condition = " where product_name=? and order_time=? and receive = False";
+		    condition = "where product_name=? and order_time=? receive = true and mobile = true";
 		    System.out.println("6");
 		}
 		// すべてが設定されている場合の条件
 		else if (product != null && user != null && orderTime != null) {
-		    condition = " where user_name=? and product_name=? and order_time=? and receive = False";
+		    condition = "where user_name=? and product_name=? and order_time=? receive = true and mobile = true";
 		    System.out.println("7");
 		}
 		// それ以外の場合（条件なし）
 		else {
-		    condition = " where receive = False";
+		    condition = "where receive = true and mobile = true";
 		    System.out.println("条件なし");
 		}
 
@@ -258,7 +255,7 @@ public class OrderDao extends Dao {
 	 * @return 成功:true, 失敗:false
 	 * @throws Exception
 	 */
-	public boolean save(OnlineOrder order) throws Exception {
+	public boolean save(Order order) throws Exception {
 
 		//データベースへのコネクションを確立
 		Connection connection = getConnection();
@@ -274,7 +271,7 @@ public class OrderDao extends Dao {
 			//受け取り情報変更
 			//プリペアードステートメントにUpdate文をセット
 			statement = connection.prepareStatement(
-					"UPDATE ORDERS SET RECEIVE=? WHERE ORDER_ID=?");
+					"UPDATE ORDER SET RECEIVE=? WHERE ORDER_ID=?");
 			//各部分に値を設定
 			statement.setBoolean(1, order.isReceive());
 			statement.setString(2, order.getOrderId());

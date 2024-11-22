@@ -15,7 +15,7 @@ import bean.OnlineOrder;
 import bean.Product;
 import bean.User;
 
-public class OrderDao extends Dao {
+public class MobileOrderDao extends Dao {
 
 	/**
 	 * baseSql:String 共通SQL文 プライベート
@@ -159,42 +159,42 @@ public class OrderDao extends Dao {
 
 		// user のみ設定されている場合の条件
 		if (product == null && user != null && orderTime == null) {
-		    condition = " where user_name=? and receive = False";
+		    condition = " where user_name=? and receive = False and mobile = true";
 		    System.out.println("1");
 		}
 		// product のみ設定されている場合の条件
 		else if (product != null && user == null && orderTime == null) {
-		    condition = " where product_name=? and receive = False";
+		    condition = " where product_name=? and receive = False and mobile = true";
 		    System.out.println("2");
 		}
 		// orderTime のみ設定されている場合の条件
 		else if (product == null && user == null && orderTime != null) {
-		    condition = " where order_time=? and receive = False";
+		    condition = " where order_time=? and receive = False and mobile = true";
 		    System.out.println("3");
 		}
 		// user と product が設定されている場合の条件
 		else if (product != null && user != null && orderTime == null) {
-		    condition = " where user_name=? and product_name=? and receive = False";
+		    condition = " where user_name=? and product_name=? and receive = False and mobile = true";
 		    System.out.println("4");
 		}
 		// user と orderTime が設定されている場合の条件
 		else if (product == null && user != null && orderTime != null) {
-		    condition = " where user_name=? and order_time=? and receive = False";
+		    condition = " where user_name=? and order_time=? and receive = False and mobile = true";
 		    System.out.println("5");
 		}
 		// product と orderTime が設定されている場合の条件
 		else if (product != null && user == null && orderTime != null) {
-		    condition = " where product_name=? and order_time=? and receive = False";
+		    condition = " where product_name=? and order_time=? and receive = False and mobile = true";
 		    System.out.println("6");
 		}
 		// すべてが設定されている場合の条件
 		else if (product != null && user != null && orderTime != null) {
-		    condition = " where user_name=? and product_name=? and order_time=? and receive = False";
+		    condition = " where user_name=? and product_name=? and order_time=? and receive = False and mobile = true";
 		    System.out.println("7");
 		}
 		// それ以外の場合（条件なし）
 		else {
-		    condition = " where receive = False";
+		    condition = " where receive = False and mobile = true";
 		    System.out.println("条件なし");
 		}
 

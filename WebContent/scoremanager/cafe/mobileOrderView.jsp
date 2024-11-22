@@ -18,7 +18,7 @@
 	<c:choose>
 		<c:when test="${order.size()>0}">
 
-	<form action="OrderUpdateExecute.action" method="post">
+	<form action="MobileUpdateExecute.action" method="post">
 
 			<table>
 				<tr>
@@ -30,6 +30,8 @@
 
 				</tr>
 				<c:forEach var="order" items="${order}">
+				<c:if test="${order.mobile == true}">
+
                	<input type="hidden" name="orderId" value="${ order.orderId }">
 
 					<tr>
@@ -41,6 +43,7 @@
 						<td><input type="checkbox" name="receive_${order.orderId}" value="${receive}"></td>
 
 					</tr>
+					</c:if>
 				</c:forEach>
 			</table>
 			<input type=submit value="変更">

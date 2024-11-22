@@ -28,6 +28,9 @@ public class OnlineOrder {
 	//サブスク登録者確認
 	private boolean subscription;
 
+	//モバイルオーダー判断
+	private boolean mobile;
+
 	//ゲッターセッター
 
 	public String getOrderId() {
@@ -92,6 +95,14 @@ public class OnlineOrder {
 
 	public void setSubscription(boolean subscription) {
 		this.subscription = subscription;
+	}
+
+	public boolean isMobile() {
+		return mobile;
+	}
+
+	public void setMobile(boolean mobile) {
+		this.mobile = mobile;
 	}
 
 }
