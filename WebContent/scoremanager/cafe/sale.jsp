@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<p>売上情報</p>
 
-<p>${graph }</p>
+
+ <img src="data:image/png;base64,${graph}" alt="サブスク会員割合グラフ" />
 
 </body>
 </html>

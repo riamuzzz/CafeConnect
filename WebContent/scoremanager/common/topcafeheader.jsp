@@ -17,10 +17,10 @@
 	<h1>管理者トップ画面</h1>
 
 		<!-- パスワード変更 -->
-		<label>パスワード変更</label>
+		<a href="CafePassReset.action">パスワード変更</a>
 
 		<!-- ログアウト -->
-		<label>ログアウト</label>
+		<a href="../CafeLogout.action">ログアウト</a>
 
 
 

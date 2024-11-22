@@ -50,8 +50,8 @@
 }
 .menu__btn {
   position: fixed;
-  top: 20px;
-  left: 20px;
+  top: 45px;
+  left: 30px;
   width: 26px;
   height: 26px;
   cursor: pointer;
@@ -75,6 +75,9 @@
   content: '';
   top: 8px;
 }
+
+
+
 .menu__box {
   display: block;
   position: fixed;
@@ -281,15 +284,15 @@ button[type="submit"] {
 .stock_view1 #button { width: 70px; height: 30px;}
 .stock_view1 select { width: 100px; height: 30px;}
 
-.stock_view2 #join{ width: 80px;
+.stock_view2 #join{ width: 60px;
 }
-.stock_view2 #disposal{ width: 80px;
+.stock_view2 #disposal{ width: 60px;
 }
 
 
 .stock_view2 .productName, .count, .join, .disposal, .formattedDate{
     padding-top: 15px;
-    padding-left: 20px;
+    padding-left: 25px;
     text-align:center
 }
 
@@ -299,7 +302,7 @@ button[type="submit"] {
 
 .stock_view2 th::after { /* 議事要素を使用した横線 */
     content: '';
-    width: 160px;
+    width: 140px;
     height: 1px;
     display: inline-block;
     background-color: #7d7d7d;
@@ -315,4 +318,36 @@ button[type="submit"] {
 }
 
 /*cafeUserView.jsp*//*cafeUserView.jsp*//*cafeUserView.jsp*/
+.cafeuser_view1 {
+	font-size: 20px;
+	margin-left: 275px;
+}
 
+.cafeuser_view1 h2 {
+	margin-left: 275px;
+}
+
+.cafeuser_view1 #userName #tel { width: 300px; height: 10px;}
+.cafeuser_view1 #button { width: 70px; height: 30px;}
+.cafeuser_view1 select { width: 100px; height: 30px;}
+
+.cafeuser_view2 .userId, .userName, .email, .tel, .address, .subscription{
+    padding-top: 15px;
+    padding-left:20px;
+    text-align:center
+}
+
+.cafeuser_view2 th	{
+	position: relative; /* 相対指定 */
+}
+
+.cafeuser_view2 th::after { /* 議事要素を使用した横線 */
+    content: '';
+    width: 180px;
+    height: 1px;
+    display: inline-block;
+    background-color: #7d7d7d;
+    position: absolute;
+    bottom: 0px;
+    right: calc(50% - 55px)
+}
