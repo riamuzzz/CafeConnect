@@ -26,7 +26,7 @@
 	padding: 0 0 5px 0;
 }
 
-.cafe_header label {
+.cafe_header #link {
 	padding-right:10px;
 	margin-top: 8px;
 }
@@ -145,6 +145,12 @@ button[type="submit"] {
   border-radius: 3px;
   cursor: pointer;
 }
+/* cafefooter *//* cafefooter *//* cafefooter */
+#footer{
+	font-size: 15px;
+	display: flex;
+    justify-content: flex-end;
+}
 
 /* cafeTop.jsp *//* cafeTop.jsp *//* cafeTop.jsp */
 
@@ -224,7 +230,7 @@ button[type="submit"] {
 	margin-left: 180px;
 }
 
-.productcreate  input.productName { width: 280px; height: 5px;}
+.productcreate  input.productName { width: 294px; height: 5px;}
 .productcreate  input.price { width: 294px; height: 20px;}
 .productcreate  input.count { width: 294px; height: 20px;}
 .productcreate  textarea.productDetail { width: 294px; height: 100px;}

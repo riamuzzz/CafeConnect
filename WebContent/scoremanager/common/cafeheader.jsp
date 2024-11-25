@@ -36,10 +36,10 @@
 <div class="cafe_header">
 
 		<!-- パスワード変更 -->
-		<label>パスワード変更</label>
+		<a href="CafePassReset.action" id="link">パスワード変更</a>
 
 		<!-- ログアウト -->
-		<label>ログアウト</label>
+		<a href="../CafeLogout.action" id="link">ログアウト</a>
 
 
 </div>

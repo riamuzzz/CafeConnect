@@ -58,7 +58,7 @@
 	<input type="submit" value="登録" class="button" id="touroku">
 </form>
 
-
 </div>
 </div>
+<c:import url="../common/cafefooter.jsp"/>
 </html>
