@@ -39,9 +39,6 @@
 </div>
 
 <div class="content">
-
-<%-- フッター --%>
-<c:import url="../common/cafefooter.jsp"/>
 </div>
 </div>
 </html>
