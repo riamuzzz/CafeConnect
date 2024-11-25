@@ -44,10 +44,9 @@ public class UserDao extends Dao{
 
 			try{
 				//プリペアードステートメントにSQL文をセット
-				statement = connection.prepareStatement("where USER_ID = ?");
+				statement = connection.prepareStatement(baseSql + "where USER_ID = ?");
 				//各部分に値を設定
 				statement.setString(1,userId );
-
 
 				//上記のSQL文を実行し結果を取得する
 				ResultSet rSet = statement.executeQuery();
@@ -223,6 +222,7 @@ public class UserDao extends Dao{
 		 * @throws Exception
 		 */
 		public boolean save(User user) throws Exception {
+			System.out.println("aaa" + user.getTel());
 
 			//データベースへのコネクションを確立
 			Connection connection = getConnection();
@@ -237,7 +237,6 @@ public class UserDao extends Dao{
 			try{
 				//データベースから学生を取得
 				User old = get(user.getUserId());
-
 				if (old == null) {
 					//学生が存在しなかった場合
 					//プリペアードステートメントにInsert文をセット
