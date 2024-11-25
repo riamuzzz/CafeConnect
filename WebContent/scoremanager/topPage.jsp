@@ -19,9 +19,9 @@
 <a href="main/MyPage.action">マイページ</a>
 <a href="Logout.action">ログアウト</a>
 <div class="content">
-	<img src=img/top/top1.jpg>
+	<img class="koukoku" src=img/top/top1.jpg>
 
-	<h2>ランキング</h2>
+	<h2 class="ranking">ランキング</h2>
 	<table>
 		<c:forEach var="product" items="${products}">
 			<tr>

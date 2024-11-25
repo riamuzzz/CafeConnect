@@ -1,65 +1,334 @@
-.top {
-	margin: 0px;
-	padding:0px;
-}
 
+/* ヘッダー */
+
+.top {
+	margin: 0%;
+	padding:0%;
+}
 
 h2 {
 	float: left;
-	padding: 0px;
-	margin: 0px;
+	padding: 0%;
+	margin: 0%;
 }
 
 .search {
 	float: left;
-	margin: 0px 250px;
-	padding:0px;
+	margin: 0% 20%;
+	padding:0%;
 
 }
 
 .banner {
 	float: left;
-	padding: 0px;
-	margin: 0px;
+	padding: 0%;
+	margin: 0%;
+	width: 28%;
 }
 
 .banner tr {
 	margin: 50px;
 	padding: 50px;
+
 }
 
 br {
-	margin: 0px;
-	padding: 0px;
+	margin: 0%;
+	padding: 0%;
 }
 
 .menu {
 	width: 100%;
 	float:left;
-	padding: 10px 0px;
-	margin: 0px;
+	padding: 10px 0%;
+	margin: 0%;
 	background-color: #C0C0C0;
 }
 
 .menu {
 	margin: auto;
 	width:100%;
-	padding: 3px;
+	padding: 0%;
 }
 
 .menu a {
-	margin: 50px;
-	padding: 0;
+	margin: 3%;
+	padding: 0%;
 }
 
 table {
 	margin-left: auto;
 	margin-right: auto;
+	border-spacing: 20px 20px;
+	width: 80%;
 }
-
 
 a {
-	margin: 0px 10px;
+	margin: 0% 10px;
 }
 
 
+/* トップ */
+
+.koukoku {
+	width: 53%;
+}
+
+.ranking {
+	font-weight: bold;
+}
+
+/* サブスク */
+
+.subsc {
+	text-align: center;
+}
+
+.puran {
+	background-color: #006400;
+	color: #ffffff;
+	font-size: 120%;
+	font-weight: bold;
+	width: 30%;
+	margin: 0 auto;
+}
+
+.title {
+	margin: 2%;
+	font-size: 170%;
+	font-weight: bold;
+}
+
+.setumei {
+	margin: 2% auto;
+	padding: 1%;
+	background-color: #ffffff;
+	width: 50%
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+.subimg {
+	margin: 1%;
+	padding: 1%;
+}
+
+.syousai {
+	width: 83%;
+}
+
+.kingaku {
+	color: #ff0000;
+	width:110%;
+    height:10%;
+}
+
+.botan {
+
+}
+
+.gaiyou {
+	margin: 2% auto;
+	padding: 1%;
+	background-color: #ffffff;
+	width: 40%;
+}
+
+/* サブスク入会 */
+
+.subscnyukai {
+	text-align: center;
+	margin: 2% auto;
+	border-radius:   width: 20%;
+    height: 350px;
+    border: solid 2px #000;
+    background-color: #f5f5f5;
+    border-radius: 5%;
+}
+
+.title {
+	border: none;
+    border-bottom: 0.5px solid #333;
+}
+
+.nyukaibotan {
+	background-color: #000080;
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 120%;
+	font-weight: bold;
+	width: 30%;
+	margin: 2% auto;
+}
+
+.mail {
+	position: relative;
+	top: 0px;
+	right: 125px;
+}
+
+.pass {
+	position: relative;
+	top: 0px;
+	right: 140px;
+}
+
+.mail a {
+	margin: 1%;
+	position: relative;
+	top: 0px;
+	right: 100%;
+}
+
+.pass a {
+	margin: 1%;
+	position: relative;
+	top: 0%;
+	right: 70%;
+}
+
+
+/* サブスク選択 */
+
+.sentakutitle {
+	text-align: center;
+	background-color: #a9a9a9;
+	color: #ffffff;
+	font-size: 140%;
+	font-weight: bold;
+	width: 30%;
+	margin: 1.5% auto;
+	padding: 1.3% 3%;
+	float: right;
+	position: relative;
+	top: 0%;
+	right: 33%;
+}
+
+.nokori {
+	float: left;
+	margin: 0% 20%;
+	padding: 3%;
+	font-size: 140%;
+	font-weight: bold;
+	position: relative;
+	top: 0%;
+	left: 59%;
+}
+
+.page {
+	background-color: #e7f5e4;
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 120%;
+	font-weight: bold;
+	width: 10%;
+	float: light;
+	text-align: center;
+	margin: 2%;
+	border-color : #000000;
+}
+
+.kakutei {
+	background-color: #a9a9a9;
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 120%;
+	font-weight: bold;
+	width: 10%;
+	float: light;
+	text-align: center;
+	margin: 2%;
+	padding: 0.7% 1%;
+	position: relative;
+	top: 0%;
+	left: 77%;
+	text-decoration: none;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.syohin1 {
+	margin: 2%;
+}
+
+.syohin2 {
+	margin: 2%;
+}
+
+
+/* syosai */
+
+.bota1 {
+	background-color: #f01340;
+	color: #ffffff;
+	font-size: 100%;
+	width: 11%;
+}
+
+.bota2 {
+	background-color: #f01340;
+	color: #ffffff;
+	font-size: 100%;
+	width: 11%;
+}
+
+
+/* tenpo */
+
+.mise {
+	margin: 2%;
+}
+
+.zyusyo {
+	font-size: 150%;
+	margin: auto;
+	padding: 0%;
+	position: relative;
+	top: 0%;
+	left: 20%;
+	background-color: #ffffff;
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width : 320px) {
+
+	img {
+	max-width: 100%;
+	}
+	header {
+	width: 100%;
+	}
+	h2 {
+	color: red;
+	}
+}
+
+
+@media screen and (min-width : 767px) {
+
+	img {
+	max-width: 100%;
+	}
+	header {
+	width: 100%;
+	}
+	h2 {
+	color: green;
+	}
+}

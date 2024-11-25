@@ -42,7 +42,7 @@
 		<div class=menu>
 			<table>
 					<tr>
-						<th><a href="ProductView.action?categoryId=CATE02"><img src=img/header/コーヒー豆.jpg width="30"></a></th>
+						<th><a href="subscription.jsp"><img src=img/header/コーヒー豆.jpg width="30"></a></th>
 						<th><a href="ProductView.action?categoryId=CATE02"><img src=img/header/カート.jpeg width="40"></a></th>
 						<th><a href="ProductView.action?categoryId=CATE01"><img src=img/header/モバイル.jpeg width="40"></a></th>
 						<th><a href="main/"><img src=img/header/店舗情報.jpg width="40"></a></th>
@@ -50,7 +50,7 @@
 						<th><a href="main/MyPage.action"><img src=img/header/マイページ.jpeg width="35"></a></th>
 					</tr>
 					<tr>
-						<td><a href="ProductView.action?categoryId=CATE02">サブスク</a></td>
+						<td><a href="subscription.jsp">サブスク</a></td>
 						<td><a href="ProductView.action?categoryId=CATE02">ショップ</a></td>
 						<td><a href="ProductView.action?categoryId=CATE01">モバイル</a></td>
 						<td><a href="main/">店舗情報</a></td>
