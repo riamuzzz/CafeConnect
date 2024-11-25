@@ -209,12 +209,16 @@ button[type="submit"] {
 .productcreate{
     width: fit-content;
     margin: auto;
-	margin-top:30px;;
+	margin-top:30px;
 }
 
 .productcreate th {
     text-align: left;
     vertical-align:top;
+}
+
+.productcreate #productName, #price, #count {
+	float: right;
 }
 
 .productcreate #category, textarea {
@@ -230,12 +234,48 @@ button[type="submit"] {
 	margin-left: 180px;
 }
 
-.productcreate  input.productName { width: 294px; height: 5px;}
-.productcreate  input.price { width: 294px; height: 20px;}
-.productcreate  input.count { width: 294px; height: 20px;}
-.productcreate  textarea.productDetail { width: 294px; height: 100px;}
+.productcreate  input.productName { width: 280px; height: 20px;}
+.productcreate  input.price { width: 225px; height: 22px;}
+.productcreate  input.count { width: 270px; height: 22px;}
+.productcreate  textarea.productDetail { width: 295px; height: 170px;}
 
 .productcreate .button { display:inline-block; }
+
+/* productUpdate.jsp *//* productUpdate.jsp *//* productUpdate.jsp */
+.productupdate{
+    width: fit-content;
+    margin: auto;
+	margin-top:30px;
+}
+
+.productupdate th {
+    text-align: left;
+    vertical-align:top;
+}
+
+.productupdate .productName, .price, .count {
+	float: right;
+}
+
+.productupdate .category, .productDetail {
+	float: right;
+}
+.productupdate .image {
+	float: right;
+}
+.productupdate .sell {
+	float: right;
+}
+.productupdate input.button {
+	margin-left: 180px;
+}
+
+.productupdate  input.productName { width: 280px; height: 20px;}
+.productupdate  input.price { width: 280px; height: 22px;}
+.productupdate  input.count { width: 270px; height: 22px;}
+.productupdate  input.productDetail { width: 280px; height: 170px;}
+
+.productupdate .button { display:inline-block; }
 
 /* ProductView.jsp *//* ProductView.jsp *//* ProductView.jsp */
 .product_view1 {
