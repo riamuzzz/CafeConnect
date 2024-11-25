@@ -48,6 +48,7 @@ public class UserDao extends Dao{
 				//各部分に値を設定
 				statement.setString(1,userId );
 
+
 				//上記のSQL文を実行し結果を取得する
 				ResultSet rSet = statement.executeQuery();
 
@@ -56,6 +57,8 @@ public class UserDao extends Dao{
 					users.setUserId(rSet.getString("user_id"));
 					users.setUserPassword(rSet.getString("user_pass"));
 					users.setUserName(rSet.getString("user_name"));
+					users.setAddress(rSet.getString("address"));
+					users.setEmail(rSet.getString("email"));
 					users.setTel(rSet.getString("tel"));
 					users.setCard(cardDao.get(rSet.getString("card_number")));
 					users.setSubscription(rSet.getBoolean("subscription"));
@@ -330,6 +333,8 @@ public class UserDao extends Dao{
 					users.setUserId(rSet.getString("user_id"));
 					users.setUserPassword(rSet.getString("user_pass"));
 					users.setUserName(rSet.getString("user_name"));
+					users.setAddress(rSet.getString("address"));
+					users.setEmail(rSet.getString("email"));
 					users.setTel(rSet.getString("tel"));
 					users.setCard(cardDao.get(rSet.getString("card_number")));
 					users.setSubscription(rSet.getBoolean("subscription"));
