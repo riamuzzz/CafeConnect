@@ -2,6 +2,7 @@ package scoremanager.cafe;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.sql.Date;
 import java.util.Base64;
 import java.util.List;
 
@@ -12,8 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.StandardChartTheme;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
+import bean.Sale;
 import bean.User;
 import dao.SaleDao;
 import dao.UserDao;
@@ -56,8 +60,29 @@ public class SaleExecuteAction extends Action{
                 false                  // URLリンクの表示
         );
 
+
+        Date day = Date.valueOf("2024-11-08");
+        List<Sale> date = saleDao.dateFilter(day);
+
+        DefaultCategoryDataset data = new DefaultCategoryDataset();
+        for (Sale sale : date){
+        	data.addValue(sale.getPrice(), sale.getYear(), sale.getMonth());
+        }
+
+        JFreeChart lineChart = ChartFactory.createLineChart(
+        		"商品売上",
+        		"日",
+        		"金額",
+        		data,
+        		PlotOrientation.VERTICAL,
+        		true,
+                false,
+                false
+        );
+
         // JFreeChart を BufferedImage に変換
         BufferedImage chartImage = chart.createBufferedImage(500, 400);  // 画像サイズを指定
+        BufferedImage lineChartImage = lineChart.createBufferedImage(500, 400);  // 画像サイズを指定
 
         // 画像をBase64エンコードするためのByteArrayOutputStream(jspのhtmlに埋め込めるようにする)
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -65,8 +90,16 @@ public class SaleExecuteAction extends Action{
         byte[] imageBytes = baos.toByteArray();
         String encodedImage = Base64.getEncoder().encodeToString(imageBytes);
 
-        //グラフの画像をセット
+        ByteArrayOutputStream lineBaos = new ByteArrayOutputStream();
+        ImageIO.write(lineChartImage, "PNG", lineBaos);
+        byte[] lineImageBytes = lineBaos.toByteArray();
+        String lineEncodedImage = Base64.getEncoder().encodeToString(lineImageBytes);
+
+      //グラフの画像をセット
         req.setAttribute("graph", encodedImage);
+        req.setAttribute("lineGraph", lineEncodedImage);
+
+
 
         req.getRequestDispatcher("sale.jsp").forward(req, res);
 
