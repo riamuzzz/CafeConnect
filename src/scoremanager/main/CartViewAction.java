@@ -1,13 +1,16 @@
 package scoremanager.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import bean.Category;
+import bean.Cart;
 import bean.Product;
-import dao.CategoryDao;
+import bean.User;
+import dao.CartDao;
 import dao.ProductDao;
 import tool.Action;
 
@@ -16,24 +19,32 @@ public class CartViewAction extends Action {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		String productName = "";
-		String categoryId = null;
-		List<Product> products = null;// productリスト
+		//ユーザー情報取得
+		HttpSession session = req.getSession();//セッション
+		User user = (User)session.getAttribute("user");//ログインユーザー
+
+		//カート情報取得
+		CartDao cDao =new CartDao();
+		List<Cart> cartList = new ArrayList<>();
+		List<Product> pList = new ArrayList<>();
+
+		//商品情報取得
+		ProductDao pDao =new ProductDao();
+		cartList = cDao.filter(user);
+
+		for (Cart cart : cartList){
+			Product product = pDao.get(cart.getProduct().getProductId());
+			pList.add(product);
+		}
+		System.out.println(pList);
+		System.out.println(cartList);
+
+		req.setAttribute("cList", cartList);
+		req.setAttribute("pList", pList);
 
 
-		ProductDao productDao = new ProductDao();
-
-		CategoryDao categoryDao = new CategoryDao();
-
-
-		Category category = categoryDao.get(categoryId);
-
-
-		products = productDao.filter(category, productName);
-
-		req.setAttribute("products", products);
-
-
-		req.getRequestDispatcher("top_page.jsp").forward(req, res);
+		req.getRequestDispatcher("cartView.jsp").forward(req, res);
 	}
+
+
 }

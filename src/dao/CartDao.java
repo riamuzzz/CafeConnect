@@ -15,7 +15,7 @@ public class CartDao extends Dao {
 	/**
 	 * baseSql:String 共通SQL文 プライベート
 	 */
-	private String baseSql = "select * from PRODUCT where ";
+	private String baseSql = "select * from CART where ";
 
 
 	/**
@@ -117,6 +117,69 @@ public class CartDao extends Dao {
 		return list;
 
 
+	}
+
+	/**
+	 * filterメソッド カフェ店員IDを元に、カフェ店員インスタンスを1件取得する
+	 */
+
+	public List<Cart> filter(User user) throws Exception{
+
+		//リストを初期化
+		List<Cart> list = new ArrayList<>();
+
+		Connection connection = getConnection();
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+		//結果を格納するCartを初期化
+		Cart cart = new Cart();
+
+		// SQL条件文の初期化
+		String condition = "user_id=?";
+
+		try{
+			//プリペアードステートメントにSQL文をセット
+			statement = connection.prepareStatement(baseSql+ condition);
+
+			//プレースホルダー（？の部分）に値を設定し、SQLを実行
+			statement.setString(1,user.getUserId());
+			ResultSet rSet = statement.executeQuery();
+
+			//カテゴリDaoを初期化
+			UserDao userDao =new UserDao();
+			ProductDao productDao =new ProductDao();
+
+			//取得した情報をcartインスタンスに保存
+			while(rSet.next()) {
+				cart.setUser(userDao.get(rSet.getString("user_id")));
+				cart.setProduct(productDao.get(rSet.getString("product_id")));
+				cart.setCount(rSet.getInt("count"));
+
+				list.add(cart);
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			//プリペアードステートメントを閉じる
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+
+		//コネクションを閉じる
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException sqle) {
+				throw sqle;
+			}
+		}
+	}
+	//検索したユーザインスタンスを返す
+	return list;
 	}
 
 
