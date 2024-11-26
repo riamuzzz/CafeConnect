@@ -16,7 +16,17 @@ h2 {
 	float: left;
 	margin: 0% 20%;
 	padding:0%;
+	display: flex;
+}
 
+.box {
+	width: 180%;
+	box-sizing: border-box;
+	padding: 5%;
+}
+
+.button {
+	margin:0% 5%;
 }
 
 .banner {
@@ -24,6 +34,16 @@ h2 {
 	padding: 0%;
 	margin: 0%;
 	width: 28%;
+	position: relative;
+	top: 0%;
+	left: 6%;
+	font-size: 30%;
+	font-weight: bold;
+}
+
+.banner img {
+	width: 55%;
+	margin: 0%;
 }
 
 .banner tr {
@@ -40,20 +60,25 @@ br {
 .menu {
 	width: 100%;
 	float:left;
-	padding: 10px 0%;
-	margin: 0%;
+	padding: 0%;
+	margin: 0% auto;
 	background-color: #C0C0C0;
+	font-weight: bold;
+	font-size: 80%;
 }
 
-.menu {
-	margin: auto;
-	width:100%;
-	padding: 0%;
+.menu img {
+	width: 40px;
+	margin: 0%;
+	position: relative;
+	top: 0%;
+	right: 23%;
 }
 
 .menu a {
 	margin: 3%;
 	padding: 0%;
+	background-color: white;
 }
 
 table {
