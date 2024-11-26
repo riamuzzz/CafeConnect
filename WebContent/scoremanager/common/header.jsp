@@ -18,17 +18,17 @@
 
 			<!-- 検索 -->
 			<div class=search>
-				<input class ="box" placeholder="キーワード検索">
+				<input placeholder="キーワード検索">
 				<!-- 検索用ボタン -->
-				<input class="button" type="submit" name="kensaku" value="検索"/>
+				<input type="submit" name="kensaku" value="検索"/>
 			</div>
 
 			<div class=banner>
 			<table>
 					<tr>
-						<th><a href="TopPageExecute.action"><img src=img/header/トップ.png></a></th>
-						<th><a href="main/CartView.action"><img src=img/header/モバイル.jpeg></a></th>
-						<th><a href="main/CartView.action"><img src=img/header/カート.jpeg></a></th>
+						<th><a href="TopPageExecute.action"><img src=img/header/トップ.png width="30"></a></th>
+						<th><a href="main/CartView.action"><img src=img/header/モバイル.jpeg width="40"></a></th>
+						<th><a href="main/CartView.action"><img src=img/header/カート.jpeg width="40"></a></th>
 					</tr>
 					<tr>
 						<td><a href="TopPageExecute.action">トップ</a></td>
@@ -42,12 +42,12 @@
 		<div class=menu>
 			<table>
 					<tr>
-						<th><a href="subscription.jsp"><img src=img/header/コーヒー豆.jpg></a></th>
-						<th><a href="ProductView.action?categoryId=CATE02"><img src=img/header/カート.jpeg></a></th>
-						<th><a href="ProductView.action?categoryId=CATE01"><img src=img/header/モバイル.jpeg></a></th>
-						<th><a href="main/"><img src=img/header/店舗情報.jpg></a></th>
-						<th><a href="main/Contact.action"><img src=img/header/お問い合わせ.jpg></a></th>
-						<th><a href="main/MyPage.action"><img src=img/header/マイページ.jpeg></a></th>
+						<th><a href="main/Subscription.action"><img src=img/header/コーヒー豆.jpg width="30"></a></th>
+						<th><a href="ProductView.action?categoryId=CATE02"><img src=img/header/カート.jpeg width="40"></a></th>
+						<th><a href="ProductView.action?categoryId=CATE01"><img src=img/header/モバイル.jpeg width="40"></a></th>
+						<th><a href="main/"><img src=img/header/店舗情報.jpg width="40"></a></th>
+						<th><a href="main/Contact.action"><img src=img/header/お問い合わせ.jpg width="35"></a></th>
+						<th><a href="main/MyPage.action"><img src=img/header/マイページ.jpeg width="35"></a></th>
 					</tr>
 					<tr>
 						<td><a href="main/Subscription.action">サブスク</a></td>

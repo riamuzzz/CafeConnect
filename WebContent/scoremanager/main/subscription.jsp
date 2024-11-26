@@ -30,7 +30,7 @@
 		</div>
 
 		<div class="subimg">
-		<img src=img/subscription/サブスクリプション.jpg width="120">
+		<img src=../img/subscription/サブスクリプション.jpg width="120">
 		</div>
 
 		<div class="syousai">
