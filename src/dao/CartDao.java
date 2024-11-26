@@ -131,8 +131,6 @@ public class CartDao extends Dao {
 		Connection connection = getConnection();
 		//プリペアードステートメント
 		PreparedStatement statement = null;
-		//結果を格納するCartを初期化
-		Cart cart = new Cart();
 
 		// SQL条件文の初期化
 		String condition = "user_id=?";
@@ -151,10 +149,10 @@ public class CartDao extends Dao {
 
 			//取得した情報をcartインスタンスに保存
 			while(rSet.next()) {
+				Cart cart = new Cart();
 				cart.setUser(userDao.get(rSet.getString("user_id")));
 				cart.setProduct(productDao.get(rSet.getString("product_id")));
 				cart.setCount(rSet.getInt("count"));
-
 				list.add(cart);
 			}
 		} catch (Exception e) {
