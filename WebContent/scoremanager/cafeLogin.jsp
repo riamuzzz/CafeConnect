@@ -9,7 +9,7 @@
 <link rel="stylesheet"  href="../css/style2.css">
 </head>
 <body>
-
+<div class="Login">
 	<form action = "CafeLoginExecute.action" method="post">
 
 		<h2>ログイン</h2>
@@ -24,7 +24,6 @@
 
 		<!-- パスワード表示チェックボックス -->
 		<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
-				<label for="showPassword">パスワードを表示する</label>
 					<script>
 						function togglePasswordVisibility() {
 							let passwordInput = document.getElementById("password");
@@ -35,12 +34,13 @@
 								passwordInput.type = "password";
 							}
 						}
-					</script>
+					</script><br>
 
 		<!-- ログイン用ボタン -->
-		<input type="submit" name="login" value="ログイン"/>
+		<input type="submit" name="login" id="loginbutton" value="ログイン"/>
 
 	</form>
+</div>
 
 
 </body>

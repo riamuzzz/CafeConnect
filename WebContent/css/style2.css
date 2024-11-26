@@ -1,3 +1,20 @@
+/* cafeLogin *//* cafeLogin *//* cafeLogin */
+.Login{
+	text-align:center;
+}
+
+.Login label{
+	margin-top:15px;
+}
+
+.Login #password{
+	margin-left:28px;
+}
+
+.Login #loginbutton{
+	margin-top:15px;
+}
+
 /* cafeheader *//* cafeheader *//* cafeheader */
 .topcafe_header{
 	display: flex;
