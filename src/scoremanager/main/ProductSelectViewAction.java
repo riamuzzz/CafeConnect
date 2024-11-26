@@ -1,4 +1,4 @@
-package scoremanager;
+package scoremanager.main;
 
 import java.util.List;
 
@@ -11,19 +11,22 @@ import dao.CategoryDao;
 import dao.ProductDao;
 import tool.Action;
 
-public class TopPageExecuteAction extends Action {
-
+public class ProductSelectViewAction extends Action{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		String productName = null;
-		String categoryId = "CATE02";
+		String categoryId = null;
 		List<Product> products = null;// productリスト
+
+		// categoryIdを取得
+		categoryId = req.getParameter("categoryId");
 		ProductDao productDao = new ProductDao();
 		CategoryDao categoryDao = new CategoryDao();
 		Category category = categoryDao.get(categoryId);
 		products = productDao.filter(category, productName);
 		req.setAttribute("products", products);
-		req.getRequestDispatcher("topPage.jsp").forward(req, res);
+		req.setAttribute("category", category);
+		req.getRequestDispatcher("product_select.jsp").forward(req, res);
 	}
 }
