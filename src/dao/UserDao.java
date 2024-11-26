@@ -222,7 +222,7 @@ public class UserDao extends Dao{
 		 * @throws Exception
 		 */
 		public boolean save(User user) throws Exception {
-			System.out.println("aaa" + user.getTel());
+
 
 			//データベースへのコネクションを確立
 			Connection connection = getConnection();

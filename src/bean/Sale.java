@@ -1,42 +1,40 @@
 package bean;
 
-import java.awt.image.BufferedImage;
-
 public class Sale {
 
-	//商品
-	private Product product;
+	// 年
+	private String year;
 
-	//注文
-	private Order order;
+	// 月
+	private String month;
 
-	//グラフ
-	private BufferedImage graph;
+	// 金額
+	private int price;
 
 
-	//ゲッターセッター
-	public Product getProduct() {
-		return product;
+
+	public String getYear() {
+		return year;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setYear(String year) {
+		this.year = year;
 	}
 
-	public Order getOrder() {
-		return order;
+	public String getMonth() {
+		return month;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setMonth(String month) {
+		this.month = month;
 	}
 
-	public BufferedImage getGraph() {
-		return graph;
+	public int getPrice() {
+		return price;
 	}
 
-	public void setGraph(BufferedImage graph) {
-		this.graph = graph;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 

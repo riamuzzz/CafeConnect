@@ -1,12 +1,14 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.Sale;
 import bean.User;
 
 
@@ -16,6 +18,8 @@ public class SaleDao extends Dao{
 	 * baseSql:String 共通SQL文 プライベート
 	 */
 	private String baseSql = "SELECT * FROM USERS ";
+	private String dateBaseSql = "SELECT orders.order_time as date, sum(product.price * orders.count) as price from orders join product on orders.product_id = product.product_id GROUP by orders.order_time;";
+	private String yearSql = "SELECT to_char(orders.order_time, 'yyyy') as year, to_char(orders.order_time, 'mm') as month, sum(product.price * orders.count) as price from orders join product on orders.product_id = product.product_id GROUP by year, month order by year, month;";
 
 
 		/**
@@ -125,6 +129,31 @@ public class SaleDao extends Dao{
 
 		}
 
+
+		private List<Sale> datePostFilter(ResultSet rSet) throws Exception {
+			//リストを初期化
+			List<Sale> list = new ArrayList<>();
+
+			try{
+				//リザルトセットを全件走査
+				while (rSet.next()){
+					Sale sale = new Sale();
+					//顧客インスタンスに検索結果をセット
+					sale.setYear(rSet.getString("year"));
+					sale.setMonth(rSet.getString("month"));
+					sale.setPrice(rSet.getInt("price"));
+					//リストに追加
+					list.add(sale);
+
+				}
+			} catch (SQLException | NullPointerException e){
+				e.printStackTrace();
+			}
+			return list;
+
+
+		}
+
 		/**
 		 * filterメソッド 名前と電話番号を指定して顧客の一覧を取得する
 		 */
@@ -178,18 +207,15 @@ public class SaleDao extends Dao{
 				}
 			}
 			return list;
-
 		}
 
-		/**
-		 * saveメソッド 顧客インスタンスをデータベースに保存する データが存在する場合は更新、存在しない場合は登録
-		 *
-		 * @param user：User
-		 *            顧客
-		 * @return 成功:true, 失敗:false
-		 * @throws Exception
-		 */
-		public boolean save(User user) throws Exception {
+
+
+
+		public List<Sale> dateFilter(Date date) throws Exception {
+
+			//リストを初期化
+			List<Sale> list = new ArrayList<>();
 
 			//データベースへのコネクションを確立
 			Connection connection = getConnection();
@@ -197,118 +223,20 @@ public class SaleDao extends Dao{
 			//プリペアードステートメント
 			PreparedStatement statement = null;
 
-			//実行件数
-			int count = 0;
-
-
-			try{
-				//データベースから学生を取得
-				User old = get(user.getUserId());
-
-				if (old == null) {
-					//学生が存在しなかった場合
-					//プリペアードステートメントにInsert文をセット
-					statement = connection.prepareStatement(
-							"INSERT INTO USERS (USER_ID ,USER_PASS ,USER_NAME ,EMAIL ,ADDRESS ,TEL ,CARD_NUMBER ,SUBSCRIPTION ) VALUES (?,?,?,?,?,?,?,?)");
-					//各部分に値を設定
-					statement.setString(1, user.getUserId());
-					statement.setString(2, user.getUserPassword());
-					statement.setString(3, user.getUserName());
-					statement.setString(4, user.getEmail());
-					statement.setString(5, user.getAddress());
-					statement.setString(6, user.getTel());
-					statement.setString(7, user.getCard().getCardNumber());
-					statement.setBoolean(8, user.isSubscription());
-				}else {
-					//学生が存在した場合
-					//プリペアードステートメントにUpdate文をセット
-					statement = connection.prepareStatement(
-							"UPDATE USERS SET USER_ID=? ,USER_PASS=? ,USER_NAME=? ,EMAIL=? ,ADDRESS=? ,TEL=? ,CARD_NUMBER=? ,SUBSCRIPTION=? ");
-					//各部分に値を設定
-					statement.setString(1, user.getUserId());
-					statement.setString(2, user.getUserPassword());
-					statement.setString(3, user.getUserName());
-					statement.setString(4, user.getEmail());
-					statement.setString(5, user.getAddress());
-					statement.setString(6, user.getTel());
-					statement.setString(7, user.getCard().getCardNumber());
-					statement.setBoolean(8, user.isSubscription());
-
-				}
-
-				//プリペアードステートメントを実行
-				count = statement.executeUpdate();
-
-			}catch (Exception e){
-				throw e;
-			}finally {
-				//プリペアステートメントを閉じる
-				if (statement != null){
-					try {
-						statement.close();
-					} catch (SQLException sqle){
-						throw sqle;
-					}
-				}
-				//コネクションを閉じる
-				if (connection != null){
-					try {
-						connection.close();
-					} catch (SQLException sqle){
-						throw sqle;
-					}
-				}
-			}
-
-			if (count > 0) {
-				//実行数が1件以上あるとき
-				return true;
-			}else {
-				//実行数が0件以上の場合
-				return false;
-			}
-		}
-
-
-		public User login(String email, String password) throws Exception {
-
-			//ユーザインスタンスを初期化
-			User users =new User();
-
-			//データベースへのコネクションを確立
-			Connection connection = getConnection();
-
-			//プリペアードステートメント
-			PreparedStatement statement = null;
-
-			// カードDaoを初期化
-			CardDao cardDao = new CardDao();
-
+			//SQL分のソート
+//			String order = " order by orders.date_time asc";
 
 			try{
+
 				//プリペアードステートメントにSQL文をセット
-				statement = connection.prepareStatement("SELECT * FROM USERS WHERE email = ? and user_pass = ?");
-				//各部分に値を設定
-				statement.setString(1,email );
-				statement.setString(2,password );
+				statement = connection.prepareStatement(yearSql);
+
+//				statement.setDate(1, date);
 
 				//上記のSQL文を実行し結果を取得する
 				ResultSet rSet = statement.executeQuery();
 
-
-				if (rSet.next()){
-					users.setUserId(rSet.getString("user_id"));
-					users.setUserPassword(rSet.getString("user_pass"));
-					users.setUserName(rSet.getString("user_name"));
-					users.setTel(rSet.getString("tel"));
-					users.setCard(cardDao.get(rSet.getString("card_number")));
-					users.setSubscription(rSet.getBoolean("subscription"));
-
-				}else {
-					//リザルトセットが存在しない場合
-					//ユーザインスタンスにnullをセット
-					users = null;
-				}
+				list = datePostFilter(rSet);
 
 			}catch (Exception e){
 				throw e;
@@ -330,7 +258,6 @@ public class SaleDao extends Dao{
 					}
 				}
 			}
-			return users;
+			return list;
 		}
-
 }

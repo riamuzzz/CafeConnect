@@ -8,8 +8,9 @@
 
 
 <%-- ヘッダー --%>
-<c:import url="../common/topcafeheader.jsp"/>
+<c:import url="../common/cafeheader.jsp"/>
 
+<div class="PassReset">
 
 <%-- ナビゲーション --%>
 <c:import url="../common/cafenavigation.jsp"/>
@@ -21,8 +22,8 @@
 		<input type="checkbox" id="showPass1" onchange="togglePasswordVisibility()" />
 		<label>新しいパスワード</label>
 		<input type="password" id="newPass" name="newPass">
-		<input type="checkbox" id="showPass2" onchange="togglePasswordVisibility2()" />
-		<input type="submit" value="変更">
+		<input type="checkbox" id="showPass2" onchange="togglePasswordVisibility2()" /><br>
+		<input type="submit" id="passbottom" value="変更">
 		<script>
 			function togglePasswordVisibility() {
 				let passwordInput = document.getElementById("oldPass");
@@ -45,6 +46,8 @@
 			}
 		</script>
 	</form>
+
+</div>
 
 <%-- フッター --%>
 <c:import url="../common/cafefooter.jsp"/>

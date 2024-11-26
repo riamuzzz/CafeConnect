@@ -50,7 +50,7 @@
 						<th><a href="main/MyPage.action"><img src=img/header/マイページ.jpeg></a></th>
 					</tr>
 					<tr>
-						<td><a href="subscription.jsp">サブスク</a></td>
+						<td><a href="main/Subscription.action">サブスク</a></td>
 						<td><a href="ProductView.action?categoryId=CATE02">ショップ</a></td>
 						<td><a href="ProductView.action?categoryId=CATE01">モバイル</a></td>
 						<td><a href="main/">店舗情報</a></td>
