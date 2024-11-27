@@ -63,7 +63,7 @@
 
 						</c:forEach>
 					</table>
-					<input type=submit value="変更">
+					<input type=submit value="変更" class="bottom">
 				</form>
 				</c:when>
 
