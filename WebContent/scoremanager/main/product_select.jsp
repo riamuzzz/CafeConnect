@@ -21,7 +21,7 @@
 		<c:forEach var="product" items="${products}">
 			<tr>
 				<td>
-					<a href="ProductDetailView.action?productId=${ product.productId }"><img src="../img/product/${ product.image }"></a>
+					<a href="ProductSelectDetailView.action?productId=${ product.productId }"><img src="../img/product/${ product.image }"></a>
 				</td>
 			</tr>
 			<tr><td>${ product.productName }</td></tr>
