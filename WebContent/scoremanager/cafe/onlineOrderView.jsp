@@ -13,61 +13,66 @@
 <%-- ナビゲーション --%>
 <c:import url="../common/cafenavigation.jsp"/>
 
-	<h2>オンライン注文一覧</h2>
+	<div class="onlineOrderView1">
 
-	<c:choose>
-		<c:when test="${order.size()>0}">
+		<h2>オンライン注文一覧</h2>
 
-	<form action="OrderUpdateExecute.action" method="post">
-			<table>
-				<tr>
-					<th>日付</th>
-					<th>注文番号</th>
-					<th>氏名</th>
-					<th>住所</th>
-					<th>商品名</th>
-					<th>個数</th>
-					<th>発送済み</th>
-					<th>サブスク</th>
+		<c:choose>
+			<c:when test="${order.size()>0}">
 
-				</tr>
-				<c:forEach var="order" items="${order}">
+		<form action="OrderUpdateExecute.action" method="post">
+			<div class="onlineOrderView2">
+					<table>
+						<tr>
+							<th class="orderTime">日付</th>
+							<th class="orderId">注文番号</th>
+							<th class="userName">氏名</th>
+							<th class="address">住所</th>
+							<th class="productName">商品名</th>
+							<th class="count">個数</th>
+							<th class="receive">発送済み</th>
+							<th class="text-center">サブスク</th>
 
-               	<input type="hidden" name="orderId" value="${ order.orderId }">
+						</tr>
+						<c:forEach var="order" items="${order}">
 
-					<tr>
-						<td>${order.orderTime}</td>
-						<td>${order.orderId}</td>
-						<td>${order.userName}</td>
-						<td>${order.address}</td>
-						<td>${order.productName}</td>
-						<td>${order.count}</td>
+		               	<input type="hidden" name="orderId" value="${ order.orderId }">
 
-						<td><input type="checkbox" name="receive_${order.orderId}" value="${receive}"></td>
+							<tr>
+								<td class="orderTime">${order.orderTime}</td>
+								<td class="orderId">${order.orderId}</td>
+								<td class="userName">${order.userName}</td>
+								<td class="address">${order.address}</td>
+								<td class="productName">${order.productName}</td>
+								<td class="count">${order.count}</td>
 
-						<td class="text-center">
-							<%-- フラグがたっている場合「○」それ以外は「×」を表示 --%>
-							<c:choose>
-								<c:when test="${order.subscription}">
-									○
-								</c:when>
-								<c:otherwise>
-									×
-								</c:otherwise>
-							</c:choose>
-						</td>
-					</tr>
+								<td class="receive"><input type="checkbox" name="receive_${order.orderId}" value="${receive}"></td>
 
-				</c:forEach>
-			</table>
-			<input type=submit value="変更">
-		</form>
-		</c:when>
+								<td class="text-center">
+									<%-- フラグがたっている場合「○」それ以外は「×」を表示 --%>
+									<c:choose>
+										<c:when test="${order.subscription}">
+											○
+										</c:when>
+										<c:otherwise>
+											×
+										</c:otherwise>
+									</c:choose>
+								</td>
+							</tr>
 
-		<c:otherwise>
-			<div>商品情報が存在しませんでした</div>
-		</c:otherwise>
-	</c:choose>
+						</c:forEach>
+					</table>
+					<input type=submit value="変更">
+				</form>
+				</c:when>
+
+				<c:otherwise>
+					<div>商品情報が存在しませんでした</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
 
 <%-- フッター --%>
 <c:import url="../common/cafefooter.jsp"/>

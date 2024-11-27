@@ -455,24 +455,35 @@ button[type="submit"] {
 }
 
 /* onlineOrderView *//* onlineOrderView *//* onlineOrderView */
-.onlineOrderView h2 {
-	margin-left: 275px;
+.onlineOrderView1 h2 {
+	font-size: 30px;
+	margin-left: 480px;
 }
 
-/* ここから☆まで書いたタイミング  注文一覧画面に入るとエラーになった */
-/* HTMLはdiv class="onlineOrderView"で囲んだあと、thとtdにclass=""をつけた */
-.onlineOrderView .orderTime, .orderId, .userName, .address{
+.onlineOrderView2 {
+	margin-left: 75px;
+}
+
+.onlineOrderView2 .orderTime, .orderId, .userName, .address, .productName, .count, .receive, .text-center {;
     padding-top: 15px;
-    padding-left: 70px;
+    padding-left: 10px;
     text-align:center
 }
 
-.onlineOrderView .productName, .count, .receive, .subscription{
-    padding-top: 15px;
-    padding-left: 70px;
-    text-align:center
+.onlineOrderView2 th	{
+	position: relative; /* 相対指定 */
 }
-/* ☆ */
+
+.onlineOrderView2 th::after {
+    content: '';
+    width: 300px;
+    height: 1px;
+    display: inline-block;
+    background-color: #7d7d7d;
+    position: absolute;
+    bottom: 0px;
+    right: calc(5% - 40px);
+}
 
 /* onlineReceiveView *//* onlineReceiveView *//* onlineReceiveView */
 .onlineReceive h2 {
