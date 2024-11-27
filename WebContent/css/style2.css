@@ -453,3 +453,22 @@ button[type="submit"] {
     bottom: 0px;
     right: calc(20% - 65px);
 }
+
+/* onlineOrderView *//* onlineOrderView *//* onlineOrderView */
+
+/* onlineReceiveView *//* onlineReceiveView *//* onlineReceiveView */
+.onlineReceive h2 {
+	margin-left: 130px;
+}
+.onlineReceive .orderTime, .orderId, .userName, .address, .productName, .count{
+	font-size:20px;
+    padding-top: 15px;
+    padding-right:30px;
+    padding-left:30px;
+    text-align:center
+}
+
+
+/* mobileOrderView *//* mobileOrderView *//* mobileOrderView */
+
+/* mobileReceiveView *//* mobileReceiveView *//* mobileReceiveView */
