@@ -14,11 +14,15 @@
 <div class="container">
 	<div class="header">
 		<div class=top>
+			<div class="cafe">
 			<h2>かふぇコネクト</h2>
+			</div>
 
 			<!-- 検索 -->
 			<div class=search>
-				<input placeholder="キーワード検索">
+				<div class=kwdkensaku>
+				<input placeholder="キーワード検索" style="width: 100%; height: 44px;">
+				</div>
 				<!-- 検索用ボタン -->
 				<input type="submit" name="kensaku" value="検索"/>
 			</div>
@@ -42,23 +46,22 @@
 		<div class=menu>
 			<table>
 					<tr>
-						<th><a href="main/Subscription.action"><img src=img/header/コーヒー豆.jpg width="30"></a></th>
-						<th><a href="ProductView.action?categoryId=CATE02"><img src=img/header/カート.jpeg width="40"></a></th>
-						<th><a href="ProductView.action?categoryId=CATE01"><img src=img/header/モバイル.jpeg width="40"></a></th>
-						<th><a href="main/"><img src=img/header/店舗情報.jpg width="40"></a></th>
-						<th><a href="main/Contact.action"><img src=img/header/お問い合わせ.jpg width="35"></a></th>
-						<th><a href="main/MyPage.action"><img src=img/header/マイページ.jpeg width="35"></a></th>
+						<th><a href="main/Subscription.action"><img src=img/header/サブスク.png></a></th>
+						<th><a href="ProductView.action?categoryId=CATE02"><img src=img/header/ショップ.png></a></th>
+						<th><a href="ProductView.action?categoryId=CATE01"><img src=img/header/モバイル.png></a></th>
+						<th><a href="main/"><img src=img/header/店舗情報.png></a></th>
+						<th><a href="Contact.action"><img src=img/header/お問い合わせ.png></a></th>
+						<th><a href="main/MyPage.action"><img src=img/header/マイページ.png></a></th>
 					</tr>
-					<tr>
+				<!-- 	<tr>
 						<td><a href="main/Subscription.action">サブスク</a></td>
 						<td><a href="ProductView.action?categoryId=CATE02">ショップ</a></td>
 						<td><a href="ProductView.action?categoryId=CATE01">モバイル</a></td>
 						<td><a href="main/">店舗情報</a></td>
 						<td><a href="main/Contact.action">お問い合わせ</a></td>
 						<td><a href="main/MyPage.action">マイページ</a></td>
-					</tr>
-				</table>
-			</div>
+					</tr> -->
+			</table>
 		</div>
 	</div>
 </div>
