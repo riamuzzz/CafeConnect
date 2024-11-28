@@ -1,6 +1,10 @@
 package bean;
 
-public class Sale {
+// 商品別売り上げデータ
+public class ProductSale {
+
+	// 商品名
+	private String productName;
 
 	// 年
 	private String year;
@@ -12,6 +16,14 @@ public class Sale {
 	private int data;
 
 
+	// ゲッター、セッター
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 
 	public String getYear() {
 		return year;

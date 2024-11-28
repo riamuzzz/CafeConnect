@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.ProductSale;
 import bean.Sale;
 import bean.User;
 
@@ -18,10 +19,10 @@ public class SaleDao extends Dao{
 	 * baseSql:String 共通SQL文 プライベート
 	 */
 	private String baseSql = "SELECT * FROM USERS ";
-	private String dateBaseSql = "SELECT orders.order_time as date, sum(product.price * orders.count) as price from orders join product on orders.product_id = product.product_id GROUP by orders.order_time;";
-	private String yearSql = "SELECT to_char(orders.order_time, 'yyyy') as year, to_char(orders.order_time, 'mm') as month, sum(product.price * orders.count) as price from orders join product on orders.product_id = product.product_id GROUP by year, month order by year, month;";
-
-
+//	private String dateBaseSql = "SELECT orders.order_time as date, sum(product.price * orders.count) as price from orders join product on orders.product_id = product.product_id GROUP by orders.order_time;";
+	private String yearSql = "SELECT to_char(orders.order_time, 'yyyy') as year, to_char(orders.order_time, 'mm') as month, sum(product.price * orders.count) as price from orders join product on orders.product_id = product.product_id GROUP by month, year order by year, month;";
+	private String productSql = "select product.product_name as product_name, '累計' as year, '累計' as month, sum(product.price * orders.count) as data from orders join product on orders.product_id = product.product_id group by product_name order by data desc;";
+//	private String productSql = "select product.product_name as product_name, to_char(orders.order_time, 'yyyy') as year, to_char(orders.order_time, 'mm') as month, sum(product.price * orders.count) as data from orders join product on orders.product_id = product.product_id where product.category_id = 'CATE01' group by product_name, year, month having to_char(orders.order_time, 'yyyy') = '2024' order by data desc;";
 		/**
 		 * getメソッド 学生番号を指定して学生インスタンスを1件取得する
 		 *
@@ -141,9 +142,35 @@ public class SaleDao extends Dao{
 					//顧客インスタンスに検索結果をセット
 					sale.setYear(rSet.getString("year"));
 					sale.setMonth(rSet.getString("month"));
-					sale.setPrice(rSet.getInt("price"));
+					sale.setData(rSet.getInt("price"));
 					//リストに追加
 					list.add(sale);
+
+				}
+			} catch (SQLException | NullPointerException e){
+				e.printStackTrace();
+			}
+			return list;
+
+
+		}
+
+
+		private List<ProductSale> productPostFilter(ResultSet rSet) throws Exception {
+			//リストを初期化
+			List<ProductSale> list = new ArrayList<>();
+
+			try{
+				//リザルトセットを全件走査
+				while (rSet.next()){
+					ProductSale productSale = new ProductSale();
+					//顧客インスタンスに検索結果をセット
+					productSale.setProductName(rSet.getString("product_name"));
+					productSale.setYear(rSet.getString("year"));
+					productSale.setMonth(rSet.getString("month"));
+					productSale.setData(rSet.getInt("data"));
+					//リストに追加
+					list.add(productSale);
 
 				}
 			} catch (SQLException | NullPointerException e){
@@ -237,6 +264,52 @@ public class SaleDao extends Dao{
 				ResultSet rSet = statement.executeQuery();
 
 				list = datePostFilter(rSet);
+
+			}catch (Exception e){
+				throw e;
+			}finally {
+				//プリペアステートメントを閉じる
+				if (statement != null){
+					try {
+						statement.close();
+					} catch (SQLException sqle){
+						throw sqle;
+					}
+				}
+				//コネクションを閉じる
+				if (connection != null){
+					try {
+						connection.close();
+					} catch (SQLException sqle){
+						throw sqle;
+					}
+				}
+			}
+			return list;
+		}
+
+
+		public List<ProductSale> productFilter(Date date) throws Exception {
+
+			//リストを初期化
+			List<ProductSale> list = new ArrayList<>();
+
+			//データベースへのコネクションを確立
+			Connection connection = getConnection();
+
+			//プリペアードステートメント
+			PreparedStatement statement = null;
+
+
+			try{
+
+				//プリペアードステートメントにSQL文をセット
+				statement = connection.prepareStatement(productSql);
+
+				//上記のSQL文を実行し結果を取得する
+				ResultSet rSet = statement.executeQuery();
+
+				list = productPostFilter(rSet);
 
 			}catch (Exception e){
 				throw e;
