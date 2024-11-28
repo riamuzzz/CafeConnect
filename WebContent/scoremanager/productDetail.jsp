@@ -20,6 +20,7 @@
 	<tr><td>${ product.productName }</td></tr>
 	<tr><td>${ product.productDetail }</td></tr>
 	<tr><td>${ product.price }円（税込）</td></tr>
+
 </table>
 <form id="myForm" method="post">
 	<label>数量</label>
@@ -30,6 +31,8 @@
   		<option value="4">4</option>
   		<option value="5">5</option>
 	</select>
+
+	<input type="hidden" name="product" value="${ product.productId }">
 	 <input type="submit" onclick="changeAction('main/Settlement.action')" value="決済画面へ">
 	 <input type="submit" onclick="changeAction('main/CartCreateExecute.action')" value="カートに追加">
 	<!--<button type="button" onclick="changeAction('main/Settlement.action')">決済画面へ</button>
