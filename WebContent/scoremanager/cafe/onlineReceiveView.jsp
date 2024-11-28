@@ -15,7 +15,7 @@
 <%-- ナビゲーション --%>
 <c:import url="../common/cafenavigation.jsp"/>
 
-	<div class= "onlineReceive">
+	<div class="onlineReceive">
 		<h2>発送済み一覧</h2>
 
 		<c:choose>
