@@ -494,6 +494,7 @@ button[type="submit"] {
 /* onlineReceiveView *//* onlineReceiveView *//* onlineReceiveView */
 .onlineReceive h2 {
 	margin-left: 130px;
+	color: red;
 }
 
 .onlineReceive .orderTime, .orderId, .userName, .address, .productName, .count{
@@ -509,4 +510,7 @@ button[type="submit"] {
 
 
 /* mobileReceiveView *//* mobileReceiveView *//* mobileReceiveView */
+.mobileReceive h2{
+	margin-left: 100px;
+}
 
