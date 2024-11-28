@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <body>
-<c:import url="../common/header.jsp" />
+<c:import url="../common/main_header.jsp" />
 <a href="CardCreate.action">クレジットカード登録</a>
 
 	<form action="UserUpdateExecute.action" method="post">
