@@ -27,7 +27,7 @@
 		10 × <input type="number" name="count" value="${ count }">
 	</div>
 	<!-- 決済確認画面に遷移 -->
-	 <input type="submit" onclick="changeAction('Settlement.action')" value="決済画面へ">
+	 <input type="submit" onclick="changeAction('card/Settlement.action')" value="決済画面へ">
 	 <!-- 選択を続けるを押すとカートに商品が追加され選択画面に戻る -->
 	 <input type="submit" onclick="changeAction('main/CartCreateExecute.action')" value="選択を続ける">
 </form>

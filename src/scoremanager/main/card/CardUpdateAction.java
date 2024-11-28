@@ -1,4 +1,4 @@
-package scoremanager.main;
+package scoremanager.main.card;
 
 public class CardUpdateAction {
 

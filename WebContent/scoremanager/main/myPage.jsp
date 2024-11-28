@@ -6,6 +6,7 @@
 <html>
 <body>
 <c:import url="../common/header.jsp" />
+<a href="CardCreate.action">クレジットカード登録</a>
 
 	<form action="UserUpdateExecute.action" method="post">
 		<label>名前</label>
