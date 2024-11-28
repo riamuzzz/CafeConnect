@@ -13,6 +13,7 @@
 <%-- ナビゲーション --%>
 <c:import url="../common/cafenavigation.jsp"/>
 
+	<div class="mobileReceive">
 	<h2>発送済み一覧</h2>
 
 	<c:choose>
@@ -20,19 +21,18 @@
 
 			<table>
 				<tr>
-					<th>日付</th>
-					<th>注文番号</th>
-					<th>商品名</th>
-					<th>個数</th>
+					<th class="orderTime">日付</th>
+					<th class="orderId">注文番号</th>
+					<th class="productName">商品名</th>
+					<th class="count">個数</th>
 
 				</tr>
 				<c:forEach var="order" items="${order}">
 					<tr>
-						<td>${order.orderTime}</td>
-						<td>${order.orderId}</td>
-						<td>${order.productName}</td>
-						<td>${order.count}</td>
-
+						<td class="orderTime">${order.orderTime}</td>
+						<td class="orderId">${order.orderId}</td>
+						<td class="productName">${order.productName}</td>
+						<td class="count">${order.count}</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -41,6 +41,7 @@
 			<div>商品情報が存在しませんでした</div>
 		</c:otherwise>
 	</c:choose>
+	</div>
 
 <%-- フッター --%>
 <c:import url="../common/cafefooter.jsp"/>

@@ -17,6 +17,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
+import bean.ProductSale;
 import bean.Sale;
 import bean.User;
 import dao.SaleDao;
@@ -45,13 +46,15 @@ public class SaleExecuteAction extends Action{
 		// 会員ではないユーザの割合を%にする
 		int notSub = (int) (100 - percent * 100);
 
-		// データセットの作成
-		ChartFactory.setChartTheme(StandardChartTheme.createLegacyTheme()); //日本語対応させる
+		//日本語対応させる
+		ChartFactory.setChartTheme(StandardChartTheme.createLegacyTheme());
+
+
+        // サブスク会員割合円グラフ
         DefaultPieDataset dataset = new DefaultPieDataset();
         dataset.setValue("登録済み\n" + sub + "%", sub);   // 会員のデータをセット
         dataset.setValue("未登録\n" + notSub + "%", notSub); // 会員ではないデータをセット
 
-        // JFreeChart の作成
         JFreeChart chart = ChartFactory.createPieChart(
                 "サブスク会員割合",    // グラフタイトル
                 dataset,               // データセット
@@ -61,28 +64,48 @@ public class SaleExecuteAction extends Action{
         );
 
 
+        // 売上折れ線グラフ
         Date day = Date.valueOf("2024-11-08");
         List<Sale> date = saleDao.dateFilter(day);
 
         DefaultCategoryDataset data = new DefaultCategoryDataset();
         for (Sale sale : date){
-        	data.addValue(sale.getPrice(), sale.getYear(), sale.getMonth());
+        	data.addValue(sale.getData(), sale.getYear(), sale.getMonth());
         }
 
         JFreeChart lineChart = ChartFactory.createLineChart(
-        		"商品売上",
-        		"日",
-        		"金額",
+        		"売上金額(月別)",
+        		"月",
+        		"金額(円)",
         		data,
         		PlotOrientation.VERTICAL,
         		true,
-                false,
-                false
+                true,
+                true
         );
+
+
+        // 商品別棒グラフ
+        List<ProductSale> productData = saleDao.productFilter(day);
+        DefaultCategoryDataset barData = new DefaultCategoryDataset();
+        for (ProductSale productSale : productData){
+        	barData.addValue(productSale.getData(), productSale.getYear(), productSale.getProductName());
+        }
+
+        JFreeChart barChart = ChartFactory.createBarChart("商品別売上",
+        	                                  "商品",
+        	                                  "売上(円)",
+        	                                  barData,
+        	                                  PlotOrientation.VERTICAL,
+        	                                  true,
+        	                                  false,
+        	                                  false);
+
 
         // JFreeChart を BufferedImage に変換
         BufferedImage chartImage = chart.createBufferedImage(500, 400);  // 画像サイズを指定
         BufferedImage lineChartImage = lineChart.createBufferedImage(500, 400);  // 画像サイズを指定
+        BufferedImage barChartImage = barChart.createBufferedImage(500, 400);  // 画像サイズを指定
 
         // 画像をBase64エンコードするためのByteArrayOutputStream(jspのhtmlに埋め込めるようにする)
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -95,9 +118,15 @@ public class SaleExecuteAction extends Action{
         byte[] lineImageBytes = lineBaos.toByteArray();
         String lineEncodedImage = Base64.getEncoder().encodeToString(lineImageBytes);
 
-      //グラフの画像をセット
+        ByteArrayOutputStream barBaos = new ByteArrayOutputStream();
+        ImageIO.write(barChartImage, "PNG", barBaos);
+        byte[] barImageBytes = barBaos.toByteArray();
+        String barEncodedImage = Base64.getEncoder().encodeToString(barImageBytes);
+
+        //グラフの画像をセット
         req.setAttribute("graph", encodedImage);
         req.setAttribute("lineGraph", lineEncodedImage);
+        req.setAttribute("barGraph", barEncodedImage);
 
 
 

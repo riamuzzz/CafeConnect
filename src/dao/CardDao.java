@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.Card;
 
@@ -27,6 +29,9 @@ public class CardDao extends Dao {
 
 			if (rSet.next()) {
 				card.setCardNumber(rSet.getString("card_number"));
+				card.setCardExpiryDate(rSet.getString("card_day"));
+				card.setCardCvc(rSet.getString("card_cvc"));
+				card.setCardName(rSet.getString("card_name"));
 
 			} else {
 				//リザルトセットが存在しない場合
@@ -53,6 +58,48 @@ public class CardDao extends Dao {
 		// Card型で返す
 		return card;
 	}
+
+	//ゲット
+		public List<Card> get() throws Exception{
+
+			Connection connection=getConnection();
+			PreparedStatement statement=null;
+			List<Card> list = new ArrayList<>();
+
+			try{
+				statement=connection.prepareStatement("select * from card");
+
+				ResultSet rSet=statement.executeQuery();
+
+				while (rSet.next()){
+					Card card = new Card();
+					card.setCardNumber(rSet.getString("card_number"));
+					card.setCardExpiryDate(rSet.getString("card_day"));
+					card.setCardCvc(rSet.getString("card_cvc"));
+					card.setCardName(rSet.getString("card_name"));
+					list.add(card);
+
+				}
+			}catch (Exception e) {
+				throw e;
+			} finally {
+				if(statement != null) {
+					try {
+						statement.close();
+					} catch (SQLException sqle) {
+						throw sqle;
+					}
+				}if(connection != null) {
+					try {
+						connection.close();
+					} catch (SQLException sqle) {
+						throw sqle;
+					}
+				}
+			}
+			// Card型で返す
+			return list;
+		}
 
 	//セーブ（更新＆作成用）
 	public boolean save(Card card) throws Exception {

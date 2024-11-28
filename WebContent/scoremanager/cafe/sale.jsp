@@ -11,7 +11,8 @@
 
 
  <img src="data:image/png;base64,${graph}" alt="サブスク会員割合グラフ" />
-  <img src="data:image/png;base64,${lineGraph}" alt="サブスク会員割合グラフ" />
+ <img src="data:image/png;base64,${lineGraph}" alt="売上折れ線グラフ" />
+ <img src="data:image/png;base64,${barGraph}" alt="売上棒グラフ" />
 
 </body>
 </html>

@@ -20,29 +20,15 @@
 	<tr><td>${ product.productName }</td></tr>
 	<tr><td>${ product.productDetail }</td></tr>
 	<tr><td>${ product.price }円（税込）</td></tr>
-</table>
-<form id="myForm" method="post">
-	<label>数量</label>
-	<select name="num">
-		<option value="1">1</option>
-  		<option value="2">2</option>
-  		<option value="3">3</option>
-  		<option value="4">4</option>
-  		<option value="5">5</option>
-	</select>
-	 <input type="submit" onclick="changeAction('main/Settlement.action')" value="決済画面へ">
-	 <input type="submit" onclick="changeAction('main/CartCreateExecute.action')" value="カートに追加">
-	<!--<button type="button" onclick="changeAction('main/Settlement.action')">決済画面へ</button>
-	<button type="button" onclick="changeAction('main/CartCreate.action')">カートに追加</button> -->
-</form>
-<script>
-    // actionを変更する関数
-    function changeAction(path) {
-        document.getElementById("myForm").action = path;
-    }
-</script>
-<a href="TopPageExecute.action">選択を続ける</a>
 
+</table>
+<form action="main/CartCreateExecute.action" method="post">
+	<label>数量</label>
+	<input type="number" name="num" value="${ num }">
+	<input type="hidden" name="product" value="${ product.productId }">
+	<input type="submit" value="カートに追加">
+</form>
+<a href="TopPageExecute.action">選択を続ける</a>
 
 <%-- フッター --%>
 <c:import url="./common/footer.jsp"/>

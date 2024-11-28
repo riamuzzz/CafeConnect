@@ -12,6 +12,7 @@ import java.util.List;
 
 import bean.Cart;
 import bean.OnlineOrder;
+import bean.Order;
 import bean.Product;
 import bean.User;
 
@@ -388,5 +389,69 @@ public class OrderDao extends Dao {
 		}
 	}
 
+	/**
+	 * filterメソッド ユーザIDをもとに注文一覧をリストで返す
+	 */
+	public List<Order> filter(String userId) throws Exception {
+
+		//データベースへのコネクションを確立
+		Connection connection = getConnection();
+
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+
+		//返り値用のリスト
+		List<Order> list = new ArrayList<>();
+
+		UserDao uDao = new UserDao();
+		ProductDao pDao = new ProductDao();
+		try{
+				//プリペアードステートメントにInsert文をセット
+				statement = connection.prepareStatement(
+						"SELECT * FROM ORDERS WHERE USER_ID=?");
+				//各部分に値を設定
+				statement.setString(1, userId);
+
+				//プリペアードステートメントを実行
+				ResultSet rSet = statement.executeQuery();
+
+				while (rSet.next()){
+					Order order = new Order();
+					//注文インスタンスに検索結果をセット
+					order.setOrderId(rSet.getString("order_id"));
+					order.setProduct(pDao.get(rSet.getString("product_id")));
+					order.setUser(uDao.get(rSet.getString("user_id")));
+					order.setOrderTime(rSet.getDate("order_time"));
+					order.setCount(rSet.getInt("count"));
+					order.setReceive(rSet.getBoolean("receive"));
+					order.setSubscription(rSet.getBoolean("subscription"));
+					order.setMobile(rSet.getBoolean("mobile"));
+					//リストに追加
+					list.add(order);
+				}
+
+
+		}catch (Exception e){
+			throw e;
+		}finally {
+			//プリペアステートメントを閉じる
+			if (statement != null){
+				try {
+					statement.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+			//コネクションを閉じる
+			if (connection != null){
+				try {
+					connection.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+		}
+		return list;
+	}
 
 }

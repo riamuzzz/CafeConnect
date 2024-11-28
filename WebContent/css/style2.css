@@ -453,3 +453,64 @@ button[type="submit"] {
     bottom: 0px;
     right: calc(20% - 65px);
 }
+
+/* onlineOrderView *//* onlineOrderView *//* onlineOrderView */
+.onlineOrderView1 h2 {
+	font-size: 30px;
+	margin-left: 480px;
+}
+
+.onlineOrderView2 {
+	margin-left: 75px;
+}
+
+.onlineOrderView2 .orderTime, .orderId, .userName, .address, .productName, .count, .receive, .text-center {;
+    padding-top: 15px;
+    padding-left: 10px;
+    text-align:center
+}
+
+.onlineOrderView2 .orderId, .userName, .address, .productName, .count, .receive, .text-center	{
+	position: relative; /* 相対指定 */
+}
+
+.onlineOrderView2 th::after {
+    content: '';
+    width: 450px;
+    height: 1px;
+    display: inline-block;
+    background-color: #7d7d7d;
+    position: absolute;
+    bottom: 0px;
+    right: calc(25% - 70px);
+}
+
+.onlineOrderView2 .bottom {
+	margin-top: 10px;
+	margin-left: 525px;
+
+}
+
+/* onlineReceiveView *//* onlineReceiveView *//* onlineReceiveView */
+.onlineReceive h2 {
+	margin-left: 130px;
+	color: red;
+}
+
+.onlineReceive .orderTime, .orderId, .userName, .address, .productName, .count{
+	font-size:20px;
+    padding-top: 15px;
+    padding-right:30px;
+    padding-left:30px;
+    text-align:center
+}
+
+
+/* mobileOrderView *//* mobileOrderView *//* mobileOrderView */
+
+
+/* mobileReceiveView *//* mobileReceiveView *//* mobileReceiveView */
+.mobileReceive h2{
+	margin-left: 100px;
+}
+

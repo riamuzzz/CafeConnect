@@ -25,6 +25,8 @@ public class LoginExecuteAction extends Action{
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 		String redirecturl = req.getParameter("redirect");
+		String num = req.getParameter("num");
+		String product = req.getParameter("product");
 
 		//DBからデータ取得 3
 		user = uDao.login(email,password);
@@ -36,9 +38,8 @@ public class LoginExecuteAction extends Action{
 			HttpSession session = req.getSession(true);
 			//セッションに"user"という変数名で値はuser変数の中身
 			session.setAttribute("user", user);
-			System.out.println("★" + redirecturl);
 			//リダイレクト
-			url = redirecturl;
+			url = redirecturl + "?num=" + num + "&product=" + product;
 			res.sendRedirect(url);
 		} else {
 			Map<String, String> errors = new HashMap<>();// エラーメッセージ

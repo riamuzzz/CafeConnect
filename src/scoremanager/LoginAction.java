@@ -12,9 +12,11 @@ public class LoginAction extends Action{
 		//ローカル変数の宣言 1
 		String redirecturl = "";
 		String num;
+		String product;
 		//リクエストパラメータ―の取得 2
 		redirecturl = req.getParameter("redirect");
 		num = req.getParameter("num");
+		product = req.getParameter("product");
 		//DBからデータ取得 3
 		//なし
 		//ビジネスロジック 4
@@ -24,6 +26,7 @@ public class LoginAction extends Action{
 		//レスポンス値をセット 6
 		req.setAttribute("redirect", redirecturl);
 		req.setAttribute("num", num);
+		req.setAttribute("product", product);
 		//JSPへフォワード 7
 		req.getRequestDispatcher("login.jsp").forward(req, res);
 	}

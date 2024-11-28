@@ -367,4 +367,56 @@ public class UserDao extends Dao{
 			return users;
 		}
 
+		public boolean saveCard(User user) throws Exception {
+
+
+			//データベースへのコネクションを確立
+			Connection connection = getConnection();
+
+			//プリペアードステートメント
+			PreparedStatement statement = null;
+
+			//実行件数
+			int count = 0;
+
+
+			try{
+				//プリペアードステートメントにUpdate文をセット
+				statement = connection.prepareStatement(
+						"UPDATE USERS SET CARD_NUMBER=? ");
+				//各部分に値を設定
+				statement.setString(1, user.getCard().getCardNumber());
+				//プリペアードステートメントを実行
+				count = statement.executeUpdate();
+
+			}catch (Exception e){
+				throw e;
+			}finally {
+				//プリペアステートメントを閉じる
+				if (statement != null){
+					try {
+						statement.close();
+					} catch (SQLException sqle){
+						throw sqle;
+					}
+				}
+				//コネクションを閉じる
+				if (connection != null){
+					try {
+						connection.close();
+					} catch (SQLException sqle){
+						throw sqle;
+					}
+				}
+			}
+
+			if (count > 0) {
+				//実行数が1件以上あるとき
+				return true;
+			}else {
+				//実行数が0件以上の場合
+				return false;
+			}
+		}
+
 }

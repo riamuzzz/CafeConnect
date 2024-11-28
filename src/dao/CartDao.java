@@ -15,7 +15,7 @@ public class CartDao extends Dao {
 	/**
 	 * baseSql:String 共通SQL文 プライベート
 	 */
-	private String baseSql = "select * from PRODUCT where ";
+	private String baseSql = "select * from CART where ";
 
 
 	/**
@@ -119,6 +119,67 @@ public class CartDao extends Dao {
 
 	}
 
+	/**
+	 * filterメソッド カフェ店員IDを元に、カフェ店員インスタンスを1件取得する
+	 */
+
+	public List<Cart> filter(User user) throws Exception{
+
+		//リストを初期化
+		List<Cart> list = new ArrayList<>();
+
+		Connection connection = getConnection();
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+
+		// SQL条件文の初期化
+		String condition = "user_id=?";
+
+		try{
+			//プリペアードステートメントにSQL文をセット
+			statement = connection.prepareStatement(baseSql+ condition);
+
+			//プレースホルダー（？の部分）に値を設定し、SQLを実行
+			statement.setString(1,user.getUserId());
+			ResultSet rSet = statement.executeQuery();
+
+			//カテゴリDaoを初期化
+			UserDao userDao =new UserDao();
+			ProductDao productDao =new ProductDao();
+
+			//取得した情報をcartインスタンスに保存
+			while(rSet.next()) {
+				Cart cart = new Cart();
+				cart.setUser(userDao.get(rSet.getString("user_id")));
+				cart.setProduct(productDao.get(rSet.getString("product_id")));
+				cart.setCount(rSet.getInt("count"));
+				list.add(cart);
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			//プリペアードステートメントを閉じる
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+
+		//コネクションを閉じる
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException sqle) {
+				throw sqle;
+			}
+		}
+	}
+	//検索したユーザインスタンスを返す
+	return list;
+	}
+
 
 	/**
 	 * saveメソッド 商品をカートに追加する データが存在する場合は更新、存在しない場合は登録
@@ -128,7 +189,7 @@ public class CartDao extends Dao {
 	 * @return 成功:true, 失敗:false
 	 * @throws Exception
 	 */
-	public boolean save(Cart cart) throws Exception {
+	public boolean save(User user,Product product ,Integer num) throws Exception {
 
 		//データベースへのコネクションを確立
 		Connection connection = getConnection();
@@ -139,75 +200,27 @@ public class CartDao extends Dao {
 		//実行件数
 		int count = 0;
 
-		try{
+		Cart old =get(user);
 
+		try{
+			if (old == null) {
 				//プリペアードステートメントにInsert文をセット
 				statement = connection.prepareStatement(
 						"INSERT INTO CART (USER_ID ,PRODUCT_ID ,COUNT) VALUES (?,?,?)");
 				//各部分に値を設定
-				statement.setString(1, cart.getUser().getUserId());
-				statement.setString(2, cart.getProduct().getProductId());
-				statement.setInt(3, cart.getCount());
-
-
-			//プリペアードステートメントを実行
-			count = statement.executeUpdate();
-
-		}catch (Exception e){
-			throw e;
-		}finally {
-			//プリペアステートメントを閉じる
-			if (statement != null){
-				try {
-					statement.close();
-				} catch (SQLException sqle){
-					throw sqle;
-				}
-			}
-			//コネクションを閉じる
-			if (connection != null){
-				try {
-					connection.close();
-				} catch (SQLException sqle){
-					throw sqle;
-				}
-			}
-		}
-
-		if (count > 0) {
-			//実行数が1件以上あるとき
-			return true;
-		}else {
-			//実行数が0件以上の場合
-			return false;
-		}
-	}
-
-	/**
-	 * updateメソッド 個数変更
-	 */
-	public boolean update(Cart cart) throws Exception {
-
-		//データベースへのコネクションを確立
-		Connection connection = getConnection();
-
-		//プリペアードステートメント
-		PreparedStatement statement = null;
-
-		//実行件数
-		int count = 0;
-
-		try{
-
+				statement.setString(1, user.getUserId());
+				statement.setString(2, product.getProductId());
+				statement.setInt(3, num);
+			}else{
 				//プリペアードステートメントにInsert文をセット
 				statement = connection.prepareStatement(
 						"UPDATE CART SET COUNT=? WHERE USER_ID=? and PRODUCT_ID=?");
 				//各部分に値を設定
-				statement.setInt(1, cart.getCount());
-				statement.setString(2, cart.getUser().getUserId());
-				statement.setString(3, cart.getProduct().getProductId());
+				statement.setInt(1, num);
+				statement.setString(2, user.getUserId());
+				statement.setString(3, product.getProductId());
 
-
+			}
 
 			//プリペアードステートメントを実行
 			count = statement.executeUpdate();
@@ -241,12 +254,13 @@ public class CartDao extends Dao {
 			return false;
 		}
 	}
+
 
 	/**
 	 * deleteメソッド カート削除
 	 *
 	 */
-	public boolean delete(Cart cart) throws Exception {
+	public boolean delete(Cart cart, String productId) throws Exception {
 
 		//データベースへのコネクションを確立
 		Connection connection = getConnection();
@@ -261,10 +275,10 @@ public class CartDao extends Dao {
 
 				//プリペアードステートメントにInsert文をセット
 				statement = connection.prepareStatement(
-						"DELETE CART WHERE USER_ID=? and PRODUCT_ID=?");
+						"DELETE from CART WHERE USER_ID=? and PRODUCT_ID=?");
 				//各部分に値を設定
 				statement.setString(1, cart.getUser().getUserId());
-				statement.setString(2, cart.getProduct().getProductId());
+				statement.setString(2, productId);
 
 
 			//プリペアードステートメントを実行
