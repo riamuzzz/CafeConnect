@@ -59,6 +59,7 @@
 					</tr>
 				</table>
 				<a href="Logout.action">ログアウト</a>
+				<a href="Login.action">ログイン</a>
 			</div>
 		</div>
 	</div>
