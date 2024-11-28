@@ -44,8 +44,37 @@
 			<input type="submit" name="login" value="ログイン"/>
 		</form>
 		</c:when>
-		<c:otherwise>
+		<c:when test="${not empty redirect}">
 			<form action = "LoginExecute.action?redirect=${ redirect }" method="post">
+			<!-- メールアドレス -->
+			<label>メールアドレス</label>
+				<input type="text" name="email" value="gst1@icloud.com">
+
+			<!-- パスワード -->
+			<label>パスワード</label>
+				<input type="password" id="password" name="password" value="pass01">
+
+			<!-- パスワード表示チェックボックス -->
+				<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
+					<label for="showPassword">パスワードを表示する</label>
+						<script>
+							function togglePasswordVisibility() {
+								let passwordInput = document.getElementById("password");
+								let showPasswordCheckbox = document.getElementById("showPassword");
+								if (showPasswordCheckbox.checked) {
+									passwordInput.type = "text";
+								} else {
+									passwordInput.type = "password";
+								}
+							}
+						</script>
+
+			<!-- ログイン用ボタン -->
+			<input type="submit" name="login" value="ログイン"/>
+		</form>
+		</c:when>
+		<c:otherwise>
+			<form action = "LoginExecute.action" method="post">
 			<!-- メールアドレス -->
 			<label>メールアドレス</label>
 				<input type="text" name="email" value="gst1@icloud.com">
@@ -74,9 +103,6 @@
 		</form>
 		</c:otherwise>
 	</c:choose>
-	<c:if test="!${ redirect } == /CafeConnect/scoremanager/main/Settlement.action">
-
-	</c:if>
 
 
 <%@ include file="common/footer.jsp" %>

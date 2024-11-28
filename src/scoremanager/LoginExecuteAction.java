@@ -38,9 +38,15 @@ public class LoginExecuteAction extends Action{
 			HttpSession session = req.getSession(true);
 			//セッションに"user"という変数名で値はuser変数の中身
 			session.setAttribute("user", user);
-			//リダイレクト
-			url = redirecturl + "?num=" + num + "&product=" + product;
-			res.sendRedirect(url);
+			if (redirecturl != null){
+				//リダイレクト
+				url = redirecturl + "?num=" + num + "&product=" + product;
+				res.sendRedirect(url);
+			} else if (redirecturl == null){
+				url = "main/TopPageExecute.action";
+				res.sendRedirect(url);
+			}
+
 		} else {
 			Map<String, String> errors = new HashMap<>();// エラーメッセージ
 			errors.put("1", "ログインに失敗しました。メールアドレスまたはパスワードが違います。");
