@@ -58,6 +58,7 @@
 						<td><a href="main/MyPage.action">マイページ</a></td>
 					</tr>
 				</table>
+				<a href="Logout.action">ログアウト</a>
 			</div>
 		</div>
 	</div>

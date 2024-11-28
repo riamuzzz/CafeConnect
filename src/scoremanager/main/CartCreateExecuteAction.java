@@ -23,7 +23,6 @@ public class CartCreateExecuteAction extends Action{
 		String userId = user.getUserId();
 
 		String countStr = req.getParameter("num");
-		System.out.println(countStr);
 		String productId = req.getParameter("product");
 
 		Product product=pDao.get(productId);
@@ -38,6 +37,6 @@ public class CartCreateExecuteAction extends Action{
 		}
 
 
-		req.getRequestDispatcher("productDetail.jsp").forward(req, res);
+		req.getRequestDispatcher("../ProductView.action").forward(req, res);
 	}
 }

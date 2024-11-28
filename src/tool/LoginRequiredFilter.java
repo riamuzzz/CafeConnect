@@ -24,6 +24,7 @@ public class LoginRequiredFilter implements Filter {
 		String redirecturl = "";
 		HttpServletRequest req = (HttpServletRequest)request;
 		String num = req.getParameter("num");
+		String product = req.getParameter("product");
 		// ログインユーザーを取得
 		User user = (User)req.getSession(true).getAttribute("user");
 		// ユーザーが存在しないまたは認証されていない場合
@@ -31,9 +32,9 @@ public class LoginRequiredFilter implements Filter {
 			HttpServletResponse	res = ((HttpServletResponse) response);
 			// パスを保存
 			redirecturl = req.getRequestURI();
-			if (redirecturl == "/CafeConnect/scoremanager/main/Settlement.action" || redirecturl == "/CafeConnect/scoremanager/main/CartCreateExecute.action"){
+			if (redirecturl.equals("/CafeConnect/scoremanager/main/Settlement.action") || redirecturl.equals("/CafeConnect/scoremanager/main/CartCreateExecute.action") ){
 				// 決済ボタンが押されたときだけnumを変数として持つ
-				res.sendRedirect(req.getContextPath() + "/scoremanager/Login.action?redirect=" + redirecturl + "?num=" + num);
+				res.sendRedirect(req.getContextPath() + "/scoremanager/Login.action?redirect=" + redirecturl + "&num=" + num + "&product=" + product);
 			} else {
 				// 上記以外は遷移先のパスを変数に格納したままログインページにリダイレクト
 				res.sendRedirect(req.getContextPath() + "/scoremanager/Login.action?redirect=" + redirecturl);

@@ -13,8 +13,9 @@
 	<p>ログイン</p>
 	<p>会員ログイン</p>
 	<c:choose>
-		<c:when test="${ redirect } == /CafeConnect/scoremanager/main/Settlement.action || ${ redirect } == /CafeConnect/scoremanager/main/CartCreateExecute.action">
-			<form action = "LoginExecute.action?redirect=${ redirect }?num=${ num }" method="post">
+		<c:when test="${ redirect eq '/CafeConnect/scoremanager/main/Settlement.action' || redirect eq '/CafeConnect/scoremanager/main/CartCreateExecute.action' }">
+
+			<form action = "LoginExecute.action?redirect=${ redirect }&num=${ num }&product=${ product }" method="post">
 			<!-- メールアドレス -->
 			<label>メールアドレス</label>
 				<input type="text" name="email" value="gst1@icloud.com">
