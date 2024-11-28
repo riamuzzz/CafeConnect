@@ -13,47 +13,51 @@
 <%-- ナビゲーション --%>
 <c:import url="../common/cafenavigation.jsp"/>
 
-	<h2>モバイル注文一覧</h2>
+	<div class="mobileOrderView1">
 
-	<c:choose>
-		<c:when test="${order.size()>0}">
+		<h2>モバイル注文一覧</h2>
 
-	<form action="MobileUpdateExecute.action" method="post">
+		<c:choose>
+			<c:when test="${order.size()>0}">
 
-			<table>
-				<tr>
-					<th>日付</th>
-					<th>注文番号</th>
-					<th>商品名</th>
-					<th>個数</th>
-					<th>発送済み</th>
+		<form action="MobileUpdateExecute.action" method="post">
+			<div class="mobileOrderView2">
+					<table>
+						<tr>
+							<th class="orderTime">日付</th>
+							<th class="orderId">注文番号</th>
+							<th class="productName">商品名</th>
+							<th class="count">個数</th>
+							<th class="receive">発送済み</th>
 
-				</tr>
-				<c:forEach var="order" items="${order}">
-				<c:if test="${order.mobile == true}">
+						</tr>
+						<c:forEach var="order" items="${order}">
+						<c:if test="${order.mobile == true}">
 
-               	<input type="hidden" name="orderId" value="${ order.orderId }">
+		               	<input type="hidden" name="orderId" value="${ order.orderId }">
 
-					<tr>
-						<td>${order.orderTime}</td>
-						<td>${order.orderId}</td>
-						<td>${order.productName}</td>
-						<td>${order.count}</td>
+							<tr>
+								<td class="orderTime">${order.orderTime}</td>
+								<td class="orderId">${order.orderId}</td>
+								<td class="productName">${order.productName}</td>
+								<td class="count">${order.count}</td>
 
-						<td><input type="checkbox" name="receive_${order.orderId}" value="${receive}"></td>
+								<td class="receive"><input type="checkbox" name="receive_${order.orderId}" value="${receive}"></td>
 
-					</tr>
-					</c:if>
-				</c:forEach>
-			</table>
-			<input type=submit value="変更">
-		</form>
+							</tr>
+							</c:if>
+						</c:forEach>
+					</table>
+					<input type=submit value="変更" class="bottom">
+				</form>
 
-		</c:when>
-		<c:otherwise>
-			<div>商品情報が存在しませんでした</div>
-		</c:otherwise>
-	</c:choose>
+				</c:when>
+				<c:otherwise>
+					<div>商品情報が存在しませんでした</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
 
 <%-- フッター --%>
 <c:import url="../common/cafefooter.jsp"/>
