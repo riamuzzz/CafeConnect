@@ -507,6 +507,41 @@ button[type="submit"] {
 
 
 /* mobileOrderView *//* mobileOrderView *//* mobileOrderView */
+.mobileOrderView1 h2 {
+	font-size: 30px;
+	margin-left: 480px;
+}
+
+.mobileOrderView2 {
+	margin-left: 310px;
+}
+
+.mobileOrderView2 .orderTime, .orderId, .productName, .count, .receive {;
+    padding-top: 15px;
+    padding-left: 10px;
+    text-align:center
+}
+
+.mobileOrderView2 .orderId, .productName, .count, .receive,	{
+	position: relative; /* 相対指定 */
+}
+
+.mobileOrderView2 th::after {
+    content: '';
+    width: 450px;
+    height: 1px;
+    display: inline-block;
+    background-color: #7d7d7d;
+    position: absolute;
+    bottom: 0px;
+    right: calc(25% - 85px);
+}
+
+.mobileOrderView2 .bottom {
+	margin-top: 10px;
+	margin-left: 270px;
+
+}
 
 
 /* mobileReceiveView *//* mobileReceiveView *//* mobileReceiveView */

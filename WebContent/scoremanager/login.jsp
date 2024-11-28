@@ -10,6 +10,7 @@
 </head>
 <body>
 <%@ include file="common/header.jsp" %>
+<div class=log>
 	<p>ログイン</p>
 	<p>会員ログイン</p>
 	<c:choose>
@@ -79,6 +80,6 @@
 
 
 <%@ include file="common/footer.jsp" %>
-
+</div>
 </body>
 </html>
