@@ -4,6 +4,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <div class="productView">
 
 
@@ -17,66 +18,56 @@
 <div class="content">
 
 <h2>カート</h2>
-<table>
+
+<table id="item-table">
   <c:forEach var="pList" items="${pList}" varStatus="status">
-    <tr>
+    <tr class="item" data-index="${status.index}">
+      <!-- 商品画像 -->
       <td>
         <img src="../img/product/${pList.image}" alt="${pList.productName}">
       </td>
-    </tr>
-    <tr>
+      <!-- 商品名 -->
       <td>${pList.productName}</td>
-    </tr>
-    <tr>
+      <!-- 価格 -->
       <td>
-        <span class="price" id="price-${status.index}">${pList.price}</span>円
+        <span class="price" data-index="${status.index}">${pList.price}</span>円
       </td>
-    </tr>
-    <tr>
+      <!-- 数量選択 -->
       <td>
-       <c:forEach var="cList" items="${cList}">
-      			<c:if test="${ cList.product.productId eq pList.productId }">
-      				<input type="text" name="count" value="${ cList.count }" >
-      			</c:if>
-		</c:forEach>
+        <c:forEach var="cList" items="${cList}">
+          <c:if test="${cList.product.productId eq pList.productId}">
+            <select name="num" class="quantity" data-index="${status.index}" onchange="calculateTotal()">
+              <option value="1" <c:if test="${cList.count == 1}">selected</c:if>>1</option>
+              <option value="2" <c:if test="${cList.count == 2}">selected</c:if>>2</option>
+              <option value="3" <c:if test="${cList.count == 3}">selected</c:if>>3</option>
+              <option value="4" <c:if test="${cList.count == 4}">selected</c:if>>4</option>
+              <option value="5" <c:if test="${cList.count == 5}">selected</c:if>>5</option>
+            </select>
+          </c:if>
+
+        </c:forEach>
       </td>
-    </tr>
-    <tr>
+      <!-- カート削除ボタン -->
       <td>
-      	<form action="CartDelete.action" method="post">
-      		<input type="hidden" name="productId" value="${ pList.productId }">
-	      	<input type="submit" value="カートから削除">
-      	</form>
-   	  </td>
+        <form action="CartDelete.action" method="post">
+          <input type="hidden" name="productId" value="${pList.productId}">
+          <input type="submit" value="カートから削除">
+        </form>
+      </td>
     </tr>
   </c:forEach>
 </table>
 
 <!-- 合計金額を表示 -->
-<p>合計: <span id="total" class="result">0</span>円</p>
+<p id="totalAmount">合計金額:円</p>
 
-<script>
-function calculateTotal() {
-	  let total = 0;
-	  document.querySelectorAll('.quantity').forEach((select, index) => {
-	    const quantity = parseInt(select.value, 10) || 0;
-	    const price = parseInt(document.getElementById(`price-${index}`).textContent.trim(), 10) || 0;
-	    total += quantity * price;
-	  });
-	  document.getElementById('total').textContent = total;
-	}
-
-	document.querySelectorAll('.quantity').forEach((select) => {
-	  select.addEventListener('change', calculateTotal);
-	});
-
-	calculateTotal();
-	</script>
 </div>
 
-
+</div>
+</div>
+<script type="js/cartView.js"></script>
 <%-- フッター --%>
 <c:import url="../common/footer.jsp"/>
-</div>
-</div>
+
+
 </html>
