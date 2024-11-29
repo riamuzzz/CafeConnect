@@ -1,4 +1,10 @@
 
+
+.main {
+	margin-top: 250px;
+}
+
+
 /* ヘッダー */
 
 .container {
@@ -7,7 +13,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    padding: 13px 0;
+    padding: 2px 0;
     z-index: 1000;
 }
 
@@ -55,7 +61,8 @@ h2 {
 	float: right;
 	padding: 0%;
 	margin: 0% 1% 0% 0%;
-	width: 25%;
+	width: 26%;
+	height:;
 	position: relative;
 	top: 0px;
 	left: 0%;
@@ -84,7 +91,7 @@ br {
 
 .menu {
 	width: 100%;
-	height: 100px;
+	height: 70px;
 	float:left;
 	padding-top: 0px;
 	margin: 0%;
@@ -104,11 +111,11 @@ br {
 }
 
 .menu img {
-	width: 101px;
+	width: 70px;
 	margin: 0%;
 	top: 0%;
 	right: 23%;
-	bottom: 21.8px;
+	bottom: 22px;
 	position: relative;
 	z-index: 1;
 }
@@ -154,7 +161,7 @@ a {
 
 .subsc {
 	text-align: center;
-	margin-top: 350px;
+	margin-top: 300px;
 }
 
 .puran {
@@ -373,7 +380,7 @@ a {
 
 .otoi {
 	text-align: center;
-	margin-top: 350px;
+	margin-top: 290px;
 	font-size: 40px;
 	font-weight: bold;
 	}
@@ -422,9 +429,33 @@ textarea:focus {
 	margin-top: 50px;
 }
 
+/* モバイル */
 
+.motitle {
+	text-align: center;
+	margin-top: 290px;
+	font-size: 45px;
+	font-weight: bold;
+}
 
+.mo {
+	text-align: center;
+	width: 900px;
+	margin: auto;
+	margin-top: 20px;
+}
 
+.mobotan {
+	margin: ;
+	text-align: center;
+	background-color: #a9a9a9;
+	font-size: 150%;
+	font-weight: bold;
+	width: 10%;
+	margin: 20 auto;
+	margin-top: 60px;
+	height: 40px;
+}
 
 
 
