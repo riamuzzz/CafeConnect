@@ -26,7 +26,7 @@ public class CartDao extends Dao {
 	 * @throws Exception
 	 */
 
-	public Cart get(User user) throws Exception{
+	public Cart get(User user, Product product) throws Exception{
 
 		Connection connection = getConnection();
 		//プリペアードステートメント
@@ -35,7 +35,7 @@ public class CartDao extends Dao {
 		Cart cart = new Cart();
 
 		// SQL条件文の初期化
-		String condition = "user_id=?";
+		String condition = "user_id=? and product_id=?";
 
 		try{
 			//プリペアードステートメントにSQL文をセット
@@ -43,6 +43,7 @@ public class CartDao extends Dao {
 
 			//プレースホルダー（？の部分）に値を設定し、SQLを実行
 			statement.setString(1,user.getUserId());
+			statement.setString(2,product.getProductId());
 			ResultSet rSet = statement.executeQuery();
 
 			//カテゴリDaoを初期化
@@ -189,7 +190,7 @@ public class CartDao extends Dao {
 	 * @return 成功:true, 失敗:false
 	 * @throws Exception
 	 */
-	public boolean save(User user,Product product ,Integer num) throws Exception {
+	public boolean save(Cart cart) throws Exception {
 
 		//データベースへのコネクションを確立
 		Connection connection = getConnection();
@@ -200,25 +201,31 @@ public class CartDao extends Dao {
 		//実行件数
 		int count = 0;
 
-		Cart old =get(user);
+		//同じユーザが同じ商品を選択した時UPDATEでCOUNTをプラスする
+		//同じユーザが新しい商品を追加したときINSERTでカート内に商品を追加する
+		//ログイン中のユーザのカート内に最初の商品を追加する
+		Cart old = get(cart.getUser(), cart.getProduct());
 
 		try{
+			//ログイン中のユーザのカートに商品が何も入っていない||新しい商品が追加されたとき
 			if (old == null) {
 				//プリペアードステートメントにInsert文をセット
 				statement = connection.prepareStatement(
 						"INSERT INTO CART (USER_ID ,PRODUCT_ID ,COUNT) VALUES (?,?,?)");
 				//各部分に値を設定
-				statement.setString(1, user.getUserId());
-				statement.setString(2, product.getProductId());
-				statement.setInt(3, num);
+				statement.setString(1, cart.getUser().getUserId());
+				statement.setString(2, cart.getProduct().getProductId());
+				statement.setInt(3, cart.getCount());
+			//ログイン中のユーザが同じ商品をカートに追加しようとしたとき
 			}else{
+				int newcount = old.getCount();
 				//プリペアードステートメントにInsert文をセット
 				statement = connection.prepareStatement(
 						"UPDATE CART SET COUNT=? WHERE USER_ID=? and PRODUCT_ID=?");
-				//各部分に値を設定
-				statement.setInt(1, num);
-				statement.setString(2, user.getUserId());
-				statement.setString(3, product.getProductId());
+				//COUNTにもともとの商品の個数と今選択された個数を足す
+				statement.setInt(1, cart.getCount() + newcount);
+				statement.setString(2, cart.getUser().getUserId());
+				statement.setString(3, cart.getProduct().getProductId());
 
 			}
 

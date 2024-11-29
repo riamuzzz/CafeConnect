@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.Product;
+import bean.Cart;
 import bean.User;
 import dao.CartDao;
 import dao.ProductDao;
@@ -17,19 +17,18 @@ public class CartCreateExecuteAction extends Action{
 		//ユーザー情報取得
 		HttpSession session = req.getSession();//セッション
 		User user = (User)session.getAttribute("user");//ログインユーザー
-
 		CartDao cDao =new CartDao();
 		ProductDao pDao =new ProductDao();
 		String userId = user.getUserId();
 
 		String countStr = req.getParameter("num");
 		String productId = req.getParameter("product");
-
-		Product product=pDao.get(productId);
-
+		Cart cart = new Cart();
+		cart.setUser(user);
+		cart.setProduct(pDao.get(productId));
+		cart.setCount(Integer.parseInt(countStr));
 		try {
-		    int count = Integer.parseInt(countStr); // count を int 型に変換
-		    cDao.save(user, product, count); // int 型の値を渡す
+		    cDao.save(cart); // int 型の値を渡す
 		} catch (NumberFormatException e) {
 		    // 数値に変換できない場合のエラー処理
 		    System.err.println("Invalid count value: " + countStr);
@@ -37,6 +36,6 @@ public class CartCreateExecuteAction extends Action{
 		}
 
 
-		req.getRequestDispatcher("../ProductView.action").forward(req, res);
+		req.getRequestDispatcher("ProductView.action").forward(req, res);
 	}
 }
