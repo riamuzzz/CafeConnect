@@ -273,9 +273,16 @@ button[type="submit"] {
 	margin-left: 180px;
 }
 
-.productcreate  input.productName { width: 280px; height: 20px;}
-.productcreate  input.price { width: 225px; height: 22px;}
-.productcreate  input.count { width: 270px; height: 22px;}
+.productcreate input[type="text"].productName,
+.productcreate input[type="number"].price,
+.productcreate input[type="number"].count{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 .productcreate  textarea.productDetail { width: 295px; height: 170px;}
 
 .productcreate .button { display:inline-block; }
@@ -309,10 +316,18 @@ button[type="submit"] {
 	margin-left: 180px;
 }
 
-.productupdate  input.productName { width: 280px; height: 20px;}
-.productupdate  input.price { width: 280px; height: 22px;}
-.productupdate  input.count { width: 270px; height: 22px;}
-.productupdate  input.productDetail { width: 280px; height: 170px;}
+.productupdate input[type="text"].productName,
+.productupdate input[type="number"].price,
+.productupdate input[type="number"].count{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.productupdate textarea .productDetail { width: 295px; height: 170px;}
+
 
 .productupdate .button { display:inline-block; }
 
@@ -326,13 +341,14 @@ button[type="submit"] {
 	margin-left: 275px;
 }
 
-.product_view1 #keyword { width: 300px; height: 10px;}
+.product_view1 #keyword {width: 300px; height: 10px;}
 .product_view1 #button { width: 70px; height: 31px;}
 .product_view1 select { width: 100px; height: 30px;}
 
 .product_view2 .productName, .price, .text-center, .productId{
     padding-top: 15px;
-    padding-left: 70px;
+    padding-left: 50px;
+    padding-right:60px;
     text-align:center
 }
 
@@ -353,7 +369,7 @@ button[type="submit"] {
     background-color: #7d7d7d;
     position: absolute;
     bottom: 0px;
-    left: calc(50% - 55px)
+    left: calc(30% - 55px)
 }
 
 /* stockView.jsp *//* stockView.jsp *//* stockView.jsp */
@@ -492,9 +508,13 @@ button[type="submit"] {
 }
 
 /* onlineReceiveView *//* onlineReceiveView *//* onlineReceiveView */
-.onlineReceive h2 {
+
+.onlineReceive{
 	margin-left: 130px;
-	color: red;
+}
+.onlineReceive h2 {
+	margin-left: 390px;
+	font-size:30px;
 }
 
 .onlineReceive .orderTime, .orderId, .userName, .address, .productName, .count{
@@ -502,7 +522,22 @@ button[type="submit"] {
     padding-top: 15px;
     padding-right:30px;
     padding-left:30px;
-    text-align:center
+    text-align:center;
+}
+
+.onlineReceive .orderTime, .orderId, .userName, .address, .productName, .count{
+	position: relative; /* 相対指定 */
+}
+
+.onlineReceive th::after {
+    content: '';
+    width: 270px;
+    height: 2px;
+    display: inline-block;
+    background-color: #7d7d7d;
+    position: absolute;
+    bottom: 0px;
+    right: calc(40% - 100px);
 }
 
 
@@ -545,7 +580,34 @@ button[type="submit"] {
 
 
 /* mobileReceiveView *//* mobileReceiveView *//* mobileReceiveView */
-.mobileReceive h2{
-	margin-left: 100px;
+.mobileReceive{
+	margin-left: 330px;
+}
+.mobileReceive h2 {
+	margin-left: 180px;
+	font-size:30px;
+}
+
+.mobileReceive .orderTime, .orderId, .productName, .count{
+	font-size:20px;
+    padding-top: 15px;
+    padding-right:30px;
+    padding-left:30px;
+    text-align:center;
+}
+
+.mobileReceive .orderTime, .orderId, .productName, .count{
+	position: relative; /* 相対指定 */
+}
+
+.mobileReceive th::after {
+    content: '';
+    width: 230px;
+    height: 2px;
+    display: inline-block;
+    background-color: #7d7d7d;
+    position: absolute;
+    bottom: 0px;
+    right: calc(50% - 100px);
 }
 

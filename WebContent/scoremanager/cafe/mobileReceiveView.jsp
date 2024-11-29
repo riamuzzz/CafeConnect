@@ -14,7 +14,7 @@
 <c:import url="../common/cafenavigation.jsp"/>
 
 	<div class="mobileReceive">
-	<h2>発送済み一覧</h2>
+	<h2>お渡し済み一覧</h2>
 
 	<c:choose>
 		<c:when test="${order.size()>0}">

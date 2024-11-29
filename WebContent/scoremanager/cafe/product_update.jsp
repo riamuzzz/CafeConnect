@@ -5,7 +5,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <link rel='stylesheet' href='../../css/style2.css'>
-<div class="cafe_user_view">
 
 <%-- ヘッダー --%>
 <c:import url="../common/cafeheader.jsp"/>
@@ -42,7 +41,7 @@
 	</tr>
 	<tr>
 		<th><label>価格</label></th>
-		<td><input type="text" name="price" class="price" value="${price}" required></td>
+		<td><input type="number" name="price" class="price" value="${price}" required></td>
 	</tr>
 	<tr>
 		<th><label>数量</label></th>
@@ -50,7 +49,8 @@
 	</tr>
 	<tr>
 		<th><label>詳細</label></th>
-		<td><input type="text" name="detail" class="productDetail" value="${detail}" required></td>
+		<!--変更前<td><input type="text" name="detail" class="productDetail" value="${detail}" required></td> -->
+		<td><textarea id="productDetail" name="detail" class="productDetail" value="${detail}" required></textarea></td>
 	</tr>
 	<tr>
 		<th><label>写真</label></th>
@@ -72,6 +72,5 @@
 
 <%-- フッター --%>
 <c:import url="../common/cafefooter.jsp"/>
-</div>
 </div>
 </html>

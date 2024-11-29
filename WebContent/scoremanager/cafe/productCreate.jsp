@@ -5,7 +5,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <link rel='stylesheet' href='../../css/style2.css'>
-<div class="top_page">
 
 
 <%-- ヘッダー --%>
@@ -58,7 +57,6 @@
 	<input type="submit" value="登録" class="button" id="touroku">
 </form>
 
-</div>
 </div>
 <c:import url="../common/cafefooter.jsp"/>
 </html>
