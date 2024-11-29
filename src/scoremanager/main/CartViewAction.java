@@ -36,8 +36,6 @@ public class CartViewAction extends Action {
 			Product product = pDao.get(cart.getProduct().getProductId());
 			pList.add(product);
 		}
-		System.out.println(pList);
-		System.out.println(cartList);
 
 		req.setAttribute("cList", cartList);
 		req.setAttribute("pList", pList);
