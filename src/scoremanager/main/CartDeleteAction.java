@@ -28,7 +28,7 @@ public class CartDeleteAction  extends Action{
 
 		productId = req.getParameter("productId");
 
-		cart = cDao.get(user);
+		cart = cDao.get(user,pDao.get(productId));
 
 		cDao.delete(cart, productId);
 
