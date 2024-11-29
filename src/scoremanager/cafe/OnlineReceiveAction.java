@@ -52,7 +52,7 @@ public class OnlineReceiveAction extends Action {
 		System.out.println(list);
 
 		//JSPへフォワード 7
-		req.getRequestDispatcher("mobileReceiveView.jsp").forward(req, res);
+		req.getRequestDispatcher("onlineReceiveView.jsp").forward(req, res);
 	}
 
 }
