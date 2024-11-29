@@ -44,7 +44,6 @@
               <option value="5" <c:if test="${cList.count == 5}">selected</c:if>>5</option>
             </select>
           </c:if>
-
         </c:forEach>
       </td>
       <!-- カート削除ボタン -->
@@ -54,18 +53,26 @@
           <input type="submit" value="カートから削除">
         </form>
       </td>
+      <!-- レジへボタン -->
+      <td>
+        <form action="Settlement.action" method="post">
+          <input type="hidden" name="productId" value="${pList.productId}">
+          <input type="submit" value="レジへ進む">
+        </form>
+      </td>
+
     </tr>
   </c:forEach>
 </table>
 
 <!-- 合計金額を表示 -->
-<p id="totalAmount">合計金額:円</p>
+<p id="totalAmount">合計金額: 0円</p>
 
 </div>
 
 </div>
 </div>
-<script type="js/cartView.js"></script>
+<script src="./js/cartView.js"></script>
 <%-- フッター --%>
 <c:import url="../common/footer.jsp"/>
 
