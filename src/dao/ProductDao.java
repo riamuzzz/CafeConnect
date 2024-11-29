@@ -386,8 +386,64 @@ public class ProductDao extends Dao {
 			}
 		}
 		return list;
+	}
+	public List<Product> filter(Category category) throws Exception {
+
+		//リストを初期化
+		List<Product> list = new ArrayList<>();
+
+		//データベースへのコネクションを確立
+		Connection connection = getConnection();
+
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+		try{
+			CategoryDao cDao = new CategoryDao();
+			//プリペアードステートメントにSQL文をセット
+			statement = connection.prepareStatement(baseSql + "WHERE category_id=?");
+			statement.setString(1, category.getCategoryId());
+
+			//上記のSQL文を実行し結果を取得する
+			ResultSet rSet = statement.executeQuery();
+			//リザルトセットを全件走査
+			while (rSet.next()){
+				Product product = new Product();
+				//学生インスタンスに検索結果をセット
+				product.setProductId(rSet.getString("product_id"));
+				product.setProductName(rSet.getString("product_name"));
+				product.setPrice(rSet.getInt("price"));
+				product.setImage(rSet.getString("image"));
+				product.setProductDetail(rSet.getString("product_detail"));
+				product.setCount(rSet.getInt("count"));
+				product.setCategory(cDao.get(rSet.getString("category_id")));
+				product.setSell(rSet.getBoolean("sell"));
+				product.setInStockDay(rSet.getDate("in_stock_day"));
+				//リストに追加
+				list.add(product);
+			}
 
 
+		}catch (Exception e){
+			throw e;
+		}finally {
+			//プリペアステートメントを閉じる
+			if (statement != null){
+				try {
+					statement.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+			//コネクションを閉じる
+			if (connection != null){
+				try {
+					connection.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+		}
+		return list;
 	}
 
 	/**
