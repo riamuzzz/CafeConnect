@@ -24,6 +24,9 @@
 </table>
 <form action="CartCreateExecute.action" method="post">
 	<label>数量</label>
+	<c:if test="${num < 0}">
+		<div>0より大きい値を入力してください</div>
+	</c:if>
 	<input type="number" name="num" value="${ num }">
 	<input type="hidden" name="product" value="${ product.productId }">
 	<input type="submit" value="カートに追加">

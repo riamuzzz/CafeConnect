@@ -14,6 +14,12 @@ public class ProductDetailViewAction extends Action{
 		ProductDao pDao = new ProductDao();//商品Dao
 		//リクエストパラメータ―の取得 2
 		String productId = req.getParameter("productId");//学番
+		String numStr = req.getParameter("num");
+		String error = req.getParameter("error");
+		if (numStr != null) {
+			int num = Integer.parseInt(numStr);
+			req.setAttribute("num", num);
+		}
 		//DBからデータ取得 3
 		Product product = pDao.get(productId);//商品IDから商品インスタンスを取得
 		//ビジネスロジック 4
@@ -21,6 +27,7 @@ public class ProductDetailViewAction extends Action{
 		//DBへデータ保存 5
 		//なし
 		//レスポンス値をセット 6
+		req.setAttribute("error", error);
 		req.setAttribute("product", product);
 		//JSPへフォワード 7
 		req.getRequestDispatcher("productDetail.jsp").forward(req, res);
