@@ -21,7 +21,7 @@
 			<img src=img/mobile/mobile_top.png>
 		</div>
 		<div class=mobotan>
-			<a href="main/">商品選択</a>
+			<a href="main/MobMenu.action">商品選択</a>
 		</div>
 	</div>
 </body>

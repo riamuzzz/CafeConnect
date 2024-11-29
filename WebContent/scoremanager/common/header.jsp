@@ -48,7 +48,7 @@
 					<tr>
 						<th><a href="main/Subscription.action"><img src=img/header/サブスク.png></a></th>
 						<th><a href="ProductView.action?categoryId=CATE02"><img src=img/header/ショップ.png></a></th>
-						<th><a href="ProductView.action?categoryId=CATE01"><img src=img/header/モバイル.png></a></th>
+						<th><a href="Mobile.action"><img src=img/header/モバイル.png></a></th>
 						<th><a href="main/"><img src=img/header/店舗情報.png></a></th>
 						<th><a href="Contact.action"><img src=img/header/お問い合わせ.png></a></th>
 						<th><a href="main/MyPage.action"><img src=img/header/マイページ.png></a></th>
