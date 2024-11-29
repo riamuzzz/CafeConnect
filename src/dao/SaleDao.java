@@ -18,19 +18,16 @@ public class SaleDao extends Dao{
 	/**
 	 * baseSql:String 共通SQL文 プライベート
 	 */
+	private String sql = null;
+	private String allYearSql = "select distinct to_char(orders.order_time, 'yyyy') as year from orders order by year desc;";
 	private String baseSql = "SELECT * FROM USERS ";
 //	private String dateBaseSql = "SELECT orders.order_time as date, sum(product.price * orders.count) as price from orders join product on orders.product_id = product.product_id GROUP by orders.order_time;";
-	private String yearSql = "SELECT to_char(orders.order_time, 'yyyy') as year, to_char(orders.order_time, 'mm') as month, sum(product.price * orders.count) as price from orders join product on orders.product_id = product.product_id GROUP by month, year order by year, month;";
+	private String yearSql = "SELECT to_char(orders.order_time, 'yyyy') as year, to_char(orders.order_time, 'mm') as month, sum(product.price * orders.count) as price from orders join product on orders.product_id = product.product_id GROUP by month, year order by month, year";
 	private String productSql = "select product.product_name as product_name, '累計' as year, '累計' as month, sum(product.price * orders.count) as data from orders join product on orders.product_id = product.product_id group by product_name order by data desc;";
 //	private String productSql = "select product.product_name as product_name, to_char(orders.order_time, 'yyyy') as year, to_char(orders.order_time, 'mm') as month, sum(product.price * orders.count) as data from orders join product on orders.product_id = product.product_id where product.category_id = 'CATE01' group by product_name, year, month having to_char(orders.order_time, 'yyyy') = '2024' order by data desc;";
-		/**
-		 * getメソッド 学生番号を指定して学生インスタンスを1件取得する
-		 *
-		 * @param no:String
-		 *            学生番号
-		 * @return 学生クラスのインスタンス 存在しない場合はnull
-		 * @throws Exception
-		 */
+	private String productYearSql ="select product.product_name as product_name, to_char(orders.order_time, 'yyyy') as year, '累計' as month, sum(product.price * orders.count) as data from orders join product on orders.product_id = product.product_id group by product_name, year having to_char(orders.order_time, 'yyyy') = ? order by data desc;";
+	private String productMonthSql ="select product.product_name as product_name, to_char(orders.order_time, 'yyyy') as year, to_char(orders.order_time, 'mm') as month, sum(product.price * orders.count) as data from orders join product on orders.product_id = product.product_id group by product_name, year, month having to_char(orders.order_time, 'yyyy') = ? and to_char(orders.order_time, 'mm') = ? order by data desc;";
+
 		public User get(String userId) throws Exception {
 
 			//ユーザインスタンスを初期化
@@ -130,6 +127,25 @@ public class SaleDao extends Dao{
 
 		}
 
+		private List<String> yearPostFilter(ResultSet rSet) throws Exception {
+			//リストを初期化
+			List<String> list = new ArrayList<>();
+
+			try{
+				//リザルトセットを全件走査
+				while (rSet.next()){
+					String year = rSet.getString("year");
+					list.add(year);
+
+				}
+			} catch (SQLException | NullPointerException e){
+				e.printStackTrace();
+			}
+			return list;
+
+
+		}
+
 
 		private List<Sale> datePostFilter(ResultSet rSet) throws Exception {
 			//リストを初期化
@@ -139,7 +155,7 @@ public class SaleDao extends Dao{
 				//リザルトセットを全件走査
 				while (rSet.next()){
 					Sale sale = new Sale();
-					//顧客インスタンスに検索結果をセット
+					//時系列別売上インスタンスに検索結果をセット
 					sale.setYear(rSet.getString("year"));
 					sale.setMonth(rSet.getString("month"));
 					sale.setData(rSet.getInt("price"));
@@ -164,7 +180,7 @@ public class SaleDao extends Dao{
 				//リザルトセットを全件走査
 				while (rSet.next()){
 					ProductSale productSale = new ProductSale();
-					//顧客インスタンスに検索結果をセット
+					//商品別売上インスタンスに検索結果をセット
 					productSale.setProductName(rSet.getString("product_name"));
 					productSale.setYear(rSet.getString("year"));
 					productSale.setMonth(rSet.getString("month"));
@@ -250,15 +266,10 @@ public class SaleDao extends Dao{
 			//プリペアードステートメント
 			PreparedStatement statement = null;
 
-			//SQL分のソート
-//			String order = " order by orders.date_time asc";
-
 			try{
 
 				//プリペアードステートメントにSQL文をセット
 				statement = connection.prepareStatement(yearSql);
-
-//				statement.setDate(1, date);
 
 				//上記のSQL文を実行し結果を取得する
 				ResultSet rSet = statement.executeQuery();
@@ -289,7 +300,7 @@ public class SaleDao extends Dao{
 		}
 
 
-		public List<ProductSale> productFilter(Date date) throws Exception {
+		public List<ProductSale> productFilter(String year, String month) throws Exception {
 
 			//リストを初期化
 			List<ProductSale> list = new ArrayList<>();
@@ -300,16 +311,82 @@ public class SaleDao extends Dao{
 			//プリペアードステートメント
 			PreparedStatement statement = null;
 
+			String condition = "";
+
+			if (year != null && month != null){
+				sql = productMonthSql;
+				condition = "month";
+			} else if (year != null && month == null){
+				sql = productYearSql;
+				condition = "year";
+			} else {
+				sql = productSql;
+			}
+
 
 			try{
 
 				//プリペアードステートメントにSQL文をセット
-				statement = connection.prepareStatement(productSql);
+				statement = connection.prepareStatement(sql);
+
+				if (!condition.isEmpty()) {
+					if (condition == "year"){
+						statement.setString(1, year);
+					} else if (condition == "month"){
+						statement.setString(1, year);
+						statement.setString(2, month);
+					}
+		        }
 
 				//上記のSQL文を実行し結果を取得する
 				ResultSet rSet = statement.executeQuery();
 
 				list = productPostFilter(rSet);
+
+			}catch (Exception e){
+				throw e;
+			}finally {
+				//プリペアステートメントを閉じる
+				if (statement != null){
+					try {
+						statement.close();
+					} catch (SQLException sqle){
+						throw sqle;
+					}
+				}
+				//コネクションを閉じる
+				if (connection != null){
+					try {
+						connection.close();
+					} catch (SQLException sqle){
+						throw sqle;
+					}
+				}
+			}
+			return list;
+		}
+
+
+		public List<String> yearFilter() throws Exception {
+
+			//リストを初期化
+			List<String> list = new ArrayList<>();
+
+			//データベースへのコネクションを確立
+			Connection connection = getConnection();
+
+			//プリペアードステートメント
+			PreparedStatement statement = null;
+
+			try{
+
+				//プリペアードステートメントにSQL文をセット
+				statement = connection.prepareStatement(allYearSql);
+
+				//上記のSQL文を実行し結果を取得する
+				ResultSet rSet = statement.executeQuery();
+
+				list = yearPostFilter(rSet);
 
 			}catch (Exception e){
 				throw e;
