@@ -121,12 +121,15 @@
   width: 300px;
   height: 170%;
   margin-top: 75px;
-  padding: 20px 0;
+  padding: 10px 0;
   list-style: none;
   background-color: #ECEFF1;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
   transition-duration: .25s;
   z-index:10000
+}
+.menu__box label{
+	margin-left:10px;
 }
 .menu__item {
   display: block;
