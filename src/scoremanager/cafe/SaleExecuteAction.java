@@ -54,10 +54,10 @@ public class SaleExecuteAction extends Action{
 
 		String year = req.getParameter("year");
 		String month = req.getParameter("month");
-		if (year == "0"){
+		if (year.equals("0")){
 			year = null;
 		}
-		if (month == "0"){
+		if (month.equals("0")){
 			month = null;
 		}
 
