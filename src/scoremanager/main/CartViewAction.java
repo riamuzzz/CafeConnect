@@ -40,7 +40,6 @@ public class CartViewAction extends Action {
 		req.setAttribute("cList", cartList);
 		req.setAttribute("pList", pList);
 
-
 		req.getRequestDispatcher("cartView.jsp").forward(req, res);
 	}
 

@@ -28,7 +28,8 @@
 	<input type="hidden" name="product" value="${ product.productId }">
 	<input type="submit" value="カートに追加">
 </form>
-<a href="TopPageExecute.action">選択を続ける</a>
+<a href="CartView.action">レジに進む</a>
+<a href="TopPageExecute.action">選択に戻る</a>
 
 <%-- フッター --%>
 <c:import url="./common/footer.jsp"/>
