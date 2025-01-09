@@ -14,7 +14,7 @@ import dao.CartDao;
 import dao.ProductDao;
 import tool.Action;
 
-public class CartViewAction extends Action {
+public class MobileCartViewAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -32,9 +32,10 @@ public class CartViewAction extends Action {
 		ProductDao pDao =new ProductDao();
 		cartList = cDao.filter(user);
 
+
 		for (Cart cart : cartList){
 			Product product = pDao.get(cart.getProduct().getProductId());
-			if(product.getCategory().getCategoryId() == "CATE02"){
+			if(product.getCategory().getCategoryId() != "CATE02"){
 				pList.add(product);
 			}
 		}
@@ -44,6 +45,5 @@ public class CartViewAction extends Action {
 
 		req.getRequestDispatcher("cartView.jsp").forward(req, res);
 	}
-
 
 }

@@ -40,7 +40,11 @@ public class LoginExecuteAction extends Action{
 			session.setAttribute("user", user);
 			if (redirecturl != null){
 				//リダイレクト
-				url = redirecturl + "?num=" + num + "&product=" + product;
+				if (num != null && product != null){
+					url = redirecturl + "?num=" + num + "&product=" + product;
+				} else {
+					url = redirecturl;
+				}
 				res.sendRedirect(url);
 			} else if (redirecturl == null){
 				url = "main/TopPageExecute.action";

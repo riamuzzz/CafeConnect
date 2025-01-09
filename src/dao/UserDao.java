@@ -255,17 +255,16 @@ public class UserDao extends Dao{
 					//学生が存在した場合
 					//プリペアードステートメントにUpdate文をセット
 					statement = connection.prepareStatement(
-							"UPDATE USERS SET USER_ID=? ,USER_PASS=? ,USER_NAME=? ,EMAIL=? ,ADDRESS=? ,TEL=? ,CARD_NUMBER=? ,SUBSCRIPTION=? ");
+							"UPDATE USERS SET USER_PASS=? ,USER_NAME=? ,EMAIL=? ,ADDRESS=? ,TEL=? ,CARD_NUMBER=? ,SUBSCRIPTION=? WHERE USER_ID=?");
 					//各部分に値を設定
-					statement.setString(1, user.getUserId());
-					statement.setString(2, user.getUserPassword());
-					statement.setString(3, user.getUserName());
-					statement.setString(4, user.getEmail());
-					statement.setString(5, user.getAddress());
-					statement.setString(6, user.getTel());
-					statement.setString(7, user.getCard().getCardNumber());
-					statement.setBoolean(8, user.isSubscription());
-
+					statement.setString(1, user.getUserPassword());
+					statement.setString(2, user.getUserName());
+					statement.setString(3, user.getEmail());
+					statement.setString(4, user.getAddress());
+					statement.setString(5, user.getTel());
+					statement.setString(6, user.getCard().getCardNumber());
+					statement.setBoolean(7, user.isSubscription());
+					statement.setString(8, user.getUserId());
 				}
 
 				//プリペアードステートメントを実行

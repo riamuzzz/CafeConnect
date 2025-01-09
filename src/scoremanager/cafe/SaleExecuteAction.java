@@ -3,6 +3,7 @@ package scoremanager.cafe;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -33,10 +34,28 @@ public class SaleExecuteAction extends Action{
 		SaleDao saleDao = new SaleDao();
 		UserDao userDao = new UserDao();
 
+		// 注文履歴がある年を取得
+		List<String> years = saleDao.yearFilter();
+		years = saleDao.yearFilter();
+		// 月(1月から12月)をリストに追加
+		List<String> months = new ArrayList<String>();
+		for (int i = 1; i <=9; i++){
+			months.add("0" + String.valueOf(i));
+		}
+		months.add("10");
+		months.add("11");
+		months.add("12");
+
 		//サブスクに会員登録をしているuser情報を取得
 		List<User> subUser = saleDao.filter();
 		//user全員の情報を取得
 		List<User> allUser = userDao.filter(null, null, null);
+
+		String year = "null";
+		String month = "null";
+
+		year = req.getParameter("year");
+		month = req.getParameter("month");
 
 		// 会員の割合(double) = 会員人数 ÷ ユーザ全員
 		double percent = (double)subUser.size() / (double)allUser.size();
@@ -52,7 +71,7 @@ public class SaleExecuteAction extends Action{
 
         // サブスク会員割合円グラフ
         DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue("登録済み\n" + sub + "%", sub);   // 会員のデータをセット
+        dataset.setValue("登録済み\n" + sub + "%", sub);     // 会員のデータをセット
         dataset.setValue("未登録\n" + notSub + "%", notSub); // 会員ではないデータをセット
 
         JFreeChart chart = ChartFactory.createPieChart(
@@ -86,10 +105,18 @@ public class SaleExecuteAction extends Action{
 
 
         // 商品別棒グラフ
-        List<ProductSale> productData = saleDao.productFilter(day);
+        System.out.println("a" + year);
+        System.out.println("b" + month);
+        List<ProductSale> productData = saleDao.productFilter(year, month);
         DefaultCategoryDataset barData = new DefaultCategoryDataset();
-        for (ProductSale productSale : productData){
-        	barData.addValue(productSale.getData(), productSale.getYear(), productSale.getProductName());
+        if (month == null){
+        	for (ProductSale productSale : productData){
+        		barData.addValue(productSale.getData(), productSale.getYear(), productSale.getProductName());
+        	}
+        } else {
+        	for (ProductSale productSale : productData){
+        		barData.addValue(productSale.getData(), productSale.getMonth() + "月", productSale.getProductName());
+        	}
         }
 
         JFreeChart barChart = ChartFactory.createBarChart("商品別売上",
@@ -124,10 +151,13 @@ public class SaleExecuteAction extends Action{
         String barEncodedImage = Base64.getEncoder().encodeToString(barImageBytes);
 
         //グラフの画像をセット
+        req.setAttribute("years", years);
+        req.setAttribute("months", months);
+        req.setAttribute("selectYear", year);
+        req.setAttribute("selectMonth", month);
         req.setAttribute("graph", encodedImage);
         req.setAttribute("lineGraph", lineEncodedImage);
         req.setAttribute("barGraph", barEncodedImage);
-
 
 
         req.getRequestDispatcher("sale.jsp").forward(req, res);

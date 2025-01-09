@@ -22,10 +22,15 @@
 	<tr><td>${ product.price }円（税込）</td></tr>
 </table>
 <form id="myForm" method="post">
-	<label>残り${ g }g</label>
-	<div>
-		10 × <input type="number" name="count" value="${ count }">
-	</div>
+	<c:if test="${ !error.isEmpty()  }">
+		<label>${ error }</label>
+	</c:if>
+	<c:if test="${ error==null  }">
+		<label>残り${ g }g</label>
+		<div>
+			10 × <input type="number" name="count" value="${ count }">
+		</div>
+	</c:if>
 	<!-- 決済確認画面に遷移 -->
 	 <input type="submit" onclick="changeAction('card/Settlement.action')" value="決済画面へ">
 	 <!-- 選択を続けるを押すとカートに商品が追加され選択画面に戻る -->

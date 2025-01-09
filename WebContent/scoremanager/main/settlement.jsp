@@ -17,16 +17,36 @@
 <div class="content">
 
 	<h2>${category.categoryName }</h2>
+
 	<table>
-			<tr>
-				<td>
-					<a href="ProductDetailView.action?productId=${ product.productId }"><img src="../img/product/${ product.image }"></a>
-				</td>
-			</tr>
-			<tr><td>${ product.productName }</td></tr>
-			<tr><td>${ product.price }円</td></tr>
+			<tr><td>お届け先：${ user.userName }</td></tr>
+			<tr><td>${ user.address }</td></tr>
+
+			<tr><td>変更<td></tr>
 
 	</table>
+
+	<table>
+
+			<tr><td>お支払方法：${ card.cardNumber }</td></tr>
+			<tr><td>カード氏名：${ card.cardName }</td></tr>
+			<tr><td>有効期限：${ card.cardExpiryDate }</td></tr>
+
+			<tr><td>変更<td></tr>
+
+	</table>
+
+	<table>
+
+		<tr><td>お届け予定：${ cd.cardNumber }</td></tr>
+		<tr><td>カード氏名：${ card.cardName }</td></tr>
+		<tr><td>有効期限：${ card.cardExpiryDate }</td></tr>
+
+		<tr><td>変更<td></tr>
+
+	</table>
+
+
 </div>
 
 <%-- フッター --%>
