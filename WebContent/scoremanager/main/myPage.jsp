@@ -1,4 +1,3 @@
-<%-- 科目登録JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,6 +5,7 @@
 <html>
 <body>
 <c:import url="../common/main_header.jsp" />
+<a>asdfghjkl;</a>
 <a href="CardCreate.action">クレジットカード登録</a>
 
 	<form action="UserUpdateExecute.action" method="post">
