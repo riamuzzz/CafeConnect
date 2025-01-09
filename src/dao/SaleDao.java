@@ -198,7 +198,7 @@ public class SaleDao extends Dao{
 		}
 
 		/**
-		 * filterメソッド 名前と電話番号を指定して顧客の一覧を取得する
+		 * filterメソッド サブスク会員を取得
 		 */
 		public List<User> filter() throws Exception {
 
@@ -313,16 +313,30 @@ public class SaleDao extends Dao{
 
 			String condition = "";
 
-			if (year != null && month != null){
-				sql = productMonthSql;
-				condition = "month";
-			} else if (year != null && month == null){
+			System.out.println("year:" + year);
+			System.out.println("month:" + month);
+
+//			if (year != null && month != null){
+//				sql = productMonthSql;
+//				condition = "month";
+//			} else if (year != null && month == null){
+//				sql = productYearSql;
+//				condition = "year";
+//			} else {
+//				sql = productSql;
+//			}
+
+			if (year == null && month == null || year.equals("null") && month.equals("null")) {
+				sql = productSql;
+			} else if (year != null && month == null || !year.equals("null") && month.equals("null")) {
 				sql = productYearSql;
 				condition = "year";
 			} else {
-				sql = productSql;
+				sql = productMonthSql;
+				condition = "month";
 			}
 
+			System.out.println("sql:" + sql);
 
 			try{
 
