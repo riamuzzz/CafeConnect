@@ -28,6 +28,7 @@
       </td>
       <!-- 商品名 -->
       <td>${pList.productName}</td>
+
       <!-- 価格 -->
       <td>
         <span class="price" data-index="${status.index}">${pList.price}</span>円
@@ -36,7 +37,7 @@
       <td>
         <c:forEach var="cList" items="${cList}">
           <c:if test="${cList.product.productId eq pList.productId}">
-            <select name="num" class="quantity" data-index="${status.index}" onchange="calculateTotal()">
+            <select name="num${ cList.product.productId }" class="quantity" data-index="${status.index}" onchange="calculateTotal()">
               <option value="1" <c:if test="${cList.count == 1}">selected</c:if>>1</option>
               <option value="2" <c:if test="${cList.count == 2}">selected</c:if>>2</option>
               <option value="3" <c:if test="${cList.count == 3}">selected</c:if>>3</option>
@@ -53,20 +54,29 @@
           <input type="submit" value="カートから削除">
         </form>
       </td>
-      <!-- レジへボタン -->
-      <td>
-        <form action="Settlement.action" method="post">
-          <input type="hidden" name="productId" value="${pList.productId}">
-          <input type="submit" value="レジへ進む">
-        </form>
-      </td>
 
     </tr>
-  </c:forEach>
-</table>
 
-<!-- 合計金額を表示 -->
-<p id="totalAmount">合計金額: 0円</p>
+  </c:forEach>
+
+	<!-- 合計金額を表示 -->
+	<td id="totalAmount">合計金額: 0円</td>
+
+       <!-- レジへボタン -->
+     <td>
+       <form action="Settlement.action" method="post">
+
+        <c:forEach var="cList" items="${cList}" varStatus="status">
+
+         <input type="hidden" name="cList" value='[{}]'>
+
+         </c:forEach>
+
+         <input type="submit" value="レジへ進む">
+       </form>
+     </td>
+
+</table>
 
 </div>
 

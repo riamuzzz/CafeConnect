@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.Card;
 import bean.User;
+import dao.ProductDao;
 import tool.Action;
 
 public class SettlementAction extends Action{
@@ -16,13 +17,16 @@ public class SettlementAction extends Action{
 		//ユーザー情報取得
 		HttpSession session = req.getSession();//セッション
 		User user = (User)session.getAttribute("user");//ログインユーザー
+		ProductDao pDao = new ProductDao();
 
 		//リクエストパラメータ取得
-		String productId = req.getParameter("productId");
+		String[] pList = req.getParameterValues("pList");
+		System.out.println(pList);
+
+		String num = req.getParameter("num");
 		//DBからデータ取得 3
 		Card card =user.getCard();
 
-		//なし
 		//ビジネスロジック 4
 		//なし
 		//DBへデータ保存 5
@@ -30,7 +34,8 @@ public class SettlementAction extends Action{
 		//レスポンス値をセット 6
 		req.setAttribute("user", user);
 		req.setAttribute("card", card);
-		req.setAttribute("productId", productId);
+		req.setAttribute("pList", pList);
+		req.setAttribute("num", num);
 
 
 		//JSPへフォワード 7

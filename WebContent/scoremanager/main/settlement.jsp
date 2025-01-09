@@ -38,9 +38,27 @@
 
 	<table>
 
-		<tr><td>お届け予定：${ cd.cardNumber }</td></tr>
-		<tr><td>カード氏名：${ card.cardName }</td></tr>
-		<tr><td>有効期限：${ card.cardExpiryDate }</td></tr>
+  <c:forEach var="pList" items="${pList}" varStatus="status">
+    <tr class="item" data-index="${status.index}">
+      <!-- 商品画像 -->
+      <td>
+        <img src="../img/product/${pList.image}" alt="${pList.productName}">
+      </td>
+      <!-- 商品名 -->
+      <td>${pList.productName}</td>
+
+      <!-- 価格 -->
+      <td>
+        <span class="price" >${pList.price}</span>円
+      </td>
+      <!-- 個数 -->
+      <td>
+      </td>
+
+
+    </tr>
+
+  </c:forEach>
 
 		<tr><td>変更<td></tr>
 
