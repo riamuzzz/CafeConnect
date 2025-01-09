@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<body>
-<c:import url="../common/main_header.jsp" />
-<a>asdfghjkl;</a>
+<div class="productView">
+
+
+<%-- ヘッダー --%>
+<c:import url="../common/main_header.jsp"/>
+
+<div class="main">
+<%-- ナビゲーション --%>
+<c:import url="../common/navigation.jsp"/>
 <a href="CardCreate.action">クレジットカード登録</a>
 
 	<form action="UserUpdateExecute.action" method="post">
@@ -42,6 +49,8 @@
 	</form>
 
 
-<c:import url="../common/navigation.jsp" />
-</body>
+<%-- フッター --%>
+<c:import url="../common/footer.jsp"/>
+</div>
+</div>
 </html>

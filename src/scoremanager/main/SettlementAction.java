@@ -30,6 +30,8 @@ public class SettlementAction extends Action{
 		//レスポンス値をセット 6
 		req.setAttribute("user", user);
 		req.setAttribute("card", card);
+		req.setAttribute("productId", productId);
+
 
 		//JSPへフォワード 7
 		req.getRequestDispatcher("settlement.jsp").forward(req, res);
