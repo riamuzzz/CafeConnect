@@ -52,6 +52,6 @@
 			</table>
 			<a href="../Logout.action">ログアウト</a>
 			<div>${ user.userName }さん</div>
-			</div>
 		</div>
 	</div>
+</div>
