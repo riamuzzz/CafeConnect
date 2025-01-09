@@ -12,7 +12,6 @@ import bean.Product;
 import bean.User;
 import dao.OrderDao;
 import dao.ProductDao;
-import dao.UserDao;
 import tool.Action;
 
 public class ProductSelectDetailViewAction extends Action{
@@ -21,7 +20,6 @@ public class ProductSelectDetailViewAction extends Action{
 		//ローカル変数の宣言 1
 		HttpSession session = req.getSession(true);//セッションを有効にする
 		User user = (User)session.getAttribute("user");//ログイン中のユーザ情報取得
-		UserDao uDao = new UserDao();//ユーザDao
 		OrderDao oDao = new OrderDao();//注文Dao
 		ProductDao pDao = new ProductDao();//商品Dao
 		List<Order> orders = new ArrayList<>();
@@ -34,12 +32,17 @@ public class ProductSelectDetailViewAction extends Action{
 		//現在ログイン中のユーザが過去にサブスクで商品を注文していたか確認
 		if (!orders.isEmpty()){
 			for (Order order : orders) {
+				//現在ログイン中のユーザがサブスク会員の場合
 				if(order.isSubscription() == true) {
 					//グラム数を追加していく
 					g = g - order.getCount();
-				}
-				//300gを下回ったら
-				if (0 > g) {
+					//300gを下回ったら
+					if (0 >= g) {
+						//ログイン中のユーザのサブスク購入履歴に飛ぶ
+						String error = "300g以上は選択できません";
+						req.setAttribute("error", error);
+					}
+				} else {
 
 				}
 			}
