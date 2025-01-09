@@ -27,13 +27,17 @@ public class CartDeleteAction  extends Action{
 		Product product =new Product();
 
 		productId = req.getParameter("productId");
+		product =pDao.get(productId);
 
 		cart = cDao.get(user,pDao.get(productId));
 
 		cDao.delete(cart, productId);
 
-
-		req.getRequestDispatcher("CartView.action").forward(req, res);
+		if(product.getCategory().getCategoryId() == "CATE02"){
+			req.getRequestDispatcher("CartView.action").forward(req, res);
+		}else{
+			req.getRequestDispatcher("MobileCartView.action").forward(req, res);
+		}
 
 	}
 }

@@ -28,7 +28,7 @@
 	<input type="hidden" name="product" value="${ product.productId }">
 	<input type="submit" value="カートに追加">
 </form>
-<a href="CartView.action">レジに進む</a>
+<a href="main/CartView.action">レジに進む</a>
 <a href="TopPageExecute.action">選択に戻る</a>
 
 <%-- フッター --%>

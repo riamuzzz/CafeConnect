@@ -27,12 +27,12 @@
 			<table>
 					<tr>
 						<th><a href="../TopPageExecute.action"><img src=../img/header/トップ.png width="30"></a></th>
-						<th><a href="CartView.action"><img src=../img/header/モバイル.jpeg width="40"></a></th>
+						<th><a href="MobileCartView.action"><img src=../img/header/モバイル.jpeg width="40"></a></th>
 						<th><a href="CartView.action"><img src=../img/header/カート.jpeg width="40"></a></th>
 					</tr>
 					<tr>
 						<td><a href="../TopPageExecute.action">トップ</a></td>
-						<td><a href="CartView.action">モバイル</a></td>
+						<td><a href="MobileCartView.action">モバイル</a></td>
 						<td><a href="CartView.action">カート</a></td>
 					</tr>
 				</table>
