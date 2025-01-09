@@ -21,7 +21,7 @@
 			<th><label>年</label></th>
 			<td>
 			<select name="year" id="year">
-			<option value="0">--------</option>
+			<option value=null>--------</option>
 				<c:forEach var="year" items="${years}">
 					<option value="${year}"<c:if test="${year==selectYear}">selected</c:if>>${year}</option>
 				</c:forEach>
@@ -30,7 +30,7 @@
 			<th><label>月</label></th>
 			<td>
 			<select name="month" id="month">
-			<option value="0">--------</option>
+			<option value=null>--------</option>
 				<c:forEach var="month" items="${months}">
 					<option value="${month}" <c:if test="${month==selectMonth}">selected</c:if>>${month}</option>
 				</c:forEach>

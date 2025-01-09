@@ -51,15 +51,11 @@ public class SaleExecuteAction extends Action{
 		//user全員の情報を取得
 		List<User> allUser = userDao.filter(null, null, null);
 
+		String year = "null";
+		String month = "null";
 
-		String year = req.getParameter("year");
-		String month = req.getParameter("month");
-		if (year.equals("0")){
-			year = null;
-		}
-		if (month.equals("0")){
-			month = null;
-		}
+		year = req.getParameter("year");
+		month = req.getParameter("month");
 
 		// 会員の割合(double) = 会員人数 ÷ ユーザ全員
 		double percent = (double)subUser.size() / (double)allUser.size();
