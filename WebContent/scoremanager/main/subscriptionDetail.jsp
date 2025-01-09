@@ -9,7 +9,7 @@
 
 
 <%-- ヘッダー --%>
-<c:import url="../common/header.jsp"/>
+<c:import url="../common/main_header.jsp"/>
 
 <div class="main">
 <%-- ナビゲーション --%>
