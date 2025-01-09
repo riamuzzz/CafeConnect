@@ -348,18 +348,25 @@ a {
 
 /* syosai */
 
+.syosai {
+	margin-top: 300px;
+}
+
 .bota1 {
-	background-color: #f01340;
+	background-color: #f2486a;
 	color: #ffffff;
 	font-size: 100%;
 	width: 11%;
 }
 
 .bota2 {
-	background-color: #f01340;
+	background-color: #f2486a;
 	color: #ffffff;
 	font-size: 100%;
 	width: 11%;
+	position: relative;
+	top: 0%;
+	left: 12%;
 }
 
 

@@ -4,6 +4,7 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <head>
+<c:import url="./common/header.jsp"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel='stylesheet' href='../css/style.css'>
 
@@ -35,7 +36,7 @@
 				<div class="ryo">残り○○g</div>
 
 				<div class="kazu">
-					<lavel>10<input placeholder="1">g</lavel>
+					<lavel>10×<input placeholder="1">g</lavel>
 				</div>
 
 				<div class="bota1">
