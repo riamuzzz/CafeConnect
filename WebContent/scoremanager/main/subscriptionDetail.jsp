@@ -16,9 +16,9 @@
 <c:import url="../common/navigation.jsp"/>
 <%-- ヘッダーのインポート --%>
 
-
+<h1>ライトプラン</h1>
 <c:forEach var="order" items="${orders}">
-    <div>${order.product.productName}</div>
+    <div>${order.product.productName} ${ order.count }g</div>
 </c:forEach>
 
 <%-- フッター --%>

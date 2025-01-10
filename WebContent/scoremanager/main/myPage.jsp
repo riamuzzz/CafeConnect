@@ -40,16 +40,14 @@
 		<input type="password" name="password" value="${ user.userPassword }">
 		<input type="submit" value="変更">
 	</form>
-	<form action="#" method="post">
-		<label>入会しているサブスクリプション</label>
-		<!-- USERSテーブルのsabscriptionがtrueなら入会中のプラン表示 -->
-		<c:if test="${ user.subscription == false }">
-			<div><a href="Subscription.action">サブスクリプション登録</a></div>
-		</c:if>
-		<c:if test="${ user.subscription == true }">
-			<div><a href="SabscriptionDetail.action">サブスクリプション詳細</a></div>
-		</c:if>
-	</form>
+	<label>入会しているサブスクリプション</label>
+	<!-- USERSテーブルのsabscriptionがtrueなら入会中のプラン表示 -->
+	<c:if test="${ user.subscription == false }">
+		<div><a href="Subscription.action">サブスクリプション登録</a></div>
+	</c:if>
+	<c:if test="${ user.subscription == true }">
+		<div><a href="SabscriptionDetail.action">サブスクリプション詳細</a></div>
+	</c:if>
 
 
 <%-- フッター --%>
