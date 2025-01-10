@@ -20,5 +20,4 @@ public class HealthCheckServlet extends javax.servlet.http.HttpServlet{
 		writer.write("OK");
 		writer.flush();
 	}
-
 }
