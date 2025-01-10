@@ -17,31 +17,31 @@
 	<div class=otoi>
 		<label>お問い合わせ</label>
 	</div>
-	<form action = "ProductCreateExecute.action" method="post">
+	<form action = "ContactExecute.action" method="post">
 
 		<table class=hyou>
 		<tr>
 			<th><label>メールアドレス</label></th>
-			<td><input type="text" name="productName"></td>
+			<td><input type="text" name="mail"></td>
 		</tr>
 		<tr>
 			<th><label>お名前</label></th>
-			<td><input type="text" name="price"></td>
+			<td><input type="text" name="name"></td>
 		</tr>
 		<tr>
 			<th><label>電話番号</label></th>
-			<td><input type="text" name="count"></td>
+			<td><input type="text" name="tel"></td>
 		</tr>
 			<tr>
 			<th><label>お問い合わせ内容</label></th>
-			<td><textarea name="count"></textarea></td>
+			<td><textarea name="message"></textarea></td>
 		</tr>
 		</table>
 
-	</form>
+		<div class=sousin>
+			<input type="submit" value="送信する">
+		</div>
 
-	<div class=sousin>
-		<label>送信する</label>
-	</div>
+	</form>
 
 </div>
