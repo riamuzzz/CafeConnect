@@ -26,11 +26,11 @@ public class ContactExecuteAction extends Action {
 //		String from = "s.ryo.h16@gmail.com";
 //        String fromName = "差出人名を指定します";
         String subject = "お問い合わせ";
-        String to = req.getParameter("mail");
-        String toName = "hoge";
+        String to = "s.ryo.h16@gmail.com";
+        String toName = req.getParameter("name");
 //        String body = "これは本文です。\n\n\n\n\n\n\n\n\n\n以上。";
 
-		String from = "s.ryo.h16@gmail.com";
+		String from = req.getParameter("mail");
 		String fromName = req.getParameter("name");
 		String tel = req.getParameter("tel");
 		String body = req.getParameter("message");
@@ -84,7 +84,7 @@ public class ContactExecuteAction extends Action {
 
             // 本文の作成
             messageBody = new MimeBodyPart();
-            messageBody.setText(body + "\n\n\n\n電話番号:" + tel, "iso-2022-jp");
+            messageBody.setText(body + "\n\n\n\nメールアドレス:" + from + "\n電話番号:" + tel, "iso-2022-jp");
             messageBody.setHeader("Content-Transfer-Encoding", "7bit");
             multipart.addBodyPart(messageBody);  // 本文部分を追加
 
