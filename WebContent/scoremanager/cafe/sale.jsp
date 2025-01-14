@@ -13,7 +13,7 @@
 <%-- ナビゲーション --%>
 <c:import url="../common/cafenavigation.jsp"/>
 
-<h2>売上情報</h2>
+<h1>売上情報</h1>
 
 <form action = "SaleExecute.action" method="post">
 	<table>
@@ -40,9 +40,10 @@
 		</tr>
 	</table>
 </form>
+</div>
 
+<div class="saleimg">
 <img src="data:image/png;base64,${lineGraph}" alt="売上折れ線グラフ" />
 <img src="data:image/png;base64,${barGraph}" alt="売上棒グラフ" />
 <img src="data:image/png;base64,${graph}" alt="サブスク会員割合グラフ" />
-
 </div>
