@@ -1,0 +1,134 @@
+.all {
+	display: flex;
+	gap: 10%;
+	margin: 5% 2.5%;
+	border: 1px solid #c0c0c0;
+	height: 500px;
+}
+.nav {
+	width: 20%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-right: 1px solid #c0c0c0;
+}
+.mypage {
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: stretch;
+}
+.nav .name {
+	height: 30%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2em;
+	font-weight: bold;
+}
+.nav .account_information {
+	height: 10%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2em;
+}
+.nav .purchase_history {
+	height: 10%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2em;
+}
+.nav .card_create {
+	height: 10%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2em;
+}
+.nav .space {
+	height: 40%;
+}
+.mypage .name {
+	height: 16%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+}
+.mypage .name form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.maypage .name form .input-contener {
+	display: flex;
+}
+.mypage .tel {
+	height: 16%;
+	display: flex;
+	justify-content: center;
+}
+.mypage .tel form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.maypage .tel form .input-contener {
+	display: flex;
+}
+.mypage .address {
+	height: 16%;
+	display: flex;
+	justify-content: center;
+}
+.mypage .address form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.maypage .address form .input-contener {
+	display: flex;
+}
+.mypage .mail {
+	height: 16%;
+	display: flex;
+	justify-content: center;
+	left: 0px;
+	right: 0px;
+}
+.mypage .mail form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.maypage .mail form .input-contener {
+	display: flex;
+}
+.mypage .pass {
+	height: 16%;
+	display: flex;
+	justify-content: center;
+	left: 0px;
+	right: 0px;
+}
+.mypage .pass form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.maypage .pass form .input-contener {
+	display: flex;
+}
+.input-contener input[type="text"] {
+	width: 70%;
+}
+.mypage .subscrption {
+	height: 20%;
+	display: flex;
+	justify-content: center;
+}
+
