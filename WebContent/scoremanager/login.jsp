@@ -11,8 +11,12 @@
 <body>
 <%@ include file="common/header.jsp" %>
 <div class=log>
-	<p>ログイン</p>
-	<p>会員ログイン</p>
+	<div class=logtitle>会員ログイン</div>
+
+	<div class=kaiin>会員の方はこちら</div>
+
+	<div class=subNyukai>サブスク入会</div>
+
 	<c:choose>
 		<c:when test="${ redirect eq '/CafeConnect/scoremanager/main/Settlement.action' || redirect eq '/CafeConnect/scoremanager/main/CartCreateExecute.action' }">
 			<form action = "LoginExecute.action?redirect=${ redirect }&num=${ num }&product=${ product }" method="post">
@@ -46,12 +50,12 @@
 		<c:when test="${not empty redirect}">
 			<form action = "LoginExecute.action?redirect=${ redirect }" method="post">
 			<!-- メールアドレス -->
-			<label>メールアドレス</label>
-				<input type="text" name="email" value="gst1@icloud.com">
+			<label>メールアドレス</label><br>
+				<input type="text" name="email" value="gst1@icloud.com"><br>
 
 			<!-- パスワード -->
-			<label>パスワード</label>
-				<input type="password" id="password" name="password" value="pass01">
+			<label>パスワード</label><br>
+				<input type="password" id="password" name="password" value="pass01"><br>
 
 			<!-- パスワード表示チェックボックス -->
 				<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
@@ -66,7 +70,7 @@
 									passwordInput.type = "password";
 								}
 							}
-						</script>
+						</script><br>
 
 			<!-- ログイン用ボタン -->
 			<input type="submit" name="login" value="ログイン"/>
@@ -103,6 +107,13 @@
 		</c:otherwise>
 	</c:choose>
 
+	<div class=sinki>
+		<label>新規会員登録の方はこちら</label>
+	</div>
+
+	<div class=touroku>
+		<label>✉メールアドレスで会員登録</label>
+	</div>
 
 <%@ include file="common/footer.jsp" %>
 </div>

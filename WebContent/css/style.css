@@ -43,10 +43,6 @@ h2 {
 	right: 60px;
 }
 
-.kwdkensaku {
-
-}
-
 .box {
 	width: 180%;
 	box-sizing: border-box;
@@ -60,7 +56,7 @@ h2 {
 .banner {
 	float: right;
 	padding: 0%;
-	margin: 0% 1% 0% 0%;
+	margin: 0% 2% 0% 0%;
 	width: 26%;
 	height:;
 	position: relative;
@@ -82,6 +78,10 @@ h2 {
 	margin: 0px;
 	padding: 0px;
 
+}
+
+.banner td {
+	text-align: center;
 }
 
 br {
@@ -370,6 +370,52 @@ a {
 }
 
 
+/* オンラインショップ　詳細 */
+
+.prode {
+
+}
+
+.prosyo {
+	background-color: #f5f5f5;
+	margin:0 0 5% 5%;
+	padding:0 0 5% 5%;
+	width: 80%;
+	border-bottom: 8px solid #ffffff;
+}
+
+.proNa {
+	font-weight: bold;
+	font-size: 22px;
+}
+
+.proDe {
+
+}
+
+.proPr {
+	font-size: 20px;
+	color: #ff0000;
+}
+
+
+.cart {
+	background-color: #f2486a;
+}
+
+.probo {
+	background-color: #ffffff;
+}
+
+.probo a{
+	background-color: #f2486a;
+	color: #ffffff;
+	font-size: 90%;
+	width: 13%;
+}
+
+
+
 /* tenpo */
 
 .mise {
@@ -510,11 +556,44 @@ textarea:focus {
 }
 
 
+/* マイページ */
 
+.logtitle {
+	text-align: center;
+	border: none;
+    border-bottom: 0.5px solid #333;
+    font-size: 130%;
+}
 
+.kaiin {
+	text-decoration:underline;
+	font-size: 110%;
+}
 
+.subNyukai {
+	text-align: center;
+	position: relative;
+	top: 0%;
+	left: 85%;
+	text-decoration: none;
+	font-size: 120%;
+	font-weight: bold;
+	width: 11%;
+	border: 1px solid #000;
+}
 
+.sinki {
+	font-size: 120%;
+	font-weight: bold;
+	width: 24%;
+	background-color: #cccccc;
+}
 
+.touroku {
+	font-size: 110%;
+	width: 22%;
+	background-color: #a8df95;
+}
 
 
 

@@ -11,7 +11,7 @@
 	<title>かふぇコネクト</title>
 
 </head>
-<body2>
+<body>
 	<div class="subscnyukai">
 
 		<div class="title">

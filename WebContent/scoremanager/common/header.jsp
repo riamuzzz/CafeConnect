@@ -36,8 +36,8 @@
 					</tr>
 					<tr>
 						<td><a href="TopPageExecute.action">トップ</a></td>
-						<td><a href="main/MobileCartView.action">モバイル</a></td>
-						<td><a href="main/CartView.action">カート</a></td>
+						<td><a href="main/MobileCartView.action">モバイルカート</a></td>
+						<td><a href="main/CartView.action">オンラインカート</a></td>
 					</tr>
 				</table>
 			</div>
