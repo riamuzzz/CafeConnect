@@ -53,6 +53,11 @@
       </td>
       <!-- 個数 -->
       <td>
+      <c:forEach var="cList" items="${cList}">
+      	<c:if test="${cList.product.productId eq pList.productId}">
+      	  <span class="count">${cList.count}個</span>
+      	</c:if>
+      </c:forEach>
       </td>
 
 
