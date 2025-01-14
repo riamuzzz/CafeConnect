@@ -16,7 +16,7 @@
 <div class="productcreate">
 
 <form action = "ProductCreateExecute.action" method="post">
-
+	<h1>商品登録</h1>
 	<table>
 	<tr>
 		<th><label>カテゴリ</label></th>
