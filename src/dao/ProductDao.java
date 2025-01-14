@@ -90,6 +90,77 @@ public class ProductDao extends Dao {
 
 
 	/**
+	 * getLastメソッド 最後の行のカフェ店員のID、カフェ店員インスタンスを1件取得する
+	 *
+	 * @param cafeUserId:String カフェ店員ID
+	 * @return カフェ店員クラスのインスタンス 存在しない場合はnull
+	 * @throws Exception
+	 */
+
+	public Product getId() throws Exception{
+		Connection connection = getConnection();
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+
+		Product product = new Product();
+
+		try{
+			// SQL条件文の初期化
+		    String condition = " order by product_id desc limit 1;";
+
+			//プリペアードステートメントにSQL文をセット
+			statement = connection.prepareStatement(baseSql + condition);
+
+			ResultSet rSet = statement.executeQuery();
+
+			//カテゴリDaoを初期化
+			CategoryDao categoryDao =new CategoryDao();
+
+			//取得した情報をproductインスタンスに保存
+			if(rSet.next()) {
+				product.setProductId(rSet.getString("product_id"));
+				product.setProductName(rSet.getString("product_name"));
+				product.setPrice(rSet.getInt("price"));
+				product.setImage(rSet.getString("image"));
+				product.setProductDetail(rSet.getString("product_detail"));
+				product.setCount(rSet.getInt("count"));
+				product.setSell(rSet.getBoolean("sell"));
+				product.setInStockDay(rSet.getDate("in_stock_day"));
+				//categoryDaoのgetでカテゴリ情報取得
+				product.setCategory(categoryDao.get(rSet.getString("category_id")));
+			} else {
+				//対応する教員がいない場合はnullを返す
+				product = null;
+			}
+
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			//プリペアードステートメントを閉じる
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+
+		//コネクションを閉じる
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException sqle) {
+				throw sqle;
+			}
+		}
+	}
+	//検索した教員インスタンスを返す
+	return product;
+	}
+
+
+
+	/**
 	 * postFilterメソッド フィルター後のリストへの格納処理 プライベート
 	 *
 	 * @param rSet:リザルトセット
