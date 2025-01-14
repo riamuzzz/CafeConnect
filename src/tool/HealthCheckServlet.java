@@ -14,7 +14,7 @@ public class HealthCheckServlet extends javax.servlet.http.HttpServlet{
 	protected void doGet(javax.servlet.http.HttpServletRequest req,javax.servlet.http.HttpServletResponse resp)
 			throws ServletException, IOException{
 
-		resp.setStatus(javax.servlet.http.HttpServletResponse.SC_ACCEPTED);
+		resp.setStatus(javax.servlet.http.HttpServletResponse.SC_OK);
 		resp.setContentType("text/plain");
 		PrintWriter writer = resp.getWriter();
 		writer.write("OK");
