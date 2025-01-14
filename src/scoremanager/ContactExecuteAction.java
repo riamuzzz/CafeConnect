@@ -23,22 +23,16 @@ public class ContactExecuteAction extends Action {
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 
-//		String from = "s.ryo.h16@gmail.com";
-//        String fromName = "差出人名を指定します";
-        String subject = "お問い合わせ";
-        String to = "s.ryo.h16@gmail.com";
-        String toName = req.getParameter("name");
-//        String body = "これは本文です。\n\n\n\n\n\n\n\n\n\n以上。";
-
-		String from = req.getParameter("mail");
-		String fromName = req.getParameter("name");
-		String tel = req.getParameter("tel");
-		String body = req.getParameter("message");
-
-
-        String host = "smtp.gmail.com";
-        String user = "s.ryo.h16@gmail.com";
-        String password = "jtbj sqsj wtqc wezg";  // アプリパスワードを使用
+        String subject = "お問い合わせ"; // 件名
+        String to = "cafeconnect1115@gmail.com";  // 受信メール
+        String toName = req.getParameter("name"); // 受信者名
+		String from = req.getParameter("mail");  // 送信者メール
+		String fromName = req.getParameter("name");// 送信者名
+		String tel = req.getParameter("tel"); // 送信者の電話番号
+		String message = req.getParameter("message"); // 本文
+        String host = "smtp.gmail.com"; // host
+        String user = "cafeconnect1115@gmail.com"; // user
+        String password = "ypix rdlw drri tiym";  // アプリパスワード
 
         Properties properties;
         Session session;
@@ -84,7 +78,7 @@ public class ContactExecuteAction extends Action {
 
             // 本文の作成
             messageBody = new MimeBodyPart();
-            messageBody.setText(body + "\n\n\n\nメールアドレス:" + from + "\n電話番号:" + tel, "iso-2022-jp");
+            messageBody.setText(message + "\n\n\n\nメールアドレス:" + from + "\n電話番号:" + tel, "iso-2022-jp");
             messageBody.setHeader("Content-Transfer-Encoding", "7bit");
             multipart.addBodyPart(messageBody);  // 本文部分を追加
 
@@ -102,7 +96,7 @@ public class ContactExecuteAction extends Action {
             }
         }
 
-		req.getRequestDispatcher("otoiawase.jsp").forward(req, res);
+		req.getRequestDispatcher("otoi kanryo.jsp").forward(req, res);
 
 	}
 
