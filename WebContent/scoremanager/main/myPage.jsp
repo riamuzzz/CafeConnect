@@ -56,7 +56,7 @@
 					</div>
 				</form>
 			</div>
-			<div class="subscrption">
+			<div class="subscription">
 				<label>入会しているサブスクリプション</label>
 				<!-- USERSテーブルのsabscriptionがtrueなら入会中のプラン表示 -->
 				<c:if test="${ user.subscription == false }">
@@ -66,7 +66,7 @@
 				</c:if>
 				<c:if test="${ user.subscription == true }">
 					<div>
-						<a href="SabscriptionDetail.action">サブスクリプション詳細</a>
+						<a href="SabscriptionDetail.action">ライトプラン</a>
 					</div>
 				</c:if>
 			</div>

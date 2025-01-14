@@ -18,7 +18,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: stretch;
+	align-items: center;
 }
 .nav .name {
 	height: 30%;
@@ -28,20 +28,8 @@
 	font-size: 2em;
 	font-weight: bold;
 }
-.nav .account_information {
-	height: 10%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 1.2em;
-}
-.nav .purchase_history {
-	height: 10%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 1.2em;
-}
+.nav .account_information,
+.nav .purchase_history,
 .nav .card_create {
 	height: 10%;
 	display: flex;
@@ -52,83 +40,59 @@
 .nav .space {
 	height: 40%;
 }
-.mypage .name {
-	height: 16%;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: stretch;
-}
-.mypage .name form{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-.maypage .name form .input-contener {
-	display: flex;
-}
-.mypage .tel {
-	height: 16%;
-	display: flex;
-	justify-content: center;
-}
-.mypage .tel form{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-.maypage .tel form .input-contener {
-	display: flex;
-}
+.mypage .name,
+.mypage .tel,
 .mypage .address {
 	height: 16%;
-	display: flex;
-	justify-content: center;
+	width: 100%;
 }
-.mypage .address form {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+.mypage .name form label,
+.mypage .tel form label,
+.mypage .address form label,
+.mypage .mail form label,
+.mypage .pass form label,
+.mypage .subscription label {
+	font-weight: bold;
 }
-.maypage .address form .input-contener {
-	display: flex;
-}
-.mypage .mail {
-	height: 16%;
-	display: flex;
-	justify-content: center;
-	left: 0px;
-	right: 0px;
-}
-.mypage .mail form {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-.maypage .mail form .input-contener {
-	display: flex;
-}
-.mypage .pass {
-	height: 16%;
-	display: flex;
-	justify-content: center;
-	left: 0px;
-	right: 0px;
-}
+.mypage .name form,
+.mypage .tel form,
+.mypage .address form,
+.mypage .mail form,
 .mypage .pass form {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
-.maypage .pass form .input-contener {
+.input-contener {
 	display: flex;
+	height: 100%;
 }
-.input-contener input[type="text"] {
-	width: 70%;
+.mypage .mail {
+	height: 16%;
+	width: 100%;
+	left: 0px;
+	right: 0px;
 }
-.mypage .subscrption {
+.mypage .pass {
+	height: 16%;
+	width: 100%;
+	left: 0px;
+	right: 0px;
+}
+.mypage input[type="text"],
+.mypage input[type="password"] {
+	width: 60%;
+	height: 40px;
+	border-radius: 0;
+	border: 1px solid #c0c0c0;
+}
+.mypage input[type="submit"] {
+	width: 10%;
+	border-radius: 0;
+	border: 1px solid #c0c0c0;
+}
+.mypage .subscription {
 	height: 20%;
-	display: flex;
-	justify-content: center;
+	width: 100%;
 }
 
