@@ -11,14 +11,13 @@
 <c:import url="../common/main_header.jsp"/>
 
 <div class="main">
-<%-- ナビゲーション --%>
-<c:import url="../common/navigation.jsp"/>
 
 <div class="content">
 
 	<h2>${category.categoryName }</h2>
 	<table>
 		<c:forEach var="product" items="${products}">
+			<tr><td>${product.productId}</td></tr>
 			<tr>
 				<td>
 					<a href="ProductDetailView.action?productId=${ product.productId }"><img src="../img/product/${ product.image }"></a>

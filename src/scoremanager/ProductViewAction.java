@@ -24,21 +24,17 @@ public class ProductViewAction  extends Action {
 
 		System.out.println(categoryId);
 
-		System.out.print("01");
 		ProductDao productDao = new ProductDao();
-		System.out.print("02");
 		CategoryDao categoryDao = new CategoryDao();
-		System.out.print("03");
 
 		Category category = categoryDao.get(categoryId);
-
-		System.out.print("04");
 		products = productDao.filter(category, productName);
 
 		System.out.println(products);
+		System.out.println(category);
+
 		req.setAttribute("products", products);
 		req.setAttribute("category", category);
-
 
 		System.out.println("1111");
 		req.getRequestDispatcher("productView.jsp").forward(req, res);

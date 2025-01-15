@@ -43,9 +43,7 @@ public class ProductViewAction extends Action {
 
 		 //絞り込み結果
 
-		productList = productDao.filter(category, keyword);
-
-
+		productList = productDao.serch(category, keyword);
 
 		//ビジネスロジック 4
 		//なし

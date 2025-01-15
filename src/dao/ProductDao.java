@@ -90,7 +90,7 @@ public class ProductDao extends Dao {
 
 
 	/**
-	 * getLastメソッド 最後の行のカフェ店員のID、カフェ店員インスタンスを1件取得する
+	 * getIdメソッド 最後の行のカフェ店員のID、カフェ店員インスタンスを1件取得する
 	 *
 	 * @param cafeUserId:String カフェ店員ID
 	 * @return カフェ店員クラスのインスタンス 存在しない場合はnull
@@ -162,12 +162,6 @@ public class ProductDao extends Dao {
 
 	/**
 	 * postFilterメソッド フィルター後のリストへの格納処理 プライベート
-	 *
-	 * @param rSet:リザルトセット
-	 * @param school:School
-	 *            学校
-	 * @return 学生のリスト:List<Student> 存在しない場合は0件のリスト
-	 * @throws Exception
 	 */
 	private List<Product> postFilter(ResultSet rSet, Category category) throws Exception {
 		//リストを初期化
@@ -199,18 +193,8 @@ public class ProductDao extends Dao {
 	}
 
 	/**
-	 * filterメソッド 学校、入学年度、クラス番号、在学フラグを指定して学生の一覧を取得する
+	 * filterメソッド カテゴリ、商品名を指定して商品の一覧を取得する
 	 *
-	 * @param school:School
-	 *            学校
-	 * @param entYear:int
-	 *            入学年度
-	 * @param classNum:String
-	 *            クラス番号
-	 * @param isAttend:boolean
-	 *            在学フラグ
-	 * @return 学生のリスト:List<Student> 存在しない場合は0件のリスト
-	 * @throws Exception
 	 */
 	public List<Product> filter(Category category, String productName) throws Exception {
 
@@ -235,20 +219,20 @@ public class ProductDao extends Dao {
 
 	    // category のみ設定されている場合の条件
 	    if (category != null && productName == null) {
-	        condition = "where category_id=? ";
+	        condition = "where category_id=? and sell = True";
 	        System.out.println("1");
 	    }
 	    // tel のみ設定されている場合の条件
 	    else if (category == null && productName != null) {
-	        condition = "where product_name=?";
+	        condition = "where product_name=? and sell = True";
 	        System.out.println("2");
 	    }
 	    // 両方設定されている場合の条件
 	    else if (category != null && productName != null) {
-	        condition = "where category_id=? and product_name=?";
+	        condition = "where category_id=? and product_name=? and sell = True";
 	        System.out.println("3");
 	    }else{
-	    	condition = "";
+	    	condition = "where sell = True";
 	    	System.out.println("4");
 	    }
 
@@ -302,18 +286,8 @@ public class ProductDao extends Dao {
 
 
 	/**
-	 * filterメソッド 学校、入学年度、クラス番号、在学フラグを指定して学生の一覧を取得する
+	 * serchメソッド 検索する
 	 *
-	 * @param school:School
-	 *            学校
-	 * @param entYear:int
-	 *            入学年度
-	 * @param classNum:String
-	 *            クラス番号
-	 * @param isAttend:boolean
-	 *            在学フラグ
-	 * @return 学生のリスト:List<Student> 存在しない場合は0件のリスト
-	 * @throws Exception
 	 */
 	public List<Product> serch(Category category, String productName) throws Exception {
 
@@ -471,7 +445,7 @@ public class ProductDao extends Dao {
 		try{
 			CategoryDao cDao = new CategoryDao();
 			//プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement(baseSql + "WHERE category_id=?");
+			statement = connection.prepareStatement(baseSql + "WHERE category_id=? and sell = True");
 			statement.setString(1, category.getCategoryId());
 
 			//上記のSQL文を実行し結果を取得する
