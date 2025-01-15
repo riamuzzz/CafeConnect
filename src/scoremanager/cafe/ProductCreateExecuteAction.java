@@ -74,7 +74,7 @@ public class ProductCreateExecuteAction extends Action{
 		String fileName = new File(img).getName();// pathからファイル名取得
 
 		// 画像ファイルのパスを指定（ローカルファイル）
-        String sourceImagePath = "C:/Users/2374441/Desktop/卒業制作/写真/";  // ここにローカルの画像パスを指定
+        String sourceImagePath = "C:/products/images/";  // ここにローカルの画像パスを指定
 
         // 保存先フォルダのパスを指定
         String saveFolderPath = "CafeConnect/WebContent/scoremanager/img/product/";
