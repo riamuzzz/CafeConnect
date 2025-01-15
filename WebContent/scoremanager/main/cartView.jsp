@@ -3,34 +3,44 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
 
-<div class="productView">
+<html>
+<link rel='stylesheet' href='../../css/mao.css'>
+
+<div class="cartView">
   <%-- ヘッダー --%>
   <c:import url="../common/header.jsp"/>
 	<div class="main">
   <%-- ナビゲーション --%>
   <c:import url="../common/navigation.jsp"/>
-	  <div class="content">
-		<h2>カート</h2>
+
+	  <div class="cartcontent">
+		<h1>カート</h1>
 		<form action="Settlement.action" method="post">
 		  		<table id="item-table">
 		  <c:forEach var="pList" items="${pList}" varStatus="status">
 			<tr class="item" data-index="${status.index}">
+
 			  <!-- 商品画像 -->
-			  <td>
-			    <img src="../img/product/${pList.image}" alt="${pList.productName}">
+			  <td id="img">
+			    <img src="../img/product/${pList.image}" alt="${pList.productName}" id=img>
 			  </td>
+
 			  <!-- 商品名 -->
-			  <td>${pList.productName}</td>
+			  <td id="productName">
+			    ${pList.productName}
+			   </td>
+
 			  <!-- 価格 -->
-			  <td>
+			  <td id="price">
 			    <span class="price" data-index="${status.index}">${pList.price}</span>円
 			  </td>
+
 			  <!-- 商品IDをhiddenを送る -->
 			  <input type="hidden" name="productId${ status.index }" value="${ pList.productId }">
+
 			  <!-- 数量選択 -->
-			  <td>
+			  <td id="num">
 			    <c:forEach var="cList" items="${cList}">
 			  	  <c:if test="${cList.product.productId eq pList.productId}">
 				    <select name="num${ status.index }" class="quantity" data-index="${status.index}" onchange="calculateTotal()">
@@ -44,8 +54,9 @@
 			      </c:if>
 			    </c:forEach>
 			  </td>
+
 			  <!-- カート削除ボタン -->
-			  <td>
+			  <td id="del">
 			    <form action="CartDelete.action" method="post">
 				  <input type="hidden" name="productId" value="${pList.productId}">
 				  <input type="submit" value="カートから削除">
