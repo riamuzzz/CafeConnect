@@ -30,7 +30,7 @@ public class ProductCreateExecuteAction extends Action{
 		int productId;
 
 		// 商品登録が一つ目の場合Idを1にする
-		if (productDao.getId().equals(null)){
+		if (productDao.getId() == null){
 			productId = 1;
 		// 商品登録が一つ目以外の時Idを+1する
 		} else {
