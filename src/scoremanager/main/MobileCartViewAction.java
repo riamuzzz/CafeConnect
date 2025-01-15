@@ -29,13 +29,13 @@ public class MobileCartViewAction extends Action {
 		List<Product> pList = new ArrayList<>();
 
 		//商品情報取得
-		ProductDao pDao =new ProductDao();
+		ProductDao pDao = new ProductDao();
 		cartList = cDao.filter(user);
 
 
 		for (Cart cart : cartList){
 			Product product = pDao.get(cart.getProduct().getProductId());
-			if(product.getCategory().getCategoryId() != "CATE02"){
+			if(!product.getCategory().getCategoryId().equals("CATE02") ){
 				pList.add(product);
 			}
 		}

@@ -35,7 +35,7 @@ public class CartViewAction extends Action {
 
 		for (Cart cart : cartList){
 			Product product = pDao.get(cart.getProduct().getProductId());
-			if(product.getCategory().getCategoryId() == "CATE02"){
+			if(product.getCategory().getCategoryId().equals("CATE02") ){
 				pList.add(product);
 			}
 		}
