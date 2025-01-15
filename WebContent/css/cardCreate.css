@@ -1,0 +1,27 @@
+.card {
+	width: 70%;
+	height: 100%;
+}
+.card form {
+	height: 100%;
+	width: 100%;
+}
+.card .card-number,
+.card .card-day,
+.card .card-cvc,
+.card .card-name {
+	height: 16%;
+}
+.card .card-number,
+.card .card-day,
+.card .card-cvc,
+.card .card-name {
+	font-weight: bold;
+}
+.card input[type="text"],
+.card input[type="month"] {
+	width: 60%;
+	height: 40px;
+	border-radius: 0;
+	border: 1px solid #c0c0c0;
+}

@@ -1,0 +1,65 @@
+.mypage {
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.mypage .name,
+.mypage .tel,
+.mypage .address {
+	height: 16%;
+	width: 100%;
+}
+.mypage .name form label,
+.mypage .tel form label,
+.mypage .address form label,
+.mypage .mail form label,
+.mypage .pass form label,
+.mypage .subscription label {
+	font-weight: bold;
+}
+.mypage .name form,
+.mypage .tel form,
+.mypage .address form,
+.mypage .mail form,
+.mypage .pass form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.input-contener {
+	display: flex;
+	height: 100%;
+}
+.mypage .mail {
+	height: 16%;
+	width: 100%;
+	left: 0px;
+	right: 0px;
+}
+.mypage .pass {
+	height: 16%;
+	width: 100%;
+	left: 0px;
+	right: 0px;
+}
+.mypage input[type="text"],
+.mypage input[type="month"],
+.mypage input[type="password"] {
+	width: 60%;
+	height: 40px;
+	border-radius: 0;
+	border: 1px solid #c0c0c0;
+}
+.mypage input[type="submit"] {
+	width: 10%;
+	border-radius: 0;
+	border-bottom: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+	border-top: 1px solid #c0c0c0;
+}
+.mypage .subscription {
+	height: 20%;
+	width: 100%;
+}
