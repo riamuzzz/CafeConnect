@@ -1,7 +1,10 @@
 package scoremanager.cafe;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,8 +56,42 @@ public class ProductCreateExecuteAction extends Action{
 			sell = true;
 		}
 
+
+
 		// ファイルを保存したい！！
 		String fileName = new File(img).getName();// pathからファイル名取得
+
+		// 画像ファイルのパスを指定（ローカルファイル）
+        String sourceImagePath = "C:/Users/2374441/Desktop/卒業制作/写真/" + fileName;  // ここにローカルの画像パスを指定
+
+        // 保存先フォルダのパスを指定
+        String saveFolderPath = "CafeConnect/WebContent/scoremanager/img/product/";
+
+        // フォルダが存在しない場合は作成
+        File folder = new File(saveFolderPath);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+
+        // 画像ファイルを読み込み、保存する
+        File sourceImageFile = new File(sourceImagePath);
+        if (sourceImageFile.exists()) {
+            // 保存するファイル名を作成（重複を避けるためタイムスタンプを追加）
+            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date(count));
+            File outputFile = new File(saveFolderPath + "saved_image_" + timestamp + ".jpg");
+
+            // ファイルをコピーして保存
+            Files.copy(Paths.get(sourceImagePath), Paths.get(outputFile.getAbsolutePath()));
+
+            System.out.println("画像が保存されました: " + outputFile.getAbsolutePath());
+        } else {
+            System.out.println("指定された画像ファイルが存在しません。");
+        }
+
+
+
+
+
 
 		// 入力されたcategoryIdからcategoryを取得
 		category = categoryDao.get(categoryId);
