@@ -1,5 +1,6 @@
 @import "cardCreate.css";
 @import "myPage.css";
+@import "subscription.css";
 .all {
 	display: flex;
 	gap: 10%;
