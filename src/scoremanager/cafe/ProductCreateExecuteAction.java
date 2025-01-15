@@ -27,7 +27,16 @@ public class ProductCreateExecuteAction extends Action{
 		// categoryDaoをインスタンス化
 		CategoryDao categoryDao = new CategoryDao();
 
-		int productId = Integer.parseInt(productDao.getId().getProductId())+1;  // 商品ID
+		int productId;
+
+		// 商品登録が一つ目の場合Idを1にする
+		if (productDao.getId().equals(null)){
+			productId = 1;
+		// 商品登録が一つ目以外の時Idを+1する
+		} else {
+			productId = Integer.parseInt(productDao.getId().getProductId())+1;  // 商品ID
+		}
+
 		String categoryId = null;                   			// カテゴリID
 		Category category = null;                   			// カテゴリ
 		String productName = null;                  			// 商品名
@@ -65,7 +74,7 @@ public class ProductCreateExecuteAction extends Action{
 		String fileName = new File(img).getName();// pathからファイル名取得
 
 		// 画像ファイルのパスを指定（ローカルファイル）
-        String sourceImagePath = "C:/Users/2374441/Desktop/卒業制作/写真/" + fileName;  // ここにローカルの画像パスを指定
+        String sourceImagePath = "C:/Users/2374441/Desktop/卒業制作/写真/";  // ここにローカルの画像パスを指定
 
         // 保存先フォルダのパスを指定
         String saveFolderPath = "CafeConnect/WebContent/scoremanager/img/product/";
@@ -81,7 +90,7 @@ public class ProductCreateExecuteAction extends Action{
         if (sourceImageFile.exists()) {
             // 保存するファイル名を作成（重複を避けるためタイムスタンプを追加）
             String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date(count));
-            File outputFile = new File(saveFolderPath + "saved_image_" + timestamp + ".jpg");
+            File outputFile = new File(saveFolderPath + productName + timestamp + ".jpg");
 
             // ファイルをコピーして保存
             Files.copy(Paths.get(sourceImagePath), Paths.get(outputFile.getAbsolutePath()));
