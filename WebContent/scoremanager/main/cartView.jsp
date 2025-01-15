@@ -68,7 +68,7 @@
 		  <td id="totalAmount">合計金額: 0円</td>
           <!-- レジへボタン -->
 		</table>
-          <input type="submit" value="レジへ進む">
+          <input type="submit" value="レジへ進む" id="regi">
 		</form>
 </div>
 
