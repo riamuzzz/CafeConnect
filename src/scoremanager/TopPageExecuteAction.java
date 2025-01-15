@@ -9,6 +9,7 @@ import bean.Category;
 import bean.Product;
 import dao.CategoryDao;
 import dao.ProductDao;
+import dao.SaleDao;
 import tool.Action;
 
 public class TopPageExecuteAction extends Action {
@@ -21,8 +22,12 @@ public class TopPageExecuteAction extends Action {
 		List<Product> products = null;// productリスト
 		ProductDao productDao = new ProductDao();
 		CategoryDao categoryDao = new CategoryDao();
+		SaleDao sDao =new SaleDao();
+		
 		Category category = categoryDao.get(categoryId);
 		products = productDao.filter(category, productName);
+		
+		
 		req.setAttribute("products", products);
 		req.getRequestDispatcher("topPage.jsp").forward(req, res);
 	}

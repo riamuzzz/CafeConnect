@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,16 +27,16 @@ public class ProductCreateExecuteAction extends Action{
 		// categoryDaoをインスタンス化
 		CategoryDao categoryDao = new CategoryDao();
 
-		String productId = "AA13";                   // 商品ID
-		String categoryId = null;                   // カテゴリID
-		Category category = null;                   // カテゴリ
-		String productName = null;                  // 商品名
-		int price = 0;                               // 価格
-		int count = 0;                               // 在庫数
-		String productDetail = null;                // 商品詳細
-		String img = null;                           // 写真
-		String sellStr = null;                       // 販売状況str型
-		Boolean sell = null;                         // 販売状況
+		int productId = Integer.parseInt(productDao.getId().getProductId())+1;  // 商品ID
+		String categoryId = null;                   			// カテゴリID
+		Category category = null;                   			// カテゴリ
+		String productName = null;                  			// 商品名
+		int price = 0;                              			 // 価格
+		int count = 0;                             				  // 在庫数
+		String productDetail = null;                			// 商品詳細
+		String img = null;                           			// 写真
+		String sellStr = null;                       			// 販売状況str型
+		Boolean sell = null;                         			// 販売状況
 		LocalDate nowDate = LocalDate.now();         // LcalDateインスタンスを取得
 		String nowDateStr = String.valueOf(nowDate); // string型に変換
 		Date inStockDay = Date.valueOf(nowDateStr);  // string型からDate型に変換
@@ -50,11 +51,13 @@ public class ProductCreateExecuteAction extends Action{
 		sellStr = req.getParameter("sell");                  // 販売状況
 
 		// sellStrが"on"ではない時販売状況をfalseにする
-		if (sellStr != "on"){
+		if (sellStr == null){
 			sell = false;
 		} else {
 			sell = true;
 		}
+		System.out.println(sellStr);
+		System.out.println(sell);
 
 
 
@@ -100,7 +103,7 @@ public class ProductCreateExecuteAction extends Action{
 		Product product = new Product();
 
 		// productに値をset
-		product.setProductId(productId);
+		product.setProductId(String.valueOf(productId));
 		product.setCategory(category);
 		product.setProductName(productName);
 		product.setPrice(price);
@@ -112,6 +115,10 @@ public class ProductCreateExecuteAction extends Action{
 
 		// productをsave
 		productDao.save(product);
+		List<Category> categorys = categoryDao.get(); // カテゴリの情報すべて取得
+
+		req.setAttribute("categorys", categorys); // リクエストパラメータにcategoryをセット
+
 
 		// 商品登録ページに遷移
 		req.getRequestDispatcher("productCreate.jsp").forward(req, res);

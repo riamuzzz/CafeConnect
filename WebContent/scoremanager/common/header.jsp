@@ -33,11 +33,13 @@
 						<th><a href="TopPageExecute.action"><img src=img/header/トップ.png width="30"></a></th>
 						<th><a href="main/MobileCartView.action"><img src=img/header/モバイル.jpeg width="40"></a></th>
 						<th><a href="main/CartView.action"><img src=img/header/カート.jpeg width="40"></a></th>
+						<th><a href="Login.action"><img src=img/header/log.jpg width="43"></a></th>
 					</tr>
 					<tr>
 						<td><a href="TopPageExecute.action">トップ</a></td>
 						<td><a href="main/MobileCartView.action">モバイルカート</a></td>
 						<td><a href="main/CartView.action">オンラインカート</a></td>
+						<td><a href="Login.action">ログイン</a></td>
 					</tr>
 				</table>
 			</div>
@@ -53,17 +55,8 @@
 						<th><a href="Contact.action"><img src=img/header/お問い合わせ.png></a></th>
 						<th><a href="main/MyPage.action"><img src=img/header/マイページ.png></a></th>
 					</tr>
-				<!-- 	<tr>
-						<td><a href="main/Subscription.action">サブスク</a></td>
-						<td><a href="ProductView.action?categoryId=CATE02">ショップ</a></td>
-						<td><a href="ProductView.action?categoryId=CATE01">モバイル</a></td>
-						<td><a href="main/">店舗情報</a></td>
-						<td><a href="main/Contact.action">お問い合わせ</a></td>
-						<td><a href="main/MyPage.action">マイページ</a></td>
-					</tr> -->
 			</table>
-			<a href="Logout.action">ログアウト</a>
-			<a href="Login.action">ログイン</a>
+
 		</div>
 	</div>
 </div>

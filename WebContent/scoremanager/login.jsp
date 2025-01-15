@@ -11,6 +11,7 @@
 <body>
 <%@ include file="common/header.jsp" %>
 <div class=log>
+
 	<div class=logtitle>会員ログイン</div>
 
 	<div class=kaiin>会員の方はこちら</div>

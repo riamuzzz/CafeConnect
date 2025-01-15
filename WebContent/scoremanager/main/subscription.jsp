@@ -5,12 +5,15 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel='stylesheet' href='../css/style.css'>
+	<link rel='stylesheet' href='../../css/style.css'>
 
 	<title>かふぇコネクト</title>
 
 </head>
 <body>
+<%-- ヘッダー --%>
+<c:import url="../common/main_header.jsp"/>
+
 <div class="subsc">
 
 	<div class="title">

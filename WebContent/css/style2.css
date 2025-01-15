@@ -248,6 +248,10 @@ button[type="submit"] {
 
 /* ProductCreate.jsp *//* ProductCreate.jsp *//* ProductCreate.jsp */
 
+.productcreate h1 {
+	margin-left: 125px;
+}
+
 .productcreate{
     width: fit-content;
     margin: auto;
@@ -612,5 +616,24 @@ button[type="submit"] {
     position: absolute;
     bottom: 0px;
     right: calc(50% - 100px);
+}
+
+/* sale *//* sale *//* sale */
+
+.sale h1 {
+	margin-left: 550px;
+}
+
+.sale #year, #month, th{
+}
+
+.sale table 	{
+	border-collapse:collapse
+}
+
+.saleimg{
+    text-align: center;
+    border: 1px solid #999;
+    padding: 50px;
 }
 

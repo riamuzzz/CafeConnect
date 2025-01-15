@@ -21,12 +21,12 @@
 		<table>
 				<tr>
 					<c:forEach var="drink" items="${ drinkProducts }">
-						<th><a href="main/"><img src="../img/mobMenu/${ drink.image }" width="110"></a></th>
+						<th><a href="ProductDetailView.action?productId=${ drink.productId }"><img src="../img/product/${ drink.image }" width="110"></a></th>
 					</c:forEach>
 				</tr>
 				<tr>
 					<c:forEach var="drink" items="${ drinkProducts }">
-						<td><a href="main/">${ drink.productName }</a></td>
+						<td><a href="ProductDetailView.action?productId=${ drink.productId }">${ drink.productName }</a></td>
 					</c:forEach>
 				</tr>
 		</table>
@@ -40,12 +40,12 @@
 		<table>
 				<tr>
 					<c:forEach var="food" items="${ foodProducts }">
-						<th><a href="main/"><img src="../img/mobMenu/${ food.image }" width="110"></a></th>
+						<th><a href="ProductDetailView.action?productId=${ food.productId }"><img src="../img/product/${ food.image }" width="110"></a></th>
 					</c:forEach>
 				</tr>
 				<tr>
 					<c:forEach var="food" items="${ foodProducts }">
-						<td><a href="main/">${ food.productName }</a></td>
+						<td><a href="ProductDetailView.action?productId=${ food.productId }">${ food.productName }</a></td>
 					</c:forEach>
 				</tr>
 		</table>

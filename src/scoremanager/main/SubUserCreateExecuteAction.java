@@ -19,6 +19,6 @@ public class SubUserCreateExecuteAction extends Action{
 		user.setSubscription(true);
 		//DBに登録
 		uDao.save(user);
-		req.getRequestDispatcher("subscription.jsp").forward(req, res);
+		req.getRequestDispatcher("ProductSelectView.action?categoryId=CATE02").forward(req, res);
 	}
 }
