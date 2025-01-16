@@ -268,7 +268,7 @@ public class CartDao extends Dao {
 	 * deleteメソッド カート削除
 	 *
 	 */
-	public boolean delete(Cart cart, String productId) throws Exception {
+	public boolean delete(Cart cart, int productId) throws Exception {
 
 		//データベースへのコネクションを確立
 		Connection connection = getConnection();
@@ -286,7 +286,7 @@ public class CartDao extends Dao {
 						"DELETE from CART WHERE USER_ID=? and PRODUCT_ID=?");
 				//各部分に値を設定
 				statement.setString(1, cart.getUser().getUserId());
-				statement.setString(2, productId);
+				statement.setInt(2, productId);
 
 
 			//プリペアードステートメントを実行

@@ -50,7 +50,6 @@ public class SettlementAction extends Action{
 			if (productId != 0){
 				Product product = pDao.get(productId);
 				pList.add(product);
-				System.out.println(product);
 				Cart cart = cDao.get(user, product);
 				cart.setCount(Integer.parseInt(nums.get(count)));
 				cList.add(cart);

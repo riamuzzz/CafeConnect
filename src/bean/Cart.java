@@ -8,12 +8,6 @@ public class Cart {
 	//商品
 	private Product product;
 
-	//商品名
-	private String productName;
-
-	//値段
-	private int price;
-
 	//選択個数
 	private int count;
 
@@ -35,23 +29,6 @@ public class Cart {
 		this.product = product;
 	}
 
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-
 	public int getCount() {
 		return count;
 	}
@@ -59,6 +36,4 @@ public class Cart {
 	public void setCount(int count) {
 		this.count = count;
 	}
-
-
 }

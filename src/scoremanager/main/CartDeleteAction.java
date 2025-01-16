@@ -22,14 +22,15 @@ public class CartDeleteAction  extends Action{
 
 		CartDao cDao =new CartDao();
 		ProductDao pDao=new ProductDao();
-		String productId = "";
+		String productIdStr = "";
 		Cart cart =new Cart();
 		Product product =new Product();
 
-		productId = req.getParameter("productId");
-		product =pDao.get(Integer.parseInt(productId));
+		productIdStr = req.getParameter("productId");
+		int productId = Integer.parseInt(productIdStr);
+		product =pDao.get(productId);
 
-		cart = cDao.get(user,pDao.get(Integer.parseInt(productId)));
+		cart = cDao.get(user,pDao.get(productId));
 
 		cDao.delete(cart, productId);
 

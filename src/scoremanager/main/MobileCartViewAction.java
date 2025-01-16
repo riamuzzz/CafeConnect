@@ -27,14 +27,12 @@ public class MobileCartViewAction extends Action {
 		CartDao cDao =new CartDao();
 		List<Cart> cartList = new ArrayList<>();
 		List<Product> pList = new ArrayList<>();
-
 		//商品情報取得
 		ProductDao pDao = new ProductDao();
 		cartList = cDao.filter(user);
-
-
 		for (Cart cart : cartList){
 			Product product = pDao.get(cart.getProduct().getProductId());
+			//カートの中の商品がフードorドリンクなら商品インスタンスをリストに追加（モバイルオーダーかオンラインショップか判断）
 			if(!product.getCategory().getCategoryId().equals("CATE02") ){
 				pList.add(product);
 			}
@@ -43,7 +41,7 @@ public class MobileCartViewAction extends Action {
 		req.setAttribute("cList", cartList);
 		req.setAttribute("pList", pList);
 
-		req.getRequestDispatcher("cartView.jsp").forward(req, res);
+		req.getRequestDispatcher("mobileCartView.jsp").forward(req, res);
 	}
 
 }

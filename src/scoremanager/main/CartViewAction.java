@@ -27,7 +27,6 @@ public class CartViewAction extends Action {
 		CartDao cDao =new CartDao();
 		List<Cart> cartList = new ArrayList<>();
 		List<Product> pList = new ArrayList<>();
-		List<String> ids = new ArrayList<>();
 
 		//商品情報取得
 		ProductDao pDao =new ProductDao();
@@ -42,7 +41,6 @@ public class CartViewAction extends Action {
 
 		req.setAttribute("cList", cartList);
 		req.setAttribute("pList", pList);
-		req.setAttribute("ids", ids);
 
 		req.getRequestDispatcher("cartView.jsp").forward(req, res);
 	}

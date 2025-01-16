@@ -1,80 +1,82 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
-<link rel='stylesheet' href='../../css/mao.css'>
+<%-- ヘッダー --%>
+<c:import url="../common/main_header.jsp" />
+<div class="main">
+	<%-- ナビゲーション --%>
+	<c:import url="../common/navigation.jsp" />
 
-<div class="cartView">
-  <%-- ヘッダー --%>
-  <c:import url="../common/header.jsp"/>
-	<div class="main">
-  <%-- ナビゲーション --%>
-  <c:import url="../common/navigation.jsp"/>
-
-	  <div class="cartcontent">
-		<h1>カート</h1>
+	<div class="cartcontent">
 		<form action="Settlement.action" method="post">
-		  		<table id="item-table">
-		  <c:forEach var="pList" items="${pList}" varStatus="status">
-			<tr class="item" data-index="${status.index}">
-
-			  <!-- 商品画像 -->
-			  <td id="img">
-			    <img src="../img/product/${pList.image}" alt="${pList.productName}" id=img>
-			  </td>
-
-			  <!-- 商品名 -->
-			  <td id="productName">
-			    ${pList.productName}
-			   </td>
-
-			  <!-- 価格 -->
-			  <td id="price">
-			    <span class="price" data-index="${status.index}">${pList.price}</span>円
-			  </td>
-			  <!-- 数量選択 -->
-			  <td id="numc">
-			    <c:forEach var="cList" items="${cList}">
-			  	  <c:if test="${cList.product.productId eq pList.productId}">
-				    <select name="num${ status.index }" class="quantity" data-index="${status.index}" onchange="calculateTotal()">
-				      <option value="1" <c:if test="${cList.count == 1}">selected</c:if>>1</option>
-				      <option value="2" <c:if test="${cList.count == 2}">selected</c:if>>2</option>
-				      <option value="3" <c:if test="${cList.count == 3}">selected</c:if>>3</option>
-				      <option value="4" <c:if test="${cList.count == 4}">selected</c:if>>4</option>
-				      <option value="5" <c:if test="${cList.count == 5}">selected</c:if>>5</option>
-				    </select>
-				    <input type="hidden" name="num${ status.index }" value="${ num }">
-				    <!-- 商品IDをhiddenを送る -->
-			  		<input type="hidden" name="productId${ status.index }" value="${ pList.productId }">
-			      </c:if>
-			    </c:forEach>
-			  </td>
-
-			  <!-- カート削除ボタン -->
-			  <td id="del">
-			    <form action="CartDelete.action" method="post">
-				  <input type="hidden" name="productId" value="${pList.productId}">
-				  <input type="submit" value="カートから削除">
-			    </form>
-			  </td>
-			</tr>
-  		  </c:forEach>
-		  <!-- 合計金額を表示 -->
-		  <td id="totalAmount">合計金額: 0円</td>
-          <!-- レジへボタン -->
-		</table>
-          <input type="submit" value="レジへ進む" id="regi">
+			<c:forEach var="pList" items="${pList}" varStatus="status">
+				<div class="item" data-index="${status.index}">
+					<!-- 商品画像 -->
+					<div class="image">
+						<img src="../img/product/${pList.image}">
+					</div>
+					<div class="name-price">
+						<!-- 商品名 -->
+						<div class="name">${pList.productName}</div>
+						<!-- 価格 -->
+						<div class="price">
+							<span class="price" data-index="${status.index}">${pList.price}</span>円
+						</div>
+						<div class="space"></div>
+					</div>
+					<!-- 数量選択 -->
+					<c:forEach var="cList" items="${cList}">
+						<c:if test="${cList.product.productId eq pList.productId}">
+							<!-- 初期値にユーザが選択した個数を設定 -->
+							<div class="count-delete-button">
+								<div class="count">
+									個数：<input type="text" name="num${ status.index }"
+										value="${cList.count}" class="quantity"
+										data-index="${status.index}" onchange="calculateTotal()">
+								</div>
+								<!-- カート削除ボタン -->
+								<div class="delete-button">
+									<form action="CartDelete.action" method="post">
+										<input type="hidden" name="productId"
+											value="${pList.productId}"> <input type="submit"
+											value="カートから削除">
+									</form>
+								</div>
+							</div>
+							<!-- 商品の選択個数をhiddenで送る -->
+							<input type="hidden" name="num${ status.index }" value="${ num }">
+							<!-- 商品IDをhiddenを送る -->
+							<input type="hidden" name="productId${ status.index }"
+								value="${ pList.productId }">
+						</c:if>
+					</c:forEach>
+				</div>
+			</c:forEach>
+			<!-- 合計個数時間かかるから余裕あったら -->
+			<div class="parent-confirm-next">
+				<div class="confirm-next">
+					<!-- 合計金額を表示 -->
+					<div id="totalAmount">合計金額: 0円</div>
+					<!-- レジへボタン -->
+					<div class="confirm">
+						<input type="submit" value="レジへ進む">
+					</div>
+					<div class="next">
+						<a href="ProductView.action">買い物を続ける</a>
+					</div>
+				</div>
+				<div class="space"></div>
+			</div>
 		</form>
-</div>
-
-</div>
+	</div>
 </div>
 <script src="./js/cartView.js"></script>
 <%-- フッター --%>
-<c:import url="../common/footer.jsp"/>
-
-
+<c:import url="../common/footer.jsp" />
+<!-- navigation.jspの<div class="all">の終了タグ -->
+</div>
 </html>

@@ -8,7 +8,7 @@
 
 
 <%-- ヘッダー --%>
-<c:import url="../common/header.jsp"/>
+<c:import url="../common/main_header.jsp"/>
 
 
 <div class="main">
@@ -29,10 +29,11 @@
 		<label>残り${ g }g</label>
 		<div>
 			10 × <input type="number" name="count" value="${ count }">
+			<input type="hidden" name="productId" value="${product.productId}">
 		</div>
 	</c:if>
 	<!-- 決済確認画面に遷移 -->
-	 <input type="submit" onclick="changeAction('card/Settlement.action')" value="決済画面へ">
+	 <input type="submit" onclick="changeAction('SubscriptionSettlement.action')" value="決済画面へ">
 	 <!-- 選択を続けるを押すとカートに商品が追加され選択画面に戻る -->
 	 <input type="submit" onclick="changeAction('main/CartCreateExecute.action')" value="選択を続ける">
 </form>
