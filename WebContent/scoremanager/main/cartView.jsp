@@ -35,10 +35,6 @@
 			  <td id="price">
 			    <span class="price" data-index="${status.index}">${pList.price}</span>円
 			  </td>
-
-			  <!-- 商品IDをhiddenを送る -->
-			  <input type="hidden" name="productId${ status.index }" value="${ pList.productId }">
-
 			  <!-- 数量選択 -->
 			  <td id="numc">
 			    <c:forEach var="cList" items="${cList}">
@@ -51,6 +47,8 @@
 				      <option value="5" <c:if test="${cList.count == 5}">selected</c:if>>5</option>
 				    </select>
 				    <input type="hidden" name="num${ status.index }" value="${ num }">
+				    <!-- 商品IDをhiddenを送る -->
+			  		<input type="hidden" name="productId${ status.index }" value="${ pList.productId }">
 			      </c:if>
 			    </c:forEach>
 			  </td>

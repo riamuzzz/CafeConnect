@@ -44,6 +44,7 @@ public class CartDao extends Dao {
 			//プレースホルダー（？の部分）に値を設定し、SQLを実行
 			statement.setString(1,user.getUserId());
 			statement.setInt(2,product.getProductId());
+			System.out.println(statement);
 			ResultSet rSet = statement.executeQuery();
 
 			//カテゴリDaoを初期化

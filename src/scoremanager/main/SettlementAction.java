@@ -34,24 +34,28 @@ public class SettlementAction extends Action{
 		//リクエストパラメータ取得
 		while(true){
 			String productIdStr = req.getParameter("productId" + Integer.toString(i));
-			int productId = Integer.parseInt(req.getParameter("productId" + Integer.toString(i)));
+			if (productIdStr != null){
+				int productId = Integer.parseInt(productIdStr);
+				productIds.add(productId);
+			}
 			String num = req.getParameter("num" + Integer.toString(i));
-			productIds.add(productId);
 			nums.add(num);
 			if (productIdStr == null || num == null){
-				productIds.remove(i);
-				nums.remove(i);
 				break;
 			}
 			i = i + 1;
 		}
 		//DBからデータ取得 3
 		for (int productId : productIds){
-			pList.add(pDao.get(productId));
-			Cart cart = cDao.get(user, pDao.get(productId));
-			cart.setCount(Integer.parseInt(nums.get(count)));
-			cList.add(cart);
-			count++;
+			if (productId != 0){
+				Product product = pDao.get(productId);
+				pList.add(product);
+				System.out.println(product);
+				Cart cart = cDao.get(user, product);
+				cart.setCount(Integer.parseInt(nums.get(count)));
+				cList.add(cart);
+				count++;
+			}
 		}
 		Card card =user.getCard();
 
