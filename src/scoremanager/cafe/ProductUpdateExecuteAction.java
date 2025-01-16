@@ -25,7 +25,7 @@ public class ProductUpdateExecuteAction extends Action{
 		//リクエストパラメータ―の取得 2
 		String categoryId = req.getParameter("category");
 		String instockday = req.getParameter("instockday");
-		String id = req.getParameter("id");
+		int id = Integer.parseInt(req.getParameter("id"));
 		String name = req.getParameter("name");
 		String price = req.getParameter("price");
 		String count = req.getParameter("count");

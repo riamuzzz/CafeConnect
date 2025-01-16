@@ -21,7 +21,7 @@ public class ProductUpdateAction extends Action{
 		List<Category> cList = new ArrayList<>();
 		List<String> error = new ArrayList<>();
 		//リクエストパラメータ―の取得 2
-		String id = req.getParameter("productId");//商品番号
+		int id = Integer.parseInt(req.getParameter("productId"));//商品番号
 
 		//DBからデータ取得 3
 		Product product = pDao.get(id);//商品番号から商品インスタンスを取得

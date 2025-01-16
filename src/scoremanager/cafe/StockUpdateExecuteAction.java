@@ -23,7 +23,7 @@ public class StockUpdateExecuteAction extends Action{
 		for (String productId : productIds) {
 		    String join = req.getParameter("join_" + productId);
 		    String disposal = req.getParameter("disposal_" + productId);
-		    Product product = pDao.get(productId);//商品番号をもとに商品インスタンスを取得
+		    Product product = pDao.get(Integer.parseInt(productId));//商品番号をもとに商品インスタンスを取得
 		    if (product != null) {
 				// 商品が存在していた場合
 				// インスタンスに値をセット
