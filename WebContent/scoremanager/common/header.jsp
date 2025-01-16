@@ -19,13 +19,15 @@
 			</div>
 
 			<!-- 検索 -->
+			<form action="Serch.action" method="post">
 			<div class=search>
 				<div class=kwdkensaku>
-				<input placeholder="キーワード検索" style="width: 100%; height: 44px;">
-				</div>
-				<!-- 検索用ボタン -->
-				<input type="submit" name="kensaku" value="検索"/>
+					<input placeholder="キーワード検索" name="keyword" style="width: 100%; height: 44px;">
+					</div>
+					<!-- 検索用ボタン -->
+					<input type="submit" name="kensaku" value="検索"/>
 			</div>
+			</form>
 
 			<div class=banner>
 			<table>

@@ -6,7 +6,6 @@
 <html>
 <div class="productView">
 
-
 <%-- ヘッダー --%>
 <c:import url="../common/main_header.jsp"/>
 

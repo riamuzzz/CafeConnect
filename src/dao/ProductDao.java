@@ -286,7 +286,7 @@ public class ProductDao extends Dao {
 
 
 	/**
-	 * serchメソッド 検索する
+	 * serchメソッド cafe店員が商品を検索する
 	 *
 	 */
 	public List<Product> serch(Category category, String productName) throws Exception {
@@ -375,6 +375,93 @@ public class ProductDao extends Dao {
 
 	}
 
+	/**
+	 * searchメソッド - 検索機能
+	 *
+	 * @param productName 検索する商品名
+	 * @return 検索結果のProductリスト
+	 * @throws Exception エラーが発生した場合
+	 */
+	public List<Product> search(String productName) throws Exception {
+
+	    // 検索結果を格納するリストを初期化
+	    List<Product> list = new ArrayList<>();
+
+	    // データベースへのコネクションを確立
+	    Connection connection = getConnection();
+
+	    // プリペアードステートメント
+	    PreparedStatement statement = null;
+
+	    // SQLの基本文
+	    String baseSql = "SELECT * FROM product ";
+
+	    // 条件文とパラメータ設定用変数
+	    String condition = "";
+	    int paramIndex = 1;
+
+	    // SQL文のソート
+	    String order = " ORDER BY product_id ASC";
+
+	    // 商品名が指定されている場合、条件を追加
+	    if (productName != null && !productName.isEmpty()) {
+	        condition = "WHERE product_name LIKE ?";
+	    }
+
+	    try {
+			CategoryDao cDao = new CategoryDao();
+	        // プリペアードステートメントにSQL文をセット
+	        statement = connection.prepareStatement(baseSql + condition + order);
+
+	        // 商品名が指定されている場合、プレースホルダーに値を設定
+	        if (!condition.isEmpty()) {
+	            statement.setString(paramIndex, "%" + productName + "%");
+	        }
+
+	        // SQL文を実行し、結果セットを取得
+	        ResultSet rSet = statement.executeQuery();
+
+	        // 結果セットをリストに変換
+	        while (rSet.next()) {
+	            Product product = new Product();
+				//商品インスタンスに検索結果をセット
+				product.setProductId(rSet.getString("product_id"));
+				product.setProductName(rSet.getString("product_name"));
+				product.setPrice(rSet.getInt("price"));
+				product.setImage(rSet.getString("image"));
+				product.setProductDetail(rSet.getString("product_detail"));
+				product.setCount(rSet.getInt("count"));
+				product.setCategory(cDao.get(rSet.getString("category_id")));
+				product.setSell(rSet.getBoolean("sell"));
+				product.setInStockDay(rSet.getDate("in_stock_day"));
+				//リストに追加
+				list.add(product);
+			}
+
+	    } catch (Exception e) {
+	        throw e; // 例外を呼び出し元にスロー
+	    } finally {
+	        // プリペアードステートメントを閉じる
+	        if (statement != null) {
+	            try {
+	                statement.close();
+	            } catch (SQLException sqle) {
+	                throw sqle;
+	            }
+	        }
+	        // コネクションを閉じる
+	        if (connection != null) {
+	            try {
+	                connection.close();
+	            } catch (SQLException sqle) {
+	                throw sqle;
+	            }
+	        }
+	    }
+	    return list; // 検索結果のリストを返却
+	}
+
+
 	public List<Product> get() throws Exception {
 
 		//リストを初期化
@@ -395,7 +482,7 @@ public class ProductDao extends Dao {
 			//リザルトセットを全件走査
 			while (rSet.next()){
 				Product product = new Product();
-				//学生インスタンスに検索結果をセット
+				//商品インスタンスに検索結果をセット
 				product.setProductId(rSet.getString("product_id"));
 				product.setProductName(rSet.getString("product_name"));
 				product.setPrice(rSet.getInt("price"));
