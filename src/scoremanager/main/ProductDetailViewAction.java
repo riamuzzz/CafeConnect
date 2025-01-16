@@ -13,7 +13,7 @@ public class ProductDetailViewAction extends Action{
 		//ローカル変数の宣言 1
 		ProductDao pDao = new ProductDao();//商品Dao
 		//リクエストパラメータ―の取得 2
-		String productId = req.getParameter("productId");//学番
+		int productId = Integer.parseInt(req.getParameter("productId"));//学番
 		String numStr = req.getParameter("num");
 		String error = req.getParameter("error");
 		if (numStr != null) {

@@ -25,7 +25,7 @@ public class SettlementAction extends Action{
 		User user = (User)session.getAttribute("user");//ログインユーザー
 		ProductDao pDao = new ProductDao();
 		CartDao cDao = new CartDao();
-		List<String> productIds = new ArrayList<>();
+		List<Integer> productIds = new ArrayList<>();
 		List<String> nums = new ArrayList<>();
 		List<Product> pList = new ArrayList<>();
 		List<Cart> cList = new ArrayList<>();
@@ -33,11 +33,12 @@ public class SettlementAction extends Action{
 		int count = 0;
 		//リクエストパラメータ取得
 		while(true){
-			String productId = req.getParameter("productId" + Integer.toString(i));
+			String productIdStr = req.getParameter("productId" + Integer.toString(i));
+			int productId = Integer.parseInt(req.getParameter("productId" + Integer.toString(i)));
 			String num = req.getParameter("num" + Integer.toString(i));
 			productIds.add(productId);
 			nums.add(num);
-			if (productId == null || num == null){
+			if (productIdStr == null || num == null){
 				productIds.remove(i);
 				nums.remove(i);
 				break;
@@ -45,7 +46,7 @@ public class SettlementAction extends Action{
 			i = i + 1;
 		}
 		//DBからデータ取得 3
-		for (String productId : productIds){
+		for (int productId : productIds){
 			pList.add(pDao.get(productId));
 			Cart cart = cDao.get(user, pDao.get(productId));
 			cart.setCount(Integer.parseInt(nums.get(count)));

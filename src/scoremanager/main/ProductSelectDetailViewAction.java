@@ -25,7 +25,7 @@ public class ProductSelectDetailViewAction extends Action{
 		List<Order> orders = new ArrayList<>();
 		int g = 300;//グラムの変数
 		//リクエストパラメータ―の取得 2
-		String productId = req.getParameter("productId");//品番
+		int productId = Integer.parseInt(req.getParameter("productId"));//品番
 		//DBからデータ取得 3
 		Product product = pDao.get(productId);//商品IDから商品インスタンスを取得
 		orders = oDao.filter(user.getUserId());

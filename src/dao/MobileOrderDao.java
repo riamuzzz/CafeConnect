@@ -347,7 +347,7 @@ public class MobileOrderDao extends Dao {
 						"INSERT INTO ORDER (ORDER_ID ,PRODUCT_ID ,USER_ID ,ORDER_TIME ,COUNT ,RECEIVE ,SUBSCRIPTION ) VALUES (?,?,?,?,?,?,?)");
 				//各部分に値を設定
 				statement.setString(1, cart.getProduct()+cart.getUser().getUserId());
-				statement.setString(2, cart.getProduct().getProductId());
+				statement.setInt(2, cart.getProduct().getProductId());
 				statement.setString(3, cart.getUser().getUserId());
 				statement.setString(4, formattedDateTime);
 				statement.setInt(5, cart.getCount());

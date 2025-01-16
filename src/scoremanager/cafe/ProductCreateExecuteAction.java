@@ -30,7 +30,7 @@ public class ProductCreateExecuteAction extends Action{
 
 		int productId;
 
-		System.out.println(productDao.getId().getProductId());
+//		System.out.println(productDao.getId().getProductId());
 
 		// 商品登録が一つ目の場合product_idを1にする
 		if (productDao.getId() == null){

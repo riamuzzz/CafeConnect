@@ -348,7 +348,7 @@ public class OrderDao extends Dao {
 						"INSERT INTO ORDER (ORDER_ID ,PRODUCT_ID ,USER_ID ,ORDER_TIME ,COUNT ,RECEIVE ,SUBSCRIPTION ) VALUES (?,?,?,?,?,?,?)");
 				//各部分に値を設定
 				statement.setString(1, cart.getProduct()+cart.getUser().getUserId());
-				statement.setString(2, cart.getProduct().getProductId());
+				statement.setInt(2, cart.getProduct().getProductId());
 				statement.setString(3, cart.getUser().getUserId());
 				statement.setString(4, formattedDateTime);
 				statement.setInt(5, cart.getCount());
@@ -419,7 +419,7 @@ public class OrderDao extends Dao {
 					Order order = new Order();
 					//注文インスタンスに検索結果をセット
 					order.setOrderId(rSet.getString("order_id"));
-					order.setProduct(pDao.get(rSet.getString("product_id")));
+					order.setProduct(pDao.get(rSet.getInt("product_id")));
 					order.setUser(uDao.get(rSet.getString("user_id")));
 					order.setOrderTime(rSet.getDate("order_time"));
 					order.setCount(rSet.getInt("count"));
