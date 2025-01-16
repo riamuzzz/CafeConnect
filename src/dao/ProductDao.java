@@ -25,7 +25,7 @@ public class ProductDao extends Dao {
 	 * @throws Exception
 	 */
 
-	public Product get(String productId) throws Exception{
+	public Product get(int productId) throws Exception{
 		Connection connection = getConnection();
 		//プリペアードステートメント
 		PreparedStatement statement = null;
@@ -40,7 +40,7 @@ public class ProductDao extends Dao {
 			statement = connection.prepareStatement(baseSql + condition);
 
 			//プレースホルダー（？の部分）に値を設定し、SQLを実行
-			statement.setString(1,productId);
+			statement.setInt(1,productId);
 			ResultSet rSet = statement.executeQuery();
 
 			//カテゴリDaoを初期化
@@ -48,7 +48,7 @@ public class ProductDao extends Dao {
 
 			//取得した情報をproductインスタンスに保存
 			if(rSet.next()) {
-				product.setProductId(rSet.getString("product_id"));
+				product.setProductId(rSet.getInt("product_id"));
 				product.setProductName(rSet.getString("product_name"));
 				product.setPrice(rSet.getInt("price"));
 				product.setImage(rSet.getString("image"));
@@ -118,7 +118,7 @@ public class ProductDao extends Dao {
 
 			//取得した情報をproductインスタンスに保存
 			if(rSet.next()) {
-				product.setProductId(rSet.getString("product_id"));
+				product.setProductId(rSet.getInt("product_id"));
 				product.setProductName(rSet.getString("product_name"));
 				product.setPrice(rSet.getInt("price"));
 				product.setImage(rSet.getString("image"));
@@ -172,7 +172,7 @@ public class ProductDao extends Dao {
 			while (rSet.next()){
 				Product product = new Product();
 				//学生インスタンスに検索結果をセット
-				product.setProductId(rSet.getString("product_id"));
+				product.setProductId(rSet.getInt("product_id"));
 				product.setProductName(rSet.getString("product_name"));
 				product.setPrice(rSet.getInt("price"));
 				product.setImage(rSet.getString("image"));
@@ -482,8 +482,13 @@ public class ProductDao extends Dao {
 			//リザルトセットを全件走査
 			while (rSet.next()){
 				Product product = new Product();
+<<<<<<< HEAD
 				//商品インスタンスに検索結果をセット
 				product.setProductId(rSet.getString("product_id"));
+=======
+				//学生インスタンスに検索結果をセット
+				product.setProductId(rSet.getInt("product_id"));
+>>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
 				product.setProductName(rSet.getString("product_name"));
 				product.setPrice(rSet.getInt("price"));
 				product.setImage(rSet.getString("image"));
@@ -541,7 +546,7 @@ public class ProductDao extends Dao {
 			while (rSet.next()){
 				Product product = new Product();
 				//学生インスタンスに検索結果をセット
-				product.setProductId(rSet.getString("product_id"));
+				product.setProductId(rSet.getInt("product_id"));
 				product.setProductName(rSet.getString("product_name"));
 				product.setPrice(rSet.getInt("price"));
 				product.setImage(rSet.getString("image"));
@@ -608,7 +613,7 @@ public class ProductDao extends Dao {
 				statement = connection.prepareStatement(
 						"INSERT INTO PRODUCT (PRODUCT_ID ,CATEGORY_ID ,PRODUCT_NAME ,PRICE ,IMAGE ,PRODUCT_DETAIL ,COUNT ,SELL ,IN_STOCK_DAY ) VALUES (?,?,?,?,?,?,?,?,?)");
 				//各部分に値を設定
-				statement.setString(1, product.getProductId());
+				statement.setInt(1, product.getProductId());
 				statement.setString(2, product.getCategory().getCategoryId());
 				statement.setString(3, product.getProductName());
 				statement.setInt(4, product.getPrice());
@@ -624,7 +629,7 @@ public class ProductDao extends Dao {
 				statement = connection.prepareStatement(
 						"UPDATE PRODUCT SET PRODUCT_ID=? ,CATEGORY_ID=? ,PRODUCT_NAME=? ,PRICE=? ,IMAGE=? ,PRODUCT_DETAIL=? ,COUNT=? ,SELL=? ,IN_STOCK_DAY=? WHERE PRODUCT_ID=?");
 				//各部分に値を設定
-				statement.setString(1, product.getProductId());
+				statement.setInt(1, product.getProductId());
 				statement.setString(2, product.getCategory().getCategoryId());
 				statement.setString(3, product.getProductName());
 				statement.setInt(4, product.getPrice());
@@ -633,7 +638,7 @@ public class ProductDao extends Dao {
 				statement.setInt(7, product.getCount());
 				statement.setBoolean(8, product.isSell());
 				statement.setDate(9, new java.sql.Date(product.getInStockDay().getTime()));
-				statement.setString(10, product.getProductId());
+				statement.setInt(10, product.getProductId());
 
 			}
 
