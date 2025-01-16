@@ -4,8 +4,9 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,13 +30,17 @@ public class ProductCreateExecuteAction extends Action{
 
 		int productId;
 
-		// 商品登録が一つ目の場合Idを1にする
+		System.out.println(productDao.getId().getProductId());
+
+		// 商品登録が一つ目の場合product_idを1にする
 		if (productDao.getId() == null){
 			productId = 1;
-		// 商品登録が一つ目以外の時Idを+1する
+		// 商品登録が一つ目以外の時product_idを+1する
 		} else {
-			productId = Integer.parseInt(productDao.getId().getProductId())+1;  // 商品ID
+			productId = productDao.getId().getProductId()+1;  // 商品ID
 		}
+
+		System.out.println("productId:" + productId);
 
 		String categoryId = null;                   			// カテゴリID
 		Category category = null;                   			// カテゴリ
@@ -48,7 +53,20 @@ public class ProductCreateExecuteAction extends Action{
 		Boolean sell = null;                         			// 販売状況
 		LocalDate nowDate = LocalDate.now();         // LcalDateインスタンスを取得
 		String nowDateStr = String.valueOf(nowDate); // string型に変換
+//		LocalDateTime nowDateTime = LocalDateTime.now();         // LcalDateTimeインスタンスを取得
+//		String nowDateTimeStr = String.valueOf(nowDateTime.getSecond()); // string型に変換
 		Date inStockDay = Date.valueOf(nowDateStr);  // string型からDate型に変換
+		String fileName = null;// 画像のファイル名
+
+		// 現在の日時を取得
+        LocalDateTime now = LocalDateTime.now();
+
+        // カスタムフォーマットを定義
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d-H-m-s");
+
+        // フォーマットを適用して表示
+        String formattedNow = now.format(formatter);
+        System.out.println(formattedNow);  // 例: 2025-1-16-10-15-40
 
 		// リクエストパラメータの取得
 		categoryId = req.getParameter("category");           // カテゴリId
@@ -71,13 +89,18 @@ public class ProductCreateExecuteAction extends Action{
 
 
 		// ファイルを保存したい！！
-		String fileName = new File(img).getName();// pathからファイル名取得
+		System.out.println("カレントディレクトリ: " + System.getProperty("user.dir"));
+
+
 
 		// 画像ファイルのパスを指定（ローカルファイル）
-        String sourceImagePath = "C:/products/images/";  // ここにローカルの画像パスを指定
+		// 保存するファイル名を作成（重複を避けるためタイムスタンプを追加）
+//		String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date(count));
+        String sourceImagePath = "C:/products/images/" + img;  // ここにローカルの画像パスを指定
+        System.out.println("img:" + img);
 
         // 保存先フォルダのパスを指定
-        String saveFolderPath = "CafeConnect/WebContent/scoremanager/img/product/";
+        String saveFolderPath = req.getServletContext().getRealPath("/scoremanager/img/product/");
 
         // フォルダが存在しない場合は作成
         File folder = new File(saveFolderPath);
@@ -88,14 +111,15 @@ public class ProductCreateExecuteAction extends Action{
         // 画像ファイルを読み込み、保存する
         File sourceImageFile = new File(sourceImagePath);
         if (sourceImageFile.exists()) {
-            // 保存するファイル名を作成（重複を避けるためタイムスタンプを追加）
-            String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date(count));
-            File outputFile = new File(saveFolderPath + productName + timestamp + ".jpg");
+
+            File outputFile = new File(saveFolderPath + productName + formattedNow + ".jpg");
 
             // ファイルをコピーして保存
             Files.copy(Paths.get(sourceImagePath), Paths.get(outputFile.getAbsolutePath()));
 
             System.out.println("画像が保存されました: " + outputFile.getAbsolutePath());
+            System.out.println("ファイル名：" + productName + formattedNow + ".jpg");
+            fileName = productName + formattedNow + ".jpg";
         } else {
             System.out.println("指定された画像ファイルが存在しません。");
         }
@@ -112,7 +136,7 @@ public class ProductCreateExecuteAction extends Action{
 		Product product = new Product();
 
 		// productに値をset
-		product.setProductId(String.valueOf(productId));
+		product.setProductId(productId);
 		product.setCategory(category);
 		product.setProductName(productName);
 		product.setPrice(price);

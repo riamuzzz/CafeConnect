@@ -4,7 +4,7 @@ import java.util.Date;
 public class Product {
 
 	//商品ID
-	private String productId;
+	private int productId;
 
 	//カテゴリ
 	private Category category;
@@ -31,11 +31,11 @@ public class Product {
 	private Date inStockDay;
 
 	//ゲッターセッター
-	public String getProductId() {
+	public int getProductId() {
 		return productId;
 	}
 
-	public void setProductId(String productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 
