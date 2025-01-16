@@ -1,25 +1,51 @@
 /* cartView *//* cartView *//* cartView */
 .cartcontent{
-    border: 1px solid #999;
-    padding: 0px;
-    background: #f2f2f2;
-    height: 500px;
+
 }
 .cartcontent h1{
-	margin-left: 30px;
+	margin-left: 190px;
 }
 
 .cartcontent #productName{
 	position: relative;
     bottom: 80px;
-    left: 50px;
+    left: 200px;
+}
+
+.cartcontent #price{
+	position: relative;
+    bottom: 50px;
+    left: 120px;
 }
 
 .cartcontent #img{
-	margin-left: 20px;
+	position: relative;
+	left: 90px;
 }
 
-.cartcontent #num{
+.cartcontent #img::after { /* 議事要素を使用した横線 */
+    content: '';
+    width: 875px;
+    height: 1px;
+    display: inline-block;
+    background-color: #7d7d7d;
+    position: absolute;
+    bottom: -15px;
+    left: calc(50% - 55px)
+}
+
+.cartcontent #img::before { /* 議事要素を使用した横線 */
+    content: '';
+    width: 875px;
+    height: 1px;
+    display: inline-block;
+    background-color: #7d7d7d;
+    position: absolute;
+    bottom: 210px;
+    left: calc(50% - 55px)
+}
+
+.cartcontent #numc{
 	position: relative;
     top: 50px;
     left: 575px;
@@ -54,3 +80,4 @@
 .cartcontent #regi:hover{
 	background: #f78180
 }
+

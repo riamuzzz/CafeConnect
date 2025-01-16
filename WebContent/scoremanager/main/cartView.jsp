@@ -40,7 +40,7 @@
 			  <input type="hidden" name="productId${ status.index }" value="${ pList.productId }">
 
 			  <!-- 数量選択 -->
-			  <td id="num">
+			  <td id="numc">
 			    <c:forEach var="cList" items="${cList}">
 			  	  <c:if test="${cList.product.productId eq pList.productId}">
 				    <select name="num${ status.index }" class="quantity" data-index="${status.index}" onchange="calculateTotal()">
