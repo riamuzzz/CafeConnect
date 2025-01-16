@@ -425,7 +425,7 @@ public class ProductDao extends Dao {
 	        while (rSet.next()) {
 	            Product product = new Product();
 				//商品インスタンスに検索結果をセット
-				product.setProductId(rSet.getString("product_id"));
+				product.setProductId(rSet.getInt("product_id"));
 				product.setProductName(rSet.getString("product_name"));
 				product.setPrice(rSet.getInt("price"));
 				product.setImage(rSet.getString("image"));
@@ -482,13 +482,10 @@ public class ProductDao extends Dao {
 			//リザルトセットを全件走査
 			while (rSet.next()){
 				Product product = new Product();
-<<<<<<< HEAD
 				//商品インスタンスに検索結果をセット
-				product.setProductId(rSet.getString("product_id"));
-=======
+				product.setProductId(rSet.getInt("product_id"));
 				//学生インスタンスに検索結果をセット
 				product.setProductId(rSet.getInt("product_id"));
->>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
 				product.setProductName(rSet.getString("product_name"));
 				product.setPrice(rSet.getInt("price"));
 				product.setImage(rSet.getString("image"));
