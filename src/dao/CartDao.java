@@ -43,7 +43,7 @@ public class CartDao extends Dao {
 
 			//プレースホルダー（？の部分）に値を設定し、SQLを実行
 			statement.setString(1,user.getUserId());
-			statement.setInt(2,product.getProductId());
+			statement.setString(2,Integer.toString(product.getProductId()));
 			System.out.println(statement);
 			ResultSet rSet = statement.executeQuery();
 
@@ -226,7 +226,7 @@ public class CartDao extends Dao {
 				//COUNTにもともとの商品の個数と今選択された個数を足す
 				statement.setInt(1, cart.getCount() + newcount);
 				statement.setString(2, cart.getUser().getUserId());
-				statement.setInt(3, cart.getProduct().getProductId());
+				statement.setString(3, Integer.toString(cart.getProduct().getProductId()));
 
 			}
 
