@@ -15,8 +15,10 @@
 <%-- ナビゲーション --%>
 <c:import url="./common/navigation.jsp"/>
 
+	<div class="proimage">
+		<img src="img/product/${ product.image }">
+	</div>
 
-	<img src="img/product/${ product.image }">
 	<div class="probo">
 	<table>
 			<tr class="proNa"><td>${ product.productName }</td></tr>
@@ -24,14 +26,18 @@
 			<tr class="proPr"><td>${ product.price }円（税込）</td></tr>
 	</table>
 	<div class="prosyo">
+		<div class="suryo">数量を選択</div>
 	<form action="main/CartCreateExecute.action" method="post">
-		<label>数量</label>
-		<input type="number" name="num" value="${ num }">
-		<input type="hidden" name="product" value="${ product.productId }">
-		<input class="cart" type="submit" value="カートに追加">
+		<div class="aaa">
+				<label>数量</label>
+			<input type="number" name="num" value="${ num }">
+			<input type="hidden" name="product" value="${ product.productId }">
+			<input class="cart" type="submit" value="カートに追加">
+			<a href="TopPageExecute.action">選択に戻る</a>
+		</div>
 	</form>
 
-		<a href="TopPageExecute.action">選択に戻る</a>
+
 	</div>
 	</div>
 

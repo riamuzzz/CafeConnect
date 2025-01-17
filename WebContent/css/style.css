@@ -1,5 +1,4 @@
 
-
 .main {
 	margin-top: 250px;
 }
@@ -33,7 +32,13 @@
 h2 {
 	float: left;
 	padding: 0%;
-	margin: 1% 10% 0% 10%;
+	margin: 1% 5% 0% 10%;
+}
+
+.user {
+	position: relative;
+	top: 35px;
+	right: 70px;
 }
 
 .search {
@@ -43,7 +48,7 @@ h2 {
 	display: flex;
 	position: relative;
 	top: 20px;
-	right: 60px;
+	left: 140px;
 }
 
 .box {
@@ -60,7 +65,7 @@ h2 {
 	float: right;
 	padding: 0%;
 	margin: 0% 2% 0% 0%;
-	width: 26%;
+	width: 28%;
 	height:;
 	position: relative;
 	top: 0px;
@@ -143,22 +148,73 @@ a {
 
 /* トップ */
 
-.top_page {
-	margin-top: 250px;
+.slide-container {
+  width: 3700px;
+  display: flex;
+  align-items: center;
+  height: 170px;
+  overflow: hidden;
+  flex-direction: row;
+}
+.slide-wrapper {
+  display: flex;
+  /* flex-direction: column; */
+  animation: slide-flow 20s infinite linear 1s both;
+  /*animation-fill-mode: both;*/
+}
+.slide{
+  width: 33%;
+  object-fit: cover;
+  border: 1px solid #ddd;
 }
 
-.koukoku {
-	width: 53%;
+@keyframes slide-flow {
+     0% {transform: translateX(0);}
+ 100% {transform: translateX(-100%);}
 }
+
+ .slide-paused:hover .slide-wrapper {
+   animation-play-state: paused;
+ }
+ .slide-paused:hover .slide-wrapper img:hover {
+   opacity: .8;
+   cursor: grabbing;
+ }
+
+
+.top_page {
+	margin-top: 10px;
+	overflow-x: hidden;
+}
+
 
 .ranking {
+	font-size: 30px;
+	text-align: center;
+	/*display: inline-block;*/
 	font-weight: bold;
+
+	/*position: relative;
+	top: 0px;
+	left: 600px;*/
 }
+
+.topTable table{
+
+}
+
+
 
 /* ログイン */
 .log {
 	margin-top: 350px;
 }
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> branch 'master' of https://github.com/riamuzzz/CafeConnect.git
 /* サブスク */
 
 .subsc {
@@ -217,6 +273,8 @@ body {
 	background-color: #ffffff;
 	width: 40%;
 }
+
+
 
 /* サブスク入会 */
 
@@ -348,7 +406,7 @@ a {
 }
 
 
-/* syosai */
+/* サブスク　詳細 */
 
 .syosai {
 	margin-top: 300px;
@@ -374,21 +432,47 @@ a {
 
 /* オンラインショップ　詳細 */
 
-.prode {
+.proimage {
 
+}
+
+.proimage img {
+	margin: 0 0 1% 0;
+	width: 12%;
+	position: relative;
+	top: 0;
+	left: 10%;
 }
 
 .prosyo {
 	background-color: #f5f5f5;
-	margin:0 0 5% 5%;
+	margin:0 0 3% 5%;
 	padding:0 0 5% 5%;
-	width: 80%;
+	width: 85%;
 	border-bottom: 8px solid #ffffff;
+}
+
+.aaa {
+	position: relative;
+	top: 80px;
+	left: 60%;
+	width: 50%;
+	font-size: 20px;
+}
+
+.suryo {
+	font-size: 20px;
+	padding: 1%;
+}
+
+.cart {
+	margin: 1%;
+	font-size: 17px;
 }
 
 .proNa {
 	font-weight: bold;
-	font-size: 22px;
+	font-size: 26px;
 }
 
 .proDe {
@@ -407,6 +491,10 @@ a {
 
 .probo {
 	background-color: #ffffff;
+	width: 88%;
+	position: relative;
+	top: 0px;
+	left: 7%;
 }
 
 .probo a{
@@ -418,7 +506,7 @@ a {
 
 
 
-/* tenpo */
+/* 店舗 */
 
 .mise {
 	margin: 2%;

@@ -17,9 +17,32 @@
 
 
 <div class="content">
-	<img class="koukoku" src=img/top/top1.jpg>
+	<div class="slide-container slide-paused" ontouchstart="">
+	<%--<img class="koukoku" src=img/top/top1.jpg> --%>
+	<div class="slide-container">
+	   <div class="slide-wrapper">
+	      <img class="slide" src=img/top/top1.jpg>
+	      <img class="slide" src=img/top/top2.jpg>
+	      <img class="slide" src=img/top/top3.jpg>
+
+	   </div>
+	   <div class="slide-wrapper">
+	   	  <img class="slide" src=img/top/top1.jpg>
+	      <img class="slide" src=img/top/top2.jpg>
+	      <img class="slide" src=img/top/top3.jpg>
+
+	   </div>
+	   <div class="slide-wrapper">
+	      <img class="slide" src=img/top/top1.jpg>
+	      <img class="slide" src=img/top/top2.jpg>
+	      <img class="slide" src=img/top/top3.jpg>
+	   </div>
+	</div>
+	</div>
+
 
 	<h2 class="ranking">ランキング</h2>
+	<div class="topTable">
 	<table>
 		<c:forEach var="product" items="${products}">
 			<tr>
@@ -31,6 +54,7 @@
 			<tr><td>${ product.price }円</td></tr>
 		</c:forEach>
 	</table>
+	</div>
 </div>
 
 <%-- フッター --%>
