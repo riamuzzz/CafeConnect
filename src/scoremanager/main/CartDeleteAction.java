@@ -33,8 +33,8 @@ public class CartDeleteAction  extends Action{
 		cart = cDao.get(user,pDao.get(productId));
 
 		cDao.delete(cart, productId);
-
-		if(product.getCategory().getCategoryId() == "CATE02"){
+		//商品が豆かどうか判断している（モバイルは豆頼めないからモバイルかオンラインショップかの判断もしている）
+		if(product.getCategory().getCategoryId() != "CATE02"){
 			req.getRequestDispatcher("CartView.action").forward(req, res);
 		}else{
 			req.getRequestDispatcher("MobileCartView.action").forward(req, res);

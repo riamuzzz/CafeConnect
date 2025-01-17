@@ -16,7 +16,7 @@
 
 		<div class="cartcontent">
 			<h1>カート</h1>
-			<form action="Settlement.action" method="post">
+			<form id="myForm" method="post">
 				<table id="item-table">
 					<c:forEach var="pList" items="${pList}" varStatus="status">
 						<tr class="item" data-index="${status.index}">
@@ -46,12 +46,9 @@
 								</c:forEach></td>
 
 							<!-- カート削除ボタン -->
-							<td id="del">
-								<form action="CartDelete.action" method="post">
-									<input type="hidden" name="productId"
-										value="${pList.productId}"> <input type="submit"
-										value="カートから削除">
-								</form>
+							<td id="del"><input type="hidden" name="productId"
+								value="${pList.productId}"> <input type="submit"
+								onclick="changeAction('CartDelete.action')" value="カートから削除">
 							</td>
 						</tr>
 					</c:forEach>
@@ -59,7 +56,8 @@
 					<td id="totalAmount">合計金額: 0円</td>
 					<!-- レジへボタン -->
 				</table>
-				<input type="submit" value="レジへ進む" id="regi">
+				<input type="submit" value="レジへ進む"
+					onclick="changeAction('Settlement.action')" id="regi">
 			</form>
 		</div>
 
