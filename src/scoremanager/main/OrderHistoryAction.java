@@ -23,6 +23,7 @@ public class OrderHistoryAction extends Action{
 		User user = (User)session.getAttribute("user");
 		//現在ログイン中のユーザの注文情報を取得
 		orderList = oDao.filter(user.getUserId());
+		//サブスクリプションの商品は除外する
 		//レスポンス値をセット 6
 		req.setAttribute("orders", orderList);
 		//JSPへフォワード 7

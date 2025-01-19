@@ -52,8 +52,11 @@
 		<tr><td>変更<td></tr>
 
 	</table>
-
-
+	<form action="SubscriptionSettlementExecute.action" method="post">
+		<input type="hidden" name="productId" value="${product.productId}">
+		<input type="hidden" name="count" value="${count}">
+		<input type="submit" value="決済">
+	</form>
 </div>
 
 <%-- フッター --%>
