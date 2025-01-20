@@ -228,7 +228,7 @@ public class CartDao extends Dao {
 				//COUNTにもともとの商品の個数と今選択された個数を足す
 				statement.setInt(1, cart.getCount() + newcount);
 				statement.setInt(2, cart.getUser().getUserId());
-				statement.setString(3, Integer.toString(cart.getProduct().getProductId()));
+				statement.setInt(3, cart.getProduct().getProductId());
 
 			}
 
