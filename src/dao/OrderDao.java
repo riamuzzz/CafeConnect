@@ -61,7 +61,7 @@ public class OrderDao extends Dao {
 				order.setProductName(rSet.getString("product_name"));
 				order.setUserName(rSet.getString("user_name"));
 				order.setAddress(rSet.getString("address"));
-				order.setOrderTime(rSet.getDate("order_time"));
+				order.setOrderTime(rSet.getTimestamp("order_time"));
 				order.setCount(rSet.getInt("count"));
 				order.setReceive(rSet.getBoolean("receive"));
 				order.setSubscription(rSet.getBoolean("subscription"));
@@ -115,7 +115,7 @@ public class OrderDao extends Dao {
 				order.setProductName(rSet.getString("product_name"));
 				order.setUserName(rSet.getString("user_name"));
 				order.setAddress(rSet.getString("address"));
-				order.setOrderTime(rSet.getDate("order_time"));
+				order.setOrderTime(rSet.getTimestamp("order_time"));
 				order.setCount(rSet.getInt("count"));
 				order.setReceive(rSet.getBoolean("receive"));
 				order.setSubscription(rSet.getBoolean("subscription"));
@@ -348,7 +348,7 @@ public class OrderDao extends Dao {
 				//各部分に値を設定
 				statement.setString(1, formattedDateTime+cart.getUser().getUserId());
 				statement.setInt(2,cart.getProduct().getProductId());
-				statement.setString(3, cart.getUser().getUserId());
+				statement.setInt(3, cart.getUser().getUserId());
 				statement.setTimestamp(4, sqlTimestamp);
 				statement.setInt(5, cart.getCount());
 				statement.setBoolean(6, false);
@@ -414,7 +414,7 @@ public class OrderDao extends Dao {
 				//各部分に値を設定
 				statement.setString(1, formattedDateTime+user.getUserId());
 				statement.setInt(2,product.getProductId());
-				statement.setString(3, user.getUserId());
+				statement.setInt(3, user.getUserId());
 				statement.setTimestamp(4, sqlTimestamp);
 				statement.setInt(5, num);
 				statement.setBoolean(6, false);
@@ -456,7 +456,7 @@ public class OrderDao extends Dao {
 	/**
 	 * filterメソッド ユーザIDをもとに注文一覧をリストで返す
 	 */
-	public List<Order> filter(String userId) throws Exception {
+	public List<Order> filter(int userId) throws Exception {
 
 		//データベースへのコネクションを確立
 		Connection connection = getConnection();
@@ -474,7 +474,7 @@ public class OrderDao extends Dao {
 				statement = connection.prepareStatement(
 						"SELECT * FROM ORDERS WHERE USER_ID=?");
 				//各部分に値を設定
-				statement.setString(1, userId);
+				statement.setInt(1, userId);
 
 				//プリペアードステートメントを実行
 				ResultSet rSet = statement.executeQuery();
@@ -484,8 +484,8 @@ public class OrderDao extends Dao {
 					//注文インスタンスに検索結果をセット
 					order.setOrderId(rSet.getString("order_id"));
 					order.setProduct(pDao.get(rSet.getInt("product_id")));
-					order.setUser(uDao.get(rSet.getString("user_id")));
-					order.setOrderTime(rSet.getDate("order_time"));
+					order.setUser(uDao.get(rSet.getInt("user_id")));
+					order.setOrderTime(rSet.getTimestamp("order_time"));
 					order.setCount(rSet.getInt("count"));
 					order.setReceive(rSet.getBoolean("receive"));
 					order.setSubscription(rSet.getBoolean("subscription"));

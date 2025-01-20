@@ -27,7 +27,7 @@ public class UserDao extends Dao{
 		 * @return 学生クラスのインスタンス 存在しない場合はnull
 		 * @throws Exception
 		 */
-		public User get(String userId) throws Exception {
+		public User get(int userId) throws Exception {
 
 			//ユーザインスタンスを初期化
 			User users =new User();
@@ -46,14 +46,14 @@ public class UserDao extends Dao{
 				//プリペアードステートメントにSQL文をセット
 				statement = connection.prepareStatement(baseSql + "where USER_ID = ?");
 				//各部分に値を設定
-				statement.setString(1,userId );
+				statement.setInt(1,userId );
 
 				//上記のSQL文を実行し結果を取得する
 				ResultSet rSet = statement.executeQuery();
 
 
 				if (rSet.next()){
-					users.setUserId(rSet.getString("user_id"));
+					users.setUserId(rSet.getInt("user_id"));
 					users.setUserPassword(rSet.getString("user_pass"));
 					users.setUserName(rSet.getString("user_name"));
 					users.setAddress(rSet.getString("address"));
@@ -109,7 +109,7 @@ public class UserDao extends Dao{
 				while (rSet.next()){
 					User user = new User();
 					//顧客インスタンスに検索結果をセット
-					user.setUserId(rSet.getString("user_id"));
+					user.setUserId(rSet.getInt("user_id"));
 					user.setUserPassword(rSet.getString("user_pass"));
 					user.setUserName(rSet.getString("user_name"));
 					user.setEmail(rSet.getString("email"));
@@ -243,7 +243,7 @@ public class UserDao extends Dao{
 					statement = connection.prepareStatement(
 							"INSERT INTO USERS (USER_ID ,USER_PASS ,USER_NAME ,EMAIL ,ADDRESS ,TEL ,CARD_NUMBER ,SUBSCRIPTION ) VALUES (?,?,?,?,?,?,?,?)");
 					//各部分に値を設定
-					statement.setString(1, user.getUserId());
+					statement.setInt(1, user.getUserId());
 					statement.setString(2, user.getUserPassword());
 					statement.setString(3, user.getUserName());
 					statement.setString(4, user.getEmail());
@@ -264,7 +264,7 @@ public class UserDao extends Dao{
 					statement.setString(5, user.getTel());
 					statement.setString(6, user.getCard().getCardNumber());
 					statement.setBoolean(7, user.isSubscription());
-					statement.setString(8, user.getUserId());
+					statement.setInt(8, user.getUserId());
 				}
 
 				//プリペアードステートメントを実行
@@ -328,7 +328,7 @@ public class UserDao extends Dao{
 
 
 				if (rSet.next()){
-					users.setUserId(rSet.getString("user_id"));
+					users.setUserId(rSet.getInt("user_id"));
 					users.setUserPassword(rSet.getString("user_pass"));
 					users.setUserName(rSet.getString("user_name"));
 					users.setAddress(rSet.getString("address"));

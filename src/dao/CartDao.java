@@ -42,7 +42,7 @@ public class CartDao extends Dao {
 			statement = connection.prepareStatement(baseSql+ condition);
 
 			//プレースホルダー（？の部分）に値を設定し、SQLを実行
-			statement.setString(1,user.getUserId());
+			statement.setInt(1,user.getUserId());
 			statement.setString(2,Integer.toString(product.getProductId()));
 
 			System.out.println(statement);
@@ -55,7 +55,7 @@ public class CartDao extends Dao {
 
 			//取得した情報をcartインスタンスに保存
 			if(rSet.next()) {
-				cart.setUser(userDao.get(rSet.getString("user_id")));
+				cart.setUser(userDao.get(rSet.getInt("user_id")));
 				cart.setProduct(productDao.get(rSet.getInt("product_id")));
 				cart.setCount(rSet.getInt("count"));
 			} else {
@@ -144,7 +144,7 @@ public class CartDao extends Dao {
 			statement = connection.prepareStatement(baseSql+ condition);
 
 			//プレースホルダー（？の部分）に値を設定し、SQLを実行
-			statement.setString(1,user.getUserId());
+			statement.setInt(1,user.getUserId());
 			ResultSet rSet = statement.executeQuery();
 
 			//カテゴリDaoを初期化
@@ -154,7 +154,7 @@ public class CartDao extends Dao {
 			//取得した情報をcartインスタンスに保存
 			while(rSet.next()) {
 				Cart cart = new Cart();
-				cart.setUser(userDao.get(rSet.getString("user_id")));
+				cart.setUser(userDao.get(rSet.getInt("user_id")));
 				cart.setProduct(productDao.get(rSet.getInt("product_id")));
 				cart.setCount(rSet.getInt("count"));
 				list.add(cart);
@@ -216,7 +216,7 @@ public class CartDao extends Dao {
 				statement = connection.prepareStatement(
 						"INSERT INTO CART (USER_ID ,PRODUCT_ID ,COUNT) VALUES (?,?,?)");
 				//各部分に値を設定
-				statement.setString(1, cart.getUser().getUserId());
+				statement.setInt(1, cart.getUser().getUserId());
 				statement.setInt(2, cart.getProduct().getProductId());
 				statement.setInt(3, cart.getCount());
 			//ログイン中のユーザが同じ商品をカートに追加しようとしたとき
@@ -227,7 +227,7 @@ public class CartDao extends Dao {
 						"UPDATE CART SET COUNT=? WHERE USER_ID=? and PRODUCT_ID=?");
 				//COUNTにもともとの商品の個数と今選択された個数を足す
 				statement.setInt(1, cart.getCount() + newcount);
-				statement.setString(2, cart.getUser().getUserId());
+				statement.setInt(2, cart.getUser().getUserId());
 				statement.setString(3, Integer.toString(cart.getProduct().getProductId()));
 
 			}
@@ -287,7 +287,7 @@ public class CartDao extends Dao {
 				statement = connection.prepareStatement(
 						"DELETE from CART WHERE USER_ID=? and PRODUCT_ID=?");
 				//各部分に値を設定
-				statement.setString(1, cart.getUser().getUserId());
+				statement.setInt(1, cart.getUser().getUserId());
 				statement.setString(2, Integer.toString(productId));
 				System.out.println(statement);
 

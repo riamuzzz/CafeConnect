@@ -19,7 +19,7 @@ public class CartCreateExecuteAction extends Action{
 		User user = (User)session.getAttribute("user");//ログインユーザー
 		CartDao cDao =new CartDao();
 		ProductDao pDao =new ProductDao();
-		String userId = user.getUserId();
+		int userId = user.getUserId();
 		String error = null;
 
 		String countStr = req.getParameter("num");

@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class Order {
 
 	//注文ID
-	private int orderId;
+	private String orderId;
 
 	//商品
 	private Product product;
@@ -29,11 +29,11 @@ public class Order {
 	private boolean subscription;
 
 	//ゲッターセッター
-	public int getOrderId() {
+	public String getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(int orderId) {
+	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
 
