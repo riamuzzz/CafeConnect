@@ -346,7 +346,7 @@ public class OrderDao extends Dao {
 				statement = connection.prepareStatement(
 						"INSERT INTO ORDERS (ORDER_ID ,PRODUCT_ID ,USER_ID ,ORDER_TIME ,COUNT ,RECEIVE ,SUBSCRIPTION ,MOBILE) VALUES (?,?,?,?,?,?,?,?)");
 				//各部分に値を設定
-				statement.setString(1, formattedDateTime+cart.getUser().getUserId());
+				statement.setString(1, formattedDateTime+cart.getUser().getUserId()+cart.getProduct().getProductId());
 				statement.setInt(2,cart.getProduct().getProductId());
 				statement.setInt(3, cart.getUser().getUserId());
 				statement.setTimestamp(4, sqlTimestamp);
