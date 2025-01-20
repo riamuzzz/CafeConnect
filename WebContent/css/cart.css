@@ -66,3 +66,15 @@
 	width: 80%;
 	height: 60%;
 }
+.cartcontent #regi{
+	font-weight:bold;
+	border: none;
+	width: 150px;
+	text-align: center;
+	color: #FFF;
+	padding: 10px 20px;
+	background: #f74542
+}
+.cartcontent #regi:hover{
+	background: #f78180
+}
