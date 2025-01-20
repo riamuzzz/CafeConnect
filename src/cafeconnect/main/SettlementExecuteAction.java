@@ -50,7 +50,14 @@ public class SettlementExecuteAction extends Action{
 			if (productId != 0){
 				Product product = pDao.get(productId);
 				Cart cart = cDao.get(user, product);
-				Boolean order = oDao.create(cart);
+				// カテゴリでモバイルかオンラインショップか判断
+				if (product.getCategory().getCategoryId().equals("CATE02")){
+					System.out.println("オンラインショップ");
+					oDao.create(cart);
+				} else {
+					oDao.mobileCreate(cart);
+					System.out.println("モバイルオーダー");
+				}
 			}
 		}
 

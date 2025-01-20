@@ -17,13 +17,19 @@ public class OrderHistoryAction extends Action{
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		//ローカル変数の宣言 1
 		HttpSession session = req.getSession(true);
+		List<Order> allOrderList = new ArrayList<>();
 		List<Order> orderList = new ArrayList<>();
 		OrderDao oDao =new OrderDao();
 		//現在ログインされているユーザを取得
 		User user = (User)session.getAttribute("user");
 		//現在ログイン中のユーザの注文情報を取得
-		orderList = oDao.filter(user.getUserId());
+		allOrderList = oDao.filter(user.getUserId());
 		//サブスクリプションの商品は除外する
+		for (Order order : allOrderList) {
+			if (order.isSubscription() == false) {
+				orderList.add(order);
+			}
+		}
 		//レスポンス値をセット 6
 		req.setAttribute("orders", orderList);
 		//JSPへフォワード 7
