@@ -15,12 +15,12 @@
 		<h2>ログイン</h2>
 
 		<!-- メールアドレス -->
-		<label>メールアドレス</label>
+		<label>ID</label>
 			<input type="text" name="email" value="USER001">
 
 		<!-- パスワード -->
 		<label>パスワード</label>
-			<input type="password" id="password" name="password" value="pass001">
+			<input type="password" id="password" name="password" value="1">
 
 		<!-- パスワード表示チェックボックス -->
 		<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
