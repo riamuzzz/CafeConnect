@@ -19,13 +19,14 @@
 	</div>
 	<form action = "ContactExecute.action" method="post">
 
+		<p>※必須</p>
 		<table class=hyou>
 		<tr>
-			<th><label>メールアドレス ※必須</label></th>
+			<th><label>※メールアドレス</label></th>
 			<td><input type="email" name="mail" required></td>
 		</tr>
 		<tr>
-			<th><label>お名前 ※必須</label></th>
+			<th><label>※お名前</label></th>
 			<td><input type="text" name="name" required></td>
 		</tr>
 		<tr>
@@ -33,7 +34,7 @@
 			<td><input type="tel" name="tel" placeholder="090-1234-5678"></td>
 		</tr>
 			<tr>
-			<th><label>お問い合わせ内容 ※必須</label></th>
+			<th><label>※お問い合わせ内容</label></th>
 			<td><textarea name="message" required></textarea></td>
 		</tr>
 		</table>

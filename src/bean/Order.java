@@ -1,11 +1,11 @@
 package bean;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Order {
 
 	//注文ID
-	private String orderId;
+	private int orderId;
 
 	//商品
 	private Product product;
@@ -14,7 +14,7 @@ public class Order {
 	private User user;
 
 	//注文日時
-	private Date orderTime;
+	private Timestamp orderTime;
 
 	//モバイルオーダー判断
 	private boolean mobile;
@@ -29,11 +29,11 @@ public class Order {
 	private boolean subscription;
 
 	//ゲッターセッター
-	public String getOrderId() {
+	public int getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(String orderId) {
+	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
 
@@ -53,11 +53,11 @@ public class Order {
 		this.user = user;
 	}
 
-	public Date getOrderTime() {
+	public Timestamp getOrderTime() {
 		return orderTime;
 	}
 
-	public void setOrderTime(Date orderTime) {
+	public void setOrderTime(Timestamp orderTime) {
 		this.orderTime = orderTime;
 	}
 
