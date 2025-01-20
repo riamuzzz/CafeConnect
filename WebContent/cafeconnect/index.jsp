@@ -9,7 +9,7 @@
 <title></title>
 <script>
 //ログインページにリダイレクト
-location.href="/CafeConnect/scoremanager/TopPageExecute.action";
+location.href="/CafeConnect/cafeconnect/TopPageExecute.action";
 </script>
 
 </head>
