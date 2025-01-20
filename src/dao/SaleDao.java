@@ -54,7 +54,7 @@ public class SaleDao extends Dao{
 
 
 				if (rSet.next()){
-					users.setUserId(rSet.getString("user_id"));
+					users.setUserId(rSet.getInt("user_id"));
 					users.setUserPassword(rSet.getString("user_pass"));
 					users.setUserName(rSet.getString("user_name"));
 					users.setTel(rSet.getString("tel"));
@@ -108,7 +108,7 @@ public class SaleDao extends Dao{
 				while (rSet.next()){
 					User user = new User();
 					//顧客インスタンスに検索結果をセット
-					user.setUserId(rSet.getString("user_id"));
+					user.setUserId(rSet.getInt("user_id"));
 					user.setUserPassword(rSet.getString("user_pass"));
 					user.setUserName(rSet.getString("user_name"));
 					user.setEmail(rSet.getString("email"));

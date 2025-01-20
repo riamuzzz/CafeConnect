@@ -3,7 +3,7 @@ package bean;
 public class CafeUser extends Auth{
 
 	//カフェ店員ID
-	private String cafeUserId;
+	private int cafeUserId;
 
 	//カフェ店員パスワード
 	private String cafeUserPassword;
@@ -12,11 +12,11 @@ public class CafeUser extends Auth{
 	private String cafeUserName;
 
 	//ゲッターセッター
-	public String getCafeUserId() {
+	public int getCafeUserId() {
 		return cafeUserId;
 	}
 
-	public void setCafeUserId(String cafeUserId) {
+	public void setCafeUserId(int cafeUserId) {
 		this.cafeUserId = cafeUserId;
 	}
 

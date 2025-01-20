@@ -60,7 +60,7 @@ public class MobileOrderDao extends Dao {
 				order.setProductName(rSet.getString("product_name"));
 				order.setUserName(rSet.getString("user_name"));
 				order.setAddress(rSet.getString("address"));
-				order.setOrderTime(rSet.getDate("order_time"));
+				order.setOrderTime(rSet.getTimestamp("order_time"));
 				order.setCount(rSet.getInt("count"));
 				order.setReceive(rSet.getBoolean("receive"));
 				order.setSubscription(rSet.getBoolean("subscription"));
@@ -114,7 +114,7 @@ public class MobileOrderDao extends Dao {
 				order.setProductName(rSet.getString("product_name"));
 				order.setUserName(rSet.getString("user_name"));
 				order.setAddress(rSet.getString("address"));
-				order.setOrderTime(rSet.getDate("order_time"));
+				order.setOrderTime(rSet.getTimestamp("order_time"));
 				order.setCount(rSet.getInt("count"));
 				order.setReceive(rSet.getBoolean("receive"));
 				order.setSubscription(rSet.getBoolean("subscription"));
@@ -346,9 +346,9 @@ public class MobileOrderDao extends Dao {
 				statement = connection.prepareStatement(
 						"INSERT INTO ORDER (ORDER_ID ,PRODUCT_ID ,USER_ID ,ORDER_TIME ,COUNT ,RECEIVE ,SUBSCRIPTION ) VALUES (?,?,?,?,?,?,?)");
 				//各部分に値を設定
-				statement.setString(1, cart.getProduct()+cart.getUser().getUserId());
+				statement.setString(1, cart.getProduct()+String.valueOf(cart.getUser().getUserId()));
 				statement.setInt(2, cart.getProduct().getProductId());
-				statement.setString(3, cart.getUser().getUserId());
+				statement.setInt(3, cart.getUser().getUserId());
 				statement.setString(4, formattedDateTime);
 				statement.setInt(5, cart.getCount());
 				statement.setBoolean(6, false);

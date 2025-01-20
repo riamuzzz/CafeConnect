@@ -40,7 +40,7 @@ public class CafeUserDao extends Dao {
 			//取得したカフェ店員ID、パスワード、教員名、学校コードをteacherインスタンスに保存
 			//セットするものは[password]じゃなくて「pasword]だよ
 			if(rSet.next()) {
-				cafeUser.setCafeUserId(rSet.getString("cafe_userid"));
+				cafeUser.setCafeUserId(rSet.getInt("cafe_userid"));
 				cafeUser.setCafeUserPassword("cafe_userpass");
 				cafeUser.setCafeUserName(rSet.getString("cafe_username"));
 			} else {
@@ -104,7 +104,7 @@ public class CafeUserDao extends Dao {
 			//受け取ったものをセットする
 			//取得した店員ID、パスワードコードをCafeUserインスタンスに保存
 			if(rSet.next()) {
-				cafeUser.setCafeUserId(rSet.getString("cafe_userid"));
+				cafeUser.setCafeUserId(rSet.getInt("cafe_userid"));
 				cafeUser.setCafeUserPassword(rSet.getString("cafe_userpass"));
 				cafeUser.setCafeUserName(rSet.getString("cafe_username"));
 			} else {
@@ -156,7 +156,7 @@ public class CafeUserDao extends Dao {
 				statement = connection.prepareStatement(
 						"UPDATE cafeusers SET cafe_userid=? ,cafe_userpass=? ,cafe_username=?");
 				//各部分に値を設定
-				statement.setString(1, cafeUser.getCafeUserId());
+				statement.setInt(1, cafeUser.getCafeUserId());
 				statement.setString(2, cafeUser.getCafeUserPassword());
 				statement.setString(3, cafeUser.getCafeUserName());
 				System.out.println(statement);

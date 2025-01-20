@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.CafeUser;
 
-@WebFilter(urlPatterns = { "/scoremanager/cafe/*" })
+@WebFilter(urlPatterns = { "/cafeconnect/cafe/*" })
 public class CafeLoginRequiredFilter implements Filter {
 	/**
 	 * doFilterメソッド フィルター処理を記述
@@ -28,7 +28,7 @@ public class CafeLoginRequiredFilter implements Filter {
 		if (cafeUser == null || !cafeUser.isAuthenticated()) {
 			HttpServletResponse	res = ((HttpServletResponse) response);
 			// ログインページへリダイレクト
-			res.sendRedirect(req.getContextPath() + "/scoremanager/CafeLogin.action");
+			res.sendRedirect(req.getContextPath() + "/cafeconnect/CafeLogin.action");
 			return;
 		}
 		chain.doFilter(request, response);

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.User;
-@WebFilter(urlPatterns = { "/scoremanager/main/card/*" })
+@WebFilter(urlPatterns = { "/cafeconnect/main/card/*" })
 public class CardFilter implements Filter{
 	/**
 	 * doFilterメソッド フィルター処理を記述
@@ -27,7 +27,7 @@ public class CardFilter implements Filter{
 		if (user.getCard() == null) {
 			HttpServletResponse	res = ((HttpServletResponse) response);
 			// クレカ登録ページへリダイレクト
-			res.sendRedirect(req.getContextPath() + "/scoremanager/main/CardCreate.action");
+			res.sendRedirect(req.getContextPath() + "/cafeconnect/main/CardCreate.action");
 			return;
 		}
 		chain.doFilter(request, response);

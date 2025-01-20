@@ -61,7 +61,7 @@ public class OrderDao extends Dao {
 				order.setProductName(rSet.getString("product_name"));
 				order.setUserName(rSet.getString("user_name"));
 				order.setAddress(rSet.getString("address"));
-				order.setOrderTime(rSet.getDate("order_time"));
+				order.setOrderTime(rSet.getTimestamp("order_time"));
 				order.setCount(rSet.getInt("count"));
 				order.setReceive(rSet.getBoolean("receive"));
 				order.setSubscription(rSet.getBoolean("subscription"));
@@ -115,7 +115,7 @@ public class OrderDao extends Dao {
 				order.setProductName(rSet.getString("product_name"));
 				order.setUserName(rSet.getString("user_name"));
 				order.setAddress(rSet.getString("address"));
-				order.setOrderTime(rSet.getDate("order_time"));
+				order.setOrderTime(rSet.getTimestamp("order_time"));
 				order.setCount(rSet.getInt("count"));
 				order.setReceive(rSet.getBoolean("receive"));
 				order.setSubscription(rSet.getBoolean("subscription"));
@@ -332,30 +332,94 @@ public class OrderDao extends Dao {
 		//実行件数
 		int count = 0;
 
-		 // 現在の日時を取得
-        LocalDateTime now = LocalDateTime.now();
+		// 現在の日時を取得
+		LocalDateTime now = LocalDateTime.now();
 
-        // フォーマットを定義
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+		// SQL用の日付に変換
+		java.sql.Timestamp sqlTimestamp = java.sql.Timestamp.valueOf(now);
 
-        // フォーマットを適用して文字列に変換
-        String formattedDateTime = now.format(formatter);
-
+		// フォーマットを適用して文字列に変換（注文ID用）
+		String formattedDateTime = now.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 
 		try{
 				//プリペアードステートメントにInsert文をセット
 				statement = connection.prepareStatement(
-						"INSERT INTO ORDER (ORDER_ID ,PRODUCT_ID ,USER_ID ,ORDER_TIME ,COUNT ,RECEIVE ,SUBSCRIPTION ) VALUES (?,?,?,?,?,?,?)");
+						"INSERT INTO ORDERS (ORDER_ID ,PRODUCT_ID ,USER_ID ,ORDER_TIME ,COUNT ,RECEIVE ,SUBSCRIPTION ,MOBILE) VALUES (?,?,?,?,?,?,?,?)");
 				//各部分に値を設定
-				statement.setString(1, cart.getProduct()+cart.getUser().getUserId());
-				statement.setInt(2, cart.getProduct().getProductId());
-				statement.setString(3, cart.getUser().getUserId());
-				statement.setString(4, formattedDateTime);
+				statement.setString(1, formattedDateTime+cart.getUser().getUserId());
+				statement.setInt(2,cart.getProduct().getProductId());
+				statement.setInt(3, cart.getUser().getUserId());
+				statement.setTimestamp(4, sqlTimestamp);
 				statement.setInt(5, cart.getCount());
 				statement.setBoolean(6, false);
 				statement.setBoolean(7, cart.getUser().isSubscription());
+				statement.setBoolean(8, false);
+			//プリペアードステートメントを実行
+			count = statement.executeUpdate();
 
+		}catch (Exception e){
+			throw e;
+		}finally {
+			//プリペアステートメントを閉じる
+			if (statement != null){
+				try {
+					statement.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+			//コネクションを閉じる
+			if (connection != null){
+				try {
+					connection.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+		}
 
+		if (count > 0) {
+			//実行数が1件以上あるとき
+			return true;
+		}else {
+			//実行数が0件以上の場合
+			return false;
+		}
+	}
+
+	public boolean create(User user, Product product, int num) throws Exception {
+
+		//データベースへのコネクションを確立
+		Connection connection = getConnection();
+
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+
+		//実行件数
+		int count = 0;
+
+		// 現在の日時を取得
+		LocalDateTime now = LocalDateTime.now();
+
+		// SQL用の日付に変換
+		java.sql.Timestamp sqlTimestamp = java.sql.Timestamp.valueOf(now);
+
+		// フォーマットを適用して文字列に変換（注文ID用）
+		String formattedDateTime = now.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+
+		try{
+				//プリペアードステートメントにInsert文をセット
+				statement = connection.prepareStatement(
+						"INSERT INTO ORDERS (ORDER_ID ,PRODUCT_ID ,USER_ID ,ORDER_TIME ,COUNT ,RECEIVE ,SUBSCRIPTION ,MOBILE) VALUES (?,?,?,?,?,?,?,?)");
+				//各部分に値を設定
+				statement.setString(1, formattedDateTime+user.getUserId());
+				statement.setInt(2,product.getProductId());
+				statement.setInt(3, user.getUserId());
+				statement.setTimestamp(4, sqlTimestamp);
+				statement.setInt(5, num);
+				statement.setBoolean(6, false);
+				statement.setBoolean(7, true);
+				statement.setBoolean(8, false);
 			//プリペアードステートメントを実行
 			count = statement.executeUpdate();
 
@@ -392,7 +456,7 @@ public class OrderDao extends Dao {
 	/**
 	 * filterメソッド ユーザIDをもとに注文一覧をリストで返す
 	 */
-	public List<Order> filter(String userId) throws Exception {
+	public List<Order> filter(int userId) throws Exception {
 
 		//データベースへのコネクションを確立
 		Connection connection = getConnection();
@@ -410,7 +474,7 @@ public class OrderDao extends Dao {
 				statement = connection.prepareStatement(
 						"SELECT * FROM ORDERS WHERE USER_ID=?");
 				//各部分に値を設定
-				statement.setString(1, userId);
+				statement.setInt(1, userId);
 
 				//プリペアードステートメントを実行
 				ResultSet rSet = statement.executeQuery();
@@ -420,8 +484,8 @@ public class OrderDao extends Dao {
 					//注文インスタンスに検索結果をセット
 					order.setOrderId(rSet.getString("order_id"));
 					order.setProduct(pDao.get(rSet.getInt("product_id")));
-					order.setUser(uDao.get(rSet.getString("user_id")));
-					order.setOrderTime(rSet.getDate("order_time"));
+					order.setUser(uDao.get(rSet.getInt("user_id")));
+					order.setOrderTime(rSet.getTimestamp("order_time"));
 					order.setCount(rSet.getInt("count"));
 					order.setReceive(rSet.getBoolean("receive"));
 					order.setSubscription(rSet.getBoolean("subscription"));

@@ -1,6 +1,6 @@
 package bean;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Order {
 
@@ -14,7 +14,7 @@ public class Order {
 	private User user;
 
 	//注文日時
-	private Date orderTime;
+	private Timestamp orderTime;
 
 	//モバイルオーダー判断
 	private boolean mobile;
@@ -53,11 +53,11 @@ public class Order {
 		this.user = user;
 	}
 
-	public Date getOrderTime() {
+	public Timestamp getOrderTime() {
 		return orderTime;
 	}
 
-	public void setOrderTime(Date orderTime) {
+	public void setOrderTime(Timestamp orderTime) {
 		this.orderTime = orderTime;
 	}
 

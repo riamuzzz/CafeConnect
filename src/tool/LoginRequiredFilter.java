@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.User;
 
-@WebFilter(urlPatterns = { "/scoremanager/main/*" })
+@WebFilter(urlPatterns = { "/cafeconnect/main/*" })
 public class LoginRequiredFilter implements Filter {
 	/**
 	 * doFilterメソッド フィルター処理を記述
@@ -32,12 +32,12 @@ public class LoginRequiredFilter implements Filter {
 			HttpServletResponse	res = ((HttpServletResponse) response);
 			// パスを保存
 			redirecturl = req.getRequestURI();
-			if (redirecturl.equals("/CafeConnect/scoremanager/main/Settlement.action") || redirecturl.equals("/CafeConnect/scoremanager/main/CartCreateExecute.action") ){
+			if (redirecturl.equals("/CafeConnect/cafeconnect/main/Settlement.action") || redirecturl.equals("/CafeConnect/cafeconnect/main/CartCreateExecute.action") ){
 				// 決済ボタンが押されたときだけnumを変数として持つ
-				res.sendRedirect(req.getContextPath() + "/scoremanager/Login.action?redirect=" + redirecturl + "&num=" + num + "&product=" + product);
+				res.sendRedirect(req.getContextPath() + "/cafeconnect/Login.action?redirect=" + redirecturl + "&num=" + num + "&product=" + product);
 			} else {
 				// 上記以外は遷移先のパスを変数に格納したままログインページにリダイレクト
-				res.sendRedirect(req.getContextPath() + "/scoremanager/Login.action?redirect=" + redirecturl);
+				res.sendRedirect(req.getContextPath() + "/cafeconnect/Login.action?redirect=" + redirecturl);
 			}
 			return;
 		}

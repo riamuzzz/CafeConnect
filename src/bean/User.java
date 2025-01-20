@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class User extends Auth implements Serializable{
 
 	//ユーザID
-	private String userId;
+	private int userId;
 
 	//パスワード
 	private String userPassword;
@@ -29,11 +29,11 @@ public class User extends Auth implements Serializable{
 	private boolean subscription;
 
 	//ゲッターセッター
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
