@@ -39,7 +39,7 @@ public class OnlineOrderViewAction extends Action {
 
 		 //絞り込み結果
 		System.out.println("*");
-		list = orderDao.filter(product,user,(java.sql.Date) orderTime);
+		list = orderDao.filter(product,user,(java.sql.Date)orderTime);
 		System.out.println("**");
 
 		//ビジネスロジック 4

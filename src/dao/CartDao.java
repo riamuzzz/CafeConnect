@@ -43,8 +43,11 @@ public class CartDao extends Dao {
 
 			//プレースホルダー（？の部分）に値を設定し、SQLを実行
 			statement.setString(1,user.getUserId());
-			statement.setInt(2,product.getProductId());
+			statement.setString(2,Integer.toString(product.getProductId()));
+
+			System.out.println(statement);
 			ResultSet rSet = statement.executeQuery();
+
 
 			//カテゴリDaoを初期化
 			UserDao userDao =new UserDao();
@@ -285,8 +288,8 @@ public class CartDao extends Dao {
 						"DELETE from CART WHERE USER_ID=? and PRODUCT_ID=?");
 				//各部分に値を設定
 				statement.setString(1, cart.getUser().getUserId());
-				statement.setInt(2, productId);
-
+				statement.setString(2, Integer.toString(productId));
+				System.out.println(statement);
 
 			//プリペアードステートメントを実行
 			count = statement.executeUpdate();
