@@ -22,7 +22,7 @@ public class CafeUserDao extends Dao {
 	 * @throws Exception
 	 */
 
-	public CafeUser get(String cafeUserId) throws Exception{
+	public CafeUser get(int cafeUserId) throws Exception{
 		Connection connection = getConnection();
 		//プリペアードステートメント
 		PreparedStatement statement = null;
@@ -34,7 +34,7 @@ public class CafeUserDao extends Dao {
 			statement = connection.prepareStatement(baseSql);
 
 			//プレースホルダー（？の部分）に値を設定し、SQLを実行
-			statement.setString(1,cafeUserId);
+			statement.setInt(1,cafeUserId);
 			ResultSet rSet = statement.executeQuery();
 
 			//取得したカフェ店員ID、パスワード、教員名、学校コードをteacherインスタンスに保存
@@ -81,7 +81,7 @@ public class CafeUserDao extends Dao {
 	 * @return 店員クラスのインスタンス 存在しない場合はnull
 	 * @throws Exception
 	 */
-	public CafeUser login(String id,String password)throws Exception{
+	public CafeUser login(int id,String password)throws Exception{
 		Connection connection = getConnection();
 		//プリペアードステートメント
 		PreparedStatement statement = null;
@@ -97,7 +97,7 @@ public class CafeUserDao extends Dao {
 			statement = connection.prepareStatement(baseSql + condition);
 
 			//プレースホルダー（？の部分）に値を設定し、SQLを実行
-			statement.setString(1,id);
+			statement.setInt(1,id);
 			statement.setString(2, password);
 			ResultSet rSet = statement.executeQuery();
 
