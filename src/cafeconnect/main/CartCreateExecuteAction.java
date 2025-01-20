@@ -28,7 +28,6 @@ public class CartCreateExecuteAction extends Action{
 		cart.setUser(user);
 		cart.setProduct(pDao.get(Integer.parseInt(productId)));
 		if (Integer.parseInt(countStr) < 0) {
-			System.out.println(Integer.parseInt(countStr));
 			error = "適切な数値を入力してください";
 			String url = "ProductDetailView.action?productId=" + productId + "&num=" + Integer.parseInt(countStr);
 			req.getRequestDispatcher(url).forward(req, res);
