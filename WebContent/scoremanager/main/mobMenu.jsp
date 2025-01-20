@@ -22,10 +22,6 @@
 				<tr>
 					<c:forEach var="drink" items="${ drinkProducts }">
 						<th><a href="ProductDetailView.action?productId=${ drink.productId }"><img src="../img/product/${ drink.image }" width="110"></a></th>
-					</c:forEach>
-				</tr>
-				<tr>
-					<c:forEach var="drink" items="${ drinkProducts }">
 						<td><a href="ProductDetailView.action?productId=${ drink.productId }">${ drink.productName }</a></td>
 					</c:forEach>
 				</tr>

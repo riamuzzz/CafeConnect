@@ -4,34 +4,31 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<div class="productView">
-
-
+<head>
 <%-- ヘッダー --%>
 <c:import url="./common/header.jsp"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel='stylesheet' href='../css/style.css'>
 
-<div class="main">
-<%-- ナビゲーション --%>
-<c:import url="./common/navigation.jsp"/>
+</head>
 
-<div class="content">
+<div class="Mobmenu">
+	<div class="menutitle1">
+		<label>豆</label>
+	</div>
 
-	<h2>${category.categoryName }</h2>
+	<div class="drink">
 	<table>
-		<c:forEach var="product" items="${products}">
-			<tr>
-				<td>
-					<a href="ProductDetailView.action?productId=${ product.productId }"><img src="img/product/${ product.image }"></a>
-				</td>
-			</tr>
-			<tr><td>${ product.productName }</td></tr>
-			<tr><td>${ product.price }円</td></tr>
-		</c:forEach>
+		<tr>
+			<c:forEach var="product" items="${products}">
+				<th><a href="ProductDetailView.action?productId=${ product.productId }"><img src="../img/product/${ product.image }" width="110"></a></th>
+				<td><a href="ProductDetailView.action?productId=${ product.productId }">${ product.productName }</a></td>
+			</c:forEach>
+		</tr>
 	</table>
 </div>
 
 <%-- フッター --%>
 <c:import url="./common/footer.jsp"/>
-</div>
 </div>
 </html>
