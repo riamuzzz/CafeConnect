@@ -47,7 +47,6 @@
 										<td class="count">${order.count}</td>
 
 										<td class="receive">
-											<input type="hidden"name="receive${status.index}" value="false">
 											<input type="checkbox" name="receive${status.index}" value="true">
 										</td>
 
