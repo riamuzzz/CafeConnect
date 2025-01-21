@@ -94,7 +94,7 @@
 		</c:if>
 		<!-- 普通にログインボタンを押下した場合 -->
 		<c:if test="${empty redirect}">
-			<form action="LoginExecute.action?redirect=${ redirect }"
+			<form action="LoginExecute.action"
 				method="post">
 				<!-- メールアドレス -->
 				<label>メールアドレスIII</label><br> <input type="text" name="email"
