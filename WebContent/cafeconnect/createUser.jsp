@@ -51,7 +51,7 @@
 
 			<tr>
 				<th><label>カード番号</label></th>
-				<td><input type="text" name="card_number" maxlength="16" required></td>
+				<td><input type="text" name="card_number" maxlength="16" minlength="16" required></td>
 			</tr>
 			<tr>
 				<th><label>有効期限</label></th>
