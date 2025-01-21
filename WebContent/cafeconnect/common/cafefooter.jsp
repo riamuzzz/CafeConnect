@@ -9,6 +9,6 @@
 </head>
 
 <div class="footer" id="footer">
-	<a href="/CafeConnect/scoremanager/cafe/CafeTop.action">トップページに戻る</a>
+	<a href="/CafeConnect/cafeconnect/cafe/CafeTop.action">トップページに戻る</a>
 
 </div>
