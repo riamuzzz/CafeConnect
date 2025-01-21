@@ -17,7 +17,7 @@ public class LogoutAction extends Action{
 			//customerの中に何かが格納されている場合(ログインされている場合)
 				//customerの中身を空にする
 				session.removeAttribute("user");
-				req.getRequestDispatcher("logout.jsp").forward(req, res);
+				req.getRequestDispatcher("TopPageExecute.action").forward(req, res);
 
 		}
 }
