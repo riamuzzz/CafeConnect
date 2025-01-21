@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -100,7 +101,11 @@ public class ProductCreateExecuteAction extends Action{
         System.out.println("img:" + img);
 
         // 保存先フォルダのパスを指定
-        String saveFolderPath = req.getServletContext().getRealPath("/scoremanager/img/product/");
+        ServletContext context = req.getServletContext();
+        String savePath = req.getServletContext().getRealPath("/cafeconnect/img/product/");
+        String saveFolder = context.getRealPath(savePath);
+
+        String saveFolderPath = context.getContextPath() + saveFolder;
 
         // フォルダが存在しない場合は作成
         File folder = new File(saveFolderPath);
