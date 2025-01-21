@@ -54,7 +54,6 @@ public class SettlementExecuteAction extends Action{
 				if (product.getCategory().getCategoryId().equals("CATE02")){
 					System.out.println("オンラインショップ");
 					oDao.create(cart);
-					cDao.delete(cart, productId);
 				} else {
 					oDao.mobileCreate(cart);
 					System.out.println("モバイルオーダー");
