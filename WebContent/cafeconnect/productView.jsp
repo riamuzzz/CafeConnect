@@ -15,23 +15,28 @@
 
 <div class="mobMenu">
 	<div class="menutitle1">
-		<label>豆</label>
+		<label>コーヒー豆</label>
 	</div>
 
+	<div class="drink">
+				<table class="mobTable">
+					<c:forEach var="product" items="${ products }">
+					<table class="mobTable">
+					<tr>
+						<th><a class="mobImg" href="ProductDetailView.action?productId=${ product.productId }"><img src="img/product/${ product.image }" width="110"></a></th>
+					</tr>
+					<tr>
+						<td><a class="caption" href="ProductDetailView.action?productId=${ product.productId }">${ product.productName }</a></td>
+					</tr>
+					<tr>
+						<td><a class="caption" href="ProductDetailView.action?productId=${ product.productId }">${ product.price }円 </a></td>
+					</tr>
+					</table>
+					</c:forEach>
+				</table>
 
-<div class="drink">
-	<table>
-		<c:forEach var="product" items="${products}">
-			<tr>
-				<td>
-					<a href="ProductDetailView.action?productId=${ product.productId }"><img src="img/product/${ product.image }"></a>
-				</td>
-			</tr>
-			<tr><td>${ product.productName }</td></tr>
-			<tr><td>${ product.price }円</td></tr>
-		</c:forEach>
-	</table>
-</div>
+
+	</div>
 
 <%-- フッター --%>
 <c:import url="./common/footer.jsp"/>

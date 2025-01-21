@@ -17,31 +17,45 @@ public class OrderUpdateExecuteAction extends Action{
 		//ローカル変数の宣言 1
 		OrderDao oDao = new OrderDao();
 		List<String> error = new ArrayList<>();
-		Boolean receive = false;
+
+		List<String> oList = new ArrayList<>();
+		List<OnlineOrder> orders = new ArrayList<>();
+		List<Boolean> receives = new ArrayList<>();
+
+
+		int i =0;
+		int j = 0;
 
 		//リクエストパラメータの取得
-		String[] orderIds = req.getParameterValues("orderId");//商品番号のリスト
+		while (true) {
+		    String orderId = req.getParameter("orderId" + i);
+		    if (orderId == null) {
+		        break; // 注文IDがnullの場合、ループ終了
+		    }
 
-		System.out.println(orderIds+"*");
+		    String receiveStr = req.getParameter("receive" + i);
+		    System.out.println("orderId: " + orderId);
+		    System.out.println("receiveStr: " + receiveStr); // デバッグ出力
+
+		    boolean receive = (receiveStr != null && receiveStr.equalsIgnoreCase("true"));
+		    System.out.println("receive: " + receive);
+
+		    oList.add(orderId);
+		    receives.add(receive);
+
+		    i++;
+		}
+
+
 		//注文番号ごとの配送状況を取得
-		for (String orderId : orderIds) {
-		    String receiveStr = req.getParameter("receive_" + orderId);
-
-			// 商品フラグにチェックが入っていた場合
-			if (receiveStr != null) {
-				// 商品フラグを立てる
-				receive = true;
+		for (String oId : oList) {
+			if(oId != null){
+				OnlineOrder order =oDao.get(oId);
+				order.setReceive(receives.get(j));
+				orders.add(order);
+				j++;
 			}
 
-		    System.out.println("****");
-		    OnlineOrder order = oDao.get(orderId);//注文番号をもとにorderインスタンスを取得
-			//DBへデータ保存 5
-			if (order != null) {
-				// 商品が存在していた場合
-				// インスタンスに値をセット
-				order.setReceive(receive);
-				oDao.save(order);
-			}
 		}
 
 		//JSPへフォワード 7

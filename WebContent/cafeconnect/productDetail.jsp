@@ -25,6 +25,7 @@
 			<tr class="proDe"><td>${ product.productDetail }</td></tr>
 			<tr class="proPr"><td>${ product.price }円（税込）</td></tr>
 	</table>
+
 	<div class="prosyo">
 		<div class="suryo">数量を選択</div>
 	<form action="main/CartCreateExecute.action" method="post">
