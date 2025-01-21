@@ -13,6 +13,9 @@
 	<%@ include file="common/header.jsp"%>
 	<div class=log>
 
+		<c:if test="${not empty message}">
+			<p>${ message }</p>
+		</c:if>
 		<div class=logtitle>会員ログイン</div>
 
 		<div class=kaiin>会員の方はこちら</div>
@@ -129,9 +132,11 @@
 			<label>新規会員登録の方はこちら</label>
 		</div>
 
+		<form action="UserCreate.action" method="post">
 		<div class=touroku>
-			<label>✉メールアドレスで会員登録</label>
+			<button>✉メールアドレスで会員登録</button>
 		</div>
+		</form>
 
 		<%@ include file="common/footer.jsp"%>
 	</div>

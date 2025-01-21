@@ -250,7 +250,7 @@ public class UserDao extends Dao{
 					statement.setString(5, user.getAddress());
 					statement.setString(6, user.getTel());
 					statement.setString(7, user.getCard().getCardNumber());
-					statement.setBoolean(8, user.isSubscription());
+					statement.setBoolean(8, false);
 				}else {
 					//学生が存在した場合
 					//プリペアードステートメントにUpdate文をセット
