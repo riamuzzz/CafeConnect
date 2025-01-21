@@ -48,7 +48,7 @@ h2 {
 	display: flex;
 	position: relative;
 	top: 20px;
-	left: 140px;
+	left: 110px;
 }
 
 .box {
@@ -65,7 +65,7 @@ h2 {
 	float: right;
 	padding: 0%;
 	margin: 0% 2% 0% 0%;
-	width: 28%;
+	width: 37%;
 	height:;
 	position: relative;
 	top: 0px;
@@ -430,10 +430,24 @@ a {
 }
 
 
+/* オンラインショップ　選択 */
+
+.caption {
+	 margin-top: 300px;
+     display: flex;
+     justify-content: center; /* 水平方向に中央寄せ */
+}
+
+.drink {
+	float: left;
+}
+
+
+
 /* オンラインショップ　詳細 */
 
-.proimage {
-
+.prode {
+	margin-top: 350px;
 }
 
 .proimage img {
@@ -454,9 +468,9 @@ a {
 
 .aaa {
 	position: relative;
-	top: 80px;
-	left: 60%;
-	width: 50%;
+	top: 58px;
+	left: 50%;
+	width: 51%;
 	font-size: 20px;
 }
 
@@ -505,9 +519,27 @@ a {
 }
 
 
+
+
 /* モバイル メニュー */
 
+.mobTable {
+	 width: 100%;
+	 border-collapse: collapse;
+}
 
+.mobTable td {
+	 padding: 10px;
+}
+
+.mobImg {
+	 height: auto;
+
+}
+
+.caption {
+	margin-top: 20px;
+}
 
 
 /* 店舗 */
