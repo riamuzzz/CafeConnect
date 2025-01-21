@@ -64,13 +64,13 @@
                         <td class="count">${product.count}</td>
                         <td class="join">
                             <!-- 入庫数 -->
-							<input type="number" name="join_${product.productId}" value="0" style="width:80px;"required>
-							<input type="hidden" name="join_${product.productId}" value="${product.count}" required>
+							<input type="number" name="join_${product.productId}" value="0" min="0" style="width:80px;"required>
+							<input type="hidden" name="join_${product.productId}" value="${product.count}" min="0" required>
                         </td>
                         <td class="disposal">
                             <!-- 廃棄数 -->
-                            <input type="number" name="disposal_${product.productId}" value="0" style="width:80px;" required>
-                            <input type="hidden" name="disposal_${product.productId}" value="${product.count}" required>
+                            <input type="number" name="disposal_${product.productId}" value="0" min="0" style="width:80px;" required>
+                            <input type="hidden" name="disposal_${product.productId}" value="${product.count}" min="0" required>
                         </td>
                         <c:set var="formattedDate">
                             <fmt:formatDate value="${product.inStockDay}" pattern="yyyy/MM/dd" />
