@@ -68,17 +68,19 @@
 							<!-- 価格 -->
 							<td><span class="price">${pList.price}</span>円</td>
 							<!-- 個数 -->
-							<td><c:forEach var="cList" items="${cList}">
+							<td><c:forEach var="cList" items="${cList}"
+									varStatus="status">
 									<c:if test="${cList.product.productId eq pList.productId}">
 										<span class="count">${cList.count}個</span>
-
+										<!-- 商品IDを送る -->
+										<input type="hidden" name="productId${ status.index }"
+											value="${ pList.productId }">
+										<input type="hidden" name="count${status.index}" value="${cList.count}">
 										<!-- 合計金額を計算 -->
 										<c:set var="itemTotal" value="${pList.price * cList.count}" />
 										<c:set var="totalPrice" value="${totalPrice + itemTotal}" />
 									</c:if>
-								</c:forEach> <!-- 商品IDを送る --> <input type="hidden"
-								name="productId${ status.index }" value="${ pList.productId }">
-							</td>
+								</c:forEach></td>
 						</tr>
 					</c:forEach>
 

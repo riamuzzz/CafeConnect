@@ -27,7 +27,7 @@ public class SettlementExecuteAction extends Action{
 		CartDao cDao = new CartDao();
 		OrderDao oDao = new OrderDao();
 		List<Integer> productIds = new ArrayList<>();
-		List<String> nums = new ArrayList<>();
+		List<Integer> counts = new ArrayList<>();
 		List<Product> pList = new ArrayList<>();
 		List<Cart> cList = new ArrayList<>();
 		int i = 0;
@@ -35,8 +35,10 @@ public class SettlementExecuteAction extends Action{
 		//リクエストパラメータ取得
 		while(true){
 			String productIdStr = req.getParameter("productId" + Integer.toString(i));
-			if (productIdStr != null){
+			String countStr = req.getParameter("count" + Integer.toString(i));
+			if (productIdStr != null & countStr != null){
 				int productId = Integer.parseInt(productIdStr);
+				counts.add(Integer.parseInt(countStr));
 				productIds.add(productId);
 			}
 			if (productIdStr == null){
@@ -50,6 +52,7 @@ public class SettlementExecuteAction extends Action{
 			if (productId != 0){
 				Product product = pDao.get(productId);
 				Cart cart = cDao.get(user, product);
+				cart.setCount(counts.get(count));
 				// カテゴリでモバイルかオンラインショップか判断
 				if (product.getCategory().getCategoryId().equals("CATE02")){
 					System.out.println("オンラインショップ");
