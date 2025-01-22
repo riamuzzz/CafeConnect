@@ -4,6 +4,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<link rel="stylesheet"  href="../../css/settlement.css">
 <div class="productView">
 
 
@@ -19,22 +20,24 @@
 
 				<h2>${category.categoryName }</h2>
 
-				<table>
+				<table class="pay">
 					<tr>
-						<td>お届け先：${ user.userName }</td>
+						<th>お届け先</th>
 					</tr>
 					<tr>
-						<td>${ user.address }</td>
+						<td>氏名：${ user.userName }</td>
+					</tr>
+					<tr>
+						<td>住所：${ user.address }</td>
 					</tr>
 
 					<tr>
-						<td><a href="MyPage.action">変更</a>
-						<td>
+						<td><a href="MyPage.action">変更</a></td>
 					</tr>
 
 				</table>
 
-				<table>
+				<table class="pay">
 					<tr>
 						<td>お支払方法：${ card.cardNumber }</td>
 					</tr>
@@ -52,7 +55,7 @@
 
 				</table>
 
-				<table>
+				<table class="kessai">
 
 					<c:set var="totalPrice" value="0" />
 
