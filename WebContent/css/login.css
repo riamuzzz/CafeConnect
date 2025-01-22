@@ -1,0 +1,79 @@
+
+body{
+	margin-top: -8%;
+}
+
+#login {
+	margin-left: 37%;
+}
+
+.logtitle{
+	margin-bottom:20px;
+}
+
+#login input {
+	margin-bottom: 15px;
+	margin-right:0;
+}
+
+.logBold{
+	font-weight: bold;
+}
+
+
+#email{
+	width: 300px;
+	padding: 5px 0;
+}
+
+#password{
+	width: 300px;
+	padding: 5px 0;
+}
+
+
+
+.submit {
+	width: 300px;
+	margin-top: 0;
+	background: #00417b;
+	color:white;
+	font-weight: bold;
+	border:none;
+	padding:5px 0;
+	cursor: pointer;
+	margin-bottom: 15px;
+}
+
+.showPass{
+	cursor: pointer;
+}
+
+#showPassword {
+	width: 30px;
+	text-aline:center;
+	cursor: pointer;
+}
+
+
+.sinki {
+	margin-left: 37%;
+	margin-top: 10px;
+	text-align: center;
+}
+
+#touroku{
+	width: 300px;
+	padding:5px 0;
+	margin-left: 37%;
+	background: #1ec510;
+	border:none;
+	cursor: pointer;
+	color:white;
+	font-weight: bold;
+}
+
+#kaiin{
+	margin-left: 37%;
+}
+

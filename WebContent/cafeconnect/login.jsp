@@ -6,6 +6,7 @@
 <html>
 <head>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+<link rel='stylesheet' href='../css/login.css'>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>かふぇコネクト</title>
 </head>
@@ -18,10 +19,7 @@
 		</c:if>
 		<div class=logtitle>会員ログイン</div>
 
-		<div class=kaiin>会員の方はこちら</div>
-
-		<div class=subNyukai>サブスク入会</div>
-
+		<div id="login">
 		<!-- ログアウト状態でログイン必須画面にアクセスしようとした場合 -->
 		<c:if test="${not empty redirect}">
 			<c:choose>
@@ -31,17 +29,18 @@
 						action="LoginExecute.action?redirect=${ redirect }&num=${ num }&product=${ product }"
 						method="post">
 						<!-- メールアドレス -->
-						<label>メールアドレスPPP</label> <input type="text" name="email"
-							value="gst1@icloud.com">
+						<label class="logBold">メールアドレス</label><br> <input type="email" name="email" id="email"
+							value="gst1@icloud.com"><br>
 
 						<!-- パスワード -->
-						<label>パスワード</label> <input type="password" id="password"
+						<p>
+						<label class="logBold">パスワード</label><br> <input type="password" id="password"
 							name="password" value="pass01">
 
 						<!-- パスワード表示チェックボックス -->
 						<input type="checkbox" id="showPassword"
 							onchange="togglePasswordVisibility()" /> <label
-							for="showPassword">パスワードを表示する</label>
+							for="showPassword">表示</label></p>
 						<script>
 							function togglePasswordVisibility() {
 								let passwordInput = document
@@ -55,26 +54,28 @@
 								}
 							}
 						</script>
+						<br>
 
 						<!-- ログイン用ボタン -->
-						<input type="submit" name="login" value="ログイン" />
+						<input type="submit" name="login" value="ログイン" class="submit"/>
 					</form>
 				</c:when>
 				<c:otherwise>
 					<form action="LoginExecute.action?redirect=${ redirect }"
 						method="post">
 						<!-- メールアドレス -->
-						<label>メールアドレスPPP</label> <input type="text" name="email"
-							value="gst1@icloud.com">
+						<label class="logBold">メールアドレス</label><br> <input type="email" name="email" id="email"
+							value="gst1@icloud.com"><br>
 
 						<!-- パスワード -->
-						<label>パスワード</label> <input type="password" id="password"
+						<p>
+						<label class="logBold">パスワード</label><br> <input type="password" id="password"
 							name="password" value="pass01">
 
 						<!-- パスワード表示チェックボックス -->
 						<input type="checkbox" id="showPassword"
 							onchange="togglePasswordVisibility()" /> <label
-							for="showPassword">パスワードを表示する</label>
+							for="showPassword">表示</label></p>
 						<script>
 							function togglePasswordVisibility() {
 								let passwordInput = document
@@ -90,7 +91,7 @@
 						</script>
 
 						<!-- ログイン用ボタン -->
-						<input type="submit" name="login" value="ログイン" />
+						<input type="submit" name="login" value="ログイン" class="submit" />
 					</form>
 				</c:otherwise>
 			</c:choose>
@@ -100,16 +101,18 @@
 			<form action="LoginExecute.action"
 				method="post">
 				<!-- メールアドレス -->
-				<label>メールアドレスIII</label><br> <input type="text" name="email"
+				<label class="logBold">メールアドレス</label><br> <input type="email" name="email" id="email"
 					value="gst1@icloud.com"><br>
 
 				<!-- パスワード -->
-				<label>パスワード</label><br> <input type="password" id="password"
-					name="password" value="pass01"><br>
+				<p>
+				<label class="logBold">パスワード</label><br> <input type="password" id="password"
+					name="password" value="pass01">
 
 				<!-- パスワード表示チェックボックス -->
+
 				<input type="checkbox" id="showPassword"
-					onchange="togglePasswordVisibility()" /> <label for="showPassword">パスワードを表示する</label>
+					onchange="togglePasswordVisibility()" /> <label for="showPassword" class="showPass">表示</label></p>
 				<script>
 					function togglePasswordVisibility() {
 						let passwordInput = document.getElementById("password");
@@ -122,23 +125,16 @@
 						}
 					}
 				</script>
-				<br>
 
 				<!-- ログイン用ボタン -->
-				<input type="submit" name="login" value="ログイン" />
+				<input type="submit" name="login" value="ログイン" class="submit" />
 			</form>
 		</c:if>
-		<div class=sinki>
-			<label>新規会員登録の方はこちら</label>
 		</div>
 
 		<form action="UserCreate.action" method="post">
-		<div class=touroku>
-			<button>✉メールアドレスで会員登録</button>
-		</div>
+			<input type="submit" name="touroku" value="新規会員登録" id="touroku" />
 		</form>
-
-		<%@ include file="common/footer.jsp"%>
 	</div>
 </body>
 </html>
