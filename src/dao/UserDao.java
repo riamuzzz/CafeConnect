@@ -130,88 +130,55 @@ public class UserDao extends Dao{
 		}
 
 		/**
-		 * filterメソッド 名前と電話番号を指定して顧客の一覧を取得する
+		 * filterメソッド - 名前と電話番号を指定して顧客の一覧を取得する
 		 */
-		public List<User> filter(String userName, String tel,Card card) throws Exception {
+		public List<User> filter(String userName, String tel, Card card) throws Exception {
+		    // リストを初期化
+		    List<User> list = new ArrayList<>();
 
-			//リストを初期化
-			List<User> list = new ArrayList<>();
-
-			//データベースへのコネクションを確立
-			Connection connection = getConnection();
-
-			//プリペアードステートメント
-			PreparedStatement statement = null;
-
-		    // SQL条件文の初期化
-		    String condition = "";
-		    int paramIndex = 1;
+		    // データベースへのコネクションを確立
+		    try (Connection connection = getConnection()) {
 
 
-			//SQL分のソート
-			String order = " order by user_id asc";
+		        // 条件文を構築
+		        StringBuilder condition = new StringBuilder();
+		        List<String> params = new ArrayList<>();
 
-		    // 名前 のみ設定されている場合の条件
-		    if (userName != null && (tel == null)) {
-		        condition = "where user_name like '%?%' ";
-		    }
-		    // tel のみ設定されている場合の条件
-		    else if (userName == null && tel != null) {
-		        condition = "where tel like '%?%' ";
-		    }
-		    // 両方設定されている場合の条件
-		    else if (userName != null && tel != null) {
-		        condition = "where user_name like '%?% and tel like '%?% ";
-		    }else{
-		    	condition ="";
-		    }
-
-
-			try{
-
-				//プリペアードステートメントにSQL文をセット
-				statement = connection.prepareStatement(baseSql + condition + order );
-
-		        // 値を設定（それぞれの条件に合わせて）
-		        if (!condition.isEmpty()) {
-		            if (condition.contains("where category_id=?")) {
-		                statement.setString(paramIndex++, userName);
+		        if (userName != null && !userName.isEmpty()) {
+		            condition.append(" user_name LIKE ?");
+		            params.add("%" + userName + "%");
+		        }
+		        if (tel != null && !tel.isEmpty()) {
+		            if (condition.length() > 0) {
+		                condition.append(" AND");
 		            }
-		            if (condition.contains("where product_name=?")) {
-		                statement.setString(paramIndex, tel);
-		            }
+		            condition.append(" tel LIKE ?");
+		            params.add("%" + tel + "%");
 		        }
 
-				//上記のSQL文を実行し結果を取得する
-				ResultSet rSet = statement.executeQuery();
+		        // 完全なSQL文を構築
+		        String sql = baseSql + (condition.length() > 0 ? " WHERE " + condition : "") + " ORDER BY user_id ASC";
 
+		        // プリペアードステートメントを作成
+		        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+		            // パラメータを設定
+		            for (int i = 0; i < params.size(); i++) {
+		                statement.setString(i + 1, params.get(i));
+		            }
 
-				list = postFilter(rSet,card);
+		            // クエリを実行
+		            try (ResultSet resultSet = statement.executeQuery()) {
+		                // 結果セットを処理
+		                list = postFilter(resultSet, card);
+		            }
+		        }
+		    } catch (Exception e) {
+		        throw e; // 呼び出し元に例外をスロー
+		    }
 
-			}catch (Exception e){
-				throw e;
-			}finally {
-				//プリペアステートメントを閉じる
-				if (statement != null){
-					try {
-						statement.close();
-					} catch (SQLException sqle){
-						throw sqle;
-					}
-				}
-				//コネクションを閉じる
-				if (connection != null){
-					try {
-						connection.close();
-					} catch (SQLException sqle){
-						throw sqle;
-					}
-				}
-			}
-			return list;
-
-
+		    return list; // 結果を返す
 		}
+
 
 		/**
 		 * saveメソッド 顧客インスタンスをデータベースに保存する データが存在する場合は更新、存在しない場合は登録

@@ -289,90 +289,48 @@ public class ProductDao extends Dao {
 	 * serchメソッド cafe店員が商品を検索する
 	 *
 	 */
-	public List<Product> serch(Category category, String productName) throws Exception {
+	public List<Product> search(Category category, String productName) throws Exception {
+	    // リストを初期化
+	    List<Product> list = new ArrayList<>();
 
-		System.out.println(category);
-		System.out.println(productName);
+	    // 条件文を構築
+	    StringBuilder condition = new StringBuilder();
+	    List<Object> params = new ArrayList<>();
 
-		//リストを初期化
-		List<Product> list = new ArrayList<>();
-
-		//データベースへのコネクションを確立
-		Connection connection = getConnection();
-
-		//プリペアードステートメント
-		PreparedStatement statement = null;
-
-	    // SQL条件文の初期化
-	    String condition = "";
-	    int paramIndex = 1;
-
-		//SQL分のソート
-		String order = " order by product_id asc";
-
-	    // category のみ設定されている場合の条件
-	    if (category != null && productName == null) {
-	        condition = "where category_id=? ";
-	        System.out.println("1");
+	    if (category != null) {
+	        condition.append("category_id = ?");
+	        params.add(category.getCategoryId());
 	    }
-	    // tel のみ設定されている場合の条件
-	    else if (category == null && productName != null) {
-	        condition = "where product_name like '%?%' ";
-	        System.out.println("2");
-	    }
-	    // 両方設定されている場合の条件
-	    else if (category != null && productName != null) {
-	        condition = "where category_id=? and product_name like '%?%'";
-	        System.out.println("3");
-	    }else{
-	    	condition = "";
-	    	System.out.println("4");
+	    if (productName != null && !productName.isEmpty()) {
+	        if (condition.length() > 0) {
+	            condition.append(" AND ");
+	        }
+	        condition.append("product_name LIKE ?");
+	        params.add("%" + productName + "%");
 	    }
 
+	    // 完全なSQL文を構築
+	    String sql = baseSql + (condition.length() > 0 ? " WHERE " + condition : "") + " ORDER BY product_id ASC";
 
-		try{
+	    // データベースへのコネクションを確立し、クエリを実行
+	    try (Connection connection = getConnection();
+	         PreparedStatement statement = connection.prepareStatement(sql)) {
 
-			//プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement(baseSql + condition + order );
-
-	        // 値を設定（それぞれの条件に合わせて）
-	        if (!condition.isEmpty()) {
-	            if (condition.contains("category_id=?")) {
-	                statement.setString(paramIndex++, category.getCategoryId());
-	            }
-	            if (condition.contains("product_name=?")) {
-	                statement.setString(paramIndex, productName);
-	            }
+	        // パラメータを設定
+	        for (int i = 0; i < params.size(); i++) {
+	            statement.setObject(i + 1, params.get(i));
 	        }
 
-			//上記のSQL文を実行し結果を取得する
-			ResultSet rSet = statement.executeQuery();
+	        // クエリを実行
+	        try (ResultSet resultSet = statement.executeQuery()) {
+	            // 結果セットを処理
+	            list = postFilter(resultSet, category);
+	        }
+	    } catch (Exception e) {
+	        throw e;
+	    }
 
-			list = postFilter(rSet, category);
-			System.out.println(list);
-		}catch (Exception e){
-			throw e;
-		}finally {
-			//プリペアステートメントを閉じる
-			if (statement != null){
-				try {
-					statement.close();
-				} catch (SQLException sqle){
-					throw sqle;
-				}
-			}
-			//コネクションを閉じる
-			if (connection != null){
-				try {
-					connection.close();
-				} catch (SQLException sqle){
-					throw sqle;
-				}
-			}
-		}
-		return list;
-
-
+	    return list;
 	}
 
 	/**

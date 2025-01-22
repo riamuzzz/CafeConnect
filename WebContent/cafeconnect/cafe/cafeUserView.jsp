@@ -17,16 +17,18 @@
 		<h2>顧客一覧</h2>
 
 		<table>
-		<form method="get">
-			<th><label for="userName">氏名:</label></th>
-	        <td><input type="text" id="userName" name="userName" ></td>
+		<form action="CafeUserView.action" method="get">
+			<tr>
+				<th><label for="userName">氏名:</label></th>
+		        <td><input type="text" id="userName" name="userName" ></td>
 
-			<th><label for="tel">電話番号:</label></th>
-	        <td><input type="text" id="tel" name="tel" ></td>
+				<th><label for="tel">電話番号:</label></th>
+		        <td><input type="text" id="tel" name="tel" ></td>
 
-	        <td><button type="submit" id="button">検索</button></td>
+		        <td><button type="submit" id="button">検索</button></td>
 
-			<div>${errors.get("f1")}</div>
+				<div>${errors.get("f1")}</div>
+			</tr>
 		</form>
 		</table>
 	</div>

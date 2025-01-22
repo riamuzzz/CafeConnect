@@ -25,7 +25,7 @@
 			<option value="0">--------</option>
 			<c:forEach var="category" items="${categoryName}">
 				<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
-				<option value="${category.categoryId}" <c:if test="${category.categoryName==category.categoryName}">selected</c:if>>${category.categoryName}</option>
+				<option value="${category.categoryId}" >${category.categoryName}</option>
 			</c:forEach>
 		</select>
 		</td>
