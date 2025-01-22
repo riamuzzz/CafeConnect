@@ -19,7 +19,6 @@
 	</div>
 
 	<div class="drink">
-				<table class="mobTable">
 					<c:forEach var="product" items="${ products }">
 					<table class="mobTable">
 					<tr>
@@ -33,13 +32,8 @@
 					</tr>
 					</table>
 					</c:forEach>
-				</table>
-
-
 	</div>
 
-<%-- フッター --%>
-<c:import url="./common/footer.jsp"/>
 </div>
 
 </html>

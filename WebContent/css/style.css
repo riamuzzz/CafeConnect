@@ -146,6 +146,8 @@ a {
 }
 
 
+
+
 /* トップ */
 
 .slide-container {
@@ -433,15 +435,22 @@ a {
 /* オンラインショップ　選択 */
 
 .caption {
-	 margin-top: 300px;
-     display: flex;
-     justify-content: center; /* 水平方向に中央寄せ */
+ 	margin-top: 300px;
+    display: flex;
+    justify-content: center; /* 水平方向に中央寄せ */
 }
 
 .drink {
+	margin-top: 30px;
+	display: flex;
 	float: left;
 }
 
+.mobTable {
+	width: 100%;                /* テーブル全体の幅を指定 */
+	table-layout: fixed;        /* 固定レイアウト */
+	border-collapse: collapse;  /* ボーダーの重なりを排除 */
+}
 
 
 /* オンラインショップ　詳細 */
