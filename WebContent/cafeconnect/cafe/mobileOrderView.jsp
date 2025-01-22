@@ -31,18 +31,18 @@
 							<th class="receive">発送済み</th>
 
 						</tr>
-						<c:forEach var="order" items="${order}">
+						<c:forEach var="order" items="${order}" varStatus="status">
 						<c:if test="${order.mobile == true}">
 
-		               	<input type="hidden" name="orderId" value="${ order.orderId }">
 
-							<tr>
+							<tr class="item" data-index="${status.index}">
+								<input type="hidden" name="orderId${ status.index }" value="${ order.orderId }">
 								<td class="orderTime">${order.orderTime}</td>
 								<td class="orderId">${order.orderId}</td>
 								<td class="productName">${order.productName}</td>
 								<td class="count">${order.count}</td>
 
-								<td class="receive"><input type="checkbox" name="receive_${order.orderId}" value="${receive}"></td>
+								<td class="receive"><input type="checkbox" name="receive${status.index}" value="true"></td>
 
 							</tr>
 							</c:if>

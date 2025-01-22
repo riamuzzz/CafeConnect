@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.OnlineOrder;
-import dao.MobileOrderDao;
+import dao.OrderDao;
 import tool.Action;
 
 public class MobileUpdateExecuteAction extends Action{
@@ -15,35 +15,43 @@ public class MobileUpdateExecuteAction extends Action{
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		//ローカル変数の宣言 1
-		MobileOrderDao oDao = new MobileOrderDao();
+		OrderDao oDao = new OrderDao();
 		List<String> error = new ArrayList<>();
-		Boolean receive = false;
-
+		List<String> orderIds = new ArrayList<>();
+		List<OnlineOrder> orders = new ArrayList<>();
+		List<Boolean> receives = new ArrayList<>();
+		int i =0;
+		int j = 0;
 		//リクエストパラメータの取得
-		String[] orderIds = req.getParameterValues("orderId");//商品番号のリスト
-
-		System.out.println(orderIds+"*");
+		while (true) {
+		    String orderId = req.getParameter("orderId" + i);
+		    String receiveStr = req.getParameter("receive" + i);
+		    //receiveStrはnullのときfalseに変換されるからnullの時もループを中断しない
+		    if (orderId == null) {
+		        break; // 注文IDがnullの場合、ループ終了
+		    }
+		    System.out.println(receiveStr);
+		    if (receiveStr == null){
+		    	boolean receive = false;
+		    	receives.add(receive);
+		    } else if (receiveStr.equals("true")){
+		    	boolean receive = true;
+		    	receives.add(receive);
+		    }
+		    orderIds.add(orderId);
+		    i++;
+		}
+		System.out.println(receives);
 		//注文番号ごとの配送状況を取得
-		for (String orderId : orderIds) {
-		    String receiveStr = req.getParameter("receive_" + orderId);
-
-			// 商品フラグにチェックが入っていた場合
-			if (receiveStr != null) {
-				// 商品フラグを立てる
-				receive = true;
-			}
-
-		    System.out.println("****");
-		    OnlineOrder order = oDao.get(orderId);//注文番号をもとにorderインスタンスを取得
-			//DBへデータ保存 5
-			if (order != null) {
-				// 商品が存在していた場合
-				// インスタンスに値をセット
-				order.setReceive(receive);
+		for (String oId : orderIds) {
+			if(oId != null){
+				OnlineOrder order =oDao.get(oId);
+				order.setReceive(receives.get(j));
 				oDao.save(order);
+				orders.add(order);
+				j++;
 			}
 		}
-
 		//JSPへフォワード 7
 		req.getRequestDispatcher("MobileOrderView.action").forward(req, res);
 	}
