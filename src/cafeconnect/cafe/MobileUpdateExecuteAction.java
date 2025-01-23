@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.OnlineOrder;
 import bean.Order;
 import dao.OrderDao;
 import dao.ProductDao;
@@ -19,9 +18,8 @@ public class MobileUpdateExecuteAction extends Action{
 		//ローカル変数の宣言 1
 		OrderDao oDao = new OrderDao();
 		ProductDao pDao = new ProductDao();
-		List<String> error = new ArrayList<>();
 		List<String> orderIds = new ArrayList<>();
-		List<OnlineOrder> orders = new ArrayList<>();
+		List<Order> orders = new ArrayList<>();
 		List<Boolean> receives = new ArrayList<>();
 		int i =0;
 		int j = 0;
@@ -38,8 +36,6 @@ public class MobileUpdateExecuteAction extends Action{
 		    orderIds.add(orderId);
 		    i++;
 		}
-
-		System.out.println(receives);
 
 		// 注文番号ごとの配送状況を取得
 		for (String oId : orderIds) {

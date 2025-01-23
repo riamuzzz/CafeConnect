@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Cart;
-import bean.OnlineOrder;
 import bean.Order;
 import bean.Product;
 import bean.User;
@@ -21,8 +20,7 @@ public class OrderDao extends Dao {
 	/**
 	 * baseSql:String 共通SQL文 プライベート
 	 */
-	private String baseSql = "select * from ORDER ";
-	private String baseSql2 = " select * from orders INNER JOIN USERs  on orders.user_id=users.user_id INNER JOIN Product on orders.product_id = product.product_id";
+	private String baseSql = " select * from orders INNER JOIN USERs  on orders.user_id=users.user_id INNER JOIN Product on orders.product_id = product.product_id";
 
 
 	/**
@@ -33,7 +31,7 @@ public class OrderDao extends Dao {
 	 * @throws Exception
 	 */
 
-	public OnlineOrder get(String orderId) throws Exception{
+	public Order get(String orderId) throws Exception{
 		Connection connection = getConnection();
 		//プリペアードステートメント
 		PreparedStatement statement = null;
@@ -41,12 +39,13 @@ public class OrderDao extends Dao {
 	    String condition = " where order_id=?";
 
 		//結果を格納するTeacherを初期化
-		OnlineOrder order = new OnlineOrder();
+		Order order = new Order();
+		ProductDao pDao = new ProductDao();
+		UserDao uDao = new UserDao();
 
 		try{
 			//プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement(baseSql2 + condition);
-			System.out.println(statement);
+			statement = connection.prepareStatement(baseSql + condition);
 			//プレースホルダー（？の部分）に値を設定し、SQLを実行
 			statement.setString(1,orderId);
 			ResultSet rSet = statement.executeQuery();
@@ -58,9 +57,8 @@ public class OrderDao extends Dao {
 			//取得した情報をproductインスタンスに保存
 			if(rSet.next()) {
 				order.setOrderId(rSet.getString("order_id"));
-				order.setProductName(rSet.getString("product_name"));
-				order.setUserName(rSet.getString("user_name"));
-				order.setAddress(rSet.getString("address"));
+				order.setProduct(pDao.get(rSet.getInt("product_id")));
+				order.setUser(uDao.get(rSet.getInt("user_id")));
 				order.setOrderTime(rSet.getTimestamp("order_time"));
 				order.setCount(rSet.getInt("count"));
 				order.setReceive(rSet.getBoolean("receive"));
@@ -102,19 +100,19 @@ public class OrderDao extends Dao {
 	 * postFilterメソッド フィルター後のリストへの格納処理 プライベート
 	 *
 	 */
-	private List<OnlineOrder> postFilter(ResultSet rSet, Product product, User user) throws Exception {
+	private List<Order> postFilter(ResultSet rSet, Product product, User user) throws Exception {
 		//リストを初期化
-		List<OnlineOrder> list = new ArrayList<>();
-
+		List<Order> list = new ArrayList<>();
+		UserDao uDao = new UserDao();
+		ProductDao pDao = new ProductDao();
 		try{
 			//リザルトセットを全件走査
 			while (rSet.next()){
-				OnlineOrder order = new OnlineOrder();
+				Order order = new Order();
 				//学生インスタンスに検索結果をセット
 				order.setOrderId(rSet.getString("order_id"));
-				order.setProductName(rSet.getString("product_name"));
-				order.setUserName(rSet.getString("user_name"));
-				order.setAddress(rSet.getString("address"));
+				order.setProduct(pDao.get(rSet.getInt("product_id")));
+				order.setUser(uDao.get(rSet.getInt("user_id")));
 				order.setOrderTime(rSet.getTimestamp("order_time"));
 				order.setCount(rSet.getInt("count"));
 				order.setReceive(rSet.getBoolean("receive"));
@@ -135,15 +133,9 @@ public class OrderDao extends Dao {
 	/**
 	 * filterメソッド 日付、氏名、商品名を指定して学生の一覧を取得する
 	 */
-	public List<OnlineOrder> filter(Product product, User user,Date orderTime) throws Exception {
-
-		System.out.println(product);
-		System.out.println(user);
-		System.out.println(orderTime);
-
-
+	public List<Order> filter(Product product, User user,Date orderTime) throws Exception {
 		//リストを初期化
-		List<OnlineOrder> list = new ArrayList<>();
+		List<Order> list = new ArrayList<>();
 
 		//データベースへのコネクションを確立
 		Connection connection = getConnection();
@@ -161,48 +153,40 @@ public class OrderDao extends Dao {
 		// user のみ設定されている場合の条件
 		if (product == null && user != null && orderTime == null) {
 		    condition = " where user_name=? and receive = False";
-		    System.out.println("1");
 		}
 		// product のみ設定されている場合の条件
 		else if (product != null && user == null && orderTime == null) {
 		    condition = " where product_name=? and receive = False";
-		    System.out.println("2");
 		}
 		// orderTime のみ設定されている場合の条件
 		else if (product == null && user == null && orderTime != null) {
 		    condition = " where order_time=? and receive = False";
-		    System.out.println("3");
 		}
 		// user と product が設定されている場合の条件
 		else if (product != null && user != null && orderTime == null) {
 		    condition = " where user_name=? and product_name=? and receive = False";
-		    System.out.println("4");
 		}
 		// user と orderTime が設定されている場合の条件
 		else if (product == null && user != null && orderTime != null) {
 		    condition = " where user_name=? and order_time=? and receive = False";
-		    System.out.println("5");
 		}
 		// product と orderTime が設定されている場合の条件
 		else if (product != null && user == null && orderTime != null) {
 		    condition = " where product_name=? and order_time=? and receive = False";
-		    System.out.println("6");
 		}
 		// すべてが設定されている場合の条件
 		else if (product != null && user != null && orderTime != null) {
 		    condition = " where user_name=? and product_name=? and order_time=? and receive = False";
-		    System.out.println("7");
 		}
 		// それ以外の場合（条件なし）
 		else {
 		    condition = " where receive = False";
-		    System.out.println("条件なし");
 		}
 
 		try{
 
 			//プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement(baseSql2 + condition + order );
+			statement = connection.prepareStatement(baseSql + condition + order );
 
 	        // 値を設定（それぞれの条件に合わせて）
 	        if (!condition.isEmpty()) {
@@ -254,7 +238,7 @@ public class OrderDao extends Dao {
 	 * @return 成功:true, 失敗:false
 	 * @throws Exception
 	 */
-	public boolean save(OnlineOrder order) throws Exception {
+	public boolean save(Order order) throws Exception {
 
 		//データベースへのコネクションを確立
 		Connection connection = getConnection();

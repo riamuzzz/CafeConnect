@@ -624,69 +624,69 @@ public class ProductDao extends Dao {
 	}
 
 	/**
-	 * 商品購入処理
-	 * 在庫数を減少させる
+	 * 商品購入処理 在庫数を減少させる
 	 *
-	 * @param productId: int 商品ID
-	 * @param quantity: int 購入数量
+	 * @param productId:
+	 *            int 商品ID
+	 * @param quantity:
+	 *            int 購入数量
 	 * @return 成功:true, 失敗:false（在庫不足またはエラー）
 	 * @throws Exception
 	 */
-	public boolean purchaseProduct(int productId, int quantity) throws Exception {
-	    Connection connection = getConnection();
-	    PreparedStatement statement = null;
-	    boolean isSuccess = false;
+	public boolean purchaseProduct(Product product, int num) throws Exception {
 
-	    try {
-	        // トランザクションを開始
-	        connection.setAutoCommit(false);
+		// データベースへのコネクションを確立
+		Connection connection = getConnection();
+		// プリペアードステートメント
+		PreparedStatement statement = null;
+		// 実行件数
+		int count = 0;
+		boolean sell = product.isSell();
+		//商品の在庫数から売れた商品の個数を引く
+		int stock = product.getCount() - num;
+		if (stock <= 0) {
+			//商品を売り切れにする
+			sell = false;
+		}
+		try {
+			// 学生が存在した場合
+			// プリペアードステートメントにUpdate文をセット
+			statement = connection.prepareStatement(
+					"UPDATE PRODUCT SET COUNT=? ,SELL=? WHERE PRODUCT_ID=?");
+			// 各部分に値を設定
+			statement.setInt(1, stock);
+			statement.setBoolean(2, sell);
+			statement.setInt(3, product.getProductId());
+			// プリペアードステートメントを実行
+			count = statement.executeUpdate();
 
-	        // 1. 在庫チェック
-	        String checkSql = "SELECT count FROM PRODUCT WHERE product_id = ?";
-	        statement = connection.prepareStatement(checkSql);
-	        statement.setInt(1, productId);
-	        ResultSet resultSet = statement.executeQuery();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// プリペアステートメントを閉じる
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			// コネクションを閉じる
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
 
-	        if (resultSet.next()) {
-	            int currentStock = resultSet.getInt("count");
-	            if (currentStock < quantity) {
-	                throw new Exception("在庫が不足しています。現在の在庫: " + currentStock + ", 購入数量: " + quantity);
-	            }
-	        } else {
-	            throw new Exception("商品が見つかりません。");
-	        }
-
-	        // 2. 在庫を減少
-	        String updateSql = "UPDATE PRODUCT SET count = count - ? WHERE product_id = ?";
-	        statement = connection.prepareStatement(updateSql);
-	        statement.setInt(1, quantity);
-	        statement.setInt(2, productId);
-	        int rowsUpdated = statement.executeUpdate();
-
-	        if (rowsUpdated > 0) {
-	            // 更新成功
-	            isSuccess = true;
-	        }
-
-	        // トランザクションをコミット
-	        connection.commit();
-	    } catch (Exception e) {
-	        // エラーが発生した場合、ロールバック
-	        if (connection != null) {
-	            connection.rollback();
-	        }
-	        throw e;
-	    } finally {
-	        // リソースを解放
-	        if (statement != null) {
-	            statement.close();
-	        }
-	        if (connection != null) {
-	            connection.setAutoCommit(true); // 自動コミットを元に戻す
-	            connection.close();
-	        }
-	    }
-
-	    return isSuccess;
+		if (count > 0) {
+			// 実行数が1件以上あるとき
+			return true;
+		} else {
+			// 実行数が0件以上の場合
+			return false;
+		}
 	}
 }

@@ -5,21 +5,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <div class="cafe_user_view">
-
 	<%-- ヘッダー --%>
 	<c:import url="../common/cafeheader.jsp" />
-
 	<div class="main">
 		<%-- ナビゲーション --%>
 		<c:import url="../common/cafenavigation.jsp" />
-
 		<div class="onlineOrderView1">
-
 			<h2>オンライン注文一覧</h2>
-
 			<c:choose>
 				<c:when test="${order.size()>0}">
-
 					<form action="OrderUpdateExecute.action" method="post">
 						<div class="onlineOrderView2">
 							<table>
@@ -41,9 +35,9 @@
 
 										<td class="orderTime">${order.orderTime}</td>
 										<td class="orderId">${order.orderId}</td>
-										<td class="userName">${order.userName}</td>
-										<td class="address">${order.address}</td>
-										<td class="productName">${order.productName}</td>
+										<td class="userName">${order.user.userName}</td>
+										<td class="address">${order.user.address}</td>
+										<td class="productName">${order.product.productName}</td>
 										<td class="count">${order.count}</td>
 
 										<td class="receive">

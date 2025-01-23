@@ -7,10 +7,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.OnlineOrder;
+import bean.Order;
 import bean.Product;
 import bean.User;
-import dao.MobileOrderDao;
+import dao.OrderDao;
 import tool.Action;
 
 public class MobileOrderViewAction extends Action {
@@ -20,7 +20,7 @@ public class MobileOrderViewAction extends Action {
 
 		//ローカル変数の宣言 1
 
-		MobileOrderDao orderDao =new MobileOrderDao();
+		OrderDao oDao =new OrderDao();
 		Product product =null;
 		User user =null;
 
@@ -29,7 +29,7 @@ public class MobileOrderViewAction extends Action {
 		String productName=null;
 
 		//リストを初期化
-		List<OnlineOrder> list = new ArrayList<>();
+		List<Order> list = new ArrayList<>();
 
 		//リクエストパラメータ―の取得 2
 
@@ -38,9 +38,7 @@ public class MobileOrderViewAction extends Action {
 		//DBからデータ取得 3
 
 		 //絞り込み結果
-		System.out.println("*");
-		list = orderDao.filter(product,user,(java.sql.Date) orderTime);
-		System.out.println("**");
+		list = oDao.filter(product,user,(java.sql.Date) orderTime);
 
 		//ビジネスロジック 4
 		//なし
@@ -49,7 +47,6 @@ public class MobileOrderViewAction extends Action {
 		//レスポンス値をセット 6
 		// リクエストにカテゴリをセット
 		req.setAttribute("order", list);
-		System.out.println(list);
 
 		//JSPへフォワード 7
 		req.getRequestDispatcher("mobileOrderView.jsp").forward(req, res);
