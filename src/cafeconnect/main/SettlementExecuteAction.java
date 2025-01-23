@@ -2,6 +2,7 @@ package cafeconnect.main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import bean.Cart;
 import bean.Product;
 import bean.User;
 import dao.CartDao;
+import dao.MobileDao;
 import dao.OrderDao;
 import dao.ProductDao;
 import tool.Action;
@@ -26,12 +28,16 @@ public class SettlementExecuteAction extends Action{
 		ProductDao pDao = new ProductDao();
 		CartDao cDao = new CartDao();
 		OrderDao oDao = new OrderDao();
+		MobileDao mDao = new MobileDao();
 		List<Integer> productIds = new ArrayList<>();
 		List<Integer> counts = new ArrayList<>();
 		List<Product> pList = new ArrayList<>();
 		List<Cart> cList = new ArrayList<>();
+		boolean online = false;
 		int i = 0;
 		int count = 0;
+		Random random = new Random();
+		int randomNumber = random.nextInt(1000);
 		//リクエストパラメータ取得
 		while(true){
 			String productIdStr = req.getParameter("productId" + Integer.toString(i));
@@ -59,12 +65,18 @@ public class SettlementExecuteAction extends Action{
 					oDao.create(cart);
 					cDao.delete(cart, productId);
 				} else {
+					online = true;
 					oDao.mobileCreate(cart);
+					//モバイルdaoでcart内の情報をmobileに移す
+					mDao.Create(cart, randomNumber);
 					System.out.println("モバイルオーダー");
+					cDao.delete(cart, productId);
 				}
 			}
 		}
-
+		if (online == true){
+			req.getRequestDispatcher("Mobile.action").forward(req, res);
+		}
 		//ビジネスロジック 4
 		//なし
 		//DBへデータ保存 5
@@ -73,8 +85,6 @@ public class SettlementExecuteAction extends Action{
 		req.setAttribute("user", user);
 		req.setAttribute("pList", pList);
 		req.setAttribute("cList", cList);
-
-
 		//JSPへフォワード 7
 		req.getRequestDispatcher("settlementDone.jsp").forward(req, res);
 	}

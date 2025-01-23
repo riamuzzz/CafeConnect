@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.OnlineOrder;
+import bean.Order;
 import dao.OrderDao;
+import dao.ProductDao;
 import tool.Action;
 
 public class MobileUpdateExecuteAction extends Action{
@@ -16,6 +18,7 @@ public class MobileUpdateExecuteAction extends Action{
 
 		//ローカル変数の宣言 1
 		OrderDao oDao = new OrderDao();
+		ProductDao pDao = new ProductDao();
 		List<String> error = new ArrayList<>();
 		List<String> orderIds = new ArrayList<>();
 		List<OnlineOrder> orders = new ArrayList<>();
@@ -26,31 +29,49 @@ public class MobileUpdateExecuteAction extends Action{
 		while (true) {
 		    String orderId = req.getParameter("orderId" + i);
 		    String receiveStr = req.getParameter("receive" + i);
-		    //receiveStrはnullのときfalseに変換されるからnullの時もループを中断しない
 		    if (orderId == null) {
 		        break; // 注文IDがnullの場合、ループ終了
 		    }
-		    System.out.println(receiveStr);
-		    if (receiveStr == null){
-		    	boolean receive = false;
-		    	receives.add(receive);
-		    } else if (receiveStr.equals("true")){
-		    	boolean receive = true;
-		    	receives.add(receive);
-		    }
+
+		    boolean receive = receiveStr != null && receiveStr.equals("true");
+		    receives.add(receive);
 		    orderIds.add(orderId);
 		    i++;
 		}
+
 		System.out.println(receives);
-		//注文番号ごとの配送状況を取得
+
+		// 注文番号ごとの配送状況を取得
 		for (String oId : orderIds) {
-			if(oId != null){
-				OnlineOrder order =oDao.get(oId);
-				order.setReceive(receives.get(j));
-				oDao.save(order);
-				orders.add(order);
-				j++;
-			}
+		    if (oId != null) {
+		        Order order = oDao.get(oId);
+
+		        // Nullチェックを追加
+		        if (order == null) {
+		            System.err.println("注文が見つかりません: " + oId);
+		            continue;
+		        }
+
+		        order.setReceive(receives.get(j));
+		        oDao.save(order);
+		        orders.add(order);
+
+		        // `order.getProduct()` の Nullチェック
+		        if (order.getProduct() == null) {
+		            System.err.println("注文に関連付けられた商品がありません: " + oId);
+		            continue;
+		        }
+
+		        // `order.getCount()` の Nullチェック
+//		        if (order.getCount() == null) {
+//		            System.err.println("注文に数量が設定されていません: " + oId);
+//		            continue;
+//		        }
+
+		        // 商品購入処理
+		        pDao.purchaseProduct(order.getProduct().getProductId(), order.getCount());
+		        j++;
+		    }
 		}
 		//JSPへフォワード 7
 		req.getRequestDispatcher("MobileOrderView.action").forward(req, res);
