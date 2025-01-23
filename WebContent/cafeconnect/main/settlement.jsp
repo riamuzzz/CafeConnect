@@ -32,14 +32,17 @@
 					</tr>
 
 					<tr>
-						<td><a href="MyPage.action">変更</a></td>
+						<td><a href="MyPage.action" id="update">変更</a></td>
 					</tr>
 
 				</table>
 
 				<table class="pay">
 					<tr>
-						<td>お支払方法：${ card.cardNumber }</td>
+						<th>お支払方法</th>
+					</tr>
+					<tr>
+						<td>カード番号：${ card.cardNumber }</td>
 					</tr>
 					<tr>
 						<td>カード氏名：${ card.cardName }</td>
@@ -49,29 +52,30 @@
 					</tr>
 
 					<tr>
-						<td><a href="MyPage.action">変更</a>
+						<td><a href="MyPage.action" id="update">変更</a>
 						<td>
 					</tr>
 
 				</table>
 
+				<p id="orderProduct">注文商品</p>
 				<table class="kessai">
-
 					<c:set var="totalPrice" value="0" />
 
 					<c:forEach var="pList" items="${pList}" varStatus="status">
+
 						<tr class="item" data-index="${status.index}">
 
 							<!-- 商品画像 -->
-							<td><img src="../img/product/${pList.image}"
-								alt="${pList.productName}"></td>
+							<th><img src="../img/product/${pList.image}"
+								alt="${pList.productName}"></th>
 							<!-- 商品名 -->
-							<td>${pList.productName}</td>
+							<td>${pList.productName}<br><br>
 
 							<!-- 価格 -->
-							<td><span class="price">${pList.price}</span>円</td>
+							<span id="price"><strong>￥${pList.price}</strong></span><br><br>
 							<!-- 個数 -->
-							<td><c:forEach var="cList" items="${cList}"
+							<c:forEach var="cList" items="${cList}"
 									varStatus="status">
 									<c:if test="${cList.product.productId eq pList.productId}">
 										<span class="count">${cList.count}個</span>
@@ -84,20 +88,21 @@
 										<c:set var="totalPrice" value="${totalPrice + itemTotal}" />
 									</c:if>
 								</c:forEach></td>
-						</tr>
 					</c:forEach>
-
+				</table>
+				<br>
+				<table class="payment">
 					<tr>
-						<td><a href="ProductView.action">買い物を続ける</a>
-						<td>
+						<td>ご請求額: <strong>${totalPrice}</strong>円
+						</td>
 					</tr>
+					</table>
 
-				</table>
-				<table>
-					<td colspan="4" style="text-align: right;">ご請求額: <strong>${totalPrice}</strong>円
-					</td>
-				</table>
-				<input type="submit" value="決済">
+				<input type="submit" value="注文を確定する" class="subKessai">
+
+			</form>
+			<form action="CartView.action" method="post">
+				<input type="submit" value="カートに戻る" class="cartBack">
 			</form>
 		</div>
 
