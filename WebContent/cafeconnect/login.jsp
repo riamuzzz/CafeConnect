@@ -12,7 +12,7 @@
 </head>
 <body>
 	<%@ include file="common/header.jsp"%>
-	<div class=log>
+	<div class="log">
 
 		<c:if test="${not empty message}">
 			<p>${ message }</p>

@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="drink">
-		<table>
+	<%--	<table>
 				<tr>
 					<c:forEach var="drink" items="${ drinkProducts }">
 						<th><a href="ProductDetailView.action?productId=${ drink.productId }"><img src="../img/product/${ drink.image }" width="110"></a></th>
@@ -26,6 +26,20 @@
 					</c:forEach>
 				</tr>
 		</table>
+	 --%>
+					<c:forEach var="drink" items="${ drinkProducts }">
+					<table class="mobTable">
+					<tr>
+						<th><a class="mobImg" href="ProductDetailView.action?productId=${ drink.productId }"><img src="../img/product/${ drink.image }" width="110"></a></th>
+					</tr>
+					<tr>
+						<td><a class="caption" href="ProductDetailView.action?productId=${ drink.productId }">${ drink.productName }</a></td>
+					</tr>
+					<tr>
+						<td><a class="caption" href="ProductDetailView.action?productId=${ drink.productId }">${ drink.price }円 </a></td>
+					</tr>
+					</table>
+					</c:forEach>
 	</div>
 
 	<div class="menutitle2">
@@ -33,7 +47,7 @@
 	</div>
 
 	<div class="food">
-		<table>
+	<%--	<table>
 				<tr>
 					<c:forEach var="food" items="${ foodProducts }">
 						<th><a href="ProductDetailView.action?productId=${ food.productId }"><img src="../img/product/${ food.image }" width="110"></a></th>
@@ -45,5 +59,20 @@
 					</c:forEach>
 				</tr>
 		</table>
+	 --%>
+
+					<c:forEach var="food" items="${ foodProducts }">
+					<table class="mobTable">
+					<tr>
+						<th><a class="mobImg" href="ProductDetailView.action?productId=${ food.productId }"><img src="../img/mobMenu/${ food.image }" width="110"></a></th>
+					</tr>
+					<tr>
+						<td><a class="caption" href="ProductDetailView.action?productId=${ food.productId }">${ food.productName }</a></td>
+					</tr>
+					<tr>
+						<td><a class="caption" href="ProductDetailView.action?productId=${ food.productId }">${ food.price }円 </a></td>
+					</tr>
+					</table>
+					</c:forEach>
 	</div>
 </div>

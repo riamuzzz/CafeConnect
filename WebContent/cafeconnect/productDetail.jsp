@@ -42,8 +42,6 @@
 	</div>
 	</div>
 
-<%-- フッター --%>
-<c:import url="./common/footer.jsp"/>
 </div>
 </div>
 </html>

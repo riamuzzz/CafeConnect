@@ -42,12 +42,15 @@
 
 
 	<h2 class="ranking">ランキング</h2>
+
+
+<%--
 	<div class="topTable">
 	<table>
 		<c:forEach var="product" items="${products}">
 			<tr>
 				<td>
-					<a href="ProductDetailView.action?productId=${ product.productId }"><img src="img/product/${ product.image }"></a>
+					<th><a href="ProductDetailView.action?productId=${ product.productId }"><img src="img/product/${ product.image }"></a></th>
 				</td>
 			</tr>
 			<tr><td>${ product.productName }</td></tr>
@@ -55,10 +58,40 @@
 		</c:forEach>
 	</table>
 	</div>
-</div>
+--%>
 
-<%-- フッター --%>
-<c:import url="./common/footer.jsp"/>
+	<div class="Ranking">
+					<c:forEach var="product" items="${ products }" varStatus="status">
+					<table class="topTable"  >
+ <tr>
+                <th>
+                    <!-- 1位の場合は王冠を表示 -->
+                    <c:if test="${status.index == 0}">
+                                                       👑
+                    </c:if>
+                    <c:if test="${status.index != 0}">
+                        ${status.index + 1}
+                    </c:if>
+                </th>
+            </tr>
+
+					<tr>
+						<th><a class="topImg" href="ProductDetailView.action?productId=${ product.productId }"><img src="img/product/${ product.image }" width="110"></a></th>
+					</tr>
+					<tr>
+						<td><a class="caption" href="ProductDetailView.action?productId=${ product.productId }">${ product.productName }</a></td>
+					</tr>
+					<tr>
+						<td><a class="caption" href="ProductDetailView.action?productId=${ product.productId }">${ product.price }円 </a></td>
+					</tr>
+					</table>
+					</c:forEach>
+	</div>
+
+
+
+
+</div>
 </div>
 </div>
 </html>
