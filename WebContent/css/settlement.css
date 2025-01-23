@@ -1,12 +1,103 @@
 
 .pay {
-	width: 100%;
+	width: 120%;
 	margin-bottom: 20px;
 	background-color: white;
 	text-align:center;
 }
 
+.pay th {
+	text-decoration: underline;
+	font-size: 20px;
+}
+
 .kessai{
-	width: 100%;
+	width: 120%;
 	align: right;
+	margin-right: 0;
+	margin-bottom: 1%;
+	background-color: white;
+	text-align:center;
+
+}
+
+.kessai td{
+
+	padding:5%;
+}
+
+#update{
+	font-weight:bold;
+	font-size: 16px;
+}
+
+
+#update:hover{
+	text-decoration: underline;
+	color: #838383;
+}
+
+#orderProduct{
+	width: 120%;
+	padding-top: 20px;
+	background-color:white;
+	text-align:center;
+	margin-bottom: 0;
+	font-weight:bold;
+	text-decoration: underline;
+	font-size: 20px;
+}
+
+.payment{
+	width: 100%;
+	background-color: white;
+	font-size:20px;
+	padding-bottom: 120%;
+	margin-top: -307%;
+	margin-left: 150%;
+}
+
+.payment td{
+	font-weight: bold;
+	text-align: center;
+	padding-top: 10%;
+}
+
+
+strong{
+	color: red;
+}
+
+.subKessai{
+	width: 70%;
+	margin-top: -110%;
+	margin-left: 166%;
+	padding: 4% 0;
+	color: white;
+	background-color: #ff3131;
+	border:none;
+	cursor:pointer;
+	font-weight: bold;
+}
+
+.subKessai:hover{
+	font-weight: bold;
+	background-color: #ff6868;
+}
+
+.cartBack{
+	width: 70%;
+	margin-top: -86%;
+	margin-left: 166%;
+	padding: 4% 0;
+	color: white;
+	background-color: #5f5f5f;
+	border:none;
+	cursor:pointer;
+	font-weight: bold;
+}
+
+.cartBack:hover{
+	font-weight: bold;
+	background-color: #898787;
 }
