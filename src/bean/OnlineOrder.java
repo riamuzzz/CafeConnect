@@ -13,6 +13,8 @@ public class OnlineOrder {
 	//ユーザ名
 	private String userName;
 
+	private Product product;
+
 	//住所
 	private String address;
 
@@ -103,6 +105,14 @@ public class OnlineOrder {
 
 	public void setMobile(boolean mobile) {
 		this.mobile = mobile;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 }
