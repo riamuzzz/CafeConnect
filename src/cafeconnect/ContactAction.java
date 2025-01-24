@@ -10,7 +10,7 @@ public class ContactAction extends Action {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		req.getRequestDispatcher("otoiawase.jsp").forward(req, res);
+		req.getRequestDispatcher("contact.jsp").forward(req, res);
 
 	}
 

@@ -12,8 +12,6 @@
 
 
 <div class="main">
-<%-- ナビゲーション --%>
-<c:import url="./common/navigation.jsp"/>
 
 
 <div class="content">

@@ -225,12 +225,13 @@ a {
 	border-collapse: collapse;  /* ボーダーの重なりを排除 */
 }
 
-/*
+
 .topTable {
-	counter-reset: table-counter; /* カウンターを初期化 */
+	/*counter-reset: table-counter;  カウンターを初期化 */
+
 }
 
-/*
+
 .topTable th {
 	counter-increment: table-counter; /* カウンターをインクリメント（+1） */
 }
@@ -480,12 +481,22 @@ a {
 	margin-top: 30px;
 	display: flex;
 	float: left;
+	border-collapse: collapse;
+	flex-wrap: wrap;
 }
 
 .mobTable {
-	width: 100%;                /* テーブル全体の幅を指定 */
+	width: 20%;                /* テーブル全体の幅を指定 */
 	table-layout: fixed;        /* 固定レイアウト */
 	border-collapse: collapse;  /* ボーダーの重なりを排除 */
+	box-sizing: border-box;
+	margin:0;
+	padding:0;
+
+}
+
+.mobTable td {
+	color:red;
 }
 
 
@@ -710,10 +721,7 @@ textarea:focus {
 	float: left;
 }
 
-.mobTable {
-	 width: 100%;
-	 border-collapse: collapse;
-}
+
 
 .mobTable td {
 	 padding: 10px;

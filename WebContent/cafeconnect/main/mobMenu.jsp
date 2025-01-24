@@ -46,7 +46,7 @@
 		<label>フード</label>
 	</div>
 
-	<div class="food">
+	<div class="drink">
 	<%--	<table>
 				<tr>
 					<c:forEach var="food" items="${ foodProducts }">
