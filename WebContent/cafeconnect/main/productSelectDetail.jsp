@@ -12,8 +12,6 @@
 
 
 <div class="main">
-<%-- ナビゲーション --%>
-<c:import url="../common/navigation.jsp"/>
 
 <table>
 	<tr><td><img src="../img/product/${ product.image }"></td></tr>
