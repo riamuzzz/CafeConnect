@@ -20,7 +20,6 @@ public class OnlineOrderViewAction extends Action {
 		OrderDao orderDao =new OrderDao();
 		String  productName =null;
 		String userName =null;
-		java.sql.Date sqlDate = null;
 		String orderTime = req.getParameter("orderTime");
 		userName = req.getParameter("name");
 		productName = req.getParameter("product");

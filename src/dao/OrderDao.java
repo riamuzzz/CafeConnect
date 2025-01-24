@@ -49,10 +49,6 @@ public class OrderDao extends Dao {
 			statement.setString(1,orderId);
 			ResultSet rSet = statement.executeQuery();
 
-			//ProductDao,UserDaoを初期化
-			ProductDao productDao =new ProductDao();
-			UserDao userDao =new UserDao();
-
 			//取得した情報をproductインスタンスに保存
 			if(rSet.next()) {
 				order.setOrderId(rSet.getString("order_id"));
@@ -191,7 +187,92 @@ public class OrderDao extends Dao {
 	                statement.setString(paramIndex++, "%" + orderTime + "%");
 	            }
 	        }
-	        System.out.println(statement);
+			//上記のSQL文を実行し結果を取得する
+			ResultSet rSet = statement.executeQuery();
+			list = postFilter(rSet);
+		}catch (Exception e){
+			throw e;
+		}finally {
+			//プリペアステートメントを閉じる
+			if (statement != null){
+				try {
+					statement.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+			//コネクションを閉じる
+			if (connection != null){
+				try {
+					connection.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+		}
+		return list;
+	}
+
+	public List<Order> mobileFilter(String productName, String userName,String orderTime) throws Exception {
+		//リストを初期化
+		List<Order> list = new ArrayList<>();
+		//データベースへのコネクションを確立
+		Connection connection = getConnection();
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+	    // SQL条件文の初期化
+	    String condition = "";
+	    int paramIndex = 1;
+		//SQL分のソート
+		String order = " order by order_time asc";
+		// user のみ設定されている場合の条件
+		if (productName == null & userName != null & orderTime == null) {
+		    condition = " where user_name like ? and receive = False and mobile = true";
+		}
+		// product のみ設定されている場合の条件
+		else if (productName != null & userName == null & orderTime == null) {
+		    condition = " where product_name like ? and receive = False and mobile = true";
+		}
+		// orderTime のみ設定されている場合の条件
+		else if (productName == null & userName == null & orderTime != null) {
+		    condition = " where order_time::text like ? and receive = False and mobile = true";
+		}
+		// user と product が設定されている場合の条件
+		else if (productName != null & userName != null & orderTime == null) {
+		    condition = " where user_name like ? and product_name like ? and receive = False and mobile = true";
+		}
+		// user と orderTime が設定されている場合の条件
+		else if (productName == null & userName != null & orderTime != null) {
+		    condition = " where user_name like ? and order_time::text like ? and receive = False and mobile = true";
+		}
+		// product と orderTime が設定されている場合の条件
+		else if (productName != null & userName == null & orderTime != null) {
+		    condition = " where product_name like ? and order_time::text like ? and receive = False and mobile = true";
+		}
+		// すべてが設定されている場合の条件
+		else if (productName != null & userName != null & orderTime != null) {
+		    condition = " where user_name like ? and product_name like ? and order_time::text like ? and receive = False and mobile = true";
+		}
+		// それ以外の場合（条件なし）
+		else {
+		    condition = " where receive = False and mobile = true";
+		}
+		try{
+			//プリペアードステートメントにSQL文をセット
+			statement = connection.prepareStatement(baseSql + condition + order );
+
+	        // 値を設定（それぞれの条件に合わせて）
+	        if (!condition.isEmpty()) {
+	            if (condition.contains("user_name like ?")) {
+	                statement.setString(paramIndex++, "%" + userName + "%");
+	            }
+	            if (condition.contains("product_name like ?")) {
+	                statement.setString(paramIndex++, "%" + productName + "%");
+	            }
+	            if (condition.contains("order_time::text like ?")) {
+	                statement.setString(paramIndex++, "%" + orderTime + "%");
+	            }
+	        }
 			//上記のSQL文を実行し結果を取得する
 			ResultSet rSet = statement.executeQuery();
 			list = postFilter(rSet);

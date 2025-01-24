@@ -1,15 +1,12 @@
 package cafeconnect.cafe;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Order;
-import bean.Product;
-import bean.User;
 import dao.OrderDao;
 import tool.Action;
 
@@ -21,12 +18,11 @@ public class MobileOrderViewAction extends Action {
 		//ローカル変数の宣言 1
 
 		OrderDao oDao =new OrderDao();
-		Product product =null;
-		User user =null;
-
-		Date orderTime =null;
-		String userName=null;
-		String productName=null;
+		String productName =null;
+		String userName =null;
+		String orderTime = req.getParameter("orderTime");
+		userName = req.getParameter("name");
+		productName = req.getParameter("product");
 
 		//リストを初期化
 		List<Order> list = new ArrayList<>();
@@ -38,7 +34,7 @@ public class MobileOrderViewAction extends Action {
 		//DBからデータ取得 3
 
 		 //絞り込み結果
-		list = oDao.filter(product,user,(java.sql.Date) orderTime);
+		list = oDao.mobileFilter(productName,userName,orderTime);
 
 		//ビジネスロジック 4
 		//なし

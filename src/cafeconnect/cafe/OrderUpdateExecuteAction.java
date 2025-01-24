@@ -51,8 +51,13 @@ public class OrderUpdateExecuteAction extends Action{
 				j++;
 			}
 		}
-		//JSPへフォワード 7
-		req.getRequestDispatcher("OnlineOrderView.action").forward(req, res);
+		//JSPへのフォワード先をモバイルかオンラインショップかで分ける
+		if (orders.get(0).getProduct().getCategory().getCategoryId().equals("CATE02")){
+			req.getRequestDispatcher("OnlineOrderView.action").forward(req, res);
+		} else {
+			req.getRequestDispatcher("MobileOrderView.action").forward(req, res);
+		}
+
 	}
 
 }
