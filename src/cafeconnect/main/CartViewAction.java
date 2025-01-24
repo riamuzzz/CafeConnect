@@ -45,5 +45,4 @@ public class CartViewAction extends Action {
 		req.getRequestDispatcher("cartView.jsp").forward(req, res);
 	}
 
-
 }
