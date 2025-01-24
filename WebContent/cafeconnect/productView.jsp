@@ -19,18 +19,18 @@
 	</div>
 
 	<div class="drink">
-					<c:forEach var="product" items="${ products }">
-					<table class="mobTable">
-					<tr>
-						<th><a class="mobImg" href="ProductDetailView.action?productId=${ product.productId }"><img src="img/product/${ product.image }" width="110"></a></th>
-					</tr>
-					<tr>
-						<td><a class="caption" href="ProductDetailView.action?productId=${ product.productId }">${ product.productName }</a></td>
-					</tr>
-					<tr>
-						<td><a class="caption" href="ProductDetailView.action?productId=${ product.productId }">${ product.price }円 </a></td>
-					</tr>
-					</table>
+					<c:forEach var="drink" items="${ products }" varStatus="status">
+							<table class="mobTable">
+							<tr>
+								<th><a class="mobImg" href="ProductDetailView.action?productId=${ drink.productId }"><img src="img/product/${ drink.image }" width="110"></a></th>
+							</tr>
+							<tr>
+								<td><a class="caption" href="ProductDetailView.action?productId=${ drink.productId }">${ drink.productName }</a></td>
+							</tr>
+							<tr>
+								<td><a class="caption" href="ProductDetailView.action?productId=${ drink.productId }">${ drink.price }円 </a></td>
+							</tr>
+							</table>
 					</c:forEach>
 	</div>
 
