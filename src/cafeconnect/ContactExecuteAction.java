@@ -96,7 +96,7 @@ public class ContactExecuteAction extends Action {
             }
         }
 
-		req.getRequestDispatcher("otoi kanryo.jsp").forward(req, res);
+		req.getRequestDispatcher("contactDone.jsp").forward(req, res);
 
 	}
 
