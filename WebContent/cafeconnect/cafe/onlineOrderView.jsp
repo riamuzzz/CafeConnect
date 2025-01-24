@@ -14,6 +14,12 @@
 			<h2>オンライン注文一覧</h2>
 			<c:choose>
 				<c:when test="${order.size()>0}">
+					<form action="OnlineOrderView.action">
+						<input type="date" name="orderTime">
+						<label>名前</label><input type="text" name="name" value="">
+						<label>商品</label><input type="text" name="product" value="">
+						<input type="submit" value="絞り込み">
+					</form>
 					<form action="OrderUpdateExecute.action" method="post">
 						<div class="onlineOrderView2">
 							<table>

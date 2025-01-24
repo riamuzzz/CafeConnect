@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -100,7 +99,7 @@ public class OrderDao extends Dao {
 	 * postFilterメソッド フィルター後のリストへの格納処理 プライベート
 	 *
 	 */
-	private List<Order> postFilter(ResultSet rSet, Product product, User user) throws Exception {
+	private List<Order> postFilter(ResultSet rSet) throws Exception {
 		//リストを初期化
 		List<Order> list = new ArrayList<>();
 		UserDao uDao = new UserDao();
@@ -129,83 +128,73 @@ public class OrderDao extends Dao {
 
 	}
 
-
 	/**
 	 * filterメソッド 日付、氏名、商品名を指定して学生の一覧を取得する
 	 */
-	public List<Order> filter(Product product, User user,Date orderTime) throws Exception {
+	public List<Order> filter(String productName, String userName,String orderTime) throws Exception {
 		//リストを初期化
 		List<Order> list = new ArrayList<>();
-
 		//データベースへのコネクションを確立
 		Connection connection = getConnection();
-
 		//プリペアードステートメント
 		PreparedStatement statement = null;
-
 	    // SQL条件文の初期化
 	    String condition = "";
 	    int paramIndex = 1;
-
 		//SQL分のソート
 		String order = " order by order_time asc";
-
 		// user のみ設定されている場合の条件
-		if (product == null && user != null && orderTime == null) {
-		    condition = " where user_name=? and receive = False";
+		if (productName == null & userName != null & orderTime == null) {
+		    condition = " where user_name like ? and receive = False";
 		}
 		// product のみ設定されている場合の条件
-		else if (product != null && user == null && orderTime == null) {
-		    condition = " where product_name=? and receive = False";
+		else if (productName != null & userName == null & orderTime == null) {
+		    condition = " where product_name like ? and receive = False";
 		}
 		// orderTime のみ設定されている場合の条件
-		else if (product == null && user == null && orderTime != null) {
-		    condition = " where order_time=? and receive = False";
+		else if (productName == null & userName == null & orderTime != null) {
+		    condition = " where order_time::text like ? and receive = False";
 		}
 		// user と product が設定されている場合の条件
-		else if (product != null && user != null && orderTime == null) {
-		    condition = " where user_name=? and product_name=? and receive = False";
+		else if (productName != null & userName != null & orderTime == null) {
+		    condition = " where user_name like ? and product_name like ? and receive = False";
 		}
 		// user と orderTime が設定されている場合の条件
-		else if (product == null && user != null && orderTime != null) {
-		    condition = " where user_name=? and order_time=? and receive = False";
+		else if (productName == null & userName != null & orderTime != null) {
+		    condition = " where user_name like ? and order_time::text like ? and receive = False";
 		}
 		// product と orderTime が設定されている場合の条件
-		else if (product != null && user == null && orderTime != null) {
-		    condition = " where product_name=? and order_time=? and receive = False";
+		else if (productName != null & userName == null & orderTime != null) {
+		    condition = " where product_name like ? and order_time::text like ? and receive = False";
 		}
 		// すべてが設定されている場合の条件
-		else if (product != null && user != null && orderTime != null) {
-		    condition = " where user_name=? and product_name=? and order_time=? and receive = False";
+		else if (productName != null & userName != null & orderTime != null) {
+		    condition = " where user_name like ? and product_name like ? and order_time::text like ? and receive = False";
 		}
 		// それ以外の場合（条件なし）
 		else {
 		    condition = " where receive = False";
 		}
-
 		try{
-
 			//プリペアードステートメントにSQL文をセット
 			statement = connection.prepareStatement(baseSql + condition + order );
 
 	        // 値を設定（それぞれの条件に合わせて）
 	        if (!condition.isEmpty()) {
-	            if (condition.contains("user_name=?")) {
-	                statement.setString(paramIndex++, user.getUserName());
+	            if (condition.contains("user_name like ?")) {
+	                statement.setString(paramIndex++, "%" + userName + "%");
 	            }
-	            if (condition.contains("product_name=?")) {
-	                statement.setString(paramIndex++, product.getProductName());
+	            if (condition.contains("product_name like ?")) {
+	                statement.setString(paramIndex++, "%" + productName + "%");
 	            }
-	            if (condition.contains("order_time=?")) {
-	                statement.setDate(paramIndex++, orderTime);
+	            if (condition.contains("order_time::text like ?")) {
+	                statement.setString(paramIndex++, "%" + orderTime + "%");
 	            }
-
-
 	        }
+	        System.out.println(statement);
 			//上記のSQL文を実行し結果を取得する
 			ResultSet rSet = statement.executeQuery();
-
-			list = postFilter(rSet,product,user);
+			list = postFilter(rSet);
 		}catch (Exception e){
 			throw e;
 		}finally {

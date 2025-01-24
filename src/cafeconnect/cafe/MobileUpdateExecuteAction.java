@@ -65,7 +65,7 @@ public class MobileUpdateExecuteAction extends Action{
 //		        }
 
 		        // 商品購入処理
-		        pDao.purchaseProduct(order.getProduct().getProductId(), order.getCount());
+		        pDao.purchaseProduct(order.getProduct(), order.getCount());
 		        j++;
 		    }
 		}
