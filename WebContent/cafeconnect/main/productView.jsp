@@ -13,18 +13,29 @@
 
 <div class="content">
 
-	<h2>${category.categoryName }</h2>
-	<table>
-		<c:forEach var="product" items="${products}">
-			<tr>
-				<td>
-					<a href="ProductDetailView.action?productId=${ product.productId }"><img src="../img/product/${ product.image }"></a>
-				</td>
-			</tr>
-			<tr><td>${ product.productName }</td></tr>
-			<tr><td>${ product.price }円</td></tr>
-		</c:forEach>
-	</table>
+
+
+	<div class="menutitle1">
+		<label>${category.categoryName }</label>
+	</div>
+	<form action="MobMenu.action" method="post">
+		<input type="submit" value="戻る" class="itiran">
+	</form>
+	<div class="drink">
+					<c:forEach var="drink" items="${ products }" varStatus="status">
+							<table class="mobTable">
+							<tr>
+								<th><a class="mobImg" href="ProductDetailView.action?productId=${ drink.productId }"><img src="../img/product/${ drink.image }" width="110"></a></th>
+							</tr>
+							<tr>
+								<td><a class="caption" href="ProductDetailView.action?productId=${ drink.productId }">${ drink.productName }</a></td>
+							</tr>
+							<tr>
+								<td><a class="caption" href="ProductDetailView.action?productId=${ drink.productId }">${ drink.price }円 </a></td>
+							</tr>
+							</table>
+					</c:forEach>
+	</div>
 </div>
 
 <%-- フッター --%>

@@ -16,29 +16,25 @@
 	<div class="menutitle1">
 		<label>ドリンク</label>
 	</div>
+	<form action="ProductView.action?categoryId=CATE01" method="post">
+		<input type="submit" value="一覧" class="itiran">
+	</form>
 
 	<div class="drink">
-	<%--	<table>
-				<tr>
-					<c:forEach var="drink" items="${ drinkProducts }">
-						<th><a href="ProductDetailView.action?productId=${ drink.productId }"><img src="../img/product/${ drink.image }" width="110"></a></th>
-						<td><a href="ProductDetailView.action?productId=${ drink.productId }">${ drink.productName }</a></td>
-					</c:forEach>
-				</tr>
-		</table>
-	 --%>
-					<c:forEach var="drink" items="${ drinkProducts }">
-					<table class="mobTable">
-					<tr>
-						<th><a class="mobImg" href="ProductDetailView.action?productId=${ drink.productId }"><img src="../img/product/${ drink.image }" width="110"></a></th>
-					</tr>
-					<tr>
-						<td><a class="caption" href="ProductDetailView.action?productId=${ drink.productId }">${ drink.productName }</a></td>
-					</tr>
-					<tr>
-						<td><a class="caption" href="ProductDetailView.action?productId=${ drink.productId }">${ drink.price }円 </a></td>
-					</tr>
-					</table>
+					<c:forEach var="drink" items="${ drinkProducts }" varStatus="status">
+						<c:if test="${ status.index < 5 }">
+							<table class="mobTable">
+							<tr>
+								<th><a class="mobImg" href="ProductDetailView.action?productId=${ drink.productId }"><img src="../img/product/${ drink.image }" width="110"></a></th>
+							</tr>
+							<tr>
+								<td><a class="caption" href="ProductDetailView.action?productId=${ drink.productId }">${ drink.productName }</a></td>
+							</tr>
+							<tr>
+								<td><a class="caption" href="ProductDetailView.action?productId=${ drink.productId }">${ drink.price }円 </a></td>
+							</tr>
+							</table>
+						</c:if>
 					</c:forEach>
 	</div>
 
@@ -46,25 +42,17 @@
 		<label>フード</label>
 	</div>
 
-	<div class="drink">
-	<%--	<table>
-				<tr>
-					<c:forEach var="food" items="${ foodProducts }">
-						<th><a href="ProductDetailView.action?productId=${ food.productId }"><img src="../img/product/${ food.image }" width="110"></a></th>
-					</c:forEach>
-				</tr>
-				<tr>
-					<c:forEach var="food" items="${ foodProducts }">
-						<td><a href="ProductDetailView.action?productId=${ food.productId }">${ food.productName }</a></td>
-					</c:forEach>
-				</tr>
-		</table>
-	 --%>
+	</div>
+	<form action="ProductView.action?categoryId=CATE03" method="post">
+		<input type="submit" value="一覧" class="itiran">
+	</form>
 
-					<c:forEach var="food" items="${ foodProducts }">
+	<div class="drink">
+					<c:forEach var="food" items="${ foodProducts }" varStatus="status">
+						<c:if test="${ status.index < 5 }">
 					<table class="mobTable">
 					<tr>
-						<th><a class="mobImg" href="ProductDetailView.action?productId=${ food.productId }"><img src="../img/mobMenu/${ food.image }" width="110"></a></th>
+						<th><a class="mobImg" href="ProductDetailView.action?productId=${ food.productId }"><img src="../img/product/${ food.image }" width="110"></a></th>
 					</tr>
 					<tr>
 						<td><a class="caption" href="ProductDetailView.action?productId=${ food.productId }">${ food.productName }</a></td>
@@ -73,6 +61,7 @@
 						<td><a class="caption" href="ProductDetailView.action?productId=${ food.productId }">${ food.price }円 </a></td>
 					</tr>
 					</table>
+					</c:if>
 					</c:forEach>
 	</div>
 </div>
