@@ -24,12 +24,14 @@ public class OrderUpdateExecuteAction extends Action{
 		int j = 0;
 		//リクエストパラメータの取得
 		while (true) {
+			//ぐるぐる回してjspから注文番号と発送状況を取得
 		    String orderId = req.getParameter("orderId" + i);
 		    String receiveStr = req.getParameter("receive" + i);
 		    //receiveStrはnullのときfalseに変換されるからnullの時もループを中断しない
 		    if (orderId == null) {
 		        break; // 注文IDがnullの場合、ループ終了
 		    }
+		    //取得した発送状況がnullならfalse何か入っていたらtrueにしboolean型のリストに格納
 		    if (receiveStr == null){
 		    	boolean receive = false;
 		    	receives.add(receive);
@@ -37,16 +39,18 @@ public class OrderUpdateExecuteAction extends Action{
 		    	boolean receive = true;
 		    	receives.add(receive);
 		    }
+		    //取得した注文番号をリストに格納
 		    oList.add(orderId);
 		    i++;
 		}
-		//注文番号ごとの配送状況を取得
+		//注文番号ごとに配送状況を更新する
 		for (String oId : oList) {
 			if(oId != null){
 				Order order =oDao.get(oId);
 				order.setReceive(receives.get(j));
 				oDao.save(order);
 				orders.add(order);
+				//売れた商品の数だけ在庫数を減らす
 				pDao.purchaseProduct(order.getProduct(), order.getCount());
 				j++;
 			}

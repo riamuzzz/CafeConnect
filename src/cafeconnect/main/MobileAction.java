@@ -23,6 +23,8 @@ public class MobileAction extends Action{
 		List<Mobile> mobilies = new ArrayList<>();
 		//ユーザ情報をもとにモバイルテーブルから情報を取得する
 		mobilies = mDao.filter(user.getUserId());
+		int receptionId = mobilies.get(0).getMobileId();
+		req.setAttribute("receptionId", receptionId);
 		req.setAttribute("mobilies", mobilies);
 		req.getRequestDispatcher("mobile.jsp").forward(req, res);
 	}
