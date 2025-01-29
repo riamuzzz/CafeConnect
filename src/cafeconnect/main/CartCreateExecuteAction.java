@@ -40,7 +40,7 @@ public class CartCreateExecuteAction extends Action{
 				System.err.println("Invalid count value: " + countStr);
 				// 必要に応じて適切なエラーメッセージを返したり、デフォルト値を設定したりする
 			}
-			req.getRequestDispatcher("ProductView.action").forward(req, res);
+			req.getRequestDispatcher("TopPageExecute.action").forward(req, res);
 		}
 	}
 }

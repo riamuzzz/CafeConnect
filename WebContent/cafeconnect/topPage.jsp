@@ -65,7 +65,7 @@
                 <th>
                     <!-- 1位の場合は王冠を表示 -->
                     <c:if test="${status.index == 0}">
-                                                       👑
+                                                     👑
                     </c:if>
                     <c:if test="${status.index != 0}">
                         ${status.index + 1}
