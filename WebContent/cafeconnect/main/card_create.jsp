@@ -9,12 +9,13 @@
 <div class="main">
 	<c:import url="../common/navigation.jsp" />
 	<div class="card">
+		<h3 style="color:red;">${ message }</h3>
 		<form action="CardCreateExecute.action" method="post">
 			<!-- カード番号を入力するとこ -->
 			<div class="card-number">
 				<label>カード番号</label>
 				<div class="input-contener">
-				<input type="text" name="card_number" maxlength="16" value="${card.cardNumber}"  required/>
+				<input type="text" name="card_number" maxlength="16" minlength="16" value="${card.cardNumber}"  required/>
 				</div>
 				<div>${errors.get("list")}</div>
 			</div>
@@ -22,14 +23,14 @@
 				<!-- 有効期限を入力するとこ -->
 				<label>有効期限</label>
 				<div class="input-contener">
-				<input type="month" name="card_day" value="${card.cardExpiryDate}"  required/>
+				<input type="text" name="card_day" placeholder="例:01/01" maxlength="5"value="${card.cardExpiryDate}"  required/>
 				</div>
 			</div>
 			<div class="card-cvc">
 				<!-- セキュリティ番号を入力するとこ -->
 				<label>セキュリティ番号</label>
 				<div class="input-contener">
-				<input type="text" name="card_cvc" value="${card.cardCvc}"  required/>
+				<input type="text" name="card_cvc" maxlength="3" value="${card.cardCvc}"  required/>
 				</div>
 			</div>
 			<div class="card-name">

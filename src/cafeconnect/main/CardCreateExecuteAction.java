@@ -55,7 +55,11 @@ public class CardCreateExecuteAction extends Action {
 			cDao.save(card);
 			user.setCard(card);
 			uDao.saveCard(user);
-			req.getRequestDispatcher("MyPage.action").forward(req, res);
+			// セッションにメッセージを保存
+	        HttpSession sessionMessage = req.getSession();
+	        sessionMessage.setAttribute("message", "登録が完了しました！");
+			req.setAttribute("message", "クレジットカードを登録しました");
+			req.getRequestDispatcher("CardCreate.action").forward(req, res);
 		}
 	}
 }
