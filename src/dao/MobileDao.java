@@ -125,4 +125,106 @@ public class MobileDao extends Dao{
 		}
 		return list;
 	}
+
+	public List<Mobile> idFilter(int mobileId) throws Exception {
+
+		//データベースへのコネクションを確立
+		Connection connection = getConnection();
+
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+
+		//返り値用のリスト
+		List<Mobile> list = new ArrayList<>();
+
+		UserDao uDao = new UserDao();
+		ProductDao pDao = new ProductDao();
+		try{
+				//プリペアードステートメントにInsert文をセット
+				statement = connection.prepareStatement(
+						"SELECT * FROM MOBILE WHERE MOBILE_ID=?");
+				//各部分に値を設定
+				statement.setInt(1, mobileId);
+
+				//プリペアードステートメントを実行
+				ResultSet rSet = statement.executeQuery();
+
+				while (rSet.next()){
+					Mobile mobile = new Mobile();
+					//注文インスタンスに検索結果をセット
+					mobile.setMobileId(rSet.getInt("mobile_id"));
+					mobile.setProduct(pDao.get(rSet.getInt("product_id")));
+					mobile.setUser(uDao.get(rSet.getInt("user_id")));
+					mobile.setCount(rSet.getInt("count"));
+					//リストに追加
+					list.add(mobile);
+				}
+
+
+		}catch (Exception e){
+			throw e;
+		}finally {
+			//プリペアステートメントを閉じる
+			if (statement != null){
+				try {
+					statement.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+			//コネクションを閉じる
+			if (connection != null){
+				try {
+					connection.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+		}
+		return list;
+	}
+
+	public boolean delete(int mobileId) throws Exception {
+		//データベースへのコネクションを確立
+		Connection connection = getConnection();
+		//プリペアードステートメント
+		PreparedStatement statement = null;
+		//実行件数
+		int count = 0;
+		try{
+				//プリペアードステートメントにInsert文をセット
+				statement = connection.prepareStatement(
+						"DELETE from MOBILE WHERE MOBILE_ID=?");
+				//各部分に値を設定
+				statement.setInt(1, mobileId);
+			//プリペアードステートメントを実行
+			count = statement.executeUpdate();
+		}catch (Exception e){
+			throw e;
+		}finally {
+			//プリペアステートメントを閉じる
+			if (statement != null){
+				try {
+					statement.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+			//コネクションを閉じる
+			if (connection != null){
+				try {
+					connection.close();
+				} catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+		}
+		if (count > 0) {
+			//実行数が1件以上あるとき
+			return true;
+		}else {
+			//実行数が0件以上の場合
+			return false;
+		}
+	}
 }

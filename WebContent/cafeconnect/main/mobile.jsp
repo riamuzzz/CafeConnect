@@ -11,7 +11,8 @@
 	<div class="main">
 		<%-- ナビゲーション --%>
 		<c:import url="../common/navigation.jsp" />
-		<div class="id">${mobilies[0].mobileId}</div>
+		<h2>受付番号</h2>
+		<div class="receptionNumber">${receptionId}</div>
 		<c:forEach var="mobile" items="${mobilies}" >
 			<div class="mobileOrder">
 				<div class="name-count">${mobile.product.productName}×${mobile.count}</div>

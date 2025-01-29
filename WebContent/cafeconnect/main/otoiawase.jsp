@@ -39,7 +39,7 @@
 		</table>
 
 		<div class=sousin>
-			<input type="submit" value="送信する">
+			<input type="submit" value="送信する" class="itiran">
 		</div>
 
 	</form>

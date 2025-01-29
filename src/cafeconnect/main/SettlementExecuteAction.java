@@ -66,7 +66,6 @@ public class SettlementExecuteAction extends Action{
 					cDao.delete(cart, productId);
 				} else {
 					online = true;
-					oDao.mobileCreate(cart);
 					//モバイルdaoでcart内の情報をmobileに移す
 					mDao.Create(cart, randomNumber);
 					System.out.println("モバイルオーダー");

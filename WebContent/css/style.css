@@ -324,6 +324,23 @@ body {
 	width: 40%;
 }
 
+.nyu {
+	text-align: center;
+    width: 120px;
+    background: #d1d2d8;
+    font-weight: bold;
+    /*border: none;*/
+    border-color: #ffffff;
+    padding: 4px 0;
+    cursor: pointer;
+    margin-bottom: 15px;
+    float: right;
+    position: relative;
+    top: -25px;
+	right: 42%;
+    font-size: 16px;
+}
+
 
 
 /* サブスク入会 */
