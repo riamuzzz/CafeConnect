@@ -41,10 +41,8 @@
 		<div class="kingaku">
 			<label>2780円（税込）</label>
 		</div>
-		<form action = ".action" method="post">
-		<div class="botan">
-			<input type="submit" name="nyukai" value="入会"/>
-		</div>
+		<form action="SubUserCreateExecute.action" method="post">
+		<input type="submit" value="入会" class="nyu">
 		</form>
 	</div>
 

@@ -12,8 +12,6 @@
 
 
 <div class="prode">
-<%-- ナビゲーション --%>
-<c:import url="./common/navigation.jsp"/>
 
 	<div class="proimage">
 		<img src="img/product/${ product.image }">
