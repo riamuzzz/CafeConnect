@@ -23,6 +23,7 @@ public class CafeLoginExecuteAction extends Action{
 		//これ作った
 		CafeUserDao cafeUserDAO=new CafeUserDao();
 
+		try{
 		//リクエストパラメータ―の取得 2
 		int id = Integer.parseInt(req.getParameter("email"));
 		String password = req.getParameter("password");
@@ -51,16 +52,22 @@ public class CafeLoginExecuteAction extends Action{
 				System.out.println("ffff");
 				//認証失敗
 				 List<String> errors = new ArrayList<>();
-					errors.add("ログインに失敗しました。IDまたはパスワードが正しくありません。");
+					errors.add("ログインに失敗しました。<br>IDまたはパスワードが正しくありません。");
 					req.setAttribute("errors", errors);
 
 				//JSPへフォワード
 				url = "cafeLogin.jsp";
 				req.getRequestDispatcher(url).forward(req, res);
 
-
-
-	}
+		}
+		} catch (Exception e) {
+			List<String> errors = new ArrayList<>();
+			errors.add("ログインに失敗しました。<br>IDまたはパスワードが正しくありません。");
+			req.setAttribute("errors", errors);
+			//JSPへフォワード
+			url = "cafeLogin.jsp";
+			req.getRequestDispatcher(url).forward(req, res);
+		}
 }
 }
 
