@@ -29,7 +29,7 @@
 	<form action="main/CartCreateExecute.action" method="post">
 		<div class="aaa">
 				<label>数量</label>
-			<input type="number" name="num" value="${ num }">
+			<input type="number" name="num"  value="1" min="1" max="${ product.count }" required>
 			<input type="hidden" name="product" value="${ product.productId }">
 			<input class="cart" type="submit" value="カートに追加">
 			<a href="TopPageExecute.action">選択に戻る</a>
