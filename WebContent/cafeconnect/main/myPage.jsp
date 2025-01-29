@@ -10,11 +10,12 @@
 	<%-- ナビゲーション --%>
 	<c:import url="../common/navigation.jsp" />
 	<div class="mypage">
+	<h4 style="color:red;">${ message }</h4>
 		<div class="name">
 			<form action="UserUpdateExecute.action" method="post">
 				<label>名前</label>
 				<div class="input-contener">
-					<input type="text" name="name" value="${ user.userName }">
+					<input type="text" name="name" value="${ user.userName }" required>
 					<input type="submit" value="変更">
 				</div>
 			</form>
@@ -23,7 +24,7 @@
 			<form action="UserUpdateExecute.action" method="post">
 				<label>電話番号</label>
 				<div class="input-contener">
-					<input type="text" name="tel" value="${ user.tel }"> <input
+					<input type="text" name="tel" value="${ user.tel }" required> <input
 						type="submit" value="変更">
 				</div>
 			</form>
@@ -32,7 +33,7 @@
 			<form action="UserUpdateExecute.action" method="post">
 				<label>住所</label>
 				<div class="input-contener">
-					<input type="text" name="address" value="${ user.address }">
+					<input type="text" name="address" value="${ user.address }" required>
 					<input type="submit" value="変更">
 				</div>
 			</form>
@@ -41,7 +42,7 @@
 			<form action="UserUpdateExecute.action" method="post">
 				<label>メールアドレス</label>
 				<div class="input-contener">
-					<input type="text" name="email" value="${ user.email }"> <input
+					<input type="text" name="email" value="${ user.email }" required> <input
 						type="submit" value="変更">
 				</div>
 			</form>
@@ -51,7 +52,7 @@
 				<label>パスワード</label>
 				<div class="input-contener">
 					<input type="password" name="password"
-						value="${ user.userPassword }"> <input type="submit"
+						value="${ user.userPassword }" required> <input type="submit"
 						value="変更">
 				</div>
 			</form>
@@ -67,6 +68,10 @@
 			<c:if test="${ user.subscription == true }">
 				<div>
 					<a href="SabscriptionDetail.action">ライトプラン</a>
+					<form action="SubscWithdraw.action" method="post">
+						<input type="submit" value="退会">
+					</form>
+
 				</div>
 			</c:if>
 		</div>
