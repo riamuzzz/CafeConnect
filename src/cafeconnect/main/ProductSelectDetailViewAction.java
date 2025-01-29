@@ -20,9 +20,11 @@ public class ProductSelectDetailViewAction extends Action{
 		//ローカル変数の宣言 1
 		HttpSession session = req.getSession(true);//セッションを有効にする
 		User user = (User)session.getAttribute("user");//ログイン中のユーザ情報取得
+
 		OrderDao oDao = new OrderDao();//注文Dao
 		ProductDao pDao = new ProductDao();//商品Dao
 		List<Order> orders = new ArrayList<>();
+
 		int g = 300;//グラムの変数
 		//リクエストパラメータ―の取得 2
 		int productId = Integer.parseInt(req.getParameter("productId"));//品番
