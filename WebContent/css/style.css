@@ -613,23 +613,44 @@ a {
 
 /* 店舗 */
 
+.tenposetumei {
+	font-weight: bold;
+	margin: 2% auto;
+	padding: 1%;
+	background-color: #ffffff;
+	width: 50%
+}
+
 .zyusyo {
 	text-align: center;
 	font-size: 22px;
+	position: relative;
+	top: 28px;
+	right: 8%;
 }
 
 .tenpoimg {
 	float: left;
 	margin: 1%;
 	padding: 1%;
+	position: relative;
+	top: 45px;
+	left: 3%;
 }
 
 .tenpogaiyou {
 	margin: 2% auto;
 	padding: 1%;
 	background-color: #ffffff;
-	width: 45%;
-	height: 30%;
+	width: 80%;
+	height: 40%;
+}
+
+.tizu {
+	margin: 2%;
+	position: relative;
+	top: -290px;
+	left: 33%;
 }
 
 /* お問い合わせ */

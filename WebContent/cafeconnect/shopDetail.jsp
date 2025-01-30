@@ -18,7 +18,7 @@
 	<label>店舗情報</label><br>
 	</div>
 
-	<div class="setumei">
+	<div class="tenposetumei">
 	<label>かふぇコネクトは、木の温もりを感じる落ち着いた空間で、ゆったりとしたひとときをお楽しみいただけるカフェです。<br>
 			オーガニックコーヒーや自家製スイーツを取り揃え、心と体に優しいメニューをご提供しております。<br>
 			一人でのんびり過ごすのも、大切な方との語りの時間にもぴったり。</label>
@@ -36,6 +36,10 @@
 								     🕒営業時間：10:00～20:00<br>
 								     📅定休日：毎週水曜日・日曜日<br><br>
 								     📞電話番号:○○○-○○○○-○○○○</label>
+		</div>
+		<div class="tizu">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m12!1m8!1m3!1d410465.6422091975!2d136.6566647!3d36.5115868!3m2!1i1024!2i768!4f13.1!2m1!1z6YeO55Sw5aKT5Zyw!5e0!3m2!1sja!2sjp!4v1738213436875!5m2!1sja!2sjp"
+		width="390" height="310" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 		</div>
 	</div>
 
