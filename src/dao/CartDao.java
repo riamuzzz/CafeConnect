@@ -87,42 +87,6 @@ public class CartDao extends Dao {
 	//検索したユーザインスタンスを返す
 	return cart;
 	}
-
-	/**
-	 * postFilterメソッド フィルター後のリストへの格納処理 プライベート
-	 *
-	 * @param rSet:リザルトセット
-	 * @param school:School
-	 *            学校
-	 * @return 学生のリスト:List<Student> 存在しない場合は0件のリスト
-	 * @throws Exception
-	 */
-	private List<Cart> postFilter(ResultSet rSet, User user,Product product) throws Exception {
-		//リストを初期化
-		List<Cart> list = new ArrayList<>();
-
-		try{
-			//リザルトセットを全件走査
-			while (rSet.next()){
-				Cart cart = new Cart();
-				//カートインスタンスに検索結果をセット
-				cart.setUser(user);
-				cart.setProduct(product);
-				cart.setCount(rSet.getInt("count"));
-
-
-				//リストに追加
-				list.add(cart);
-
-			}
-		} catch (SQLException | NullPointerException e){
-			e.printStackTrace();
-		}
-		return list;
-
-
-	}
-
 	/**
 	 * filterメソッド カフェ店員IDを元に、カフェ店員インスタンスを1件取得する
 	 */

@@ -502,7 +502,7 @@ public class OrderDao extends Dao {
 		}
 	}
 
-	public boolean mobileCreate(Product product, User user, int num) throws Exception {
+	public boolean mobileCreate(Cart cart) throws Exception {
 
 		//データベースへのコネクションを確立
 		Connection connection = getConnection();
@@ -527,11 +527,11 @@ public class OrderDao extends Dao {
 				statement = connection.prepareStatement(
 						"INSERT INTO ORDERS (ORDER_ID ,PRODUCT_ID ,USER_ID ,ORDER_TIME ,COUNT ,RECEIVE ,SUBSCRIPTION ,MOBILE) VALUES (?,?,?,?,?,?,?,?)");
 				//各部分に値を設定
-				statement.setString(1, formattedDateTime+user.getUserId()+product.getProductId());
-				statement.setInt(2,product.getProductId());
-				statement.setInt(3, user.getUserId());
+				statement.setString(1, formattedDateTime+cart.getUser().getUserId()+cart.getProduct().getProductId());
+				statement.setInt(2,cart.getProduct().getProductId());
+				statement.setInt(3, cart.getUser().getUserId());
 				statement.setTimestamp(4, sqlTimestamp);
-				statement.setInt(5, num);
+				statement.setInt(5, cart.getCount());
 				statement.setBoolean(6, false);
 				statement.setBoolean(7, false);
 				statement.setBoolean(8, true);
