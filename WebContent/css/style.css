@@ -337,7 +337,7 @@ body {
     float: right;
     position: relative;
     top: -25px;
-	right: 42%;
+	right: 44%;
     font-size: 16px;
 }
 
@@ -613,18 +613,23 @@ a {
 
 /* 店舗 */
 
-.mise {
-	margin: 2%;
+.zyusyo {
+	text-align: center;
+	font-size: 22px;
 }
 
-.zyusyo {
-	font-size: 150%;
-	margin: auto;
-	padding: 0%;
-	position: relative;
-	top: 0%;
-	left: 20%;
+.tenpoimg {
+	float: left;
+	margin: 1%;
+	padding: 1%;
+}
+
+.tenpogaiyou {
+	margin: 2% auto;
+	padding: 1%;
 	background-color: #ffffff;
+	width: 45%;
+	height: 30%;
 }
 
 /* お問い合わせ */
