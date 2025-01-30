@@ -429,6 +429,14 @@ body {
 	left: 59%;
 }
 
+.g {
+	font-size: 30px;
+	position: relative;
+	top: -20px;
+	right: 90%;
+	color: #006400;
+}
+
 .page {
 	background-color: #e7f5e4;
 	color: #ffffff;

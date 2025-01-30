@@ -13,39 +13,44 @@
 
 <div class="main">
 
-<table>
-	<tr><td><img src="../img/product/${ product.image }"></td></tr>
-	<tr><td>${ product.productName }</td></tr>
-	<tr><td>${ product.productDetail }</td></tr>
-	<tr><td>${ product.price }円（税込）</td></tr>
-</table>
-<form id="myForm" method="post">
-	<c:if test="${ !error.isEmpty()  }">
-		<label>${ error }</label>
-	</c:if>
-	<c:if test="${ error==null  }">
-		<label>残り${ g }g</label>
-		<div>
-			10 × <input type="number" name="count" min="1" value="${ count }">
-			<input type="hidden" name="productId" value="${product.productId}">
+	<div class="proimage">
+		<img src="../img/product/${ product.image }">
+	</div>
+
+	<div class="probo">
+	<table>
+		<tr class="proNa"><td>${ product.productName }</td></tr>
+		<tr class="proDe"><td>${ product.productDetail }</td></tr>
+		<tr class="proPr"><td>${ product.price }円（税込）</td></tr>
+	</table>
+
+		<div class="prosyo">
+		<form id="myForm" method="post">
+			<c:if test="${ !error.isEmpty()  }">
+				<label>${ error }</label>
+			</c:if>
+			<div class="aaa">
+			<c:if test="${ error==null  }">
+				<label class="g">残り${ g }g</label>
+				<div>
+					10 × <input type="number" name="count" min="1" value="${ count }">
+					<input type="hidden" name="productId" value="${product.productId}">
+				</div>
+			</c:if>
+			<!-- 決済確認画面に遷移 -->
+			<input class="cart" type="submit" onclick="changeAction('SubscriptionSettlement.action')" value="決済画面へ">
+			<a href="TopPageExecute.action">選択を続ける</a>
+			</div>
+		</form>
+		<script>
+		    // actionを変更する関数
+		    function changeAction(path) {
+		        document.getElementById("myForm").action = path;
+		    }
+		</script>
 		</div>
-	</c:if>
-	<!-- 決済確認画面に遷移 -->
-	 <input type="submit" onclick="changeAction('SubscriptionSettlement.action')" value="決済画面へ">
-	 <!-- 選択を続けるを押すとカートに商品が追加され選択画面に戻る -->
-	 <input type="submit" onclick="changeAction('main/CartCreateExecute.action')" value="選択を続ける">
-</form>
-<script>
-    // actionを変更する関数
-    function changeAction(path) {
-        document.getElementById("myForm").action = path;
-    }
-</script>
-<a href="TopPageExecute.action">選択を続ける</a>
+	</div>
 
-
-<%-- フッター --%>
-<c:import url="../common/footer.jsp"/>
 </div>
 </div>
 </html>
