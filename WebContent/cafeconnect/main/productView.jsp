@@ -18,9 +18,11 @@
 	<div class="menutitle1">
 		<label>${category.categoryName }</label>
 	</div>
+	<c:if test="${category.categoryName != '豆'}">
 	<form action="MobMenu.action" method="post">
 		<input type="submit" value="戻る" class="itiran">
 	</form>
+	</c:if>
 	<div class="drink">
 					<c:forEach var="drink" items="${ products }" varStatus="status">
 							<table class="mobTable">
