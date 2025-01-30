@@ -70,8 +70,6 @@ public class OrderUpdateExecuteAction extends Action{
 				order.setReceive(receives.get(j));
 				oDao.save(order);
 				orders.add(order);
-				//売れた商品の数だけ在庫数を減らす
-				pDao.purchaseProduct(order.getProduct(), order.getCount());
 				j++;
 			}
 		}
