@@ -14,14 +14,7 @@
 
 <body>
 	<div class="mobile">
-		<div class=motitle>
-			<label>MOBILE</label>
-		</div>
-		<div class=mo>
-			<img src=img/mobile/mobile_top.png>
-		</div>
-		<div class=mobotan>
-			<a href="main/MobMenu.action">商品選択</a>
-		</div>
+		<h2>決済完了</h2>
+		<div>ただいま商品を作っております。完成しましたらメールでお知らせいたします。</div>
 	</div>
 </body>
