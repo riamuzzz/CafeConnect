@@ -28,7 +28,7 @@
 
 	<div class="prosyo">
 		<div class="suryo">数量を選択</div>
-	<form action="CartView.action" method="post">
+	<form action="CartCreateExecute.action" method="post">
 		<div class="aaa">
 				<label>数量</label>
 			<input type="number" name="num"  value="1" min="1" max="${ product.count }" required>
