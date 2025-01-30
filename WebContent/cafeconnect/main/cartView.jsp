@@ -16,9 +16,12 @@
 
 		<div class="cartcontent">
 			<h1>カート</h1>
+			<c:choose>
+			<c:when test="${not empty pList}">
 			<form id="myForm" method="post">
 				<table id="item-table">
 					<c:forEach var="pList" items="${pList}" varStatus="status">
+
 						<tr class="item" data-index="${status.index}">
 
 							<!-- 商品画像 -->
@@ -34,9 +37,9 @@
 							<!-- 数量選択 -->
 							<td id="numc"><c:forEach var="cList" items="${cList}">
 									<c:if test="${cList.product.productId eq pList.productId}">
-										<input type="text" name="num${ status.index }"
-											value="${cList.count}" class="quantity"
-											data-index="${status.index}" onchange="calculateTotal()">
+										<input type="number" name="num${ status.index }"
+											value="${cList.count}" min="1" max="${pList.count }" class="quantity"
+											data-index="${status.index}" onchange="calculateTotal()" required>
 										<input type="hidden" name="num${ status.index }"
 											value="${ num }">
 										<!-- 商品IDをhiddenを送る -->
@@ -52,6 +55,7 @@
 							</td>
 						</tr>
 					</c:forEach>
+
 					<!-- 合計金額を表示 -->
 					<td id="totalAmount">合計金額: 0円</td>
 					<!-- レジへボタン -->
@@ -59,6 +63,11 @@
 				<input type="submit" value="レジへ進む"
 					onclick="changeAction('Settlement.action')" id="regi">
 			</form>
+			</c:when>
+			<c:otherwise>
+				<p>オンラインショップのカートの中身は空です</p>
+			</c:otherwise>
+			</c:choose>
 		</div>
 
 	</div>

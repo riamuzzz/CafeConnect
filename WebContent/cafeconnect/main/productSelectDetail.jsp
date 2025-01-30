@@ -26,7 +26,7 @@
 	<c:if test="${ error==null  }">
 		<label>残り${ g }g</label>
 		<div>
-			10 × <input type="number" name="count" value="${ count }">
+			10 × <input type="number" name="count" min="1" value="${ count }">
 			<input type="hidden" name="productId" value="${product.productId}">
 		</div>
 	</c:if>

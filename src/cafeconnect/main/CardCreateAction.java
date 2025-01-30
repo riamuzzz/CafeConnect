@@ -20,6 +20,7 @@ public class CardCreateAction extends Action{
 		HttpSession session = req.getSession(true);
 		//セッションからログイン中のユーザ情報を取得する
 		User user = (User)session.getAttribute("user");
+		String message =(String)session.getAttribute("message");
 		//ログイン中のユーザ情報の中からクレカの情報を取得なけれなNULLが入る
 		if (user.getCard() == null) {
 			card = null;
@@ -29,6 +30,7 @@ public class CardCreateAction extends Action{
 
 		//クレカ情報をリクエストにセット
 		req.setAttribute("card", card);
+		req.setAttribute("message", message);
 		req.getRequestDispatcher("card_create.jsp").forward(req, res);
 	}
 }

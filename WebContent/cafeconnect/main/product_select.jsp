@@ -46,8 +46,9 @@
 	<div class="menutitle1">
 		<label>豆選択（３種）</label>
 	</div>
-
+	<h2 style="text-align: right;">残り${ g }g</h2>
 	<div class="drink">
+
 					<c:forEach var="product" items="${ products }" varStatus="status">
 							<table class="mobTable">
 							<tr>

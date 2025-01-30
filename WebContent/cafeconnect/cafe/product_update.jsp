@@ -50,7 +50,7 @@
 	<tr>
 		<th><label>詳細</label></th>
 		<!--変更前<td><input type="text" name="detail" class="productDetail" value="${detail}" required></td> -->
-		<td><textarea id="productDetail" name="detail" class="productDetail" value="${detail}" required></textarea></td>
+		<td><textarea id="productDetail" name="detail" class="productDetail"  required>${detail}</textarea></td>
 	</tr>
 	<tr>
 		<th><label>写真</label></th>
@@ -58,7 +58,15 @@
 	</tr>
 	<tr>
 		<th><label>販売状況</label></th>
-		<td><input type="checkbox" name="is_sell" class="sell" value="${is_sell}"></td>
+		<c:choose>
+		<c:when test="${is_sell }">
+			<td><input type="checkbox" name="is_sell" class="sell" value="${is_sell}" checked></td>
+		</c:when>
+		<c:otherwise>
+			<td><input type="checkbox" name="is_sell" class="sell" value="${is_sell}"></td>
+		</c:otherwise>
+		</c:choose>
+
 	</tr>
 	</table>
 

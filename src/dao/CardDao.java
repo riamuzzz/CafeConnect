@@ -135,7 +135,7 @@ public class CardDao extends Dao {
 				statement.setString(4,card.getCardName());
 				statement.setString(5, card.getCardNumber());
 			}
-
+			System.out.println(statement);
 			//プリペアードステートメントを実行
 			count = statement.executeUpdate();
 

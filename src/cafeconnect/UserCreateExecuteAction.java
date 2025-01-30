@@ -57,7 +57,7 @@ public class UserCreateExecuteAction extends Action{
 
 		req.setAttribute("message", "登録完了しました");
 
-		req.getRequestDispatcher("login.jsp").forward(req, res);
+		req.getRequestDispatcher("TopPageExecute.action").forward(req, res);
 
 	}
 }

@@ -47,3 +47,4 @@
 <img src="data:image/png;base64,${barGraph}" alt="売上棒グラフ" />
 <img src="data:image/png;base64,${graph}" alt="サブスク会員割合グラフ" />
 </div>
+<c:import url="../common/cafefooter.jsp"/>
