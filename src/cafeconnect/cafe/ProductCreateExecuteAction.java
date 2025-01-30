@@ -1,11 +1,15 @@
 package cafeconnect.cafe;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -86,45 +90,45 @@ public class ProductCreateExecuteAction extends Action{
 
 
 		// ファイルを保存したい！！
-//		System.out.println("カレントディレクトリ: " + System.getProperty("user.dir"));
-//
-//
-//
-//		// 画像ファイルのパスを指定（ローカルファイル）
-//		// 保存するファイル名を作成（重複を避けるためタイムスタンプを追加）
-////		String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date(count));
-//        String sourceImagePath = "C:/products/images/" + img;  // ここにローカルの画像パスを指定
-//        System.out.println("img:" + img);
-//
-//        // 保存先フォルダのパスを指定
-//        ServletContext context = req.getServletContext();
-//        String savePath = req.getServletContext().getRealPath("/cafeconnect/img/product/");
-//        String saveFolder = context.getRealPath(savePath);
-//
-//        String saveFolderPath = context.getContextPath() + saveFolder;
-//
-//        // フォルダが存在しない場合は作成
-//        File folder = new File(saveFolderPath);
-//        if (!folder.exists()) {
-//            folder.mkdirs();
-//        }
-//
-//        // 画像ファイルを読み込み、保存する
-//        File sourceImageFile = new File(sourceImagePath);
-//        if (sourceImageFile.exists()) {
-//
-//            File outputFile = new File(saveFolderPath + productName + formattedNow + ".jpg");
-//
-//            // ファイルをコピーして保存
-//            Files.copy(Paths.get(sourceImagePath), Paths.get(outputFile.getAbsolutePath()));
-//
-//            System.out.println("画像が保存されました: " + outputFile.getAbsolutePath());
-//            System.out.println("ファイル名：" + productName + formattedNow + ".jpg");
-//            fileName = productName + formattedNow + ".jpg";
-//        } else {
-//            System.out.println("指定された画像ファイルが存在しません。");
-//        }
-//
+		System.out.println("カレントディレクトリ: " + System.getProperty("user.dir"));
+
+
+
+		// 画像ファイルのパスを指定（ローカルファイル）
+		// 保存するファイル名を作成（重複を避けるためタイムスタンプを追加）
+//		String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date(count));
+        String sourceImagePath = "C:/products/images/" + img;  // ここにローカルの画像パスを指定
+        System.out.println("img:" + img);
+
+        // 保存先フォルダのパスを指定
+        ServletContext context = req.getServletContext();
+        String savePath = req.getServletContext().getRealPath("/cafeconnect/img/product/");
+        String saveFolder = context.getRealPath(savePath);
+
+        String saveFolderPath = context.getContextPath() + saveFolder;
+
+        // フォルダが存在しない場合は作成
+        File folder = new File(saveFolderPath);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+
+        // 画像ファイルを読み込み、保存する
+        File sourceImageFile = new File(sourceImagePath);
+        if (sourceImageFile.exists()) {
+
+            File outputFile = new File(saveFolderPath + productName + formattedNow + ".jpg");
+
+            // ファイルをコピーして保存
+            Files.copy(Paths.get(sourceImagePath), Paths.get(outputFile.getAbsolutePath()));
+
+            System.out.println("画像が保存されました: " + outputFile.getAbsolutePath());
+            System.out.println("ファイル名：" + productName + formattedNow + ".jpg");
+            fileName = productName + formattedNow + ".jpg";
+        } else {
+            System.out.println("指定された画像ファイルが存在しません。");
+        }
+
 
 
 
