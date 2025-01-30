@@ -45,6 +45,7 @@
 
 	<div class="Ranking">
 					<c:forEach var="product" items="${ products }" varStatus="status">
+					<c:if test="${ status.index < 5 }">
 					<table class="topTable"  >
  <tr>
                 <th>
@@ -68,6 +69,7 @@
 						<td><a class="caption" href="ProductDetailView.action?productId=${ product.productId }">${ product.price }円 </a></td>
 					</tr>
 					</table>
+					</c:if>
 					</c:forEach>
 	</div>
 

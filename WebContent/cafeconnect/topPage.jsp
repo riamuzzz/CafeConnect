@@ -41,23 +41,6 @@
 
 	<h2 class="ranking">ランキング</h2>
 
-
-<%--
-	<div class="topTable">
-	<table>
-		<c:forEach var="product" items="${products}">
-			<tr>
-				<td>
-					<th><a href="ProductDetailView.action?productId=${ product.productId }"><img src="img/product/${ product.image }"></a></th>
-				</td>
-			</tr>
-			<tr><td>${ product.productName }</td></tr>
-			<tr><td>${ product.price }円</td></tr>
-		</c:forEach>
-	</table>
-	</div>
---%>
-
 	<div class="Ranking">
 					<c:forEach var="product" items="${ products }" varStatus="status">
 					<c:if test="${ status.index < 5 }">
