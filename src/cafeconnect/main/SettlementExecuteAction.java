@@ -12,7 +12,6 @@ import bean.Cart;
 import bean.Product;
 import bean.User;
 import dao.CartDao;
-import dao.MobileDao;
 import dao.OrderDao;
 import dao.ProductDao;
 import tool.Action;
@@ -28,7 +27,6 @@ public class SettlementExecuteAction extends Action{
 		ProductDao pDao = new ProductDao();
 		CartDao cDao = new CartDao();
 		OrderDao oDao = new OrderDao();
-		MobileDao mDao = new MobileDao();
 		List<Integer> productIds = new ArrayList<>();
 		List<Integer> counts = new ArrayList<>();
 		List<Product> pList = new ArrayList<>();
@@ -37,7 +35,6 @@ public class SettlementExecuteAction extends Action{
 		int i = 0;
 		int count = 0;
 		Random random = new Random();
-		int randomNumber = random.nextInt(1000);
 		//リクエストパラメータ取得
 		while(true){
 			String productIdStr = req.getParameter("productId" + Integer.toString(i));
@@ -59,6 +56,8 @@ public class SettlementExecuteAction extends Action{
 				Product product = pDao.get(productId);
 				Cart cart = cDao.get(user, product);
 				cart.setCount(counts.get(count));
+				//売れた商品の数だけ在庫数を減らす
+				pDao.purchaseProduct(cart.getProduct(), cart.getCount());
 				// カテゴリでモバイルかオンラインショップか判断
 				if (product.getCategory().getCategoryId().equals("CATE02")){
 					System.out.println("オンラインショップ");

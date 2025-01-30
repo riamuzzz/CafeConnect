@@ -68,6 +68,7 @@ public class ProductCreateExecuteAction extends Action{
         // フォーマットを適用して表示
         String formattedNow = now.format(formatter);
         System.out.println(formattedNow);  // 例: 2025-1-16-10-15-40
+        System.out.println(req.getParameter("price"));
 
 		// リクエストパラメータの取得
 		categoryId = req.getParameter("category");           // カテゴリId
