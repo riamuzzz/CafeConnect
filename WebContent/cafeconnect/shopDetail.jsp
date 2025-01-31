@@ -38,7 +38,7 @@
 								     📞電話番号:○○○-○○○○-○○○○</label>
 		</div>
 		<div class="tizu">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m12!1m8!1m3!1d410465.6422091975!2d136.6566647!3d36.5115868!3m2!1i1024!2i768!4f13.1!2m1!1z6YeO55Sw5aKT5Zyw!5e0!3m2!1sja!2sjp!4v1738213436875!5m2!1sja!2sjp"
+		<iframe src="https://www.google.com/maps/embed?pb=!1m12!1m8!1m3!1d6407.884189771018!2d136.6446455!3d36.5796132!3m2!1i1024!2i768!4f13.1!2m1!1z5aSn5Y6f5a2m5ZySIOmHkeayog!5e0!3m2!1sja!2sjp!4v1738285120803!5m2!1sja!2sjp"
 		width="390" height="310" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 		</div>
 	</div>
