@@ -219,7 +219,7 @@ button[type="submit"] {
 }
 
 .wrap a:before {
-    content: '○';
+    content: '●';
 }
 
 .wrap .lefttop {
