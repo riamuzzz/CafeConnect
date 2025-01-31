@@ -19,7 +19,7 @@ function calculateTotal() {
     });
 
     // 合計金額を更新
-    document.getElementById('totalAmount').innerText = `合計金額: ${total}円`;
+    document.getElementById('totalAmount').textContent = `${total}`;
 }
 function changeAction(action) {
     // フォームのaction属性を動的に変更

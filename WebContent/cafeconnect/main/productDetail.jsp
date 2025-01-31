@@ -30,11 +30,18 @@
 		<div class="suryo">数量を選択</div>
 	<form action="CartCreateExecute.action" method="post">
 		<div class="aaa">
-				<label>数量</label>
-			<input type="number" name="num"  value="1" min="1" max="${ product.count }" required>
-			<input type="hidden" name="product" value="${ product.productId }">
-			<input class="cart" type="submit" value="カートに追加">
-			<a href="TopPageExecute.action">選択に戻る</a>
+				<c:choose>
+				    <c:when test="${ product.count > 0 }">
+				    	<label>数量</label>
+				        <input type="number" name="num" value="1" min="1" max="${ product.count }" required>
+				        <input type="hidden" name="product" value="${ product.productId }">
+				        <input class="cart" type="submit" value="カートに追加">
+				    </c:when>
+				    <c:otherwise>
+				        <span style="color:red;">売り切れ</span>
+				    </c:otherwise>
+				</c:choose>
+				<a href="TopPageExecute.action">選択に戻る</a>
 		</div>
 	</form>
 
