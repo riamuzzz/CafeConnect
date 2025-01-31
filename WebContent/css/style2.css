@@ -218,9 +218,7 @@ button[type="submit"] {
     margin-left: 1em;
 }
 
-.wrap a:before {
-    content: '●';
-}
+
 
 .wrap .lefttop {
 	flex-grow: 1;

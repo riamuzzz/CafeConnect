@@ -18,23 +18,23 @@
 <div class="wrap">
 	<div class="lefttop">
 	<p>在庫</p>
-	<a href="StockView.action">在庫一覧</a>
+	<a href="StockView.action">〇在庫一覧</a>
 	<p>商品情報</p>
-	<a href="ProductCreate.action">商品登録</a><br>
-	<a href="ProductView.action">商品一覧</a>
+	<a href="ProductCreate.action">〇商品登録</a><br>
+	<a href="ProductView.action">〇商品一覧</a>
 	<p>売上情報</p>
-	<a href="SaleExecute.action">売上情報一覧</a>
+	<a href="SaleExecute.action">〇売上情報一覧</a>
 	</div>
 
 	<div class="righttop">
 	<p>顧客情報</p>
-	<a href="CafeUserView.action">顧客情報一覧</a>
+	<a href="CafeUserView.action">〇顧客情報一覧</a>
 	<p>オンラインショップ・サブスク</p>
-	<a href="OnlineOrderView.action">注文一覧</a><br>
-	<a href="OnlineReceive.action">発送済一覧</a>
+	<a href="OnlineOrderView.action">〇注文一覧</a><br>
+	<a href="OnlineReceive.action">〇発送済一覧</a>
 	<p>モバイルオーダー</p>
-	<a href="MobileOrderView.action">注文一覧</a><br>
-	<a href="MobileReceive.action">お渡し済一覧</a>
+	<a href="MobileOrderView.action">〇注文一覧</a><br>
+	<a href="MobileReceive.action">〇お渡し済一覧</a>
 	</div>
 </div>
 
