@@ -15,7 +15,7 @@
 
 <div class="productcreate">
 
-<form action = "ProductCreateExecute.action" method="post" enctype="multipart/form-data">
+<form action = "ProductCreateExecute.action" method="post">
 	<h1>商品登録</h1>
 	<table>
 	<tr>
@@ -34,7 +34,7 @@
 	</tr>
 	<tr>
 		<th><label>価格</label></th>
-		<td><input type="number" name="price" id="price" required pattern="^\d+$" title="数字のみ入力してください"></td>
+		<td><input type="number" name="price" id="price"></td>
 	</tr>
 	<tr>
 		<th><label>数量</label></th>

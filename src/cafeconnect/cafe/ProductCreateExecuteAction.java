@@ -73,8 +73,8 @@ public class ProductCreateExecuteAction extends Action{
 		// リクエストパラメータの取得
 		categoryId = req.getParameter("category");           // カテゴリId
 		productName = req.getParameter("productName");       // 商品名
-		price = Integer.parseInt(req.getParameter("price")); // 価格
-		count = Integer.parseInt(req.getParameter("count")); // 在庫数
+		//price = Integer.parseInt(req.getParameter("price")); // 価格
+		//count = Integer.parseInt(req.getParameter("count")); // 在庫数
 		productDetail = req.getParameter("productDetail");   // 商品詳細
 		img = req.getParameter("image");                     // 写真
 		sellStr = req.getParameter("sell");                  // 販売状況

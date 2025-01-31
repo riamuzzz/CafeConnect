@@ -2,7 +2,6 @@ package cafeconnect.main;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +33,6 @@ public class SettlementExecuteAction extends Action{
 		boolean online = false;
 		int i = 0;
 		int count = 0;
-		Random random = new Random();
 		//リクエストパラメータ取得
 		while(true){
 			String productIdStr = req.getParameter("productId" + Integer.toString(i));
@@ -57,7 +55,7 @@ public class SettlementExecuteAction extends Action{
 				Cart cart = cDao.get(user, product);
 				cart.setCount(counts.get(count));
 				//売れた商品の数だけ在庫数を減らす
-				pDao.purchaseProduct(cart.getProduct(), cart.getCount());
+				pDao.purchaseProduct(cart.getProduct(), counts.get(count));
 				// カテゴリでモバイルかオンラインショップか判断
 				if (product.getCategory().getCategoryId().equals("CATE02")){
 					System.out.println("オンラインショップ");
@@ -71,6 +69,7 @@ public class SettlementExecuteAction extends Action{
 					System.out.println("モバイルオーダー");
 					cDao.delete(cart, productId);
 				}
+				count++;
 			}
 		}
 		if (online == true){
