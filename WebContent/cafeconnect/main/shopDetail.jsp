@@ -4,9 +4,8 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <head>
-<c:import url="./common/header.jsp"/>
+<c:import url="../common/main_header.jsp"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel='stylesheet' href='../css/style.css'>
 
 	<title>かふぇコネクト</title>
 
@@ -27,7 +26,7 @@
 	<div class="tenpogaiyou">
 
 		<div class="tenpoimg">
-		<img src=img/tenpo/店舗情報.jpg width="350">
+		<img src=../img/tenpo/店舗情報.jpg width="350">
 		</div>
 
 		<div class="syousai">
