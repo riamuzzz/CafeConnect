@@ -33,7 +33,14 @@
 			<c:if test="${ error==null  }">
 				<label class="g">残り${ g }g</label>
 				<div>
-					10 × <input type="number" name="count" min="1" value="${ count }">
+					<c:choose>
+					    <c:when test="${ (g div 10) < product.count }">
+					        10 × <input type="number" name="count" min="1" max="${ g div 10 }" value="${ count }">
+					    </c:when>
+					    <c:otherwise>
+					        10 × <input type="number" name="count" min="1" max="${ product.count }" value="${ count }">
+					    </c:otherwise>
+					</c:choose>
 					<input type="hidden" name="productId" value="${product.productId}">
 				</div>
 			</c:if>
