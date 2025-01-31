@@ -5,6 +5,11 @@ document.addEventListener("DOMContentLoaded", function () {
 function calculateTotal() {
     let total = 0;
 
+ // UTF-8エンコーディングを使用してデコード
+    const decoder = new TextDecoder('utf-8');
+    const text = decoder.decode(someArrayBuffer);
+
+
     // 全商品の価格と数量を取得して合計金額を計算
     const items = document.querySelectorAll('.item');
     items.forEach(item => {

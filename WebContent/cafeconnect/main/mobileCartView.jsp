@@ -36,9 +36,9 @@
 							<!-- 数量選択 -->
 							<td id="numc"><c:forEach var="cList" items="${cList}">
 									<c:if test="${cList.product.productId eq pList.productId}">
-										<input type="text" name="num${ status.index }"
-											value="${cList.count}" class="quantity"
-											data-index="${status.index}" onchange="calculateTotal()">
+										<input type="number" name="num${ status.index }"
+											value="${cList.count}" min="1" max="${pList.count }" class="quantity"
+											data-index="${status.index}" onchange="calculateTotal()" required>
 										<input type="hidden" name="num${ status.index }"
 											value="${ num }">
 										<!-- 商品IDをhiddenを送る -->
@@ -55,7 +55,7 @@
 						</tr>
 					</c:forEach>
 					<!-- 合計金額を表示 -->
-					<td id="totalAmount">合計金額: 0円</td>
+					<td id="totalAmount"></td>
 					<!-- レジへボタン -->
 				</table>
 				<input type="submit" value="レジへ進む"
