@@ -623,9 +623,9 @@ a {
 
 .zyusyo {
 	text-align: center;
-	font-size: 22px;
+	font-size: 20px;
 	position: relative;
-	top: 28px;
+	top: 45px;
 	right: 8%;
 }
 
@@ -649,8 +649,8 @@ a {
 .tizu {
 	margin: 2%;
 	position: relative;
-	top: -290px;
-	left: 33%;
+	top: -240px;
+	left: 28%;
 }
 
 /* お問い合わせ */
