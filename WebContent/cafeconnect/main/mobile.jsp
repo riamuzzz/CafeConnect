@@ -1,25 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<head>
+<%-- ヘッダー --%>
+<c:import url="./common/header.jsp"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel='stylesheet' href='../css/style.css'>
 
-<html>
-<link rel='stylesheet' href='../../css/mao.css'>
-	<%-- ヘッダー --%>
-	<c:import url="../common/main_header.jsp" />
-	<div class="main">
-		<%-- ナビゲーション --%>
-		<c:import url="../common/navigation.jsp" />
-		<h2>受付番号</h2>
-		<div class="receptionNumber">${receptionId}</div>
-		<c:forEach var="mobile" items="${mobilies}" >
-			<div class="mobileOrder">
-				<div class="name-count">${mobile.product.productName}×${mobile.count}</div>
-			</div>
-		</c:forEach>
+	<title>かふぇコネクト</title>
+
+</head>
+
+<body>
+	<div class="mobile">
+		<h2>決済完了</h2>
+		<div>ただいま商品を作っております。完成しましたらメールでお知らせいたします。</div>
 	</div>
-<script src="./js/cartView.js"></script>
-<%-- フッター --%>
-<c:import url="../common/footer.jsp" />
-</html>
+</body>

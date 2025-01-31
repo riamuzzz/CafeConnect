@@ -35,17 +35,33 @@
 				<div>
 					<c:choose>
 					    <c:when test="${ (g div 10) < product.count }">
-					        10 × <input type="number" name="count" min="1" max="${ g div 10 }" value="${ count }">
+					        <c:choose>
+					            <c:when test="${ product.count > 0 }">
+					                10 × <input type="number" name="count" min="1" max="${ g div 10 }" value="${ count }">
+					                <input class="cart" type="submit" onclick="changeAction('SubscriptionSettlement.action')" value="決済画面へ">
+					            </c:when>
+					            <c:otherwise>
+					                <span style="color:red;">売り切れ</span>
+					            </c:otherwise>
+					        </c:choose>
 					    </c:when>
+
 					    <c:otherwise>
-					        10 × <input type="number" name="count" min="1" max="${ product.count }" value="${ count }">
+					        <c:choose>
+					            <c:when test="${ product.count > 0 }">
+					                10 × <input type="number" name="count" min="1" max="${ product.count }" value="${ count }">
+					                <input class="cart" type="submit" onclick="changeAction('SubscriptionSettlement.action')" value="決済画面へ">
+					            </c:when>
+					            <c:otherwise>
+					                <span style="color:red;">売り切れ</span>
+					            </c:otherwise>
+					        </c:choose>
 					    </c:otherwise>
 					</c:choose>
 					<input type="hidden" name="productId" value="${product.productId}">
 				</div>
 			</c:if>
 			<!-- 決済確認画面に遷移 -->
-			<input class="cart" type="submit" onclick="changeAction('SubscriptionSettlement.action')" value="決済画面へ">
 			<a href="TopPageExecute.action">選択を続ける</a>
 			</div>
 		</form>
