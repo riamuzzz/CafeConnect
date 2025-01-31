@@ -26,7 +26,7 @@
 	<div class="tenpogaiyou">
 
 		<div class="tenpoimg">
-		<img src=../img/tenpo/店舗情報.jpg width="300">
+		<img src=../img/tenpo/店舗情報.jpg width="350">>
 		</div>
 
 		<div class="syousai">

@@ -623,10 +623,10 @@ a {
 
 .zyusyo {
 	text-align: center;
-	font-size: 20px;
+	font-size: 22px;
 	position: relative;
-	top: 45px;
-	right: 8%;
+	top: 28px;
+	left: 3%;
 }
 
 .tenpoimg {
@@ -642,15 +642,15 @@ a {
 	margin: 2% auto;
 	padding: 1%;
 	background-color: #ffffff;
-	width: 60%;
-	height: 45%;
+	width: 80%;
+	height: 70%;
 }
 
 .tizu {
 	margin: 2%;
 	position: relative;
-	top: -240px;
-	left: 28%;
+	top: -290px;
+	left: 33%;
 }
 
 /* お問い合わせ */
