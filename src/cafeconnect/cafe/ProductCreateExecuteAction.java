@@ -98,15 +98,19 @@ public class ProductCreateExecuteAction extends Action{
 		// 画像ファイルのパスを指定（ローカルファイル）
 		// 保存するファイル名を作成（重複を避けるためタイムスタンプを追加）
 //		String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date(count));
-        String sourceImagePath = "C:/products/images/" + img;  // ここにローカルの画像パスを指定
+        String sourceImagePath = "c:/products/images/" + img;  // ここにローカルの画像パスを指定
         System.out.println("img:" + img);
 
         // 保存先フォルダのパスを指定
         ServletContext context = req.getServletContext();
-        String savePath = req.getServletContext().getRealPath("/cafeconnect/img/product/");
-        String saveFolder = context.getRealPath(savePath);
+        //String savePath = req.getServletContext().getRealPath("C:/work/pleiades/workspace/chart/WebContent/cafeconnect/img/product/");
+        String saveFolder = "C:/Users/2374441/git/CafeConnect/WebContent/cafeconnect/img/product/";
+        //String saveFolder = context.getRealPath(savePath);
+
+        //System.out.println("aaaaaaa" + savePath);
 
         String saveFolderPath = context.getContextPath() + saveFolder;
+        System.out.println(saveFolderPath);
 
         // フォルダが存在しない場合は作成
         File folder = new File(saveFolderPath);
@@ -115,17 +119,18 @@ public class ProductCreateExecuteAction extends Action{
         }
 
         // 画像ファイルを読み込み、保存する
+     // 画像ファイルを読み込み、保存する
         File sourceImageFile = new File(sourceImagePath);
         if (sourceImageFile.exists()) {
-
-            File outputFile = new File(saveFolderPath + productName + formattedNow + ".jpg");
+            // 保存するファイル名を作成（重複を避けるためタイムスタンプを追加）
+            File outputFile = new File(productName + formattedNow + ".jpg");
+            System.out.println(outputFile);
 
             // ファイルをコピーして保存
-            Files.copy(Paths.get(sourceImagePath), Paths.get(outputFile.getAbsolutePath()));
+            Files.copy(Paths.get(sourceImagePath), Paths.get(saveFolderPath));
+            System.out.println(Paths.get(outputFile.getAbsolutePath()));
 
             System.out.println("画像が保存されました: " + outputFile.getAbsolutePath());
-            System.out.println("ファイル名：" + productName + formattedNow + ".jpg");
-            fileName = productName + formattedNow + ".jpg";
         } else {
             System.out.println("指定された画像ファイルが存在しません。");
         }
@@ -148,7 +153,7 @@ public class ProductCreateExecuteAction extends Action{
 		product.setPrice(price);
 		product.setCount(count);
 		product.setProductDetail(productDetail);
-		product.setImage(fileName);
+		product.setImage(productName+formattedNow);
 		product.setSell(sell);
 		product.setInStockDay(inStockDay);
 

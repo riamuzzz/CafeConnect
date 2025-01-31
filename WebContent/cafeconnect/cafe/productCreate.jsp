@@ -15,7 +15,7 @@
 
 <div class="productcreate">
 
-<form action = "ProductCreateExecute.action" method="post" enctype="multipart/form-data">
+<form action = "ProductCreateExecute.action" method="post">
 	<h1>商品登録</h1>
 	<table>
 	<tr>

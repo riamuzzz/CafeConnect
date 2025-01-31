@@ -16,6 +16,8 @@
 
 		<div class="cartcontent">
 			<h1>カート</h1>
+			<c:choose>
+			<c:when test="${not empty pList}">
 			<form id="myForm" method="post">
 				<table id="item-table">
 					<c:forEach var="pList" items="${pList}" varStatus="status">
@@ -59,6 +61,11 @@
 				<input type="submit" value="レジへ進む"
 					onclick="changeAction('Settlement.action')" id="regi">
 			</form>
+			</c:when>
+			<c:otherwise>
+				<p>モバイルオーダーのカートの中身は空です</p>
+			</c:otherwise>
+			</c:choose>
 		</div>
 
 	</div>
