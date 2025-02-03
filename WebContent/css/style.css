@@ -624,9 +624,7 @@ a {
 .zyusyo {
 	text-align: center;
 	font-size: 22px;
-	position: relative;
-	top: 28px;
-	left: 10%;
+
 }
 
 .tenpoimg {
@@ -643,7 +641,7 @@ a {
 	padding: 1%;
 	background-color: #ffffff;
 	width: 50%;
-	height: 50%;
+	height: 100%;
 }
 
 .tizu {
