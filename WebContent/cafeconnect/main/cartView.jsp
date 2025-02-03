@@ -18,7 +18,7 @@
 			<h1>カート</h1>
 			<c:choose>
 			<c:when test="${not empty pList}">
-			<form id="myForm" method="post">
+			<form id="myForm" method="post" accept-charset="UTF-8">
 				<table id="item-table">
 					<c:forEach var="pList" items="${pList}" varStatus="status">
 
@@ -58,7 +58,7 @@
 
 					<!-- 合計金額を表示 -->
 					<tr>
-						<td id="totalAmount"></td>
+						<td id="totalAmount">合計金額：${total}円</td>
 					</tr>
 					<tr>
 						<td>
