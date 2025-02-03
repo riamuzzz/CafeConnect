@@ -62,7 +62,7 @@
 				</div>
 			</c:if>
 			<!-- 決済確認画面に遷移 -->
-			<a href="TopPageExecute.action">選択を続ける</a>
+			<a href="Subscription.action">選択を続ける</a>
 			</div>
 		</form>
 		<script>
