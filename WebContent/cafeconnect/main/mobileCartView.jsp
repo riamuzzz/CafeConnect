@@ -55,12 +55,19 @@
 						</tr>
 					</c:forEach>
 					<!-- 合計金額を表示 -->
-					<label>合計金額：<td id="totalAmount"></td>円</label>
-					<!-- レジへボタン -->
-				</table>
-				<input type="submit" value="レジへ進む"
-					onclick="changeAction('Settlement.action')" id="regi">
-			</form>
+					<tr>
+						<td id="totalAmount">合計金額：${total}円</td>
+					</tr>
+					<tr>
+						<td>
+						<!-- レジへボタン -->
+							<input type="submit" value="レジへ進む"
+								onclick="changeAction('Settlement.action')" id="regi">
+						</form>
+						<td>
+					</tr>
+					</table>
+
 			</c:when>
 			<c:otherwise>
 				<p>モバイルオーダーのカートの中身は空です</p>
