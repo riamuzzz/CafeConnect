@@ -26,11 +26,9 @@
 
 	<div class="tenpogaiyou">
 
-		<%--
 		<div class="tenpoimg">
 		<img src=img/tenpo/店舗情報.jpg width="370">
 		</div>
-		 --%>
 
 		<div class="syousai">
 			<label class="zyusyo">〒○○○-○○○○<br> ○○県○○市○○区○○町○○○-○<br><br>
