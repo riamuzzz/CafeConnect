@@ -626,24 +626,24 @@ a {
 	font-size: 22px;
 	position: relative;
 	top: 28px;
-	left: 3%;
+	left: 10%;
 }
 
 .tenpoimg {
-	float: left;
+	/*float: left;*/
 	margin: 1%;
 	padding: 1%;
-	position: relative;
+	/*position: relative;
 	top: 45px;
-	left: 3%;
+	left: 3%;*/
 }
 
 .tenpogaiyou {
 	margin: 2% auto;
 	padding: 1%;
 	background-color: #ffffff;
-	width: 100%;
-	height: 70%;
+	width: 50%;
+	height: 100%;
 }
 
 .tizu {
