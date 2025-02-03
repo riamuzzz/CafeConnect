@@ -58,7 +58,7 @@
 
 					<!-- 合計金額を表示 -->
 					<tr>
-						<td id="totalAmount"></td>
+						<label>合計金額：</label><td id="totalAmount"></td><label>円</label>
 					</tr>
 					<tr>
 						<td>
