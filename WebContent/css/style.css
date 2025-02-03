@@ -623,10 +623,13 @@ a {
 
 .zyusyo {
 	font-size: 22px;
-	position: absolute;
+	/*position: absolute;
 	top: 90%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);*/
+	position: relative;
+	top: 80%;
+	left: 7%;
 }
 
 .tenpoimg {
