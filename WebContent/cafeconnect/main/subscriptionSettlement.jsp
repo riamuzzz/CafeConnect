@@ -44,8 +44,6 @@
       <!-- 商品名 -->
       <td>${product.productName}<br><br>
 
-      <!-- 価格 -->
-
       <!-- 個数 -->
       	  <span class="count"><strong>${count}g</strong></span>
       </td>

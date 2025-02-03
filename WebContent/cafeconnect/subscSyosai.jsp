@@ -25,7 +25,6 @@
 
 					<tr><td>${ product.productDetail }</td></tr>
 
-					<tr><td>${ product.price }円(税込)</td></tr>
 				</c:forEach>
 			</table>
 		</div>

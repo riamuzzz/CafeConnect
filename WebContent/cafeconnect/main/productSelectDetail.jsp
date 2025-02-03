@@ -21,7 +21,6 @@
 	<table>
 		<tr class="proNa"><td>${ product.productName }</td></tr>
 		<tr class="proDe"><td>${ product.productDetail }</td></tr>
-		<tr class="proPr"><td>${ product.price }円（税込）</td></tr>
 	</table>
 
 		<div class="prosyo">
@@ -49,7 +48,7 @@
 					    <c:otherwise>
 					        <c:choose>
 					            <c:when test="${ product.count > 0 }">
-					                10 × <input type="number" name="count" min="1" max="${ product.count }" value="${ count }">
+					                10 × <input type="number" name="count" min="1" max="${ product.count }" value="${ count }">g
 					                <input class="cart" type="submit" onclick="changeAction('SubscriptionSettlement.action')" value="決済画面へ">
 					            </c:when>
 					            <c:otherwise>

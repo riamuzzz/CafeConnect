@@ -25,7 +25,7 @@ public class TopPageExecuteAction extends Action {
 		SaleDao sDao =new SaleDao();
 
 		Category category = categoryDao.get(categoryId);
-		products = productDao.filter(category, productName);
+		products = productDao.ranking(category);
 
 
 		req.setAttribute("products", products);

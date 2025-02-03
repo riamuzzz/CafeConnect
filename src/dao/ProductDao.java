@@ -15,6 +15,7 @@ public class ProductDao extends Dao {
 	 * baseSql:String 共通SQL文 プライベート
 	 */
 	private String baseSql = "select * from PRODUCT ";
+	private String rankSql = "select product.product_id, product.product_name, product.category_id, product.price, product.image, product.count, product.sell, product.in_stock_day, product.product_detail from product join orders on product.product_id = orders.product_id group by product.product_id, product.product_name having product.category_id ='CATE02' order by sum(product.price * orders.count)";
 
 	/**
 	 * getメソッド カフェ店員IDを元に、カフェ店員インスタンスを1件取得する
@@ -278,6 +279,85 @@ public class ProductDao extends Dao {
 		return list;
 
 	}
+
+
+	public List<Product> ranking(Category category) throws Exception {
+
+		System.out.println(category);
+
+		// リストを初期化
+		List<Product> list = new ArrayList<>();
+
+		// データベースへのコネクションを確立
+		Connection connection = getConnection();
+
+		// プリペアードステートメント
+		PreparedStatement statement = null;
+
+//		// SQL条件文の初期化
+//		String condition = "";
+//		int paramIndex = 1;
+//
+//		// SQL分のソート
+//		String order = " order by product_id asc";
+//
+//		// category のみ設定されている場合の条件
+//		if (category != null && productName == null) {
+//			condition = "where category_id=? and sell = True";
+//			System.out.println("1");
+//		}
+//		// tel のみ設定されている場合の条件
+//		else if (category == null && productName != null) {
+//			condition = "where product_name=? and sell = True";
+//			System.out.println("2");
+//		}
+//		// 両方設定されている場合の条件
+//		else if (category != null && productName != null) {
+//			condition = "where category_id=? and product_name=? and sell = True";
+//			System.out.println("3");
+//		} else {
+//			condition = "where sell = True";
+//			System.out.println("4");
+//		}
+
+		try {
+
+			// プリペアードステートメントにSQL文をセット
+			statement = connection.prepareStatement(rankSql);
+
+			System.out.println(statement);
+
+			// 上記のSQL文を実行し結果を取得する
+			ResultSet rSet = statement.executeQuery();
+
+			list = postFilter(rSet, category);
+			System.out.println(list);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// プリペアステートメントを閉じる
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			// コネクションを閉じる
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+		return list;
+
+	}
+
+
+
 
 	/**
 	 * serchメソッド cafe店員が商品を検索する

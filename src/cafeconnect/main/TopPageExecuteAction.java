@@ -27,7 +27,7 @@ public class TopPageExecuteAction extends Action {
 		ProductDao productDao = new ProductDao();
 		CategoryDao categoryDao = new CategoryDao();
 		Category category = categoryDao.get(categoryId);
-		products = productDao.filter(category, productName);
+		products = productDao.ranking(category);
 		req.setAttribute("user", user);
 		req.setAttribute("products", products);
 		req.getRequestDispatcher("topPage.jsp").forward(req, res);

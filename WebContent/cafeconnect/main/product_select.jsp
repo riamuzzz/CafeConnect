@@ -57,9 +57,6 @@
 							<tr>
 								<td><a class="caption" href="ProductSelectDetailView.action?productId=${ product.productId }">${ product.productName }</a></td>
 							</tr>
-							<tr>
-								<td><a class="caption" href="ProductSelectDetailView.action?productId=${ product.productId }">${ product.price }円 </a></td>
-							</tr>
 							</table>
 					</c:forEach>
 	</div>
