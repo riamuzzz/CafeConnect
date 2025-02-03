@@ -619,14 +619,13 @@ a {
 	padding: 1%;
 	background-color: #ffffff;
 	width: 50%;
-	color: red;
 }
 
 .zyusyo {
 	font-size: 22px;
 	position: absolute;
-	top: 66%;
-	left: 60%;
+	top: 70%;
+	left: 50%;
 	transform: translate(-50%, -50%);
 }
 
