@@ -56,17 +56,17 @@
 					</c:forEach>
 					<!-- 合計金額を表示 -->
 					<tr>
-						<td id="totalAmount">合計金額：`${ total }`円</td>
+						<td id="totalAmount">合計金額：${ total }円</td>
 					</tr>
 					<tr>
 						<td>
 						<!-- レジへボタン -->
 							<input type="submit" value="レジへ進む"
 								onclick="changeAction('Settlement.action')" id="regi">
-						</form>
 						<td>
 					</tr>
 					</table>
+					</form>
 
 			</c:when>
 			<c:otherwise>
