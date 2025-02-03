@@ -55,7 +55,7 @@
 						</tr>
 					</c:forEach>
 					<!-- 合計金額を表示 -->
-					<td id="totalAmount"></td>
+					<label>合計金額：<td id="totalAmount"></td>円</label>
 					<!-- レジへボタン -->
 				</table>
 				<input type="submit" value="レジへ進む"

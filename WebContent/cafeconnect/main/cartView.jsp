@@ -57,14 +57,20 @@
 					</c:forEach>
 
 					<!-- 合計金額を表示 -->
-					<label>合計金額：</label><td id="totalAmount"></td><label>円</label>
-
+					<tr>
+						<td id="totalAmount"></td>
+					</tr>
+					<tr>
+						<td>
+						<!-- レジへボタン -->
+							<input type="submit" value="レジへ進む"
+								onclick="changeAction('Settlement.action')" id="regi">
+						</form>
+						<td>
+					</tr>
 					</table>
 
-				<!-- レジへボタン -->
-				<input type="submit" value="レジへ進む"
-					onclick="changeAction('Settlement.action')" id="regi">
-			</form>
+
 			</c:when>
 			<c:otherwise>
 				<p>オンラインショップのカートの中身は空です</p>
