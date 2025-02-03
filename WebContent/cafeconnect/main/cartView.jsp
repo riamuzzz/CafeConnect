@@ -58,18 +58,17 @@
 
 					<!-- 合計金額を表示 -->
 					<tr>
-						<label>合計金額：</label><td id="totalAmount"></td><label>円</label>
+						<td id="totalAmount"></td>
 					</tr>
 					<tr>
 						<td>
 						<!-- レジへボタン -->
 							<input type="submit" value="レジへ進む"
 								onclick="changeAction('Settlement.action')" id="regi">
-						</form>
 						<td>
 					</tr>
 					</table>
-
+					</form>
 
 			</c:when>
 			<c:otherwise>
