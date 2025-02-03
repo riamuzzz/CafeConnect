@@ -1,5 +1,5 @@
 .cartcontent {
-	width: 70%;
+	width: 100%;
 }
 .item {
 	display: flex;
@@ -77,4 +77,12 @@
 }
 .cartcontent #regi:hover{
 	background: #f78180
+}
+
+#hoge {
+	width:70px;
+}
+
+#totalAmount {
+	color:red;
 }
