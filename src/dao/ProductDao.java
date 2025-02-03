@@ -574,18 +574,18 @@ public class ProductDao extends Dao {
 				// 学生が存在した場合
 				// プリペアードステートメントにUpdate文をセット
 				statement = connection.prepareStatement(
-						"UPDATE PRODUCT SET PRODUCT_ID=? ,CATEGORY_ID=? ,PRODUCT_NAME=? ,PRICE=? ,IMAGE=? ,PRODUCT_DETAIL=? ,COUNT=? ,SELL=? ,IN_STOCK_DAY=? WHERE PRODUCT_ID=?");
+						"UPDATE PRODUCT SET PRODUCT_ID=? ,CATEGORY_ID=? ,PRODUCT_NAME=? ,PRICE=? ,PRODUCT_DETAIL=? ,COUNT=? ,SELL=? ,IN_STOCK_DAY=? WHERE PRODUCT_ID=?");
 				// 各部分に値を設定
 				statement.setInt(1, product.getProductId());
 				statement.setString(2, product.getCategory().getCategoryId());
 				statement.setString(3, product.getProductName());
 				statement.setInt(4, product.getPrice());
-				statement.setString(5, product.getImage());
-				statement.setString(6, product.getProductDetail());
-				statement.setInt(7, product.getCount());
-				statement.setBoolean(8, product.isSell());
-				statement.setDate(9, new java.sql.Date(product.getInStockDay().getTime()));
-				statement.setInt(10, product.getProductId());
+				//statement.setString(5, product.getImage());
+				statement.setString(5, product.getProductDetail());
+				statement.setInt(6, product.getCount());
+				statement.setBoolean(7, product.isSell());
+				statement.setDate(8, new java.sql.Date(product.getInStockDay().getTime()));
+				statement.setInt(9, product.getProductId());
 
 			}
 

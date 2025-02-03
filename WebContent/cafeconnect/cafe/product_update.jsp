@@ -25,7 +25,7 @@
 				<option value="0">--------</option>
 				<c:forEach var="category" items="${categories}">
 					<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
-					<option value="${category.categoryId}" <c:if test="${category.categoryName==category.categoryName}">selected</c:if>>${category.categoryName}</option>
+					<option value="${category.categoryId}" <c:if test="${categoryName==category.categoryName}">selected</c:if>>${category.categoryName}</option>
 				</c:forEach>
 			</select>
 			</td>
@@ -51,10 +51,6 @@
 		<th><label>詳細</label></th>
 		<!--変更前<td><input type="text" name="detail" class="productDetail" value="${detail}" required></td> -->
 		<td><textarea id="productDetail" name="detail" class="productDetail"  required>${detail}</textarea></td>
-	</tr>
-	<tr>
-		<th><label>写真</label></th>
-		<td><input type="file"  name="image" class="image" value="${image}" required></td>
 	</tr>
 	<tr>
 		<th><label>販売状況</label></th>

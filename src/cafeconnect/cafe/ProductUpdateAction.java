@@ -34,7 +34,8 @@ public class ProductUpdateAction extends Action{
 		req.setAttribute("categories", cList);
 		if (product != null) {// 商品が存在していた場合
 			req.setAttribute("id", product.getProductId());//商品id
-			req.setAttribute("category", product.getCategory());//カテゴリ名
+			req.setAttribute("category", product.getCategory());//カテゴリ
+			req.setAttribute("categoryName", product.getCategory().getCategoryName());//カテゴリ名
 			req.setAttribute("name", product.getProductName());//商品名
 			req.setAttribute("price", product.getPrice());//価格
 			req.setAttribute("count", product.getCount());//数量

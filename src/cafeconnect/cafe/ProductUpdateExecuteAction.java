@@ -30,7 +30,7 @@ public class ProductUpdateExecuteAction extends Action{
 		String price = req.getParameter("price");
 		String count = req.getParameter("count");
 		String detail = req.getParameter("detail");
-		String image = req.getParameter("image");
+		//String image = req.getParameter("image");
 		String isSellStr = req.getParameter("is_sell");
 		// 商品フラグにチェックが入っていた場合
 		if (isSellStr != null) {
@@ -54,7 +54,7 @@ public class ProductUpdateExecuteAction extends Action{
 			product.setPrice(Integer.parseInt(price));
 			product.setCount(Integer.parseInt(count));
 			product.setProductDetail(detail);
-			product.setImage(image);
+			//product.setImage(image);
 			product.setSell(isSell);
 			product.setInStockDay(dateFormat.parse(instockday));
 			// 商品を保存

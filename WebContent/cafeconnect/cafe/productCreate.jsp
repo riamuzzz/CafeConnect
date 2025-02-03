@@ -45,10 +45,6 @@
 		<td><textarea id="productDetail" name="productDetail" class="productDetail"></textarea></td>
 	</tr>
 	<tr>
-		<th><label>写真</label></th>
-		<td><input type="file" name="image" id="image" class="image"></td>
-	</tr>
-	<tr>
 		<th><label>販売状況</label></th>
 		<td><input type="checkbox" name="sell" id="sell" class="sell"></td>
 	</tr>
