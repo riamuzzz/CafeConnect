@@ -6,7 +6,7 @@
 <html>
 
 <%-- ヘッダー --%>
-<c:import url="./common/header.jsp"/>
+<c:import url="../common/main_header.jsp"/>
 <div class="mobMenu">
 
 	<c:set var="shouldBreak" value="false" />
@@ -30,7 +30,7 @@
 			<c:if test="${drink.category.categoryId == 'CATE02' }">
 				<table class="mobTable">
 				<tr>
-					<th><a class="mobImg" href="ProductDetailView.action?productId=${ drink.productId }"><img src="img/product/${ drink.image }" width="110"></a></th>
+					<th><a class="mobImg" href="ProductDetailView.action?productId=${ drink.productId }"><img src="../img/product/${ drink.image }" width="110"></a></th>
 				</tr>
 				<tr>
 					<td><a class="caption" href="ProductDetailView.action?productId=${ drink.productId }">${ drink.productName }</a></td>
@@ -63,7 +63,7 @@
 			<c:if test="${drink.category.categoryId == 'CATE01' }">
 				<table class="mobTable">
 				<tr>
-					<th><a class="mobImg" href="ProductDetailView.action?productId=${ drink.productId }"><img src="img/product/${ drink.image }" width="110"></a></th>
+					<th><a class="mobImg" href="ProductDetailView.action?productId=${ drink.productId }"><img src="../img/product/${ drink.image }" width="110"></a></th>
 				</tr>
 				<tr>
 					<td><a class="caption" href="ProductDetailView.action?productId=${ drink.productId }">${ drink.productName }</a></td>
@@ -97,7 +97,7 @@
 			<c:if test="${drink.category.categoryId == 'CATE03' }">
 				<table class="mobTable">
 				<tr>
-					<th><a class="mobImg" href="ProductDetailView.action?productId=${ drink.productId }"><img src="img/product/${ drink.image }" width="110"></a></th>
+					<th><a class="mobImg" href="ProductDetailView.action?productId=${ drink.productId }"><img src="../img/product/${ drink.image }" width="110"></a></th>
 				</tr>
 				<tr>
 					<td><a class="caption" href="ProductDetailView.action?productId=${ drink.productId }">${ drink.productName }</a></td>
@@ -109,9 +109,5 @@
 			</c:if>
 		</c:forEach>
 	</div>
-</div>
-<%-- フッター --%>
-<c:import url="./common/footer.jsp"/>
-</div>
 </div>
 </html>
