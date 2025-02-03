@@ -625,7 +625,7 @@ a {
 	font-size: 22px;
 	position: absolute;
 	top: 66%;
-	left: 50%;
+	left: 60%;
 	transform: translate(-50%, -50%);
 }
 
@@ -643,7 +643,7 @@ a {
 	padding: 1%;
 	background-color: #ffffff;
 	width: 50%;
-	height: 400px;
+	height: 600px;
 }
 
 .tizu {
