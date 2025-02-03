@@ -56,7 +56,7 @@
 					</c:forEach>
 					<!-- 合計金額を表示 -->
 					<tr>
-						<td id="totalAmount">合計金額：${total}円</td>
+						<td id="totalAmount">合計金額：`${ total }`円</td>
 					</tr>
 					<tr>
 						<td>
