@@ -60,8 +60,8 @@
 					<!-- 合計金額を表示 -->
 					<table id="hoge">
 					<tr>
-						<td id="kin">合計金額:</td>
-						<td id="totalAmount">${total}</td>
+						<td id="kin">合計金額：</td>
+						<td id="totalAmount" style="width:30px;">${total}</td>
 						<td id="kin">円</td>
 					</tr>
 					<tr>

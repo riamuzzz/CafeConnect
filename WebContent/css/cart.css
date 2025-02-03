@@ -80,9 +80,18 @@
 }
 
 #hoge {
-	width:70px;
+	width:50px;
+}
+
+#hoge tr{
+	width:50px;
+}
+
+#kin{
+	width:10px;
 }
 
 #totalAmount {
+	margin-left:20px;
 	color:red;
 }
