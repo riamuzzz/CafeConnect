@@ -72,9 +72,7 @@ public class SettlementExecuteAction extends Action{
 				count++;
 			}
 		}
-		if (online == true){
-			req.getRequestDispatcher("Mobile.action").forward(req, res);
-		}
+
 		//ビジネスロジック 4
 		//なし
 		//DBへデータ保存 5
@@ -85,6 +83,9 @@ public class SettlementExecuteAction extends Action{
 		req.setAttribute("cList", cList);
 		req.setAttribute("message", "決済が完了しました");
 		//JSPへフォワード 7
+//		if (online == true){
+//			req.getRequestDispatcher("Mobile.action").forward(req, res);
+//		}
 		req.getRequestDispatcher("OrderHistory.action").forward(req, res);
 	}
 }
