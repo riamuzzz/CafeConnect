@@ -101,9 +101,17 @@
 				<input type="submit" value="注文を確定する" class="subKessai">
 
 			</form>
+			<c:if test="${pList[0].category.categoryId == 'CATE02'}">
 			<form action="CartView.action" method="post">
 				<input type="submit" value="カートに戻る" class="cartBack">
 			</form>
+			</c:if>
+			<c:if test="${pList[0].category.categoryId == 'CATE01' or pList[0].category.categoryId == 'CATE03'}">
+			<form action="MobileCartView.action" method="post">
+				<input type="submit" value="カートに戻る" class="cartBack">
+			</form>
+			</c:if>
+
 		</div>
 
 		<%-- フッター --%>

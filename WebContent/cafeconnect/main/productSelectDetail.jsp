@@ -36,7 +36,7 @@
 					    <c:when test="${ (g div 10) < product.count }">
 					        <c:choose>
 					            <c:when test="${ product.count > 0 }">
-					                10 × <input type="number" name="count" min="1" max="${ g div 10 }" value="${ count }">
+					                10 × <input type="number" name="count" min="1" max="${ g div 10 }" value="1" required>
 					                <input class="cart" type="submit" onclick="changeAction('SubscriptionSettlement.action')" value="決済画面へ">
 					            </c:when>
 					            <c:otherwise>
@@ -48,7 +48,7 @@
 					    <c:otherwise>
 					        <c:choose>
 					            <c:when test="${ product.count > 0 }">
-					                10 × <input type="number" name="count" min="1" max="${ product.count }" value="${ count }">g
+					                10 × <input type="number" name="count" min="1" max="${ product.count }" value="1" required>g
 					                <input class="cart" type="submit" onclick="changeAction('SubscriptionSettlement.action')" value="決済画面へ">
 					            </c:when>
 					            <c:otherwise>
