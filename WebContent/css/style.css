@@ -169,6 +169,10 @@ a {
   animation: slide-flow 20s infinite linear 1s both;
   /*animation-fill-mode: both;*/
 }
+
+.slide-wrapper a {
+  pointer-events: auto; /* リンクをクリックできるようにする */
+}
 .slide{
   width: 33%;
   object-fit: cover;
