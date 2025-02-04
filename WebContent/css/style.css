@@ -173,9 +173,13 @@ a {
 .slide-wrapper a {
   pointer-events: auto; /* リンクをクリックできるようにする */
 }
-.slide{
-  width: 33%;
+.slide {
+  /*width: 33%;
   object-fit: cover;
+  border: 1px solid #ddd;*/
+  width: 100%;          /* 親要素に対して100%の幅 */
+  height: 170px;        /* 高さを固定 */
+  object-fit: cover;    /* アスペクト比を維持しつつトリミング */
   border: 1px solid #ddd;
 }
 

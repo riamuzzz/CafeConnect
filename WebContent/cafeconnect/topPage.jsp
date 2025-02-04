@@ -27,7 +27,7 @@
 	   <div class="slide-wrapper">
 	      <a href="main/Subscription.action"><img class="slide" src=img/top/top1.jpg></a>
 	      <a href="ProductView.action?categoryId=CATE02"><img class="slide" src=img/top/top3.jpg></a>
-	      <a href="main/MobMemu.action"><img class="slide" src=../img/top/top2.jpg></a>
+	      <a href="main/MobMemu.action"><img class="slide" src=img/top/top2.jpg></a>
 
 	   </div>
 	   <div class="slide-wrapper">
