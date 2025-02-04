@@ -13,7 +13,7 @@
 	<div class="main">
 
 		<div class="cartcontent">
-			<h1>カート</h1>
+			<h1>モバイルカート</h1>
 			<c:choose>
 			<c:when test="${not empty pList}">
 			<form id="myForm" method="post" accept-charset="UTF-8">
