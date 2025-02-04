@@ -32,13 +32,13 @@
 h2 {
 	float: left;
 	padding: 0%;
-	margin: 1% 5% 0% 10%;
+	margin: 4% 5% 0% 10%;
 }
 
 .user {
 	position: relative;
-	top: 35px;
-	right: 70px;
+	top:60px;
+	right:20px;
 }
 
 .search {
@@ -65,7 +65,7 @@ h2 {
 	float: right;
 	padding: 0%;
 	margin: 0% 2% 0% 0%;
-	width: 31%;
+	width: 40%;
 	height:;
 	position: relative;
 	top: 0px;
@@ -90,6 +90,7 @@ h2 {
 
 .banner td {
 	text-align: center;
+	font-size: 9px;
 }
 
 br {
