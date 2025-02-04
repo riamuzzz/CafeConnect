@@ -19,21 +19,21 @@
 	<%--<img class="koukoku" src=img/top/top1.jpg> --%>
 	<div class="slide-container">
 	   <div class="slide-wrapper">
-	      <a href="Subscription.action"><img class="slide" src=img/top/top1.jpg></a>
-	      <a href="ProductView.action?categoryId=CATE02"><img class="slide" src=img/top/top2.jpg></a>
-	      <a href="Mobile.action"><img class="slide" src=img/top/top3.jpg></a>
+	      <a href="main/Subscription.action"><img class="slide" src=img/top/top1.jpg></a>
+	      <a href="ProductView.action?categoryId=CATE02"><img class="slide" src=img/top/top3.jpg></a>
+	      <a href="main/MobMenu.action"><img class="slide" src=img/top/top2.jpg></a>
 
 	   </div>
 	   <div class="slide-wrapper">
-	      <a href="Subscription.action"><img class="slide" src=img/top/top1.jpg></a>
-	      <a href="ProductView.action?categoryId=CATE02"><img class="slide" src=img/top/top2.jpg></a>
-	      <a href="Mobile.action"><img class="slide" src=../img/top/top3.jpg></a>
+	      <a href="main/Subscription.action"><img class="slide" src=img/top/top1.jpg></a>
+	      <a href="ProductView.action?categoryId=CATE02"><img class="slide" src=img/top/top3.jpg></a>
+	      <a href="main/MobMemu.action"><img class="slide" src=../img/top/top2.jpg></a>
 
 	   </div>
 	   <div class="slide-wrapper">
-	      <a href="Subscription.action"><img class="slide" src=img/top/top1.jpg></a>
-	      <a href="ProductView.action?categoryId=CATE02"><img class="slide" src=img/top/top2.jpg></a>
-	      <a href="Mobile.action"><img class="slide" src=img/top/top3.jpg></a>
+	      <a href="main/Subscription.action"><img class="slide" src=img/top/top1.jpg></a>
+	      <a href="ProductView.action?categoryId=CATE02"><img class="slide" src=img/top/top3.jpg></a>
+	      <a href="main/MobMenu.action"><img class="slide" src=img/top/top2.jpg></a>
 	   </div>
 	</div>
 	</div>
