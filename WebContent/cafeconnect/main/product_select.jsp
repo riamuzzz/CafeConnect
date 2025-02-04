@@ -46,7 +46,12 @@
 	<div class="menutitle1">
 		<label>豆選択</label>
 	</div>
-	<h2 style="text-align: right;">残り${ g }g</h2>
+	<h2 style="text-align: left;">残り${ g }g
+		<c:if test="${not empty message}">
+			<p style="font-size:30px; color:green; text-align: right; margin-left: 390px;">${ message }</p>
+		</c:if>
+	</h2>
+
 	<div class="drink">
 
 					<c:forEach var="product" items="${ products }" varStatus="status">

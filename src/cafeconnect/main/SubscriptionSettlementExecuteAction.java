@@ -26,7 +26,9 @@ public class SubscriptionSettlementExecuteAction extends Action{
 		int productId = Integer.parseInt(productIdStr);
 		Product product = pDao.get(productId);
 		oDao.create(user, product, count);
+
+		req.setAttribute("message", "決済完了しました");
 		//JSPへフォワード 7
-		req.getRequestDispatcher("settlementDone.jsp").forward(req, res);
+		req.getRequestDispatcher("Subscription.action").forward(req, res);
 	}
 }
