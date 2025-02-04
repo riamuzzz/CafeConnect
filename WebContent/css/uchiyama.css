@@ -8,20 +8,19 @@
 	gap: 10%;
 	margin: 5% 2.5%;
 	border: 1px solid #c0c0c0;
-	height: 500px;
+	height: 100%;
 }
 .nav {
 	width: 20%;
-	display: flex;
+	text-alighn:center;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	border-right: 1px solid #c0c0c0;
 }
 .nav .name {
-	height: 30%;
-	display: flex;
 	justify-content: center;
+	padding:40px 0px 40px 60px;
 	align-items: center;
 	font-size: 2em;
 	font-weight: bold;
@@ -29,12 +28,10 @@
 .nav .account_information,
 .nav .purchase_history,
 .nav .card_create {
-	height: 10%;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	padding:0px 0px 25px 0px;
 	font-size: 1.2em;
 }
 .nav .space {
-	height: 40%;
+
 }
