@@ -17,6 +17,8 @@
 
 	<h2>決済完了！！</h2>
 
+	<a href="Subscription.action" style="color:blue;">選択画面へ</a>
+
 </div>
 <%-- フッター --%>
 <c:import url="../common/footer.jsp"/>
