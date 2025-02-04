@@ -83,7 +83,8 @@ public class SettlementExecuteAction extends Action{
 		req.setAttribute("user", user);
 		req.setAttribute("pList", pList);
 		req.setAttribute("cList", cList);
+		req.setAttribute("message", "決済が完了しました");
 		//JSPへフォワード 7
-		req.getRequestDispatcher("settlementDone.jsp").forward(req, res);
+		req.getRequestDispatcher("OrderHistory.action").forward(req, res);
 	}
 }

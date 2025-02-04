@@ -587,7 +587,7 @@ public class OrderDao extends Dao {
 		try{
 				//プリペアードステートメントにInsert文をセット
 				statement = connection.prepareStatement(
-						"SELECT * FROM ORDERS WHERE USER_ID=?");
+						"SELECT * FROM ORDERS WHERE USER_ID=? ORDER BY order_time DESC");
 				//各部分に値を設定
 				statement.setInt(1, userId);
 

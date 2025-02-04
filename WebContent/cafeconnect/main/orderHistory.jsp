@@ -13,6 +13,9 @@
 	<%-- ナビゲーション --%>
 	<c:import url="../common/navigation.jsp" />
 	<div class="order-history">
+		<c:if test="${not empty message}">
+			<p style="font-size:30px; color:green;">${ message }</p>
+		</c:if>
 		<c:forEach var="order" items="${orders}">
 			<div class="order">
 				<div class="day">
@@ -20,7 +23,7 @@
 					に購入
 				</div>
 				<div class="order-contents">
-					<div class="image">
+					<div class="image" style="width:120px;">
 						<img src="../img/product/${order.product.image}">
 					</div>
 					<div class="name">${order.product.productName}
