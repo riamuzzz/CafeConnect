@@ -11,18 +11,19 @@
 	font-size: 20px;
 }
 
-img {
-	width:300px;
-}
+
 
 .kessai{
 	width: 120%;
 	align: right;
 	margin-right: 0;
-	margin-bottom: 1%;
 	background-color: white;
 	text-align:center;
 
+}
+
+.kessai img {
+	width:100px;
 }
 
 .kessai td{
@@ -53,18 +54,19 @@ img {
 }
 
 .payment{
-	width: 100%;
+	width:300px;
+	position: absolute;
+	top:70px;
+	right:80px;
 	background-color: white;
 	font-size:20px;
-	padding-bottom: 120%;
-	margin-top: -307%;
-	margin-left: 150%;
+	margin-top: 200px;
+	padding-bottom:160px;
 }
 
 .payment td{
 	font-weight: bold;
 	text-align: center;
-	padding-top: 10%;
 }
 
 
@@ -73,10 +75,11 @@ strong{
 }
 
 .subKessai{
-	width: 70%;
-	margin-top: -110%;
-	margin-left: 166%;
-	padding: 4% 0;
+	width: 260px;
+	position: absolute;
+	top:340px;
+	right:100px;
+	padding: 17px 0;
 	color: white;
 	background-color: #ff3131;
 	border:none;
@@ -107,10 +110,11 @@ strong{
 }
 
 .cartBack{
-	width: 70%;
-	margin-top: -86%;
-	margin-left: 166%;
-	padding: 4% 0;
+	width: 260px;
+	position: absolute;
+	top:420px;
+	right:100px;
+	padding: 17px 0;
 	color: white;
 	background-color: #5f5f5f;
 	border:none;
