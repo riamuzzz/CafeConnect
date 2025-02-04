@@ -49,8 +49,9 @@
 								</c:forEach></td>
 
 							<!-- カート削除ボタン -->
-							<td id="del"><input type="hidden" name="productId" value="${pList.productId}">
-								<input type="submit"onclick="changeAction('CartDelete.action')" value="カートから削除">
+							<td id="del">
+							<a href="CartDelete.action?productId=${ pList.productId }" style="color:blue; white-space: nowrap;">カートから削除</a>
+
 							</td>
 						</tr>
 					</c:forEach>
