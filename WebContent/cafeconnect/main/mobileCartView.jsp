@@ -54,9 +54,13 @@
 							</td>
 						</tr>
 					</c:forEach>
+					</table>
 					<!-- 合計金額を表示 -->
+					<table id="hoge">
 					<tr>
-						<td id="totalAmount">合計金額：${total}円</td>
+						<td id="kin">合計金額：</td>
+						<td id="totalAmount" style="width:30px;">${total}</td>
+						<td id="kin">円</td>
 					</tr>
 					<tr>
 						<td>

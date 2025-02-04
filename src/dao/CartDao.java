@@ -254,6 +254,8 @@ public class CartDao extends Dao {
 				statement.setInt(1, cart.getUser().getUserId());
 				statement.setInt(2, productId);
 
+				System.out.println(statement);
+
 			//プリペアードステートメントを実行
 			count = statement.executeUpdate();
 

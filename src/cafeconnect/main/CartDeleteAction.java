@@ -25,12 +25,13 @@ public class CartDeleteAction  extends Action{
 		String productIdStr = "";
 		Cart cart =new Cart();
 		Product product =new Product();
+		int i = 0;
 
-		productIdStr = req.getParameter("productId");
+		productIdStr = req.getParameter("productId"+Integer.toString(i));
 		int productId = Integer.parseInt(productIdStr);
 		product =pDao.get(productId);
 
-		cart = cDao.get(user,pDao.get(productId));
+		cart = cDao.get(user,product);
 
 		cDao.delete(cart, productId);
 		//商品が豆かどうか判断している（モバイルは豆頼めないからモバイルかオンラインショップかの判断もしている）
