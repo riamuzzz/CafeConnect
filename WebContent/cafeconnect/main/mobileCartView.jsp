@@ -11,8 +11,6 @@
 	<%-- ヘッダー --%>
 	<c:import url="../common/main_header.jsp" />
 	<div class="main">
-		<%-- ナビゲーション --%>
-		<c:import url="../common/navigation.jsp" />
 
 		<div class="cartcontent">
 			<h1>カート</h1>
