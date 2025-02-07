@@ -21,8 +21,8 @@
 	<tr>
 		<th><label>カテゴリ </label></th>
 			<td>
-			<select name="category" class="category">
-				<option value="0">--------</option>
+			<select name="category" class="category" required>
+				<option value="0" disabled>--------</option>
 				<c:forEach var="category" items="${categories}">
 					<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
 					<option value="${category.categoryId}" <c:if test="${categoryName==category.categoryName}">selected</c:if>>${category.categoryName}</option>

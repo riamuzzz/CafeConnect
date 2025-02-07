@@ -21,7 +21,7 @@
 		<input type="password" id="oldPass" name="oldPass">
 		<input type="checkbox" id="showPass1" onchange="togglePasswordVisibility()" />
 		<label>新しいパスワード</label>
-		<input type="password" id="newPass" name="newPass">
+		<input type="password" id="newPass" name="newPass" required>
 		<input type="checkbox" id="showPass2" onchange="togglePasswordVisibility2()" /><br>
 		<input type="submit" id="passbottom" value="変更">
 		<script>
