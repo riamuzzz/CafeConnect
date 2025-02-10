@@ -11,7 +11,7 @@
 		<%-- ナビゲーション --%>
 		<c:import url="../common/cafenavigation.jsp" />
 		<div class="onlineOrderView1">
-			<h2>オンライン注文一覧</h2>
+			<h2>モバイル注文一覧</h2>
 			<c:choose>
 				<c:when test="${order.size()>0}">
 					<form action="MobileOrderView.action">
@@ -20,18 +20,16 @@
 						<label>商品</label><input type="text" name="product" value="">
 						<input type="submit" value="絞り込み">
 					</form>
-					<form action="OrderUpdateExecute.action" method="post">
+					<form action="MobileUpdateExecute.action" method="post">
 						<div class="onlineOrderView2">
 							<table>
 								<tr>
 									<th class="orderTime">日付</th>
 									<th class="orderId">注文番号</th>
-									<th class="userName">氏名</th>
-									<th class="address">住所</th>
 									<th class="productName">商品名</th>
 									<th class="count">個数</th>
-									<th class="receive">発送済み</th>
-									<th class="text-center">サブスク</th>
+									<th class="receive">お渡し済み</th>
+
 
 								</tr>
 								<c:forEach var="order" items="${order}" varStatus="status">
@@ -41,8 +39,6 @@
 
 										<td class="orderTime">${order.orderTime}</td>
 										<td class="orderId">${order.orderId}</td>
-										<td class="userName">${order.user.userName}</td>
-										<td class="address">${order.user.address}</td>
 										<td class="productName">${order.product.productName}</td>
 										<td class="count">${order.count}</td>
 
@@ -50,16 +46,6 @@
 											<input type="checkbox" name="receive${status.index}" value="true">
 										</td>
 
-										<td class="text-center">
-											<%-- フラグがたっている場合「○」それ以外は「×」を表示 --%> <c:choose>
-												<c:when test="${order.subscription}">
-											○
-										</c:when>
-												<c:otherwise>
-											×
-										</c:otherwise>
-											</c:choose>
-										</td>
 									</tr>
 
 								</c:forEach>
