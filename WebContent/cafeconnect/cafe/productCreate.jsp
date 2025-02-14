@@ -30,19 +30,19 @@
 	</tr>
 	<tr>
 		<th><label>商品名</label></th>
-		<td><input type="text" name="productName"id="productName" class="productName"></td>
+		<td><input type="text" name="productName"id="productName" class="productName" required></td>
 	</tr>
 	<tr>
 		<th><label>価格</label></th>
-		<td><input type="number" name="price" id="price"></td>
+		<td><input type="number" name="price" id="price" required></td>
 	</tr>
 	<tr>
 		<th><label>数量</label></th>
-		<td><input type="number" name="count" id="count" class="count"></td>
+		<td><input type="number" name="count" id="count" class="count" required></td>
 	</tr>
 	<tr>
 		<th><label>詳細</label></th>
-		<td><textarea id="productDetail" name="productDetail" class="productDetail"></textarea></td>
+		<td><textarea id="productDetail" name="productDetail" class="productDetail" required></textarea></td>
 	</tr>
 	<tr>
 		<th><label>販売状況</label></th>
